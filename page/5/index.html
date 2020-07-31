@@ -22,7 +22,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="CocoaLei">
-<meta property="og:url" content="https://cocoalei.github.io/blogs/page/3/index.html">
+<meta property="og:url" content="https://cocoalei.github.io/blogs/page/5/index.html">
 <meta property="og:site_name" content="CocoaLei">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="CocoaLei">
@@ -32,7 +32,7 @@
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://cocoalei.github.io/blogs/page/3/">
+<link rel="canonical" href="https://cocoalei.github.io/blogs/page/5/">
 
 
 <script id="page-configurations">
@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2018/07/11/ServeSideRender/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2018/04/02/ReflowAndRedraw/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -168,7 +168,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2018/07/11/ServeSideRender/" class="post-title-link" itemprop="url">服务端渲染</a>
+            <a href="/2018/04/02/ReflowAndRedraw/" class="post-title-link" itemprop="url">Reflow and Redraw</a>
         </h2>
 
         <div class="post-meta">
@@ -178,14 +178,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2018-07-11 00:00:00" itemprop="dateCreated datePublished" datetime="2018-07-11T00:00:00+08:00">2018-07-11</time>
+              <time title="创建时间：2018-04-02 00:00:00" itemprop="dateCreated datePublished" datetime="2018-04-02T00:00:00+08:00">2018-04-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-07-15 11:10:12" itemprop="dateModified" datetime="2019-07-15T11:10:12+08:00">2019-07-15</time>
+                <time title="修改时间：2019-09-17 13:18:47" itemprop="dateModified" datetime="2019-09-17T13:18:47+08:00">2019-09-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -193,7 +193,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">大前端</span></a>
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
                 </span>
             </span>
 
@@ -208,25 +208,88 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="服务器端渲染"><a href="#服务器端渲染" class="headerlink" title="服务器端渲染"></a>服务器端渲染</h1><h2 id="什么是服务器端渲染？"><a href="#什么是服务器端渲染？" class="headerlink" title="什么是服务器端渲染？"></a>什么是服务器端渲染？</h2><p>将组件或页面在服务器端渲染为 HTML 字符串，直接发送到浏览器，最后将这些静态标记激活为客户端上完全可交互的应用程序。</p>
-<h2 id="为什么使用服务器端渲染？"><a href="#为什么使用服务器端渲染？" class="headerlink" title="为什么使用服务器端渲染？"></a>为什么使用服务器端渲染？</h2><p>SSR 的主要优势</p>
+          <h2 id="回流和重绘以及性能的优化"><a href="#回流和重绘以及性能的优化" class="headerlink" title="回流和重绘以及性能的优化"></a>回流和重绘以及性能的优化</h2><p>在解释回流和重绘的概念之前，我们首先需要知道两个概念：DOM 和 CSSOM。</p>
 <ul>
-<li><p>更好的 SEO</p>
-<p>搜索引擎爬虫工具可以直接查看完全渲染的页面</p>
+<li><p>DOM (Document Object Model) 文档对象模型</p>
+<p>DOM 是 HTML 和 XML 文档的编程接口，它提供了对文档的结构化表述，并使得开发人员能够从程序中访问它，改变文档的结构、样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。</p>
 </li>
-<li><p>更快的内容达到时间</p>
-<p>无需等待所有的 <code>JavaScript</code> 都完成下载并执行</p>
+<li><p>CSSOM (CSS Object Model) CSS对象模型</p>
+<p>CSSOM 是一组允许 JavaScript 操作 CSS 的 API，非常类似于 DOM，它允许用户动态的修改 CSS 样式。</p>
 </li>
 </ul>
-<p>需要权衡的地方</p>
+<h3 id="DOM-和-CSSOM-构建"><a href="#DOM-和-CSSOM-构建" class="headerlink" title="DOM 和 CSSOM 构建"></a>DOM 和 CSSOM 构建</h3><p>浏览器渲染页面时会构建 DOM 和 CSSOM 树，这个过程可简化如下：</p>
+<ol>
+<li>转换 - 浏览器从磁盘或网络读取 HTML 的原始字节，并按照其指定的编码方式将其解析为字符</li>
+<li>符号化(令牌化) -  浏览器将字符串转换为 HTML 标准规定的各种具有特殊含义和规则的令牌</li>
+<li>词法分析- 将令牌转换为定义了其规则和属性的对象</li>
+<li>DOM构建 - HTML 标记定义了不同的标记之间的关系，根据标签创建的对象在结构树中根据由原始标记定义的父子关系相互连接。</li>
+</ol>
+<p>整个过程最后形成一个文档对象结构模型，即 DOM。CSSOM 的构建与 DOM 的构建非常类似，不再重复。</p>
+<h3 id="渲染树的构建"><a href="#渲染树的构建" class="headerlink" title="渲染树的构建"></a>渲染树的构建</h3><p>最后 CSSOM 和 DOM 会结合形成渲染树。渲染树用来计算每个可见元素的布局，并在绘制到屏幕的过程中作为输出，简化后的过程如下：</p>
+<ol>
+<li>从 DOM 树的根节点开始，遍历每个可见的节点<ul>
+<li>有些节点是不可见的（比如 <code>&lt;script&gt;</code> 标签、<code>&lt;meta&gt;</code> 标签 等），这些节点会被忽略， 因为它们并不影响渲染的输出</li>
+<li>一些节点通过 CSS 被隐藏了，它们也会被忽略</li>
+</ul>
+</li>
+<li>为每一个可见的节点找到匹配的 CSSOM 规则并在节点上应用这些规则</li>
+<li>将节点连同内容和计算好的样式发送出去</li>
+</ol>
+<p>渲染树构建完成后，即进入 “布局” 阶段。</p>
+<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><p>在渲染树中我们已经计算好了哪个节点应该被显示和它们的计算样式，但是对于它们在设备的视口中的精确位置和大小还没有进行计算，对其进行计算就是 ”布局“，也被称为 <strong>回流</strong>。</p>
+<p>为了计算页面中每个对象的精确位置和大小，浏览器从渲染树的根节点开始遍历。</p>
+<p>布局过程的输出是一个“盒子模型”，它精确地捕获视口中每个元素的确切位置和大小：所有相对测量值都转换为屏幕上的绝对像素。</p>
+<h3 id="绘制"><a href="#绘制" class="headerlink" title="绘制"></a>绘制</h3><p>布局完成后，我们已经知道了节点的可见性、计算样式和几何结构，浏览器将会把渲染树中的每个节点转换为屏幕上的实际像素。这个步骤通常被称为 ”绘制“ 或 ”栅格化“；</p>
+<p>由于浏览器需要进行大量的工作进行绘制，这个阶段可能会花费一些时间。</p>
+<h3 id="回流"><a href="#回流" class="headerlink" title="回流"></a>回流</h3><p>当渲染树中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程称为回流。</p>
+<p>可能会引起回流的操作如下</p>
 <ul>
-<li><p>浏览器特定的代码，只能在某些生命周期钩子函数中使用</p>
-</li>
-<li><p>涉及构建设置和部署的更多要求</p>
-<p>服务器渲染应用程序，需要处于 <code>Node.js server</code> 环境</p>
-</li>
-<li><p>更多的服务器端负载</p>
-</li>
+<li>页面首次渲染</li>
+<li>浏览器窗口大小发生改变</li>
+<li>元素尺寸或位置发生改变</li>
+<li>元素内容发生改变</li>
+<li>元素字体大小发生变化</li>
+<li>添加或删除可见的 DOM 元素</li>
+<li>激活 CSS 伪类</li>
+<li>查询某些属性或调用某些方法</li>
+</ul>
+<p>常用且可能导致回流的属性和方法</p>
+<ul>
+<li><code>clientWidth</code> , <code>clientHeight</code>, <code>clientTop</code>, <code>clientLeft</code></li>
+<li><code>offsetWidth</code>, <code>offsetHeight</code>, <code>offsetTop</code>, <code>offsetLeft</code></li>
+<li><code>scrollWidth</code>, <code>scrollHeight</code>, <code>scrollTop</code>, <code>scrollLeft</code></li>
+<li><code>scrollIntoView()</code>, <code>scrollIntoViewIfNeeded()</code></li>
+<li><code>getComputedStyle()</code></li>
+<li><code>getBoundingClientReact()</code></li>
+<li><code>scrollTo()</code></li>
+</ul>
+<h3 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h3><p>当页面中元素样式的改变并不影响它在文档流中的位置时（例如：<code>color</code>、<code>background-color</code>、<code>visibility</code>等），浏览器会将新样式赋予给元素并重新绘制它，这个过程称为重绘。</p>
+<h3 id="性能影响"><a href="#性能影响" class="headerlink" title="性能影响"></a>性能影响</h3><p>回流比重绘的代价要高的多。有时候仅仅回流一个单一的元素，它的父元素及任何与它相关的元素都会产生回流。</p>
+<p>浏览器会对频繁的回流或重绘操作进行优化：</p>
+<p>浏览器会维护一个队列，把所有引起回流和重绘的操作放入队列中，如果队列中的任务数量或者时间间隔达到一个阈值的时候，浏览器就会将队列清空，进行一次批处理，这样可以把多次回流和重绘变成一次。</p>
+<p>当你访问下列属性是，浏览器会立刻清空队列：</p>
+<ul>
+<li><code>clientWidth</code> , <code>clientHeight</code>, <code>clientTop</code>, <code>clientLeft</code></li>
+<li><code>offsetWidth</code>, <code>offsetHeight</code>, <code>offsetTop</code>, <code>offsetLeft</code></li>
+<li><code>scrollWidth</code>, <code>scrollHeight</code>, <code>scrollTop</code>, <code>scrollLeft</code></li>
+<li><code>width</code>, <code>height</code></li>
+<li><code>getComputedStyle()</code></li>
+<li><code>getBoundingClientRect()</code></li>
+</ul>
+<p>因为队列中可能会有影响到这些属性或方法返回值的操作，即使你希望获取的信息与队列中操作引发的改变无关，浏览器也会强行清空队列，确保你拿到的值是最精确的。</p>
+<h3 id="如何避免回流"><a href="#如何避免回流" class="headerlink" title="如何避免回流"></a>如何避免回流</h3><h4 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h4><ul>
+<li>避免使用<code>table</code>布局。</li>
+<li>尽可能在<code>DOM</code>树的最末端改变<code>class</code>。</li>
+<li>避免设置多层内联样式。</li>
+<li>将动画效果应用到<code>position</code>属性为<code>absolute</code>或<code>fixed</code>的元素上。</li>
+<li>避免使用<code>CSS</code>表达式（例如：<code>calc()</code>）。</li>
+</ul>
+<h4 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h4><ul>
+<li>避免频繁操作样式，最好一次性重写<code>style</code>属性，或者将样式列表定义为<code>class</code>并一次性更改<code>class</code>属性。</li>
+<li>避免频繁操作<code>DOM</code>，创建一个<code>documentFragment</code>，在它上面应用所有<code>DOM操作</code>，最后再把它添加到文档中。</li>
+<li>也可以先为元素设置<code>display: none</code>，操作结束后再把它显示出来。因为在<code>display</code>属性为<code>none</code>的元素上进行的<code>DOM</code>操作不会引发回流和重绘。</li>
+<li>避免频繁读取会引发回流/重绘的属性，如果确实需要多次使用，就用一个变量缓存起来。</li>
+<li>对具有复杂动画的元素使用绝对定位，使它脱离文档流，否则会引起父元素及后续元素频繁回流。</li>
 </ul>
 
       
@@ -246,7 +309,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
