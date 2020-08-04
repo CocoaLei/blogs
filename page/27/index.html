@@ -158,7 +158,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2015/12/01/iOS-Memory-Management/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/01/02/http-summary/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -172,7 +172,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2015/12/01/iOS-Memory-Management/" class="post-title-link" itemprop="url">内存管理理解与分析</a>
+            <a href="/2016/01/02/http-summary/" class="post-title-link" itemprop="url">网络编程基础</a>
         </h2>
 
         <div class="post-meta">
@@ -182,14 +182,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2015-12-01 00:00:00" itemprop="dateCreated datePublished" datetime="2015-12-01T00:00:00+08:00">2015-12-01</time>
+              <time title="创建时间：2016-01-02 00:00:00" itemprop="dateCreated datePublished" datetime="2016-01-02T00:00:00+08:00">2016-01-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-01-17 11:36:08" itemprop="dateModified" datetime="2019-01-17T11:36:08+08:00">2019-01-17</time>
+                <time title="修改时间：2019-09-03 15:17:34" itemprop="dateModified" datetime="2019-09-03T15:17:34+08:00">2019-09-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -197,7 +197,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                  <a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
                 </span>
             </span>
 
@@ -212,71 +212,64 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="iOS-内存管理"><a href="#iOS-内存管理" class="headerlink" title="iOS 内存管理"></a>iOS 内存管理</h1><h3 id="iOS-中的程序内存结构"><a href="#iOS-中的程序内存结构" class="headerlink" title="iOS 中的程序内存结构"></a>iOS 中的程序内存结构</h3><hr>
-<p>在 iOS 程序中，内存可以粗略的分为五个区域：</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Descroption</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>栈</td>
-<td>由操作系统自动分配和释放，常用来存放函数的参数值、局部变量的值等。优点是快速高效，缺点是有限制，数据</td>
-</tr>
-<tr>
-<td>堆</td>
-<td>一般由程序员分配和释放，常用来存储对象</td>
-</tr>
-<tr>
-<td>全局区</td>
-<td>用来存储已经初始化的全局变量和静态变量，程序结束时才会被释放回收</td>
-</tr>
-<tr>
-<td>常量区</td>
-<td>用来存储常量的区域，程序结束时才会被释放回收</td>
-</tr>
-<tr>
-<td>代码段</td>
-<td>用来存放程序的执行代码，直到程序结束才会释放回首</td>
-</tr>
-</tbody></table>
-<p>在 iOS程序中，只有堆区中存放的数据是需要手动释放回收的，其它区域存储的数据的释放和回收都由系统进行管理。当一个 iOS 程序启动后，它的全局区、常量区和代码区就已经确定了。</p>
+          <h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h2 id="TCP-IP-协议"><a href="#TCP-IP-协议" class="headerlink" title="TCP/IP 协议"></a>TCP/IP 协议</h2><h3 id="TCP-IP-协议的基本概念"><a href="#TCP-IP-协议的基本概念" class="headerlink" title="TCP/IP 协议的基本概念"></a>TCP/IP 协议的基本概念</h3><p><strong>TCP/IP 协议不是 TCP 和 IP 这两个协议的合称，而是指因特网整个 TCP/IP 协议族。</strong></p>
+<p>TCP/IP 是 Transmission Control Protocol / Internet Protocol 的简写，即 ‘传输控制协议/因特网互联协议’，又名网络通讯协议，是 Internet 最基本的协议、Internet 国际互联网络的基础。</p>
+<p>TCP/IP 由网络层的 IP 协议和传输层的 TCP 协议组成。</p>
+<p>TCP/IP 定义了电子设备如何连如因特网，以及数据如何在它们之间传输的标准。协议采用了4层的层级架构，每一层都呼叫它的下一层所提供的协议来完成自己的需求。通俗而言，TCP  负责发现传输的问题，一旦发现问题就发出信号，要求重新传输，直到所有数据正确地传输到目的地。而 IP 是给因特网每一台联网设备规定一个地址。</p>
+<h3 id="参考模型"><a href="#参考模型" class="headerlink" title="参考模型"></a>参考模型</h3><h4 id="TCP-IP-参考模型"><a href="#TCP-IP-参考模型" class="headerlink" title="TCP/IP 参考模型"></a>TCP/IP 参考模型</h4><p>TCP/IP 参考模型是首先由 ARPANET 所使用的网络体系结构。这个体系结构在它的两个主要协议出现以后被称为 TCP/IP 参考模型。这一网络协议共分为四层：</p>
 <ul>
-<li><p>栈区 (stack) 是由编译器自动分配和释放，用来存放函数的参数值、局部变量等。栈是系统数据结构，对应进程/线程是唯一的。优点是快速高效，缺点是有限制，数据不灵活。</p>
+<li><p>网络访问层，即 Network Access Layer，在 TCP/IP 参考模型中并没有信息描述，只是指出主机必须使用某种协议与网络相连。</p>
 </li>
-<li><p>堆区 (heap) 由程序员分配和释放，如果程序员不释放，程序结束时，可能由操作系统回收。优点是灵活方便，数据适应面广泛，但是效率有一定降低。</p>
+<li><p>互联网层，即 Internet Layer，是整个体系结构的关键部分，其功能是使主机可以把分组发往任何网络，并使分组独立地传向目标。这些分组可能是经过不同的网络，到达的顺序和发送的顺序也可能不同。高层如果需要顺序收发，那就必须自行处理对分组的排序。互联网层使用因特网协议(IP, Internet Protocol)。</p>
 </li>
-<li><p>全局区/静态区 (static) 存放全局变量和静态变量，初始话的全局变量和静态变量存放在一块区域，未初始化的全局变量和静态变量在另一块区域，程序结束后由系统自动释放。</p>
+<li><p>传输层，即 Transport Layer，使源端和目的端机器上的对等实体可以进行会话。在这一层定义了两个端到端的协议：传输控制协议(TCP，Transmission Control Protocol)和用户数据报协议(UDP，User Datagram Protocol)。</p>
+<p>TCP 是面向连接的协议，它提供可靠的报文传输和对上层应用的连接服务。为此，除了基本的数据传输外，它还有可靠性保证、流量控制、多路复用、优先权和安全性控制等功能。</p>
+<p>UDP 是面向无连接 的不可靠传输协议，主要用于不需要 TCP 的排序和流量控制等功能的应用程序。</p>
 </li>
-<li><p>文字常量区，用来存储常量字符串，程序结束后由系统释放。</p>
-</li>
-<li><p>代码区，存放函数的二进制代码</p>
-<p>​</p>
+<li><p>应用层，即 Application Layer，包含所有的高层协议，包括：虚拟终端协议(TELNET, TELecommunications NETwork)、文件传输协议(FPT, File Transfer Protocol)、电子邮件传输协议(SMTP, Simple  Mail Transfer Protocol)、域名服务(DNS, Domain Name Service)、网上新闻传输协议(NNTP, Net News Transfer Protocol)和超文本传输协议(HTTP, HyperText Transfer Protocol)。</p>
+<p>TELNET 允许一台机器上的用户登录到远程机器上，并进行工作。</p>
+<p>FTP 提供了有效地将文件从一台机器上转移到另一台机器上的方法。</p>
+<p>SMTP 用于电子邮件的收发。</p>
+<p>DNS 用于把主机名映射到网络地址。</p>
+<p>NNTP 用于新闻的发布、检索和获取。</p>
+<p>HTTP 用于在 WWW 上获取网页。</p>
 </li>
 </ul>
-<h3 id="iOS-中的内存管理"><a href="#iOS-中的内存管理" class="headerlink" title="iOS 中的内存管理"></a>iOS 中的内存管理</h3><hr>
-<p>因为 iOS 程序的内存分配中，只有堆区是有程序员进行管理的，所以 iOS 的内存管理大致上就是可以认为是堆区内存的管理。</p>
-<p>在 Objective-C 中，使用引用计数来确定一个对象所占有的内存空间是否应该被回收。它的工作原理可以描述为：</p>
-<blockquote>
-<p><strong>Objective-C 中的每一个对象都有一个类型为 unsigned long 的 retainCount 的属性，这个属性由拥有它的对象进行维护。当我们新创建出这个对象的一个实例时，这个对象实例的 retainCount 值为1，每当一个新的引用指向对象，对象的 retainCount 值就会增加1，每当这个对象实例的引用减少一个，retainCount 的值就减少1。当着对象实例的 retainCount 的值为0时，代表这个对象实例没有被引用，系统会自动将这个对象实例的内存空间回收并同时调用这个实例对象的 dealloc 方法。</strong></p>
-</blockquote>
-<p>需要注意的几个问题：</p>
+<h4 id="OSI-参考模型"><a href="#OSI-参考模型" class="headerlink" title="OSI 参考模型"></a>OSI 参考模型</h4><p>OSI 参考模型是国际标准化组织指定的一个用于计算机或通信系统之间互联的标准体系。</p>
 <ul>
-<li>常量是没有引用计数的</li>
-<li>使用对象实例的属性值进行赋值，不会引用这个对象</li>
-<li>释放对象实例时会调用 dealloc 方法，如果没有调用则会造成内存泄漏</li>
-<li>对引用计数为1的对象实例发送 release 消息时，系统不会再对其进行 retainCount - 1 的操作。</li>
+<li><p>物理层 - 通过物理媒体传输原始字节流</p>
+</li>
+<li><p>链路层 - 定义网络上数据的格式</p>
+</li>
+<li><p>网络层 - 决定数据通过哪条物理路径进行传输</p>
+</li>
+<li><p>传输层 - 通过传输协议传输数据</p>
+</li>
+<li><p>会话层 - 维护链接并负责控制端口和会话</p>
+</li>
+<li><p>展示层 - 保证数据的格式时可用并加密的</p>
+</li>
+<li><p>应用层 - 计算机交互层，在这里应用可以访问网络服务</p>
+</li>
 </ul>
-<h4 id="MRC-和-ARC"><a href="#MRC-和-ARC" class="headerlink" title="MRC 和 ARC"></a>MRC 和 ARC</h4><p>使用对象实例的引用计数来进行 iOS的内存管理，分为两种方式：</p>
+<h3 id="TCP-IP-特点"><a href="#TCP-IP-特点" class="headerlink" title="TCP/IP 特点"></a>TCP/IP 特点</h3><ul>
+<li>TCP/IP 协议不依赖于任何特定的计算机硬件或操作系统，提供开放的协议标准。</li>
+<li>TCP/IP 并不依赖于特定的网络传输硬件，所以 TCP/IP 协议能够集成各种各样的网络。</li>
+<li>统一的网络地址分配方案，使整个 TCP/IP 设备在网中都有唯一的地址。</li>
+<li>标准化的高层协议，可以提供多种可靠的服务。</li>
+</ul>
+<h2 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h2><p>开发中，我们经常需要向服务器端发送数据或从服务器端请求特定数据，为了完成数据在客户端和服务器端的传输，我们在传输数据时必须用到 HTTP 协议。</p>
+<h3 id="什么是-HTTP-协议？"><a href="#什么是-HTTP-协议？" class="headerlink" title="什么是 HTTP 协议？"></a>什么是 HTTP 协议？</h3><p>HTTP 协议，即 HyperText Transmission Protocol，超文本传输协议，定义了客户端与服务器端的数据传输规则，让客户端和服务器能够有效地进行数据沟通。</p>
+<h3 id="HTTP-的基本性质"><a href="#HTTP-的基本性质" class="headerlink" title="HTTP 的基本性质"></a>HTTP 的基本性质</h3><ul>
+<li>HTTP 是简单的</li>
+<li>HTTP 是可扩展的 - 通过 HTTP headers 可以轻松对协议进行扩展</li>
+<li>HTTP 是无状态，有会话的 - 在同一个连接中，两个执行成功的请求之间是没有关系的</li>
+</ul>
+<h3 id="HTTP-请求与响应"><a href="#HTTP-请求与响应" class="headerlink" title="HTTP 请求与响应"></a>HTTP 请求与响应</h3><h4 id="HTTP-请求"><a href="#HTTP-请求" class="headerlink" title="HTTP 请求"></a>HTTP 请求</h4><p>HTTP 协议规定，一个完整的 HTTP 请求应包含如下内容</p>
 <ul>
-<li>MRC ：手动引用计数，由程序员手动的管理对象实例的引用计数</li>
-<li>ARC ：自动引用计数，是基于 MRC 的，系统自动的管理对象实例的引用计数</li>
-</ul>
-<p>实际上在 iOS 5 之后，Apple 就开始推荐使用 ARC 来进行 iOS 程序的内存管理工作，目前 MRC 已经非常少见。</p>
-<p>ARC 中，编译器会在编译时在代码中插入合适的 retain 和 release 语句。</p>
-<h5 id="ARC-中的修饰符"><a href="#ARC-中的修饰符" class="headerlink" title="ARC 中的修饰符"></a>ARC 中的修饰符</h5><p>ARC 中有四种修饰符</p>
+<li><p>请求行 ：包含请求方法、请求统一资源标示符和 HTTP 版本号。</p>
+</li>
+<li><p>请求头 ：请求头包含客户端传送给服务器端的附加信息。</p>
 <table>
 <thead>
 <tr>
@@ -285,81 +278,222 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>__strong</td>
-<td>强引用，默认值，持有所指向对象的所有权</td>
+<td>Host</td>
+<td>目标服务器的网络地址</td>
 </tr>
 <tr>
-<td>__weak</td>
-<td>弱引用，不持有所指向对象的所有权，所指向的对象销毁后，引用会自动置为 nil</td>
+<td>Accept</td>
+<td>告知服务器端客户端能够接收的数据类型，如 ‘text/html’等</td>
 </tr>
 <tr>
-<td>__autoreleasing</td>
-<td>自动释放对象的引用，一般用来传递参数</td>
+<td>Content-Type</td>
+<td>请求体中的数据类型，如 ‘Application/Json; charset=UTF-8’等</td>
 </tr>
 <tr>
-<td>__unsafe_unretained</td>
-<td>为兼容 MRC 出现的修饰符，可看成 MRC 下的 weak</td>
+<td>Accept-Language</td>
+<td>客户端的语言环境，如 ‘zh-cn’ 等</td>
+</tr>
+<tr>
+<td>Accept_Encoding</td>
+<td>客户端支持的数据压缩格式，如 ‘gzip’ 等</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>客户端的软件环境</td>
+</tr>
+<tr>
+<td>Connection : keep-alive</td>
+<td>告知服务器这是一个持久连接</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>请求体的长度</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>记录着用户保存在本地的用户数据</td>
 </tr>
 </tbody></table>
-<h5 id="属性的内存管理"><a href="#属性的内存管理" class="headerlink" title="属性的内存管理"></a>属性的内存管理</h5><p>常见的属性修饰符</p>
+</li>
+<li><p>请求体 ：发送给服务器端的数据</p>
+<p>在使用 POST-Multipart 上传请求中请求体就是上传文件的二进制数据。</p>
+<p>在使用 GET 请求时，请求体为空。</p>
+<p>在普通的 POST 请求中，请求体就是表单数据。</p>
+</li>
+<li><p>响应状态行 ： 服务器返回给客户端的状态信息，一般包含 HTTP 版本号、状态码和状态码对应的英文名称。</p>
+<p>一个典型的状态行如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 200 OK</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="HTTP-响应"><a href="#HTTP-响应" class="headerlink" title="HTTP 响应"></a>HTTP 响应</h4><p>基本与 HTTP 请求相同。</p>
+<h3 id="HTTP-的版本"><a href="#HTTP-的版本" class="headerlink" title="HTTP 的版本"></a>HTTP 的版本</h3><p>HTTP 的主要版本如下</p>
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Description</th>
+<th>Version</th>
+<th>Feature</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>assign</td>
-<td>直接赋值，一般用来修饰基本数据类型。修饰 Objc 对会造成野指针</td>
+<td>&lt; HTTP 1.1</td>
+<td>不支持持久连接；无请求头和响应头；客户端的前后请求是同步的。</td>
 </tr>
 <tr>
-<td>retain</td>
-<td>保留新值，再释放旧值，再设置新值</td>
+<td>HTTP 1.1</td>
+<td>增加请求头和响应头；支持持久连接；客户端的不同请求之间是异步的。</td>
 </tr>
 <tr>
-<td>copy</td>
-<td>拷贝新值，再释放旧值，再设置新值</td>
-</tr>
-<tr>
-<td>weak</td>
-<td>ARC 新引入，可代替 assign，自动置 nil</td>
-</tr>
-<tr>
-<td>strong</td>
-<td>ARC 新引入，可代替 retain</td>
+<td>HTTP 2.0</td>
+<td>向下兼容 HTTP 1.1，但只用于 https 网址。</td>
 </tr>
 </tbody></table>
-<h5 id="block-的内存管理"><a href="#block-的内存管理" class="headerlink" title="block 的内存管理"></a>block 的内存管理</h5><p>使用@property声明一个 block 时，使用 copy 来修饰。</p>
-<p>block 会对内部使用的对象进行强应用，在使用时可能会造成循环引用，可通过添加弱引用标记来解决：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__weak typeof(self) weakSelf	&#x3D;	self;</span><br></pre></td></tr></table></figure>
-
-<h4 id="Autorelease-amp-AutoreleasePool"><a href="#Autorelease-amp-AutoreleasePool" class="headerlink" title="Autorelease &amp; AutoreleasePool"></a>Autorelease &amp; AutoreleasePool</h4><p>在实际的情境中，经常会遇到不知道一个对象实例再什么时候不再使用，因而造成不知道应该何时才能将其释放的情况。Objective-C 中提供了 autorelease 方法来解决这个问题。</p>
-<p>当给一个对象实例发送 autorelease 消息时，它会被添加到合适的自动释放池中，当自动释放池销毁时，会给自动释放池中的所有对象实例发送 release 消息。</p>
-<p><strong>autorelease 不会改变对象的引用计数。</strong></p>
-<p>创建自动释放池的两种方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1</span><br><span class="line">NSAutoreleasePool	*pool	&#x3D;	[[NSAutoreleasePool alloc] init];</span><br><span class="line">[pool release];</span><br><span class="line">&#x2F;&#x2F; 2</span><br><span class="line">@autoreleasepool &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>值得注意的是自动释放池实质上只是在销毁时给其中的所有对象发送了 release 消息，并不保证对象一定会被销毁。</p>
-<h3 id="内存管理问题和解决方案"><a href="#内存管理问题和解决方案" class="headerlink" title="内存管理问题和解决方案"></a>内存管理问题和解决方案</h3><h4 id="僵尸对象和野指针"><a href="#僵尸对象和野指针" class="headerlink" title="僵尸对象和野指针"></a>僵尸对象和野指针</h4><p>僵尸对象是指内存已经被回收的对象，而野指针是指向僵尸对象的指针。</p>
-<p>向野指针发送消息会导致程序崩溃，就是经典的 : EXC_BAD_ACCESS 错误。</p>
-<p>所以为了避免产生僵尸对象和野指针，在对象释放后，应将其指针置为 nil。</p>
-<h4 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h4><p>当对象之间相互拥有彼此的强引用，形成闭环引用时，就称为循环引用。</p>
-<p>循环引用会造成程序内存消耗过高、程序闪退等问题。</p>
-<p>以下几种情况可能会造成循环引用：</p>
+<h3 id="HTTP-缓存"><a href="#HTTP-缓存" class="headerlink" title="HTTP 缓存"></a>HTTP 缓存</h3><p>缓存是一种保存资源副本并在下次请求时直接使用该副本的技术。当 web 缓存发现请求的资源已经被存储，它会拦截请求，返回该资源的拷贝，而不会去源服务器重新下载。这样带来的好处有：缓解服务器端压力，提升性能(获取资源的耗时更短了)。对于网站来说，缓存是达到高性能的重要组成部分。缓存需要合理配置，因为并不是所有资源都是永久不变的：重要的是对一个资源的缓存应截止到其下一次发生改变（即不能缓存过期的资源）。</p>
+<h4 id="缓存操作的目标"><a href="#缓存操作的目标" class="headerlink" title="缓存操作的目标"></a>缓存操作的目标</h4><p>虽然 HTTP 缓存不是必须的，但重用缓存的资源通常是必要的。然而常见的 HTTP 缓存智能存储 GET 响应。</p>
+<h4 id="缓存控制"><a href="#缓存控制" class="headerlink" title="缓存控制"></a>缓存控制</h4><h5 id="Cache-control-头"><a href="#Cache-control-头" class="headerlink" title="Cache-control 头"></a><code>Cache-control</code> 头</h5><p>HTTP/1.1 定义的 <code>Cache-Control</code> 头用来区分对缓存机制的支持情况，请求头和响应头都支持这个属性，你可以通过它提供的不同的值来定义缓存策略。</p>
 <ul>
-<li><p>由于父类指针可以指向子类对象，当父类对象和子类对象相互引用时，就造成了循环引用</p>
+<li><p>禁止进行缓存</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Canche-Control: no-store,</span><br><span class="line">Canche-Control: no-cache, no-store</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>作为对象属性的 block 中强引用了对象，造成循环引用，解决方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">__weak typeof(self) weakSelf &#x3D; self;</span><br><span class="line"> self.testObject.testCircleBlock &#x3D; ^&#123;</span><br><span class="line">      __strong typeof (weakSelf) strongSelf &#x3D; weakSelf;</span><br><span class="line">      [strongSelf doSomething];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<li><p>强制确认缓存</p>
+<p>每次有请求发出时，缓存会将次请求发送到服务器，服务器端会验证请求中所描述的缓存是否过期，若未过期，则缓存才使用本地缓存副本</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: must-revalidate</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>使用 strong 修饰符修饰代理属性，造成循环引用</p>
+<li><p>私有缓存和公共缓存</p>
+<p><code>public</code> 指令表示该响应可以被任何中间人缓存。若指定了 <code>public</code> ，则一些通常不被中间人缓存的页面，将被缓存。</p>
+<p><code>private</code> 则表示该响应是专用于某单个用户的，中间人不能缓存此响应。</p>
 </li>
-<li><p>作为属性的 NSTimer，造成循环引用</p>
+<li><p>缓存过期机制</p>
+<p><code>max-age=&lt;seconds&gt;</code> 指令表示资源能够被缓存的最大时间，这个时间是距离请求发起的时间的秒数。一般用来缓存应用中不会改变的文件，通过手动设置一定的时长以保证缓存有效。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: max-age=10000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>缓存验证确认</p>
+<p>当使用了 <code>must-revalidate</code> 指令，那就意味着缓存在考虑使用一个资源时，必须先验证它的状态，已过期的缓存将不被使用</p>
 </li>
 </ul>
-<h4 id="循环中对象占用内存大"><a href="#循环中对象占用内存大" class="headerlink" title="循环中对象占用内存大"></a>循环中对象占用内存大</h4><p>常见于循环次数较大，循环体生成的对象占用内存较大的情景。</p>
-<p>可通过在循环中创建自己的 autoreleasePool 或及时释放占用内存大的 临时变量来解决。</p>
+<h5 id="Pargma-头"><a href="#Pargma-头" class="headerlink" title="Pargma 头"></a><code>Pargma</code> 头</h5><p><code>Pargma</code> 是 HTTP/1.1 标准中定义的一个 header 属性，请求中包含 <code>Pargma</code> 的效果跟在头信息中定义 <code>Cache-Control: no-cache</code> 相同，但是 HTTP 的响应头不支持这个属性，所以它不能完全替代 <code>Cache-Control</code> 头。</p>
+<h4 id="新鲜度"><a href="#新鲜度" class="headerlink" title="新鲜度"></a>新鲜度</h4><p>在过期时间之前，缓存资源是新鲜的，否则是陈旧的。一个陈旧的资源是不会被直接清除的，当客户端发起一个请求时，检索到已经有一个对应的缓存副本，则会在此次请求上附加一个 <code>If-None-Match</code> 头，然后再发送给服务器，以此来检查此资源是否依然是新鲜的，若返回 <code>304 (Not Modified)</code> ，则表示该副本是新鲜的，否则返回新的资源。</p>
+<h4 id="缓存验证"><a href="#缓存验证" class="headerlink" title="缓存验证"></a>缓存验证</h4><p>用户点击刷新按钮时会开始缓存验证。如果缓存的响应头信息里含有 <code>Cache-control: must-revalidate</code> 的定义，在浏览的过程中也会触发缓存验证。另外，在浏览器偏好设置里设置 <code>Advanced-&gt;Cache</code> 为强制验证缓存也能达到相同的效果。</p>
+<p>当缓存的文档过期后，需要进行缓存验证或者重新获取资源。只有在服务器返回强校验器或者弱校验器时才会进行验证。</p>
+<h5 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a><code>ETag</code></h5><p>作为缓存的一种强校验器，<code>ETag</code> 响应头是一个对用户代理不透明的值。对于像浏览器这样的 HTTP UA，不知道 <code>ETag</code> 代表什么，不能预测它的值是多少。如果资源请求的响应头里含有 <code>ETag</code>， 客户端可以在后续的请求的头中带上 <code>If-None-Match</code> 头来验证缓存。</p>
+<p><code>Last-Modified</code> 响应头可以作为一种弱校验器。说它弱是因为它只能精确到一秒。如果响应头里含有这个信息，客户端可以在后续的请求中带上 <code>If-Modified-Since</code> 来验证缓存。</p>
+<p>当向服务端发起缓存校验的请求时，服务端会返回 <code>200 ok</code> 表示返回正常的结果或者 <code>304 Not Modified</code>表示浏览器可以使用本地缓存文件。<code>304</code> 的响应头也可以同时更新缓存文档的过期时间。</p>
+<p>需要注意的是 <code>If-None-Match</code> 的优先级高于 <code>If-Modified-Since</code>，两者同时存在的话，按照前者进行校验。</p>
+<h4 id="带-Vary-头的响应"><a href="#带-Vary-头的响应" class="headerlink" title="带 Vary 头的响应"></a>带 <code>Vary</code> 头的响应</h4><p><code>Vary</code> HTTP 响应头决定了对于后续的请求头，如何判断是请求一个新的资源还会使用缓存的文件。</p>
+<p>当缓存服务器收到一个请求，只有当前的请求和原始（缓存）的请求头跟缓存的响应头里的Vary都匹配，才能使用缓存的响应。</p>
+<h3 id="HTTP-Cookies"><a href="#HTTP-Cookies" class="headerlink" title="HTTP Cookies"></a>HTTP Cookies</h3><p>HTTP Cookie（也叫Web Cookie或浏览器Cookie）是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。通常，它用于告知服务端两个请求是否来自同一浏览器，如保持用户的登录状态。Cookie 使基于无状态的 HTTP 协议记录稳定的状态信息成为了可能。</p>
+<h4 id="创建-Cookie"><a href="#创建-Cookie" class="headerlink" title="创建 Cookie"></a>创建 Cookie</h4><p>服务器通过在响应头里面添加一个 <code>Set-Cookie</code> 选项，来使浏览器保存下 Cookie，之后对该服务器的每一次请求中都通过 Cookie 请求头部将 Cookie 信息发送给服务器。</p>
+<ul>
+<li><p><code>Set-Cookie</code> 响应头部和 <code>Cookie</code> 请求头部</p>
+<p>服务器使用 <code>Set-Cookie</code> 响应头部向用户代理发送 Cookie 信息</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: <span class="tag">&lt;<span class="name">name</span>&gt;</span>=<span class="tag">&lt;<span class="name">value</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>保存 Cookie 信息后，对该服务器发起的每一次新请求，浏览器都会将保存的 Cookie 信息通过 Cookeie 请求头再发送给服务器。</p>
+</li>
+<li><p>会话期 Cookie</p>
+<p>会话期 Cookie 是最简单的 Cookie：浏览器关闭后它会被自动删除，即它仅在会话期内有效。</p>
+<p>会话期 Cookie 不需要指定过期时间或者有效期</p>
+</li>
+<li><p>持久性 Cookie</p>
+<p>持久性 Cookie 指定了特定的过期时间或有效期，不会随着浏览器的关闭而被删除。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Set-Cookie</span>: id=asfwa; </span><br><span class="line">Expires=Wed, 21 Oct 2015 07:28:00 GMT;</span><br></pre></td></tr></table></figure>
+
+<p>设定的过期时间只和客户端有关，而不是服务端。</p>
+</li>
+<li><p>Cookie 的 <code>Secure</code> 和 <code>HttpOnly</code> 标记</p>
+<p>标记为 <code>Secure</code> 的 Cookie 只应通过被 HTTPS 协议加密过的请求发送给服务器，但由于 Cookie 固有的不安全性，敏感信息不应该通过 Cookie 传输。</p>
+<p>为避免跨域脚本攻击，通过 JavaScript 的 <code>Document.cookie</code> API 无法访问带有 <code>HttpOnly</code> 标记的 Cookie，它们只应发送给服务器。</p>
+</li>
+<li><p>Cookie 的作用域</p>
+<p>通过 <code>Domain</code> 和 <code>Path</code> 标识可以定义 Cookie 的作用域：即 Cookie 应该发送给哪些 URL。</p>
+<p><code>Domain</code> 指定哪些主机可以接受 Cookie，如果不指定，则默认为当前文档的主机，且不包含子域名。如果指定了，则会包含子域名。</p>
+<p><code>Path</code> 指定主机下的哪些路径可以接受 Cookie，以字符 <code>%x2F</code> (即 <code>/</code>) 作为路径分隔符，子路径也会被匹配。</p>
+</li>
+<li><p><code>SameSite</code> Cookies</p>
+<p><code>SameSite</code> Cookie 允许服务器要求某个 Cookie 在跨站请求时不会被发送，从而可以组织跨站请求伪造攻击。</p>
+</li>
+<li><p>JavaScript 通过 <code>document.cookies</code> 访问 Cookie</p>
+<p>通过 <code>Document.cookie</code> 属性可创建新的 Cookie，也可以通过该属性访问非 <code>HttpOnly</code> 标记的 Cookie。</p>
+</li>
+</ul>
+<h4 id="Cookie-安全"><a href="#Cookie-安全" class="headerlink" title="Cookie 安全"></a>Cookie 安全</h4><p>当机器处于不安全环境时，切记不能通过 Cookie 存储传输敏感信息。</p>
+<ul>
+<li><p>会话劫持和 XSS</p>
+<p>在 Web 应用中， Cookie 常用来标记用户或授权会话。因此，如果 Web 应用的 Cookie 被窃取，可能导致授权用户的会话受到攻击。</p>
+<p><code>HttpOnly</code> 类型的 Cookie 由于阻止了 JavaScript 对其的访问性能而在一定程度上缓解了此类攻击。</p>
+</li>
+<li><p>跨站请求伪造</p>
+<p>通过以下方式可以一定程度上阻止宽展请求伪造：</p>
+<ul>
+<li>对用户输入进行过滤来阻止 XSS</li>
+<li>任何敏感操作都需要确认</li>
+<li>用于敏感信息的 Cookie 只能拥有较短的生命周期</li>
+</ul>
+</li>
+</ul>
+<h4 id="追踪和隐私"><a href="#追踪和隐私" class="headerlink" title="追踪和隐私"></a>追踪和隐私</h4><ul>
+<li><p>第三方 Cookie</p>
+<p>每个 Cookie 都会有与之关联的域（Domain），如果 Cookie 的域和页面的域相同，那么我们称这个 Cookie 为第一方 Cookie ，如果 Cookie 的域和页面的域不同，则称之为第三方Cookie。一个页面包含图片或存放在其他域上的资源（如图片广告）时，第一方的 Cookie 也只会发送给设置它们的服务器。通过第三方组件发送的第三方 Cookie 主要用于广告和网络追踪。</p>
+</li>
+<li><p>禁止追踪 Do-Not-Track</p>
+<p>虽然并没有法律或者技术手段强制要求使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/DNT" target="_blank" rel="noopener"><code>DNT</code></a>，但是通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/DNT" target="_blank" rel="noopener"><code>DNT</code></a>可以告诉Web程序不要对用户行为进行追踪或者跨站追踪。</p>
+</li>
+<li><p>欧盟 Cookie 指令</p>
+</li>
+<li><p>僵尸 Cookie 和删不掉的 Cookie</p>
+</li>
+</ul>
+<h3 id="HTTP-访问控制"><a href="#HTTP-访问控制" class="headerlink" title="HTTP 访问控制"></a>HTTP 访问控制</h3><p>跨域资源共享（CORS）是一种使用额外的 HTTP 头来使运行在一个 origin 上的 web 应用被准许访问来自不同源服务器上的指定的资源的机制，即当一个资源从与该资源本身所在的服务器不同的域、协议或端口请求一个资源时，就会发起一个跨域 HTTP请求。</p>
+<p>跨域资源共享标准新增了一组 HTTP 首部字段，允许服务器声明哪些源站通过浏览器有权限访问哪些资源。对那些可能对服务器数据产生副作用的 HTTP 请求方法，浏览器必须首先使用 <code>OPTIONS</code> 方法发起一个预检请求（Preflight Request），从而获知服务端是否允许该跨域请求。服务端确认允许后，才发起实际的 HTTP 请求。</p>
+<h3 id="HTTP-消息"><a href="#HTTP-消息" class="headerlink" title="HTTP 消息"></a>HTTP 消息</h3><p>HTTP 消息是客户端和服务器之间交换数据的方式。它们分为两种类型：由客户端发送的用来在服务器上触发动作的消息和从服务器得到的回应。</p>
+<p>HTTP 消息由跨越多行的用 ASCII 编码的文本信息组成。在 HTTP/1.1 和更早期的版本的协议中，消息通过连接明文发送。在 HTTP/2 中，为了优化和性能提升，人类可读的消息被分割成 HTTP 帧。</p>
+<h4 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请求头的名称是大小写不敏感的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Start line</span></span><br><span class="line"><span class="comment">// [HTTP Method] [Request Target] [HTTP Version]</span></span><br><span class="line">GET /img/me.png HTTP/<span class="number">1.1</span></span><br><span class="line">GET http:<span class="comment">//developer.mozilla.org/en-US/docs/Web/HTTP/Messages HTTP/1.1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Headers</span></span><br><span class="line"><span class="comment">// Request Headers : 对请求的设置</span></span><br><span class="line">User-Agent</span><br><span class="line">Accept</span><br><span class="line">Accept-Language</span><br><span class="line">Accept-Encoding</span><br><span class="line"></span><br><span class="line"><span class="comment">// General Headers : 作用于消息整体</span></span><br><span class="line">Connection</span><br><span class="line"></span><br><span class="line"><span class="comment">// Entity Headers : 作用与请求的 body 部分，如果 body 部分没有数据，则没有这部分头</span></span><br><span class="line">Content-Type</span><br><span class="line">Content-Length</span><br><span class="line"></span><br><span class="line"><span class="comment">// Body</span></span><br><span class="line"><span class="comment">// 大体上分为两类 : 单一资源 body 和多资源 body</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="HTTP-Response"><a href="#HTTP-Response" class="headerlink" title="HTTP Response"></a>HTTP Response</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Status line</span></span><br><span class="line"><span class="comment">// [HTTP Version] [Status Code] [Status Text]</span></span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">404</span> Not Found</span><br><span class="line"></span><br><span class="line"><span class="comment">// Headers</span></span><br><span class="line"><span class="comment">// 与 HTTP Request 结构相似</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Body</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="HTTP-2-帧"><a href="#HTTP-2-帧" class="headerlink" title="HTTP/2 帧"></a>HTTP/2 帧</h4><p>HTTP/1.1 的消息在性能上有着一系列的缺点：</p>
+<ul>
+<li>Header 不像 body，它不会被压缩</li>
+<li>两个报文之间的 header 通常非常相似，但它们仍然在连接中重复传输</li>
+<li>无法复用。当在同一个服务器打开几个连接时：TCP 热连接比冷连接更加有效</li>
+</ul>
+<p>所以在 HTTP/2 中，消息被分割成嵌入到流中的帧。Headers 和 Body 的帧是分开的，这使得 Headers 帧也可以被压缩。多个流可以被组合在一起，这是一种称为多路复用的技术，它使得 TCP 连接下的传输更有效率。</p>
+<h3 id="HTTP-会话"><a href="#HTTP-会话" class="headerlink" title="HTTP 会话"></a>HTTP 会话</h3><p>在类似 HTTP 的客户端-服务器协议中，会话由三个部分组成：</p>
+<ul>
+<li>客户端建立一个 TCP 连接</li>
+<li>客户端发送请求，等待回应</li>
+<li>服务器处理请求，做出回应</li>
+</ul>
+<p>从 HTTP/1.1 起，连接在完成第三部后不再被关闭，客户端被允许发起新的请求，这意味着第二和第三部可以重复进行多次。</p>
+<p>客户端-服务器协议中，在 HTTP 中打开一个连接，意味着在底层传输层初始化连接。使用 TCP 时，HTTP 服务器默认的端口号是 80。</p>
+<h3 id="HTTP-、Scoket-和-TCP-的区别"><a href="#HTTP-、Scoket-和-TCP-的区别" class="headerlink" title="HTTP 、Scoket 和 TCP 的区别"></a>HTTP 、Scoket 和 TCP 的区别</h3><p>HTTP 是应用层的协议，TCP 是传输层的协议，而 Socket 是从传输层抽象的一个抽象层，本质是接口。</p>
+<ol>
+<li><p>TCP 连接与 HTTP 连接的区别</p>
+<p>HTTP 是基于 TCP的，客户端向服务器端发送一个 HTTP 请求时，第一步就是要建立与服务端的 TCP 连接。</p>
+</li>
+<li><p>TCP 连接与 Socket 连接的区别</p>
+<p>Socket 层只是在 TCP/UDP 传输层上做的一个抽象接口层。</p>
+<p>基于 TCP 协议的 Socket 连接同样需要通过三次握手建立连接，是可靠的。</p>
+<p>基于 UDP 协议的 Socket 连接不需要建立连接的过程，不管对方能不能收到都会发送过去，是不可靠的。</p>
+</li>
+<li><p>HTTP 连接与 Socket 连接的区别</p>
+<ul>
+<li><p>HTTP 是短连接，基于 TCP 协议的 Socket 连接是长连接。尽管 HTTP 1.1 开始支持持久连接，但仍无法保证始终连接。</p>
+<p>而基于 TCP 协议的 Socket 连接一旦建立成功，除非一方主动断开，否则连接状态一直保持。</p>
+</li>
+<li><p>HTTP 连接，服务器无法主动发送消息，而 Socket 连接，双发请求的发送没有先后限制。</p>
+<p>HTTP 采用 ‘请求-响应’ 机制，在客户端没有发送请求给服务端时，服务端无法推送消息给客服端。</p>
+<p>Socket 连接双方类似于 P2P 的关系，可以随时互相发送消息。</p>
+</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
@@ -378,7 +512,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -444,14 +578,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
