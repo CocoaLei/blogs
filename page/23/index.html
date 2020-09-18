@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cocoalei.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"cocoalei.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="ODQ4NjUwMTI5QHFxLmNvbQ&#x3D;&#x3D;">
@@ -121,6 +121,11 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
         <li class="menu-item menu-item-categories">
 
     <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
@@ -158,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/01/25/iOS-Responder-Chain/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/02/11/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -172,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2016/01/25/iOS-Responder-Chain/" class="post-title-link" itemprop="url">事件传递与响应链探索</a>
+            <a href="/2016/02/11/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">常用 Git 命令</a>
         </h2>
 
         <div class="post-meta">
@@ -182,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-01-25 00:00:00" itemprop="dateCreated datePublished" datetime="2016-01-25T00:00:00+08:00">2016-01-25</time>
+              <time title="创建时间：2016-02-11 00:00:00" itemprop="dateCreated datePublished" datetime="2016-02-11T00:00:00+08:00">2016-02-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-01-17 11:36:46" itemprop="dateModified" datetime="2019-01-17T11:36:46+08:00">2019-01-17</time>
+                <time title="修改时间：2020-07-17 13:45:00" itemprop="dateModified" datetime="2020-07-17T13:45:00+08:00">2020-07-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -197,7 +202,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
                 </span>
             </span>
 
@@ -212,70 +217,109 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr>
-<p>iOS App 使用响应者对象( <code>Responder</code>)来接收和处理事件。一个响应者对象是 <code>UIResponder</code> 类的实例，它常见的子类包括 <code>UIView</code> 、<code>UIViewController</code> 和 <code>UIApplication</code>。响应者对象接收原始事件数据，并且必须处理该事件或将它转发给另一个响应者对象。</p>
-<p>当你的 App 接收到一个事件时，<code>UIKit</code> 自动将它发送给最适合的响应者对象，即第一响应者对象(First Responder)。未处理的事件从响应者对象被发送到正在活动的响应链中的响应者对象(响应者链是应用程序的响应者对象的动态配置,在应用程序中没有单个响应者链)。</p>
-<p><code>UIKit</code> 为事件如何从一个响应者对象传递到另一个响应者对象预定义了规则，但是你可以通过覆盖响应者对象中的属性来改变这些规则。</p>
-<br>
-
-<h3 id="响应者对象-Responder-Object"><a href="#响应者对象-Responder-Object" class="headerlink" title="响应者对象 (Responder Object)"></a>响应者对象 (Responder Object)</h3><p><code>Responder</code> 对象是 <code>UIResponder</code> 类的实例，构成了 <code>UIKit</code> 应用程序事件处理的主干。许多重要对象也是响应者，包括 <code>UIApplication</code> 对象，<code>UIViewController</code> 对象和所有 <code>UIView</code> 对象（包括 <code>UIWindow</code>）。当事件发生时，<code>UIKit</code> 将它们分派给你的应用程序的响应者对象进行处理。<br><code>UIResponder</code> 对象能处理的事件，包括触摸事件，动作事件，远程控制事件和新闻事件。</p>
-<p>为了处理特定类型的事件，响应者必须覆盖相应的方法。例如，为了处理触摸事件，响应者实现了 <code>touchesBegan:with:</code>，<code>touchesMoved:with:</code>，<code>touchesEnded:with:</code> 和 <code>touchesCancelled:with:</code>方法。在触摸事件发生时，响应者使用 <code>UIKit</code> 提供的事件信息来跟踪触摸的变化，并适当地更新应用的界面。</p>
-<p>除了处理事件之外，<code>UIKit</code>响应者还负责将未处理事件转发到应用程序的其他部分。如果给定的响应者不处理事件，则将该事件转发给响应者链中的下一个响应者对象。 <code>UIKit</code> 动态地管理响应者链，使用预定义的规则来确定接下来哪个对象应该接收事件。</p>
-<p>响应者处理 <code>UIEvent</code> 对象，但也可以通过输入视图接受自定义输入。系统的键盘是输入视图最明显的例子。当用户点击屏幕上的 <code>UITextField</code> 和  <code>UITextView</code> 对象时，视图成为第一响应者并显示其输入视图，这是系统键盘。同样，你可以创建自定义输入视图，并在其它响应者激活时显示它们。要将自定义输入视图与响应者相关联，请将该视图分配给响应者的 <code>inputView</code> 属性。</p>
-<blockquote>
-<p><strong>NOTE</strong></p>
-<p>与加速度计、陀螺仪和磁力计相关的运动事件不遵循响应者链。Core Motion 会直接将这些事件发送给你指定的对象。</p>
-</blockquote>
-<br>
-
-<h3 id="第一响应者对象-The-First-Responder"><a href="#第一响应者对象-The-First-Responder" class="headerlink" title="第一响应者对象 (The First Responder)"></a>第一响应者对象 (The First Responder)</h3><p><code>UIKit</code> 为各种类型的事件指定第一响应者对象并在事件发生时首先发送到第一响应者对象。</p>
-<ul>
-<li><p>Touch events</p>
-<p> 第一响应者对象是触摸发生的视图</p>
-</li>
-<li><p>Press events</p>
-<p>  第一响应者对象是获得焦点的响应者对象</p>
-</li>
-<li><p>Shake-motion events</p>
-<p>   第一响应者对象是你或 <code>UIKit</code> 指定的对象</p>
-</li>
-<li><p>Remote-control events</p>
-<p>第一响应者对象是你或 <code>UIKit</code> 指定的对象</p>
-</li>
-<li><p>Editing menu messages</p>
-<p>第一响应者对象是你或 <code>UIKit</code> 指定的对象</p>
+          <h1 id="Git-基础命令与运用"><a href="#Git-基础命令与运用" class="headerlink" title="Git 基础命令与运用"></a>Git 基础命令与运用</h1><p>从根本上来讲，<code>Git</code> 是一个内容寻址文件系统，并在此之上提供了一个版本控制系统的用户界面。这意味着 <code>Git</code> 的核心部分是一个简单的键值对数据库。</p>
+<h2 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h2><ul>
+<li><p>配置 Git</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置全局用户</span></span><br><span class="line">git config --global user.name <span class="string">"Your name"</span></span><br><span class="line">git config --global user.email <span class="string">"Your email"</span></span><br><span class="line"><span class="comment"># 配置命令的别名</span></span><br><span class="line">git config --global alias.co checkout</span><br><span class="line">git config --global alias.ss status</span><br><span class="line">git config --global alias.cm commit</span><br><span class="line">git config --global alias.br branch</span><br><span class="line">git config --global alias.rg reflog</span><br><span class="line"><span class="comment"># 删除全局配置</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> alias.xxx</span><br><span class="line">git config --global --<span class="built_in">unset</span> user.xxx</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>控件使用动作消息 (Action message) 与其关联的目标对象 (Target Object) 直接进行通信。当用户与控件进行交互时，控件调用其目标对象的动作方法 (Action Method)，向目标对象(Target object)发送一个动作消息。动作消息不是一个事件，但它们仍可利用响应链。当控件的目标对象为 <code>nil</code> 时，<code>UIKit</code> 从目标对象开始，遍历响应者链，直到寻找到实现了相应方法的对象。</p>
-<p>如果视图中有添加手势，那么手势会在视图接收之前接收触摸和按下事件。如果视图中的所有手势都无法处理这个事件，则将事件传递给视图进行处理。如果视图也不能处理，则 <code>UIKit</code> 会将事件传递给响应者链。</p>
-<br>
-
-<h3 id="基于视图的点击测试-View-Based-Hit-Testing"><a href="#基于视图的点击测试-View-Based-Hit-Testing" class="headerlink" title="基于视图的点击测试 (View-Based Hit-Testing)"></a>基于视图的点击测试 (View-Based Hit-Testing)</h3><p><code>UIKit</code> 使用基于视图的点击测试来确定触摸事件到底发生在哪里。<code>UIKit</code> 将触摸位置与处在视图层级中的视图的 <code>bounds</code> 进行比较。<code>hitTest:withEvent:</code> 方法遍历视图层级，寻找包含指定触摸的层级最深的子视图。 然后这个视图就成为第一响应者对象。</p>
-<p>当用户触摸屏幕进行交互时，系统检测到手指触摸操作，并将触摸以 <code>UIEvent</code> 的方式加入 <code>UIApplication</code>  的事件队列中。<code>UIApplication</code> 从事件队列中取出最新的触摸事件进行分发传递到 <code>UIWindow</code> 进行处理。而 <code>UIWindow</code> 会通过 <code>hitTest:withEvent:</code> 方法寻找触点所在的视图，这个过程称之为 Hit-Test。</p>
-<p><code>UIKit</code> 将每个触摸永久绑定到包含它的视图对象。<code>UIKit</code> 在触摸第一次发生时创建 <code>UITouch</code> 对象，并只在触摸结束时释放它。当触摸位置或其它参数改变时，<code>UIKit</code> 使用新的信息来更新 <code>UITouch</code> 对象。唯一不改变的属性就是包含它的视图，即使触摸位置已经移出原始的视图。</p>
-<p>Hit-Test 从顶级视图开始调用 <code>pointInside:withEvevt:</code> 方法判断触摸点是否在当前视图内，如果返回为 <code>NO</code>  ，则 <code>hitTest:withEvent:</code> 方法返回 nil；如果返回 <code>YES</code> ，则向当前视图的所有子视图发送 <code>hitTest:withEvent:</code> 消息，所有子视图的遍历顺序是从最顶层视图一直到最底层视图，直到有子视图返回非空对象或者全部子视图遍历完毕。</p>
-<blockquote>
-<p><strong>NOTE</strong></p>
-<p>如果一个触摸的位置超出了视图的边界，<code>hitTest:withEvent:</code> 方法就会忽略这个视图及其所有子视图。</p>
-</blockquote>
-<br>
-
-<h3 id="响应者链-（Resoponder-Chain）"><a href="#响应者链-（Resoponder-Chain）" class="headerlink" title="响应者链 （Resoponder Chain）"></a>响应者链 （Resoponder Chain）</h3><p>当系统通过 Hit-Test 找到触摸点所在的视图，但是这个视图并没有或者无法正常处理此次触摸事件，这个时候，系统便会通过响应者链寻找下一个响应者，以对此次触摸事件进行响应。</p>
-<p><img src="https://github.com/apple272487813/codeLei.github.io/blob/master/images/iOS_Responder_Chain.jpg?raw=true" alt="https://github.com/apple272487813/codeLei.github.io/blob/master/images/iOS_Responder_Chain.jpg?raw=true"></p>
-<p>如果一个 View 有一个视图控制器，它的下一个响应者就是这个视图控制器，然后才是它的父视图，如果一直到根视图都没能处理这个事件，事件会传递到 <code>UIWindow</code> ，若在 <code>UIWindow</code> 中也没有处理，则会传递给 <code>UIApplication</code> ，它是一个响应者链的终点，它的下一个响应者指向 <code>nil</code> ，以劫数整个循环。</p>
-<br>
-
-<h3 id="改变响应者链-Altering-the-Responder-Chain"><a href="#改变响应者链-Altering-the-Responder-Chain" class="headerlink" title="改变响应者链 (Altering the Responder Chain)"></a>改变响应者链 (Altering the Responder Chain)</h3><p>你可以通过覆盖你的响应者对象中的 <code>nextResponder</code> 属性来改变响应者链。当你这样做时，下一个响应者就是你返回的对象。</p>
-<p>很多 <code>UIKit</code> 类已经覆盖了这个属性 : </p>
 <ul>
-<li><code>UIView</code> 对象。如果视图是视图控制器的根视图，那它的 <code>nextResponder</code> 是视图控制器，否则是视图的父视图。</li>
-<li><code>UIViewController</code> 对象。<ul>
-<li>如果视图控制器的视图是一个窗口的根视图，<code>nextResponder</code> 是窗口对象。</li>
-<li>如果一个视图是被其它视图控制器推出的，<code>nextResponder</code> 是推出它的视图控制器。</li>
+<li><p>查看信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment"># 查看 git 配置</span></span><br><span class="line">  git config --list</span><br><span class="line">  <span class="comment"># 查看用户配置</span></span><br><span class="line">  git ~/.gitconfig</span><br><span class="line">  <span class="comment"># 查看当前项目的 git 配置</span></span><br><span class="line">  git .git/config</span><br><span class="line">  <span class="comment"># 查看暂存区的文件</span></span><br><span class="line">git ls-files</span><br><span class="line">  <span class="comment"># 查看本地 git 命令历史</span></span><br><span class="line">  git reflog</span><br><span class="line">  <span class="comment"># 查看当前 HEAD 指向</span></span><br><span class="line">  cat .git/HEAD</span><br><span class="line">  <span class="comment"># git 中 D 向下翻一行 F 向下翻页 B 向上翻页</span></span><br><span class="line">  <span class="comment"># git 查看提交历史</span></span><br><span class="line">  git <span class="built_in">log</span> --oneline</span><br><span class="line">  <span class="comment"># 查找和关键字有关的 log            </span></span><br><span class="line">  git <span class="built_in">log</span> --grep=<span class="string">"关键字"</span></span><br><span class="line">  <span class="comment"># 图形化显示 log</span></span><br><span class="line">  git <span class="built_in">log</span> --graph</span><br><span class="line">  <span class="comment"># 查找指定作者的 log</span></span><br><span class="line">  git <span class="built_in">log</span> --author <span class="string">"username"</span></span><br><span class="line">  <span class="comment"># 显示最近 num 次提交</span></span><br><span class="line">  git <span class="built_in">log</span> -num</span><br><span class="line">  <span class="comment"># 显示每次更新的文件修改统计信息</span></span><br><span class="line">  git <span class="built_in">log</span>    --<span class="built_in">stat</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<ul>
+<li><p>初始化 <code>git</code> 仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<p>在本地创建一个新的仓库</p>
+</li>
+<li><p>Clone</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> /path/to/repository</span><br></pre></td></tr></table></figure>
+
+<p>创建一个本地仓库的备份</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> username@host:/path/to/repository</span><br></pre></td></tr></table></figure>
+
+<p>创建一个服务上仓库的备份</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> [url] &lt;custom_name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>为克隆的仓库指定别名</p>
+</li>
+<li><p>Add</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加一个或多个文件到索引</span></span><br><span class="line">git add [file1] [file2] ...</span><br><span class="line"><span class="comment"># 将当前目录的所有文件变更提交到暂存区，不包括被删除的文件</span></span><br><span class="line">git add .</span><br><span class="line"><span class="comment"># 将工作区已经追踪的文件变更提交到暂存区，不会提交新文件(即 untracked file)</span></span><br><span class="line">git add -u</span><br><span class="line"><span class="comment"># 将工作区的所有文件变更提交到暂存区</span></span><br><span class="line">git add -A</span><br><span class="line"><span class="comment"># 删除工作区/暂存区的文件</span></span><br><span class="line">git rm [file1] [file2] ...</span><br><span class="line"><span class="comment"># 停止追踪指定文件，但此文件会保留在工作区</span></span><br><span class="line">git rm --cached [file]</span><br><span class="line"><span class="comment"># 修改工作区/暂存区的文件的名称</span></span><br><span class="line">git mv [file_original] [file_renames]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Commit</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提交变更到本地仓库</span></span><br><span class="line">git commit -m <span class="string">"Commit message"</span></span><br><span class="line"><span class="comment"># add 和 commit 的合并的便捷写法</span></span><br><span class="line">git commit -am <span class="string">"Commit message"</span></span><br><span class="line"><span class="comment"># 跳过验证继续提交</span></span><br><span class="line">git commit --no-verify</span><br><span class="line">git commit -n</span><br><span class="line"><span class="comment"># 修改上一次提交的信息</span></span><br><span class="line">git commit --amend</span><br><span class="line"><span class="comment"># 修复提交并修改提交信息</span></span><br><span class="line">git commit --amend -m <span class="string">"commit message"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Push/Pull</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将本地仓库的文件推送到远程分支</span></span><br><span class="line"><span class="comment"># 如果远程仓库没有这个分支，会创建一个同名的远程分支</span></span><br><span class="line"><span class="comment"># 如果两者同名，则可省略远程分支名称</span></span><br><span class="line">git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</span><br><span class="line"><span class="comment"># 如果省略本地分支名称，则表示删除指定的远程分支</span></span><br><span class="line">git push origin :&lt;远程分支名&gt;</span><br><span class="line"><span class="comment"># 相当于</span></span><br><span class="line">git push origin --delete &lt;远程分支名&gt;</span><br><span class="line"><span class="comment"># 将当前分支与远程分支进行关联</span></span><br><span class="line">git push -u origin &lt;远程分支名&gt;</span><br><span class="line"><span class="comment"># 将本地的所有分支推送到远程仓库</span></span><br><span class="line">git push --all origin</span><br><span class="line"><span class="comment"># 从关联的远程分支拉取更改到当前分支</span></span><br><span class="line">git pull</span><br><span class="line"><span class="comment"># 拉取其它分支并合并到当前分支</span></span><br><span class="line">git pull origin &lt;远程分支名&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Diff</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 比较的是工作目录文件与暂存区文件的区别</span></span><br><span class="line">git diff</span><br><span class="line"><span class="comment"># 比较的是暂存区的文件与仓库分支里的文件的区别</span></span><br><span class="line">git diff --cached</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Status </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p>列出你已经更改过但是还没有添加或提交的文件</p>
+</li>
+<li><p>Remote</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有远程主机</span></span><br><span class="line">git remote</span><br><span class="line">  <span class="comment"># 查看关联的远程仓库的详细信息</span></span><br><span class="line">git remote -v</span><br><span class="line">  <span class="comment"># 移除与远程仓库的关联</span></span><br><span class="line">git remote rm &lt;仓库名称&gt;</span><br><span class="line"><span class="comment"># 设置关联的远程仓库</span></span><br><span class="line">git remote <span class="built_in">set</span>-url origin &lt;远程仓库地址&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Branches</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看本地分支</span></span><br><span class="line">git branch | git branch -l</span><br><span class="line">  <span class="comment"># 查看远程分支</span></span><br><span class="line">git branch -r</span><br><span class="line">  <span class="comment"># 查看所有分支</span></span><br><span class="line">git branch -a</span><br><span class="line"><span class="comment"># 查看所有分支和最新的提交</span></span><br><span class="line">git branch -av</span><br><span class="line">  <span class="comment"># 新建分支，新分支会复制当前分支已经提交到仓库的内容</span></span><br><span class="line">git branch &lt;分支名&gt;</span><br><span class="line">  <span class="comment"># 切换分支</span></span><br><span class="line">git checkout &lt;分支名&gt;</span><br><span class="line"><span class="comment"># 创建一个新分支并切换到新分支</span></span><br><span class="line">git checkout -b &lt;分支名&gt;</span><br><span class="line">  <span class="comment"># 删除本地分支，会阻止删除包含未合并更改的分支</span></span><br><span class="line">git branch -d &lt;分支名&gt;</span><br><span class="line">  <span class="comment"># 强制删除一个本地分支，即使是包含未合并更改的分支</span></span><br><span class="line">git branch -D &lt;分支名&gt;</span><br><span class="line"><span class="comment"># 删除远程分支</span></span><br><span class="line">git push origin :&lt;分支名&gt;</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">  git push origin --delete &lt;分支名&gt;</span><br><span class="line"><span class="comment"># 修改当前分支名称</span></span><br><span class="line">  git branch -m &lt;分支名&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Merge</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认的合并方式，fast-forward，HEAD 指针直接指向被合并的分支</span></span><br><span class="line">git merge</span><br><span class="line">  <span class="comment"># 禁止快进式合并</span></span><br><span class="line">git merge --no-ff</span><br><span class="line">  <span class="comment">#</span></span><br><span class="line">git merge --squash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Tags</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在指定的 commit id 上创建一个标签</span></span><br><span class="line">git tag &lt;标签名&gt; &lt;commit_id&gt;</span><br><span class="line"><span class="comment"># 默认在 HEAD 上创建一个标签</span></span><br><span class="line">git tag &lt;标签名&gt;</span><br><span class="line"><span class="comment"># 创建带有说明的表亲啊</span></span><br><span class="line">git tag -a &lt;标签名&gt; -m <span class="string">"tag message"</span></span><br><span class="line"><span class="comment"># 查看所有标签</span></span><br><span class="line">git tag</span><br><span class="line"><span class="comment"># 推送一个本地标签</span></span><br><span class="line">git push origin &lt;标签名&gt;</span><br><span class="line"><span class="comment"># 推送所有本地标签</span></span><br><span class="line">git push origin --tags</span><br><span class="line"><span class="comment"># 删除本地标签</span></span><br><span class="line">git tag -d &lt;标签名&gt;</span><br><span class="line"><span class="comment"># 删除一个远程标签</span></span><br><span class="line">git push origin :refs/tags/&lt;标签名&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Checkout</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 恢复暂存区的指定文件到工作区</span></span><br><span class="line">git checkout &lt;filename&gt;</span><br><span class="line"><span class="comment"># 恢复暂存区的所有文件到工作区</span></span><br><span class="line">git checkout .</span><br><span class="line"><span class="comment"># 回滚到最近的一次提交</span></span><br><span class="line">git checkout HEAD</span><br><span class="line"><span class="comment"># 回滚到最近一次提交的上一个版本</span></span><br><span class="line">git checkout HEAD^</span><br><span class="line"><span class="comment"># 切换到指定 commit</span></span><br><span class="line">git checkot &lt;commit id&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Clean</p>
+<p>从当前文件夹开始，通过递归删除的方式删除不在版本控制中的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从工作区移除没有被追踪的文件</span></span><br><span class="line">git clean -f</span><br><span class="line"><span class="comment"># 从工作区移除没有被追踪的目录和文件</span></span><br><span class="line">git clean -fd</span><br><span class="line"><span class="comment"># 查看 clean 命令会删除哪些文件</span></span><br><span class="line">git clean -nfd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Reset</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从暂存区撤销指定文件的修改，但并不改变工作区</span></span><br><span class="line">git reset &lt;file&gt;</span><br><span class="line"><span class="comment"># 重置暂存区最近的一次提交</span></span><br><span class="line">git reset</span><br><span class="line"><span class="comment"># 相当于</span></span><br><span class="line">git reset HEAD</span><br><span class="line"><span class="comment"># 重置工作区和暂存区</span></span><br><span class="line">git reset --hard</span><br><span class="line"><span class="comment"># 将当前分支的指针指向指定的 commit，同时重置暂存区，工作区不变</span></span><br><span class="line">git reset &lt;commit id&gt;</span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line">git reset --mixed &lt;commit id&gt;</span><br><span class="line"><span class="comment"># 将当前分支的指针指向指定的 commit，不改变暂存区和工作区</span></span><br><span class="line">git reset --soft &lt;commit id&gt;</span><br><span class="line"><span class="comment"># 将当前分支的指针指向指定的 commit，同时重置暂存区和工作区</span></span><br><span class="line">git reset --hard &lt;commit id&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Revert</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成一个撤销最近一次提交的新提交</span></span><br><span class="line">git revert HEAD</span><br><span class="line"><span class="comment"># 生成一个撤销最近一次提交的上num次提交的新提交</span></span><br><span class="line">git revert HEAD~num</span><br><span class="line"><span class="comment"># 生成一个撤销指定提交的新提交</span></span><br><span class="line">git revert &lt;commit id&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Cherry-pick</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将指定的提交应用于当前分支</span></span><br><span class="line">git cherry-pick &lt;commit id&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Search </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git grep <span class="string">"search key word"</span></span><br></pre></td></tr></table></figure>
+
+<p>在工作目录中查找指定的关键字</p>
+</li>
+</ul>
+<h2 id="一些运用场景"><a href="#一些运用场景" class="headerlink" title="一些运用场景"></a>一些运用场景</h2><ul>
+<li><p>撤销提交到远程的某些提交</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过 `git log` 命令来获得指定的某次提交的 `id`</span></span><br><span class="line">git reset [&lt;mode&gt;] [&lt;commit&gt;]</span><br><span class="line"><span class="comment"># 这个命令将当前分支的 `head` 指针指向指定的 `commit` 而且可能会根据选择的 `mode` 更新索引和工作树</span></span><br><span class="line"><span class="comment"># 如果 `mode` 省略，则默认值是 `--mixed`</span></span><br><span class="line"><span class="comment"># `--soft` 仅仅只是将 `head` 指向指定的 `commit`</span></span><br><span class="line"><span class="comment"># `--mixed` 会重置索引，但不会重置工作区</span></span><br><span class="line"><span class="comment"># `--hard` 重置索引和工作区，任何在指定的 `commit` 之后的修改将被丢弃</span></span><br><span class="line"><span class="comment"># `--merge`</span></span><br><span class="line"><span class="comment"># `--keep`</span></span><br><span class="line">git reset --hard &lt;commit_id&gt;</span><br><span class="line"><span class="comment"># 然后将重置后的 `branch` 推送到远程仓库</span></span><br><span class="line"><span class="comment"># `--force` 会使用本地分支的提交覆盖远程分支的提交</span></span><br><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>保存当前未提交修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将当前未提交的修改保存下来，工作目录的 Head 回到上一提交</span></span><br><span class="line">git stash</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">git stash save <span class="string">'message'</span></span><br><span class="line"><span class="comment"># 列出通过 stash 保存的修改</span></span><br><span class="line">git stash list</span><br><span class="line"><span class="comment"># 列出 stash 的修改与 上一次提交的 diff</span></span><br><span class="line">git stash show</span><br><span class="line"><span class="comment"># 恢复之前通过 stash 保存的修改</span></span><br><span class="line"><span class="comment"># 这个命令将第一个 stash 恢复，并从 stash 列表中删除</span></span><br><span class="line">git stash pop</span><br><span class="line"><span class="comment"># 或者使用 apply 命令将修改恢复，但不从 stash 列表中删除</span></span><br><span class="line">git stash apply</span><br><span class="line"><span class="comment"># 手动删除指定的 stash</span></span><br><span class="line">git stash drop stash@&#123;0&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更换远程仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除远程仓库地址</span></span><br><span class="line">git remote rm origin</span><br><span class="line"><span class="comment"># 添加远程仓库地址</span></span><br><span class="line">git remote add origin &lt;remote_git_address&gt;</span><br><span class="line"><span class="comment"># 推送本地所有分支</span></span><br><span class="line">git push --all origin -u</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>fast-forward</code> 与 <code>no-fast-forward</code> 合并</p>
+<p>当执行 <code>get merge</code> 命令时，git 会根据当前分支和目标分支(将要合并的分支)的状况不同而选择合适的合并方式。</p>
+<ul>
+<li>如果当前分支与目标分支相比没有额外的提交时，执行 <code>fast-foward</code> 合并，<code>fast-foward</code> 合并不会产生新的提交，而是将目标分支的提交直接合并到当前分支</li>
 </ul>
 </li>
-<li><code>UIWindow</code> 对象。窗口的 <code>nextResponder</code> 是 <code>UIApplication</code> 对象。</li>
-<li><code>UIApplication</code> 对象。只有在应用代理是 <code>UIResponder</code> 的实例而不是视图、视图控制器或者应用对象自身时，<code>UIApplication</code> 的 <code>nextResponder</code> 是应用程序代理。</li>
+<li><p>如果当前分支与目标分支相比有目标分支并没有的提交，执行 <code>no-fast-foward</code> 合并，这会产生新的提交，这个提交的父提交既指向当前分支，也指向目标分支。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>变基</p>
+<p><code>git rebase</code> 会将指定分支的</p>
+</li>
 </ul>
 
       
@@ -295,7 +339,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -361,7 +405,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -373,6 +417,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
+          
         <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
@@ -406,7 +451,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Y2hlbmdsZWk=</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
         

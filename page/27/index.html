@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cocoalei.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"cocoalei.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="ODQ4NjUwMTI5QHFxLmNvbQ&#x3D;&#x3D;">
@@ -121,6 +121,11 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
         <li class="menu-item menu-item-categories">
 
     <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
@@ -158,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/01/02/HTTP%E6%A6%82%E8%A7%88/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/01/06/%E7%BC%93%E5%AD%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -172,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2016/01/02/HTTP%E6%A6%82%E8%A7%88/" class="post-title-link" itemprop="url">HTTP 概览</a>
+            <a href="/2016/01/06/%E7%BC%93%E5%AD%98/" class="post-title-link" itemprop="url">缓存</a>
         </h2>
 
         <div class="post-meta">
@@ -182,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-01-02 00:00:00" itemprop="dateCreated datePublished" datetime="2016-01-02T00:00:00+08:00">2016-01-02</time>
+              <time title="创建时间：2016-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2016-01-06T00:00:00+08:00">2016-01-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-14 22:20:51" itemprop="dateModified" datetime="2020-07-14T22:20:51+08:00">2020-07-14</time>
+                <time title="修改时间：2020-07-17 13:46:36" itemprop="dateModified" datetime="2020-07-17T13:46:36+08:00">2020-07-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -212,242 +217,59 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h2><p>开发中，我们经常需要向服务器端发送数据或从服务器端请求特定数据，为了完成数据在客户端和服务器端的传输，我们在传输数据时必须用到 HTTP 协议。</p>
-<h3 id="什么是-HTTP-协议？"><a href="#什么是-HTTP-协议？" class="headerlink" title="什么是 HTTP 协议？"></a>什么是 HTTP 协议？</h3><p><code>HTTP</code> 协议，即 HyperText Transmission Protocol，超文本传输协议，定义了客户端与服务器端的数据传输规则，让客户端和服务器能够有效地进行数据沟通。</p>
-<h3 id="HTTP-的基本性质"><a href="#HTTP-的基本性质" class="headerlink" title="HTTP 的基本性质"></a>HTTP 的基本性质</h3><ul>
-<li>HTTP 是简单的</li>
-<li>HTTP 是可扩展的 - 通过 HTTP headers 可以轻松对协议进行扩展</li>
-<li>HTTP 是无状态，有会话的 - 在同一个连接中，两个执行成功的请求之间是没有关系的</li>
-</ul>
-<h3 id="HTTP-请求与响应"><a href="#HTTP-请求与响应" class="headerlink" title="HTTP 请求与响应"></a>HTTP 请求与响应</h3><h4 id="HTTP-请求"><a href="#HTTP-请求" class="headerlink" title="HTTP 请求"></a>HTTP 请求</h4><p>HTTP 协议规定，一个完整的 HTTP 请求应包含如下内容</p>
+          <h2 id="强制缓存"><a href="#强制缓存" class="headerlink" title="强制缓存"></a>强制缓存</h2><p>强缓存策略在请求数据时，如果浏览器缓存中存在未失效的缓存数据，则直接从缓存中获取数据，不与服务器进行交互。只有在缓存中不存在要请求的数据或在缓存中的数据失效时，才会从服务器获取数据。</p>
+<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%9801.png" alt="强制缓存01"></p>
+<p>强缓存由 <code>Expires</code>/<code>Cache-control</code>/<code>Pragma</code> 三个 Header 属性进行控制。</p>
 <ul>
-<li><p>请求行 ：包含请求方法、请求统一资源标示符和 HTTP 版本号。</p>
+<li><p><code>Expires</code></p>
+<p>Expires 的值是一个 HTTP 日期，表示资源的过期时间。</p>
+<p>在发起请求时，将 Expires 日期与系统时间进行对比，如果系统时间超过了 Expires 日期，则认为资源过期失效。</p>
+<p>但由于系统时间和服务器时间可能不一致，会造成判断不准的问题。</p>
+<p>Expires 在三个强缓存控制属性中<strong>优先级最低</strong>。</p>
 </li>
-<li><p>请求头 ：请求头包含客户端传送给服务器端的附加信息。</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Host</td>
-<td>目标服务器的网络地址</td>
-</tr>
-<tr>
-<td>Accept</td>
-<td>告知服务器端客户端能够接收的数据类型，如 ‘text/html’等</td>
-</tr>
-<tr>
-<td>Content-Type</td>
-<td>请求体中的数据类型，如 ‘Application/Json; charset=UTF-8’等</td>
-</tr>
-<tr>
-<td>Accept-Language</td>
-<td>客户端的语言环境，如 ‘zh-cn’ 等</td>
-</tr>
-<tr>
-<td>Accept_Encoding</td>
-<td>客户端支持的数据压缩格式，如 ‘gzip’ 等</td>
-</tr>
-<tr>
-<td>User-Agent</td>
-<td>客户端的软件环境</td>
-</tr>
-<tr>
-<td>Connection : keep-alive</td>
-<td>告知服务器这是一个持久连接</td>
-</tr>
-<tr>
-<td>Content-Length</td>
-<td>请求体的长度</td>
-</tr>
-<tr>
-<td>Cookie</td>
-<td>记录着用户保存在本地的用户数据</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>请求体 ：发送给服务器端的数据</p>
-<p>在使用 POST-Multipart 上传请求中请求体就是上传文件的二进制数据。</p>
-<p>在使用 GET 请求时，请求体为空。</p>
-<p>在普通的 POST 请求中，请求体就是表单数据。</p>
-</li>
-<li><p>响应状态行 ： 服务器返回给客户端的状态信息，一般包含 HTTP 版本号、状态码和状态码对应的英文名称。</p>
-<p>一个典型的状态行如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 200 OK</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h4 id="HTTP-响应"><a href="#HTTP-响应" class="headerlink" title="HTTP 响应"></a>HTTP 响应</h4><p>基本与 HTTP 请求相同。</p>
-<h3 id="HTTP-的版本"><a href="#HTTP-的版本" class="headerlink" title="HTTP 的版本"></a>HTTP 的版本</h3><p>HTTP 的主要版本如下</p>
-<table>
-<thead>
-<tr>
-<th>Version</th>
-<th>Feature</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>&lt; HTTP 1.1</td>
-<td>不支持持久连接；无请求头和响应头；客户端的前后请求是同步的。</td>
-</tr>
-<tr>
-<td>HTTP 1.1</td>
-<td>增加请求头和响应头；支持持久连接；客户端的不同请求之间是异步的。</td>
-</tr>
-<tr>
-<td>HTTP 2.0</td>
-<td>向下兼容 HTTP 1.1，但只用于 https 网址。</td>
-</tr>
-</tbody></table>
-<h3 id="HTTP-缓存"><a href="#HTTP-缓存" class="headerlink" title="HTTP 缓存"></a>HTTP 缓存</h3><p>缓存是一种保存资源副本并在下次请求时直接使用该副本的技术。当 web 缓存发现请求的资源已经被存储，它会拦截请求，返回该资源的拷贝，而不会去源服务器重新下载。这样带来的好处有：缓解服务器端压力，提升性能(获取资源的耗时更短了)。对于网站来说，缓存是达到高性能的重要组成部分。缓存需要合理配置，因为并不是所有资源都是永久不变的：重要的是对一个资源的缓存应截止到其下一次发生改变（即不能缓存过期的资源）。</p>
-<h4 id="缓存操作的目标"><a href="#缓存操作的目标" class="headerlink" title="缓存操作的目标"></a>缓存操作的目标</h4><p>虽然 HTTP 缓存不是必须的，但重用缓存的资源通常是必要的。然而常见的 HTTP 缓存智能存储 GET 响应。</p>
-<h4 id="缓存控制"><a href="#缓存控制" class="headerlink" title="缓存控制"></a>缓存控制</h4><h5 id="Cache-control-头"><a href="#Cache-control-头" class="headerlink" title="Cache-control 头"></a><code>Cache-control</code> 头</h5><p>HTTP/1.1 定义的 <code>Cache-Control</code> 头用来区分对缓存机制的支持情况，请求头和响应头都支持这个属性，你可以通过它提供的不同的值来定义缓存策略。</p>
+<li><p><code>Cache-control</code></p>
+<p>Cache-control 是 HTTP/1.1 中新增的特性，在请求头和响应头中都能使用，可用值如下</p>
 <ul>
-<li><p>禁止进行缓存</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Canche-Control: no-store,</span><br><span class="line">Canche-Control: no-cache, no-store</span><br></pre></td></tr></table></figure>
+<li><p>max-age</p>
+<p>max-age 的值是一个秒数，表示从起发起时到缓存过期的时间</p>
+<p><code>max-age=10</code></p>
 </li>
-<li><p>强制确认缓存</p>
-<p>每次有请求发出时，缓存会将次请求发送到服务器，服务器端会验证请求中所描述的缓存是否过期，若未过期，则缓存才使用本地缓存副本</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: must-revalidate</span><br></pre></td></tr></table></figure>
+<li><p>no-cache</p>
+<p>不使用强缓存，每次请求都需要和服务器验证</p>
 </li>
-<li><p>私有缓存和公共缓存</p>
-<p><code>public</code> 指令表示该响应可以被任何中间人缓存。若指定了 <code>public</code> ，则一些通常不被中间人缓存的页面，将被缓存。</p>
-<p><code>private</code> 则表示该响应是专用于某单个用户的，中间人不能缓存此响应。</p>
+<li><p>no-store</p>
+<p>禁止使用缓存(<strong>包括协商缓存</strong>)，每次请求都向服务器请求最新的资源</p>
 </li>
-<li><p>缓存过期机制</p>
-<p><code>max-age=&lt;seconds&gt;</code> 指令表示资源能够被缓存的最大时间，这个时间是距离请求发起的时间的秒数。一般用来缓存应用中不会改变的文件，通过手动设置一定的时长以保证缓存有效。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: max-age=10000</span><br></pre></td></tr></table></figure>
+<li><p>private</p>
+<p>不允许中间代理、CDN等缓存</p>
 </li>
-<li><p>缓存验证确认</p>
-<p>当使用了 <code>must-revalidate</code> 指令，那就意味着缓存在考虑使用一个资源时，必须先验证它的状态，已过期的缓存将不被使用</p>
+<li><p>public</p>
+<p>允许中间代理、CDN等缓存</p>
+</li>
+<li><p>must-revalidate</p>
+<p>缓存过期后必须向服务器验证</p>
 </li>
 </ul>
-<h5 id="Pargma-头"><a href="#Pargma-头" class="headerlink" title="Pargma 头"></a><code>Pargma</code> 头</h5><p><code>Pargma</code> 是 HTTP/1.1 标准中定义的一个 header 属性，请求中包含 <code>Pargma</code> 的效果跟在头信息中定义 <code>Cache-Control: no-cache</code> 相同，但是 HTTP 的响应头不支持这个属性，所以它不能完全替代 <code>Cache-Control</code> 头。</p>
-<h4 id="新鲜度"><a href="#新鲜度" class="headerlink" title="新鲜度"></a>新鲜度</h4><p>在过期时间之前，缓存资源是新鲜的，否则是陈旧的。一个陈旧的资源是不会被直接清除的，当客户端发起一个请求时，检索到已经有一个对应的缓存副本，则会在此次请求上附加一个 <code>If-None-Match</code> 头，然后再发送给服务器，以此来检查此资源是否依然是新鲜的，若返回 <code>304 (Not Modified)</code> ，则表示该副本是新鲜的，否则返回新的资源。</p>
-<h4 id="缓存验证"><a href="#缓存验证" class="headerlink" title="缓存验证"></a>缓存验证</h4><p>用户点击刷新按钮时会开始缓存验证。如果缓存的响应头信息里含有 <code>Cache-control: must-revalidate</code> 的定义，在浏览的过程中也会触发缓存验证。另外，在浏览器偏好设置里设置 <code>Advanced-&gt;Cache</code> 为强制验证缓存也能达到相同的效果。</p>
-<p>当缓存的文档过期后，需要进行缓存验证或者重新获取资源。只有在服务器返回强校验器或者弱校验器时才会进行验证。</p>
-<h5 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a><code>ETag</code></h5><p>作为缓存的一种强校验器，<code>ETag</code> 响应头是一个对用户代理不透明的值。对于像浏览器这样的 HTTP UA，不知道 <code>ETag</code> 代表什么，不能预测它的值是多少。如果资源请求的响应头里含有 <code>ETag</code>， 客户端可以在后续的请求的头中带上 <code>If-None-Match</code> 头来验证缓存。</p>
-<p><code>Last-Modified</code> 响应头可以作为一种弱校验器。说它弱是因为它只能精确到一秒。如果响应头里含有这个信息，客户端可以在后续的请求中带上 <code>If-Modified-Since</code> 来验证缓存。</p>
-<p>当向服务端发起缓存校验的请求时，服务端会返回 <code>200 ok</code> 表示返回正常的结果或者 <code>304 Not Modified</code>表示浏览器可以使用本地缓存文件。<code>304</code> 的响应头也可以同时更新缓存文档的过期时间。</p>
-<p>需要注意的是 <code>If-None-Match</code> 的优先级高于 <code>If-Modified-Since</code>，两者同时存在的话，按照前者进行校验。</p>
-<h4 id="带-Vary-头的响应"><a href="#带-Vary-头的响应" class="headerlink" title="带 Vary 头的响应"></a>带 <code>Vary</code> 头的响应</h4><p><code>Vary</code> HTTP 响应头决定了对于后续的请求头，如何判断是请求一个新的资源还会使用缓存的文件。</p>
-<p>当缓存服务器收到一个请求，只有当前的请求和原始（缓存）的请求头跟缓存的响应头里的Vary都匹配，才能使用缓存的响应。</p>
-<h3 id="HTTP-Cookies"><a href="#HTTP-Cookies" class="headerlink" title="HTTP Cookies"></a>HTTP Cookies</h3><p>HTTP Cookie（也叫Web Cookie或浏览器Cookie）是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。通常，它用于告知服务端两个请求是否来自同一浏览器，如保持用户的登录状态。Cookie 使基于无状态的 HTTP 协议记录稳定的状态信息成为了可能。</p>
-<h4 id="创建-Cookie"><a href="#创建-Cookie" class="headerlink" title="创建 Cookie"></a>创建 Cookie</h4><p>服务器通过在响应头里面添加一个 <code>Set-Cookie</code> 选项，来使浏览器保存下 Cookie，之后对该服务器的每一次请求中都通过 Cookie 请求头部将 Cookie 信息发送给服务器。</p>
+</li>
+<li><p><code>Pragma</code></p>
+<p>Pragma 只有一个属性值，就是 no-cache ，效果和 Cache-Control 中的 no-cache 一致，不使用强缓存，需要与服务器验证缓存是否新鲜，在 3 个头部属性中的<strong>优先级最高</strong>。</p>
+</li>
+</ul>
+<h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><p>当浏览器的强缓存失效或在请求头中设置了不使用强缓存，并在请求头中设置了 <code>if-modified-since</code> 或 <code>if-none-match</code> 时，会将这两个属性值到服务器验证是否命中协商缓存。</p>
+<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%9801.png" alt="协商缓存01"></p>
 <ul>
-<li><p><code>Set-Cookie</code> 响应头部和 <code>Cookie</code> 请求头部</p>
-<p>服务器使用 <code>Set-Cookie</code> 响应头部向用户代理发送 Cookie 信息</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: <span class="tag">&lt;<span class="name">name</span>&gt;</span>=<span class="tag">&lt;<span class="name">value</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>保存 Cookie 信息后，对该服务器发起的每一次新请求，浏览器都会将保存的 Cookie 信息通过 Cookeie 请求头再发送给服务器。</p>
+<li><p><code>ETag/If-None-Match</code></p>
+<p>ETag/If-None-Match 的值是一串 hash 码，代表的是一个资源的标识符，当服务端的文件变化的时候，它的 hash码会随之改变，通过请求头中的 If-None-Match 和当前文件的 hash 值进行比较，如果相等则表示命中协商缓存。</p>
 </li>
-<li><p>会话期 Cookie</p>
-<p>会话期 Cookie 是最简单的 Cookie：浏览器关闭后它会被自动删除，即它仅在会话期内有效。</p>
-<p>会话期 Cookie 不需要指定过期时间或者有效期</p>
-</li>
-<li><p>持久性 Cookie</p>
-<p>持久性 Cookie 指定了特定的过期时间或有效期，不会随着浏览器的关闭而被删除。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Set-Cookie</span>: id=asfwa; </span><br><span class="line">Expires=Wed, 21 Oct 2015 07:28:00 GMT;</span><br></pre></td></tr></table></figure>
-
-<p>设定的过期时间只和客户端有关，而不是服务端。</p>
-</li>
-<li><p>Cookie 的 <code>Secure</code> 和 <code>HttpOnly</code> 标记</p>
-<p>标记为 <code>Secure</code> 的 Cookie 只应通过被 HTTPS 协议加密过的请求发送给服务器，但由于 Cookie 固有的不安全性，敏感信息不应该通过 Cookie 传输。</p>
-<p>为避免跨域脚本攻击，通过 JavaScript 的 <code>Document.cookie</code> API 无法访问带有 <code>HttpOnly</code> 标记的 Cookie，它们只应发送给服务器。</p>
-</li>
-<li><p>Cookie 的作用域</p>
-<p>通过 <code>Domain</code> 和 <code>Path</code> 标识可以定义 Cookie 的作用域：即 Cookie 应该发送给哪些 URL。</p>
-<p><code>Domain</code> 指定哪些主机可以接受 Cookie，如果不指定，则默认为当前文档的主机，且不包含子域名。如果指定了，则会包含子域名。</p>
-<p><code>Path</code> 指定主机下的哪些路径可以接受 Cookie，以字符 <code>%x2F</code> (即 <code>/</code>) 作为路径分隔符，子路径也会被匹配。</p>
-</li>
-<li><p><code>SameSite</code> Cookies</p>
-<p><code>SameSite</code> Cookie 允许服务器要求某个 Cookie 在跨站请求时不会被发送，从而可以组织跨站请求伪造攻击。</p>
-</li>
-<li><p>JavaScript 通过 <code>document.cookies</code> 访问 Cookie</p>
-<p>通过 <code>Document.cookie</code> 属性可创建新的 Cookie，也可以通过该属性访问非 <code>HttpOnly</code> 标记的 Cookie。</p>
+<li><p><code>Last-Modified/If-Modified-Since</code></p>
+<p>Last-Modified/If-Modified-Since 的值代表的是文件的最后修改时间，第一次请求服务端会把资源的最后修改时间放到 Last-Modified 响应头中，第二次发起请求的时候，请求头会带上上一次响应头中的 Last-Modified 的时间，并放到 If-Modified-Since 请求头属性中，服务端根据文件最后一次修改时间和 If-Modified-Since 的值进行比较，如果相等，返回 304 ，并加载浏览器缓存。</p>
 </li>
 </ul>
-<h4 id="Cookie-安全"><a href="#Cookie-安全" class="headerlink" title="Cookie 安全"></a>Cookie 安全</h4><p>当机器处于不安全环境时，切记不能通过 Cookie 存储传输敏感信息。</p>
-<ul>
-<li><p>会话劫持和 XSS</p>
-<p>在 Web 应用中， Cookie 常用来标记用户或授权会话。因此，如果 Web 应用的 Cookie 被窃取，可能导致授权用户的会话受到攻击。</p>
-<p><code>HttpOnly</code> 类型的 Cookie 由于阻止了 JavaScript 对其的访问性能而在一定程度上缓解了此类攻击。</p>
-</li>
-<li><p>跨站请求伪造</p>
-<p>通过以下方式可以一定程度上阻止宽展请求伪造：</p>
-<ul>
-<li>对用户输入进行过滤来阻止 XSS</li>
-<li>任何敏感操作都需要确认</li>
-<li>用于敏感信息的 Cookie 只能拥有较短的生命周期</li>
+<h2 id="缓存用处"><a href="#缓存用处" class="headerlink" title="缓存用处"></a>缓存用处</h2><ul>
+<li>减少了冗余的数据传递，节省宽带流量</li>
+<li>减少了服务器的负担，大大提高了网站性能</li>
+<li>加快了客户端加载网页的速度 这也正是HTTP缓存属于客户端缓存的原因</li>
 </ul>
-</li>
-</ul>
-<h4 id="追踪和隐私"><a href="#追踪和隐私" class="headerlink" title="追踪和隐私"></a>追踪和隐私</h4><ul>
-<li><p>第三方 Cookie</p>
-<p>每个 Cookie 都会有与之关联的域（Domain），如果 Cookie 的域和页面的域相同，那么我们称这个 Cookie 为第一方 Cookie ，如果 Cookie 的域和页面的域不同，则称之为第三方Cookie。一个页面包含图片或存放在其他域上的资源（如图片广告）时，第一方的 Cookie 也只会发送给设置它们的服务器。通过第三方组件发送的第三方 Cookie 主要用于广告和网络追踪。</p>
-</li>
-<li><p>禁止追踪 Do-Not-Track</p>
-<p>虽然并没有法律或者技术手段强制要求使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/DNT" target="_blank" rel="noopener"><code>DNT</code></a>，但是通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/DNT" target="_blank" rel="noopener"><code>DNT</code></a>可以告诉Web程序不要对用户行为进行追踪或者跨站追踪。</p>
-</li>
-<li><p>欧盟 Cookie 指令</p>
-</li>
-<li><p>僵尸 Cookie 和删不掉的 Cookie</p>
-</li>
-</ul>
-<h3 id="HTTP-访问控制"><a href="#HTTP-访问控制" class="headerlink" title="HTTP 访问控制"></a>HTTP 访问控制</h3><p>跨域资源共享（CORS）是一种使用额外的 HTTP 头来使运行在一个 origin 上的 web 应用被准许访问来自不同源服务器上的指定的资源的机制，即当一个资源从与该资源本身所在的服务器不同的域、协议或端口请求一个资源时，就会发起一个跨域 HTTP请求。</p>
-<p>跨域资源共享标准新增了一组 HTTP 首部字段，允许服务器声明哪些源站通过浏览器有权限访问哪些资源。对那些可能对服务器数据产生副作用的 HTTP 请求方法，浏览器必须首先使用 <code>OPTIONS</code> 方法发起一个预检请求（Preflight Request），从而获知服务端是否允许该跨域请求。服务端确认允许后，才发起实际的 HTTP 请求。</p>
-<h3 id="HTTP-消息"><a href="#HTTP-消息" class="headerlink" title="HTTP 消息"></a>HTTP 消息</h3><p>HTTP 消息是客户端和服务器之间交换数据的方式。它们分为两种类型：由客户端发送的用来在服务器上触发动作的消息和从服务器得到的回应。</p>
-<p>HTTP 消息由跨越多行的用 ASCII 编码的文本信息组成。在 HTTP/1.1 和更早期的版本的协议中，消息通过连接明文发送。在 HTTP/2 中，为了优化和性能提升，人类可读的消息被分割成 HTTP 帧。</p>
-<h4 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请求头的名称是大小写不敏感的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Start line</span></span><br><span class="line"><span class="comment">// [HTTP Method] [Request Target] [HTTP Version]</span></span><br><span class="line">GET /img/me.png HTTP/<span class="number">1.1</span></span><br><span class="line">GET http:<span class="comment">//developer.mozilla.org/en-US/docs/Web/HTTP/Messages HTTP/1.1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Headers</span></span><br><span class="line"><span class="comment">// Request Headers : 对请求的设置</span></span><br><span class="line">User-Agent</span><br><span class="line">Accept</span><br><span class="line">Accept-Language</span><br><span class="line">Accept-Encoding</span><br><span class="line"></span><br><span class="line"><span class="comment">// General Headers : 作用于消息整体</span></span><br><span class="line">Connection</span><br><span class="line"></span><br><span class="line"><span class="comment">// Entity Headers : 作用与请求的 body 部分，如果 body 部分没有数据，则没有这部分头</span></span><br><span class="line">Content-Type</span><br><span class="line">Content-Length</span><br><span class="line"></span><br><span class="line"><span class="comment">// Body</span></span><br><span class="line"><span class="comment">// 大体上分为两类 : 单一资源 body 和多资源 body</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="HTTP-Response"><a href="#HTTP-Response" class="headerlink" title="HTTP Response"></a>HTTP Response</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Status line</span></span><br><span class="line"><span class="comment">// [HTTP Version] [Status Code] [Status Text]</span></span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">404</span> Not Found</span><br><span class="line"></span><br><span class="line"><span class="comment">// Headers</span></span><br><span class="line"><span class="comment">// 与 HTTP Request 结构相似</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Body</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="HTTP-2-帧"><a href="#HTTP-2-帧" class="headerlink" title="HTTP/2 帧"></a>HTTP/2 帧</h4><p>HTTP/1.1 的消息在性能上有着一系列的缺点：</p>
-<ul>
-<li>Header 不像 body，它不会被压缩</li>
-<li>两个报文之间的 header 通常非常相似，但它们仍然在连接中重复传输</li>
-<li>无法复用。当在同一个服务器打开几个连接时：TCP 热连接比冷连接更加有效</li>
-</ul>
-<p>所以在 HTTP/2 中，消息被分割成嵌入到流中的帧。Headers 和 Body 的帧是分开的，这使得 Headers 帧也可以被压缩。多个流可以被组合在一起，这是一种称为多路复用的技术，它使得 TCP 连接下的传输更有效率。</p>
-<h3 id="HTTP-会话"><a href="#HTTP-会话" class="headerlink" title="HTTP 会话"></a>HTTP 会话</h3><p>在类似 HTTP 的客户端-服务器协议中，会话由三个部分组成：</p>
-<ul>
-<li>客户端建立一个 TCP 连接</li>
-<li>客户端发送请求，等待回应</li>
-<li>服务器处理请求，做出回应</li>
-</ul>
-<p>从 HTTP/1.1 起，连接在完成第三部后不再被关闭，客户端被允许发起新的请求，这意味着第二和第三部可以重复进行多次。</p>
-<p>客户端-服务器协议中，在 HTTP 中打开一个连接，意味着在底层传输层初始化连接。使用 TCP 时，HTTP 服务器默认的端口号是 80。</p>
-<h3 id="HTTP-、Scoket-和-TCP-的区别"><a href="#HTTP-、Scoket-和-TCP-的区别" class="headerlink" title="HTTP 、Scoket 和 TCP 的区别"></a>HTTP 、Scoket 和 TCP 的区别</h3><p>HTTP 是应用层的协议，TCP 是传输层的协议，而 Socket 是从传输层抽象的一个抽象层，本质是接口。</p>
-<ol>
-<li><p>TCP 连接与 HTTP 连接的区别</p>
-<p>HTTP 是基于 TCP的，客户端向服务器端发送一个 HTTP 请求时，第一步就是要建立与服务端的 TCP 连接。</p>
-</li>
-<li><p>TCP 连接与 Socket 连接的区别</p>
-<p>Socket 层只是在 TCP/UDP 传输层上做的一个抽象接口层。</p>
-<p>基于 TCP 协议的 Socket 连接同样需要通过三次握手建立连接，是可靠的。</p>
-<p>基于 UDP 协议的 Socket 连接不需要建立连接的过程，不管对方能不能收到都会发送过去，是不可靠的。</p>
-</li>
-<li><p>HTTP 连接与 Socket 连接的区别</p>
-<ul>
-<li><p>HTTP 是短连接，基于 TCP 协议的 Socket 连接是长连接。尽管 HTTP 1.1 开始支持持久连接，但仍无法保证始终连接。</p>
-<p>而基于 TCP 协议的 Socket 连接一旦建立成功，除非一方主动断开，否则连接状态一直保持。</p>
-</li>
-<li><p>HTTP 连接，服务器无法主动发送消息，而 Socket 连接，双发请求的发送没有先后限制。</p>
-<p>HTTP 采用 ‘请求-响应’ 机制，在客户端没有发送请求给服务端时，服务端无法推送消息给客服端。</p>
-<p>Socket 连接双方类似于 P2P 的关系，可以随时互相发送消息。</p>
-</li>
-</ul>
-</li>
-</ol>
 
       
     </div>
@@ -466,7 +288,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -532,7 +354,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -544,6 +366,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
+          
         <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
@@ -577,7 +400,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Y2hlbmdsZWk=</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
         
