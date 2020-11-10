@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/02/11/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/03/05/html-css-summary-basic/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2016/02/11/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">常用 Git 命令</a>
+            <a href="/2016/03/05/html-css-summary-basic/" class="post-title-link" itemprop="url">HTML5&CSS 概览基础篇</a>
         </h2>
 
         <div class="post-meta">
@@ -187,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-02-11 00:00:00" itemprop="dateCreated datePublished" datetime="2016-02-11T00:00:00+08:00">2016-02-11</time>
+              <time title="创建时间：2016-03-05 00:00:00" itemprop="dateCreated datePublished" datetime="2016-03-05T00:00:00+08:00">2016-03-05</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-17 13:45:00" itemprop="dateModified" datetime="2020-07-17T13:45:00+08:00">2020-07-17</time>
+                <time title="修改时间：2019-10-21 10:31:37" itemprop="dateModified" datetime="2019-10-21T10:31:37+08:00">2019-10-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -202,7 +202,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
                 </span>
             </span>
 
@@ -217,110 +217,812 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Git-基础命令与运用"><a href="#Git-基础命令与运用" class="headerlink" title="Git 基础命令与运用"></a>Git 基础命令与运用</h1><p>从根本上来讲，<code>Git</code> 是一个内容寻址文件系统，并在此之上提供了一个版本控制系统的用户界面。这意味着 <code>Git</code> 的核心部分是一个简单的键值对数据库。</p>
-<h2 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h2><ul>
-<li><p>配置 Git</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置全局用户</span></span><br><span class="line">git config --global user.name <span class="string">"Your name"</span></span><br><span class="line">git config --global user.email <span class="string">"Your email"</span></span><br><span class="line"><span class="comment"># 配置命令的别名</span></span><br><span class="line">git config --global alias.co checkout</span><br><span class="line">git config --global alias.ss status</span><br><span class="line">git config --global alias.cm commit</span><br><span class="line">git config --global alias.br branch</span><br><span class="line">git config --global alias.rg reflog</span><br><span class="line"><span class="comment"># 删除全局配置</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> alias.xxx</span><br><span class="line">git config --global --<span class="built_in">unset</span> user.xxx</span><br></pre></td></tr></table></figure>
+          <p>学习HTML 5 与 CSS 过程中的的基础知识的概要总结。</p>
+<h1 id="网页的构造块"><a href="#网页的构造块" class="headerlink" title="网页的构造块"></a>网页的构造块</h1><p>尽管网页变得越来越复杂，但是构成它的低层结构依旧十分简单，归纳起来，一个网页主要包括三个部分：</p>
+<ul>
+<li>文本内容 - 页面内容纯文字</li>
+<li>对其它文件的引用 - 如对文件、音视频文件、样式表和 JavaScript 文件的应用</li>
+<li>标记 - 描述文本并确保引用正确工作</li>
+</ul>
+<p>以上内容都仅由文本构成，因此网页可以保存为纯文本格式。以下是一个基本的 HTML 页面 ：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span> This is a simle html page <span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​       </p>
+<h2 id="标签-：元素、属性、值及其它"><a href="#标签-：元素、属性、值及其它" class="headerlink" title="标签 ：元素、属性、值及其它"></a>标签 ：元素、属性、值及其它</h2><ul>
+<li><p>元素 ：大多数元素既包含文本，也包含其它元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 习惯上，标签采用小写字母</span><br><span class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>content<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line">// 空元素既不包含文本也不包含其它元素，比如 img</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"img.jpg"</span> <span class="attr">width</span>=<span class="string">"300"</span> <span class="attr">height</span>=<span class="string">"300"</span> <span class="attr">alt</span>=<span class="string">"img"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>属性和值 ：属性包含了元素的额外信息（尽量使用小写字母来编写属性的名称），有的属性可以接受任何值，但是最常见的还是仅接受预定义值的属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">em</span> <span class="attr">property-name</span>=<span class="string">property-value</span> ··· &gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>元素可以有多个属性，每个属性都有自己的值，属性的排列顺序并不重要，它们之间用空格隔开。</p>
+<p>布尔属性的值时可选的，因为只要这种属性只要出现就表示其值为真</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">name</span>=<span class="string">"emailaddr"</span> <span class="attr">required</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>父元素和子元素 ：如果一个元素包含另一个元素，它就是被包含元素的父元素。</p>
+</li>
+</ul>
+<p>​       </p>
+<h2 id="网页的文本内容"><a href="#网页的文本内容" class="headerlink" title="网页的文本内容"></a>网页的文本内容</h2><p>元素中包含的文本可能是网页上最基本的成分，不过，当浏览器呈现HTML时，会把文本中的多个空格或者制表符压缩成单个空格，把回车符和换行符转换成单个空格或者直接忽略。</p>
+<p>​       </p>
+<h2 id="链接、图像和其它非文本内容"><a href="#链接、图像和其它非文本内容" class="headerlink" title="链接、图像和其它非文本内容"></a>链接、图像和其它非文本内容</h2><p>网页上的图像、视频、音乐等外部文件实际上并没有放在HTML文件中，而是单独保存的，页面只是简单地引用了这些文件。</p>
+<p>​       </p>
+<h2 id="文件名和文件夹名"><a href="#文件名和文件夹名" class="headerlink" title="文件名和文件夹名"></a>文件名和文件夹名</h2><p>在我们开始写一个html文件之前，需要知道如何命名文件和文件夹才能更加有助于组织文件、使访问者更容易找到并访问你的页面，确保它们的浏览器能够正确地处理页面，以及增强搜索引擎优化。</p>
+<ol>
+<li>文件名采用小写字母</li>
+<li>使用正确的扩展名</li>
+<li>用段横线分割单词</li>
+</ol>
+<p>​       </p>
+<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p>URL即 Uniform Resource Locator，统一资源定位符，它包含了关于文件存储位置和浏览器应该如何处理它的信息。</p>
+<p>互联网上的每个文件都有唯一的URL。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 第一部分称为模式，浏览器如何处理需要打开的文件，最常见的模式是HTTP、ftp、mailto</span><br><span class="line">// 第二部分是文件所在的主机名称</span><br><span class="line">// 第三部分是路径，路径包含了到达这个文件的文件夹以及文件自身的名称</span><br><span class="line">"http://www.site.com/home/index.html"</span><br><span class="line">"ftp://ftp.site.com/pub/proposal.pdf"</span><br><span class="line">"mailto:somename@somedomain.com"</span><br></pre></td></tr></table></figure>
+
+<p>有时，URL路径不以文件名结尾，而以一个目录结尾，在这种情况下，URL值得是路径中最后一个目录中的默认文件，通常为index.html。</p>
+<p>URL可以使绝对的，也可以是相对的。绝对URL包含了指向目录或文件的完整信息，包括模式、主机名和路径。而相对URL则以自身的位置为参考点，描述文件的位置。</p>
+<p>相对URL可以 </p>
+<ul>
+<li><p>引用同一目录下的文件</p>
+<p>如果目标文件与当前页面在同一个目录中，那么这个文件就只有文件名和扩展名</p>
+</li>
+<li><p>引用子目录下的文件</p>
+<p>如果目标文件在当前目录的子目录中，则相对 URL 为 “子目录名/文件名+扩展名”</p>
+</li>
+<li><p>引用上层目录的文件</p>
+<p>目标文件在当前目录的父目录中，则 “../文件名+扩展名”</p>
+</li>
+</ul>
+<p>​       </p>
+<h1 id="基本HTML结构"><a href="#基本HTML结构" class="headerlink" title="基本HTML结构"></a>基本HTML结构</h1><p>每个HTML文档都应该包含以下基本成分</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span>		// 声明页面为HTML5文档</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span>	// lang="en" 指定页面内容的默认语言</span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span>	// charset="utf-8" 声明文档的字符编码</span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span>				// 页面的标题</span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在文档的head部分，通常要致命页面标题，提供为搜索引擎准备的关于页面本身的信息，加载样式表，以及加载 JavaScript 文件（通常处于性能考虑，大多数时候在页面底部 <code>&lt;/body&gt;</code> 结束后才加载 JavaScript）。</p>
+<p>​       </p>
+<h2 id="页面标题"><a href="#页面标题" class="headerlink" title="页面标题"></a>页面标题</h2><p>每一个HTML页面都必须有一个<code>title</code> 元素，标题应该是简短的、描述性的，而且是唯一的。页面标题通常是搜索引擎的搜索结果中链接的文字，它是判断搜索结果这种页面相关度的重要因素。</p>
+<p>值得注意的是，标题中不能包含任何格式、HTML、图像或指向其它页面的链接。</p>
+<h3 id="分级标题"><a href="#分级标题" class="headerlink" title="分级标题"></a>分级标题</h3><p>HTML中有六级标题用于创建页面信息的层级关系，使用好h1、h2 ··· h6 来表示。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span>		</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span>	</span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span>	</span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>分级标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span>			</span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">h1</span>&gt;</span> 第一级标题 <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">lang</span>=<span class="string">"es"</span>&gt;</span> 第二级标题 <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对于任何页面来说，分级标题都可以说是最重要的HTML元素，由于标题通常传达的是页面的主题，如果这些标题与搜索词匹配，就会被搜索引擎赋予很高的权重。</p>
+<p>创建分级标题时，要避免跳过某些级别，尽管这样做是可以的。</p>
+<p>​       </p>
+<h2 id="创建页眉"><a href="#创建页眉" class="headerlink" title="创建页眉"></a>创建页眉</h2><p>一个页面可以有任意数量的header元素，它们的含义可以根据其上下文而有所不同，处于页面顶端的或接近这个位置的header是整个页面的页眉。通常，页眉包裹网站标志、主导航和其它全站链接。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">"banner"</span>&gt;</span>	// 可选的 role=“banner” 显式的指出该页眉为页面级别的页眉</span><br><span class="line">    	<span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>header 也很适合对页面深处的一组介绍性或导航型内容进行标记，但是，你需要只在必要的时候才使用header，大多数情况下使用 h1 ~ h6 就能满足要求。而且需要注意的是，header 与 h1 ~ h6 元素中的标题是不能互换的，它们都有各自的语意目的。</p>
+<p>不能在 header 里嵌套 footer 元素或另一个 header，也不能在 footer 或 address 元素里嵌套 header。</p>
+<p>​       </p>
+<h2 id="标记导航"><a href="#标记导航" class="headerlink" title="标记导航"></a>标记导航</h2><p>HTML的早期版本中没有元素明确表示主导航链接的区域，在HTML5中引入了 nav 元素来表示。nav 中的链接可以指向页面中的内容。但应仅对文档中重要的链接群使用 nav。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">"banner"</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">"navigation"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，nav 元素不会对其内容添加任何默认样式。</p>
+<p>HTML5 规范不推荐对辅助性的页脚链接使用 nav，而且也不允许 nav 嵌套在 address 元素中。</p>
+<p>​       </p>
+<h2 id="标记页面的主要区域"><a href="#标记页面的主要区域" class="headerlink" title="标记页面的主要区域"></a>标记页面的主要区域</h2><p>大多数网页都有一些不同的区域，如页眉、页脚、包含额外信息的附注栏、指向其它网站的链接等等，不过一个页面只有一个部分代表其主要内容，可以将这样的内容放在 main 元素中，该元素在一个页面中仅使用一次。main 元素是HTML5中新添加的元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">        // 页面的主要内容</span><br><span class="line">	<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>与 p、header、footer 等元素一样，main 元素的内容显示在新的一行，除此之外不会影响页面的任何样式。</p>
+<p>如果创建的是 Web 应用，则应使用 main 包围其主要的功能。</p>
+<p>不能将 main 放置在 article、aside、footer、header 或 nav 元素中。</p>
+<p>​       </p>
+<h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><p>HTML5 的另一个新元素 article ：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">"banner"</span>&gt;</span></span><br><span class="line">            // 包含多个链接的导航</span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">article</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">p</span></span></span><br><span class="line"><span class="tag">                ···</span></span><br><span class="line">        &lt;/article&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在HTML5 中，article 并不仅仅用于包含像报纸文章一样的内容，钙元素的严格定义如下</p>
+<p>​    <strong>articile 元素表示文档、页面、应用或网站中一个独立容器，原则上是可独立分配或可再用的，就像聚合内容中的各部分。</strong></p>
+<p>​       </p>
+<h2 id="定义区块"><a href="#定义区块" class="headerlink" title="定义区块"></a>定义区块</h2><p>HTML5 中的新元素 section ，用来代表文档或应用中的一个一般区块。在这里，section 是<strong>具有相似主题的一组内容</strong>，通常包含一个标题。</p>
+<p>尽管将 section 定义为 ‘通常的’ 区块，但是不要将它与 div 元素混淆。从语义上讲，section 标记的是页面中的特定区域，而 div 则不传达任何语义。</p>
+<p>如果只是出于添加样式的原因要对内容添加一个容器，应使用 div 而不是 section。</p>
+<p>可以将 section 嵌套在 article 里，从而显式地标出报告、故事、手册等文章中的不同部分或不同章节。</p>
+<p>​       </p>
+<h2 id="指定附注栏"><a href="#指定附注栏" class="headerlink" title="指定附注栏"></a>指定附注栏</h2><p>有时候，页面中有一部分内容与主体内容相关性没有那么强，可以独立存在，则可以使用 aside 元素来标记它们。</p>
+<p>使用 aside 的例子还包括重要引述、侧栏、指向相关文章的一组链接、广告、nav 元素组等。</p>
+<p>在HTML中，应该将附注栏内容放在 main 的内容之后，处于 SEO 和可访问性的目的，最好将重要的内容放在前面，你可以通过 CSS 来改变它们在浏览器中的显示顺序。</p>
+<p>对于与内容有关的图像，使用 figure 而非 aside。</p>
+<p>HTML5 不允许将 aside 元素嵌套在 address 元素中。</p>
+<p>​       </p>
+<h2 id="创建页脚"><a href="#创建页脚" class="headerlink" title="创建页脚"></a>创建页脚</h2><p>元素 footer 同 header 一样，不仅仅只能用在页面底部标记页脚，还可以用在其它地方。footer 元素代表嵌套它的最近的 article、aside、blockquote、body、details、fieldset、figure、nav、section 或 td 元素的页脚。</p>
+<p>如果一个 footer 抱着它所在区块的所有内容，它代表的是像附录、索引、版权页、许可协议这样的内容。</p>
+<p>不能在 footer 里嵌套 header 或另一个 footer，同时，也不能将 footer 嵌套在 header 或 address 元素里。</p>
+<p>​       </p>
+<h2 id="创建通用容器"><a href="#创建通用容器" class="headerlink" title="创建通用容器"></a>创建通用容器</h2><p>有时候需要在一段内容外围包一个容器，从而可以为其应用 CSS 样式或 JavaScript 效果，div 是一个完全没有任何语义含义的容器，是一个通用容器。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">... </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">"banner"</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">"navigation"</span>&gt;</span></span><br><span class="line">			... [包含多个链接的无序列表] ... </span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">	<span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">"main"</span>&gt;</span> <span class="tag">&lt;<span class="name">article</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"gaudi"</span>&gt;</span>Barcelona's ➝ Architect<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		... [文章的其余内容] ...</span><br><span class="line">		<span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"sagrada-familia"</span> <span class="attr">lang</span>=<span class="string">"es"</span>&gt;</span> ➝La Sagrada Família<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">		... [图像和段落] ...</span><br><span class="line">		<span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"park-guell"</span>&gt;</span>Park Guell<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">		... [另一个图像和段落] ... <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aside</span> <span class="attr">role</span>=<span class="string">"complementary"</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Architectural Wonders of ➝ Barcelona<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		... [aside的其余内容] ...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">	<span class="tag">&lt;<span class="name">footer</span> <span class="attr">role</span>=<span class="string">"contentinfo"</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">small</span>&gt;</span><span class="symbol">&amp;copy;</span> Copyright All About ➝ Gaudí<span class="tag">&lt;/<span class="name">small</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，div 元素自身没有任何默认样式，知识器其包含的内容从新的一行开始，不过我们可以对 div 添加样式实现自己的设计。div 对使用 JavaScript 实现一些特定的交互行为或效果也是有帮助的。</p>
+<p>尽管始终强调 HTML 用于对内容的含义进行描述，但 div 并不是唯一没有语义价值的元素。span 是与 div 对应的一个元素: div 是块级内容的无语义容器，而 span (写作 <span> 这里是内容 </span>)则是短语内容的无语义容器，例如它可以放在段落元素 p 之内。</p>
+<p>​       </p>
+<h2 id="使用ARIA改善可访问性"><a href="#使用ARIA改善可访问性" class="headerlink" title="使用ARIA改善可访问性"></a>使用ARIA改善可访问性</h2><p>WAI-ARIA（Web Accessibility Initiative’s Accessible Rich Internet Applications），无障碍网页倡议，无障碍的富互联网应用。ARIA 是一种技术规范，在HTML 提供相应的语义功能之前，它会使用属性来填补一些语义上的空白。</p>
+<p>无障碍访问的意义是让所有的访问者都能获取网站的内容。在大多数情况下，让页面具有无障碍访问的功能并不难。只需对内容使用恰当的 HTML 进行标记，就能改进网站的可访问性。</p>
+<h3 id="地标角色"><a href="#地标角色" class="headerlink" title="地标角色"></a>地标角色</h3><p>ARIA 中的地标角色可以帮用户识别页面区域，对这些区域指定 role 属性就可以了。</p>
+<table>
+<thead>
+<tr>
+<th align="left">地标角色</th>
+<th align="left">如何使用及何时使用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">role=”main” ：文档的主要内容</td>
+<td align="left">与 main 元素是对应关系。最好将其添加到 main 元素，也可以添加到其它表示主体内容的元素，在买个页面只使用一次。</td>
+</tr>
+<tr>
+<td align="left">role=”complementary” : 补充性内容</td>
+<td align="left">与 aside 元素是对应关系。应将其添加到 aside 或 仅含补充性内容的 div 元素。与 nav 元素是对应关系。</td>
+</tr>
+<tr>
+<td align="left">role=”contentinfo” : 内容信息</td>
+<td align="left">将其添加至整个页面的页脚，通常为 footer 元素，每个页面仅使用一次。</td>
+</tr>
+<tr>
+<td align="left">role=”navigation” : 导航</td>
+<td align="left">应将其添加到每个 nav 元素，或其它包含导航型链接的容器。</td>
+</tr>
+<tr>
+<td align="left">role=”banner” : 横幅</td>
+<td align="left">将其添加到页面级的 header 元素，每个页面只使用一次</td>
+</tr>
+</tbody></table>
+<p>即便不适用 ARIA 地标角色，页面看起来也没有任何差别，但是使用它们可以提升使用辅助设备的用户的体验。</p>
+<p>​       </p>
+<h2 id="为元素指定类别或-ID-名称"><a href="#为元素指定类别或-ID-名称" class="headerlink" title="为元素指定类别或 ID 名称"></a>为元素指定类别或 ID 名称</h2><p>可以给 HTML 元素分配唯一的标识符，或指定其属于某个类别，或同时使用标识符和类别。添加 ID 和类别后，就可以对具有给定 ID 或 class 名称的元素添加样式、创建指向具有特定 id 的元素的链接或使用 JavaScript 获取 id 和 class 属性从而对元素添加特定的行为。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span>		// 如果要制定多个类别，用空格将不通过的分类名称分开即可</span><br><span class="line">        <span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">"banner"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">"navigation"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">"architect gaudi"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"gaudi"</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span>	// id 几乎可以使任何字符，只要不以数字开头且不包含空格。</span><br><span class="line">                <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"sagrada-familia"</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>为一个或多个元素添加 class 属性，就可以对所有这类元素统一进行格式化。</p>
+<p>HTML 文档中的每个 id 都必须是唯一的，并且每个元素都只能有一个 id。与此相反的是，一个 class 名称可以分配给页面中任意数量的元素，并且一个元素可以有一个以上的 class。</p>
+<p>建议你无论打算如何使用 id 和 class，都应该为它们选择有意义的名称。</p>
+<p>​       </p>
+<h2 id="为元素添加-title-属性"><a href="#为元素添加-title-属性" class="headerlink" title="为元素添加 title 属性"></a>为元素添加 title 属性</h2><p>可以使用 title 属性为网站上任何部分加上提示标签，不过用的最多的是链接。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">title</span>=<span class="string">"table of contents"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>添加了 title 属性的元素，在用户将访问者将鼠标移到该元素上时，会提示该 title。</p>
+<p>​       </p>
+<h2 id="添加注释"><a href="#添加注释" class="headerlink" title="添加注释"></a>添加注释</h2><p>可以在 HTML 文档中添加注释，表明区块开始和结束的位置，提示某段代码的意图，或者阻止内容显示等。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">&lt;!-- ==== 开始主体内容 ==== --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">"architect"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"gaudi"</span>&gt;</span>Barcelona's Architect<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	    <span class="comment">&lt;!-- 这一段不会显示出来，因为它被注释掉了</span></span><br><span class="line"><span class="comment">		&lt;p&gt;Antoni Gaudí's incredible buildings bring millions of tourists to Barcelona each year. &lt;/p&gt;</span></span><br><span class="line"><span class="comment">		--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>Gaudí's non-conformity, already visible in his teenage years</span><br><span class="line">            ...</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">article</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 结束主体内容 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ==== 开始附注栏 ==== --&gt;</span> </span><br><span class="line">... [附注栏内容] ...</span><br><span class="line"><span class="comment">&lt;!-- 结束附注栏 --&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>注释是不可见的，如果将一些内容注释掉，它们将不会显示出来。</p>
+<p>在主要区块的开头和结尾添加注释是一种常见的做法，可以让你或和你一起合作开发的人员将来修改代码变的更加容易。</p>
+<p>注释不能嵌套在其它注释里。</p>
+<p>​       </p>
+<h1 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h1><p>除非网站添加了太多视频和图片，否则网页的大部分内容还是文本，针对不同的文本类型，选择不同的 HTML 语义化元素是非常重要的一项能力。</p>
+<p>内容显示的样子与其使用的标记是没有关系的，为内容添加样式可以用 CSS 来做。</p>
+<h2 id="添加段落"><a href="#添加段落" class="headerlink" title="添加段落"></a>添加段落</h2><p>HTML 会忽略你在文本编辑器中输入的回车符和其它额外的空格，所以要在网页中开始一个新的段落，应使用 p 元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        content </span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，浏览器会在标题和段落之间，以及不同的段落之间添加垂直间距。使用 CSS 可以控制所有内容元素的格式</p>
+<p>​       </p>
+<h2 id="指定细则"><a href="#指定细则" class="headerlink" title="指定细则"></a>指定细则</h2><p>HTML5 中，small 表示细则一类的旁注，通常包括免责声明、注意事项、法律限制、版权信息等。small 通常是行内文本中的一小块，而不是包含多个段落或其它元素的大块文本。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span> some restrications <span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>用 small 标记页面的版权信息时一种常见的做法。不过，small 只适用于短语，不宜用于标记长的的法律声明。</p>
+<p>​       </p>
+<h2 id="标记主要和强调的文本"><a href="#标记主要和强调的文本" class="headerlink" title="标记主要和强调的文本"></a>标记主要和强调的文本</h2><p>我们一般用 strong 元素表示内容的重要性，而 em 则表示内容的着重点。根据内容需要，这两个元素既可以单独使用，也可以一起使用。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">strong</span>&gt;</span> <span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span> <span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>浏览器通常将 strong 文本用粗体显示，而将 em 文本以斜体显示。如果 em 是 strong 的子元素，将同时以斜体和粗体显示文本。</p>
+<p>不要用 b 元素代替 strong，也不要用 i 元素代替 em。尽管它们在浏览器中显示的样式是一样的，但是它们的含义却很不一样。</p>
+<p>可以在标记为 strong 的短语中再嵌套 strong 文本。如果这样做，作为另一个 strong 元素的子元素的 strong 文本的重要程度会递增。这种规则对嵌套在另一个 em 里的 em 文本也适用。</p>
+<p>HTML 5 强调元素的语义，而非表现。b 和 i 元素是早期 HTML 遗留下的产物，它们分别用于将文本变为粗体和斜体。</p>
+<p>HTML 5 将 b 重新定义为出于实用目的提醒读者注意的一块文字，不传达任何额外的重要性，也不表示其它的语态和语气，用于文档摘要中的关键词、评论中的产品名等。</p>
+<p>HTML 5 将 i 重新定义为表示一块不同于其它文字的文字，具有不同的语态和语气，或其它不同于常规之处，用于如分类名称、技术术语、外语里的惯用语等。</p>
+<p>​       </p>
+<h2 id="创建图"><a href="#创建图" class="headerlink" title="创建图"></a>创建图</h2><p>在 HTML 5 之前，并没有专门实现图的元素，开发人员通常会使用不那么理想的 div 元素来实现。通过引入 figure 和 figcaption，HTML 5 改变了这种情况。图可以是图表、照片、图形、插图、代码片段以及其它类似的独立内容。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span> ···<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">figcaption</span>&gt;</span><span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span> // figcaption 是 figure 的标题，可选，出现在 figure 内容的开头或结尾</span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"chart-revenue.png"</span> <span class="attr">width</span>=<span class="string">"180"</span> <span class="attr">height</span>=<span class="string">"180"</span> <span class="attr">alt</span>=<span class="string">"Revenue chart: Clothing 42%, Toys 36%, Food 22%"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，figcaption 元素并不是必需的，但如果包含它，它就必须是 figure 元素内嵌的第一个或最后一个元素。figure 通常情况下包含在 article 中。</p>
+<p>​       </p>
+<h2 id="指明引用或参考"><a href="#指明引用或参考" class="headerlink" title="指明引用或参考"></a>指明引用或参考</h2><p>使用 cite 元素可以指明对某内容源的引用或参考。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">city</span> <span class="attr">lang</span>=<span class="string">"it"</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">city</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对于要从引用来源中引述内容的情况，使用 blockquote 或 q 元素标记因数的文本。cite 只是用于参考源本身，而不是从中引述的内容。</p>
+<p>HTML 5 中，不应使用 cite 作为对人名的引用，但在 HTML 以前的版本中允许这样做。</p>
+<p>​       </p>
+<h2 id="引述文本"><a href="#引述文本" class="headerlink" title="引述文本"></a>引述文本</h2><p>有两个特殊的元素用以标记引述的文本。blockquote 元素表示单独存在的引述，通常更长，但也可能不是，它默认显示在新的一行。而 q 则用于短的引述，如句子里面的引述。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">cite</span>=<span class="string">"引用源"</span>&gt;</span></span><br><span class="line">        content</span><br><span class="line">	<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>浏览器默认对 blockquote 文本进行缩进，cite 属性值则并不会显示出来。</p>
+<p>如果 blockquote 中仅包含一个单独的段落或短语，可以不必将其包在 p 中再放入 blockquote。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">q</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">q</span> <span class="attr">lang</span>=<span class="string">"fr"</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果引述文本的语言与页面默认语言不同，就在 q 元素中添加 lang 属性。</p>
+<p>浏览器应对 q 元素中的文本自动加上特定语言的引号，不同的浏览器效果不同。</p>
+<p>注意，q 元素引用的内容不能跨越不同的段落，在这种情况下应该使用 blockquote。</p>
+<p>​       </p>
+<h2 id="指定时间"><a href="#指定时间" class="headerlink" title="指定时间"></a>指定时间</h2><p>HTML 5 中使用 time 元素标记时间、日期或时间段，time 是HTML 5 新增的元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">time</span>&gt;</span>08:45<span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">time</span> <span class="attr">datetime</span>=<span class="string">"2018-05-24T10:00:00"</span>&gt;</span><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">time</span> <span class="attr">datetime</span>=<span class="string">"03-29"</span>&gt;</span><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">time</span> <span class="attr">datetime</span>=<span class="string">"2h 30m"</span>&gt;</span><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>元素 time 中包含的文本内容会出现在屏幕上，对用户可见，而可选的 datetime 属性则是为机器准备的。该属性需要遵循特定的格式。</p>
+<p>如果忽略了 datetime 属性，文本内容就必须是合法的日期或时间格式。datetime 属性不会单独产生任何效果，但它可以用于 Web 应用之间同步日期和时间。</p>
+<p>需要注意的是，不能在 time 元素中嵌套另一个 time 元素，也不能在没有 datetime 属性的 time 元素中包含其它元素。</p>
+<h3 id="理解有效的时间格式"><a href="#理解有效的时间格式" class="headerlink" title="理解有效的时间格式"></a>理解有效的时间格式</h3><p>属性 datetime 或没有 datetime 属性的 time 元素，必须提供特定的机器可读格式的日期和时间。</p>
+<p>常用的如 <strong>YYYY-MM-DDThh:mm:ss</strong> ，这种格式如果包含时间，秒是可选的。</p>
+<p>如果需要提供毫秒数，则格式为 <strong>hh:mm:sss</strong>。</p>
+<p>如果要表示时间段，最简单的语法为：<strong>nh nm ns</strong>。</p>
+<h3 id="全球日期和时间及时间差"><a href="#全球日期和时间及时间差" class="headerlink" title="全球日期和时间及时间差"></a>全球日期和时间及时间差</h3><p>在格式  <strong>YYYY-MM-DDThh:mm:ss</strong> 末尾加上字母 Z，就成了 UTC。</p>
+<p>UTC 是主要的全球时间标准，可以通过相对 UTC 时差的方式表示时间。这时不写字母 Z，写上 ‘-’ 或 ‘+’及时差即可，比如：</p>
+<p><em>1985-11-02T17:19:00-02:30</em> </p>
+<p>​       </p>
+<h2 id="解释缩写词"><a href="#解释缩写词" class="headerlink" title="解释缩写词"></a>解释缩写词</h2><p>使用 abbr 元素标记缩写词并解释其含义，但是不必对每个缩写词都使用 addr，只在需要帮助访问者了解改词含义的时候使用。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">"National Football League"</span>&gt;</span>NFL<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">"light amplicfication by stimulated emission of radiation"</span>&gt;</span>laser<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用可选的 title 属性提供缩写词的全程。灵位，也可以将全称放在缩写词后面的括号里。</p>
+<p>通常，仅在缩写词第一次出现在屏幕上时给出其全称。</p>
+<p>​       </p>
+<h2 id="定义术语"><a href="#定义术语" class="headerlink" title="定义术语"></a>定义术语</h2><p>在 HTML 中定义术语时，可以使用 dfn 元素对其做语义上的区分。仅用 dfn 包围要定义的术语，而不是包围定义。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dfn</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">dfn</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通常，dfn 元素默认以斜体显示。在是当的情况下可以包住其它短语元素。</p>
+<p>如果在 dfn 中添加了可选的 title 属性，其值应与 dfn 术语一致。</p>
+<p>​       </p>
+<h2 id="创建上标和下标"><a href="#创建上标和下标" class="headerlink" title="创建上标和下标"></a>创建上标和下标</h2><p>比主体文本稍高或稍低的字母或数字分别称为上标和下标。HTML 中包含用来定义这两种文本的元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sub</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">sub</span>&gt;</span>	//下标</span><br><span class="line"><span class="tag">&lt;<span class="name">sup</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">sup</span>&gt;</span>	//上标</span><br></pre></td></tr></table></figure>
+
+<p>上标和下标字符会轻微地扰乱行与行之间均匀的间距。不过我们可以使用 CSS 解决这个问题。</p>
+<p>​       </p>
+<h2 id="添加作者联系信息"><a href="#添加作者联系信息" class="headerlink" title="添加作者联系信息"></a>添加作者联系信息</h2><p>实际上，address 元素是用以定义与 HTML 页面或页面的一部分有关的作者、相关人士或组织的联系信息，通常位于页面底部或相关部分内。至于 address 具体表示的是哪一种信息，取决于该元素出现的位置。</p>
+<p>如果要为一个 article 提供作者联系信息，就将光标放在该元素内。如果要提供整个页面的作者联系信息，就将光标放在 body 中(更常 见的做法是放在页面级的 footer 里) 。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">role</span>=<span class="string">"contentinfo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span><span class="symbol">&amp;copy;</span>2014 The MrSilent Inc<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">address</span>&gt;</span></span><br><span class="line">        Have a question or comment about the site? <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"feedback.html"</span>&gt;</span>Contact us<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​       </p>
+<h2 id="标注编辑和不再准确的文本"><a href="#标注编辑和不再准确的文本" class="headerlink" title="标注编辑和不再准确的文本"></a>标注编辑和不再准确的文本</h2><p>有时可能需要将在前一个版本之后对页面内容的编辑标出来，或者对不再准确、不再相关的文本进行标记。有两种用于标注编辑的元素:代表添加内容的 ins 元素和标 记已删除内容的 del 元素。这两个元素既可以单独使用，也 可以一起使用。</p>
+<p>del 和 ins 都支持两个属性 : cite 和 datetime。</p>
+<p>cite 属性(区别于 cite 元素)用 于提供一个 URL，指向说明编辑原因的页面。 </p>
+<p>datetime 属性提供编辑的时间。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">del</span>&gt;</span><span class="tag">&lt;/<span class="name">del</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">ins</span>&gt;</span><span class="tag">&lt;/<span class="name">ins</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>同时，s 元素用以标注不再准确或不再相关的内容。</p>
+<p>​       </p>
+<h2 id="标记代码"><a href="#标记代码" class="headerlink" title="标记代码"></a>标记代码</h2><p>如果你的内容包含代码示例或文件名，就可以使 用 code 元素  。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>code 元素表示其中的文本是代码或文件名，如果你的代码需要显示 &lt; 或 &gt;，应分别使用 &amp;lt；和 &amp;gt；</p>
+<p>而如果显示单独的一块代码，则用 pre 元素保住 code 元素以维持其格式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​       </p>
+<h2 id="使用预格式化的文本"><a href="#使用预格式化的文本" class="headerlink" title="使用预格式化的文本"></a>使用预格式化的文本</h2><p>通常，浏览器会将所有额外的回车和空格压缩，并根据窗口的大小自动换行。预格式化的文本可以保持文本固有的换行和空格。 它是计算机代码示例的理想元素，不过你也可以将它用于文本 。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对包含重要的空格和换行的文本，pre 元素是非常合适的，因为 pre 内容里的缩进和换行都被保留了。</p>
+<p>预格式化的文本通常以等宽字体显示。</p>
+<p>​       </p>
+<h2 id="突出显示文本"><a href="#突出显示文本" class="headerlink" title="突出显示文本"></a>突出显示文本</h2><p>HTML 5 使用 mark 元素实现对特定词语的突出显示。</p>
+<p>可以用 CSS 对 mark 元素里的文字应用样式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mark</span>&gt;</span>.greenText<span class="tag">&lt;/<span class="name">mark</span>&gt;</span> &#123;</span><br><span class="line">    	color:green;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​       </p>
+<h2 id="创建换行"><a href="#创建换行" class="headerlink" title="创建换行"></a>创建换行</h2><p>浏览器会根据包含内容的块或窗口的宽 度让文本自动换行。大多数情况下，让内容像这样充满整行是很合适的，但有时你希望 手动地强制文字进行换行。可以使用 br 元素 实现这一要求。</p>
+<p>要确保使用 br 是最后的选择，因为该元素将表现样式带入了 HTML，而不是让所有呈现样式都交由 CSS 控制。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">       </span><br><span class="line"><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建-span"><a href="#创建-span" class="headerlink" title="创建 span"></a>创建 span</h2><p>同 div 一样，span 元素是没有任何语义的。 不同的是，span 只适合包围字词或短语内容， 而 div 适合包含块级内容。</p>
+<p>由于 span 没有任何语义，因此应将它作为最后的选择，仅在没有其他合适的元素时才使用它。</p>
+<p>​       </p>
+<h1 id="图像"><a href="#图像" class="headerlink" title="图像"></a>图像</h1><p>当前 Web 上使用最广泛的三种图片格式是 GIF、PNG 和 JPEG。</p>
+<p>JPEG 格式适用于彩色照片，因为它包含了大量颜色并进行了合理的压缩，采用这种格式保存的文件相对较小。不过，JPEG 是一种有损格式，在将图像保存为 JPEG 时会丢失一部分原始信息。</p>
+<p>PNG 和 GIF 是无损的格式，采用这两种格式对图像进行压缩不会造成品质的损失。相对于 JPEG ，PNG 和 GIF 保存的图像的文件尺寸会大很多。因此，只有在压缩造成的质量损失不可忽略的情况下才使用 PNG 保存照片。</p>
+<p>一般来说，如果要选择使用无损格式的图片，那么 PNG 应是优先的选择，因为它对透明度的支持更好，压缩算法也更好，产生的文件更小。</p>
+<p>JPEG/PNG-24/PNG-32 均支持超过1600万众的颜色，而 GIF 和 PNG-8 只支持 256 中颜色，所以标识和其它颜色较少的图像通常保存为 PNG-8 格式，而照片和颜色复杂的插图等则应选择支持颜色较多的格式。</p>
+<p>​    </p>
+<h2 id="在页面中插入图像"><a href="#在页面中插入图像" class="headerlink" title="在页面中插入图像"></a>在页面中插入图像</h2><p>可以在网页中放置各种各样的图像，从标志到照片都可以。当访问者浏览网页时，浏览器会自动加载像在 HTML 文档中描述的图像。不过， 图像加载时间跟访问者的网络连接强度、图像尺寸，以及页面中包含的图像个数相关。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"corner-market.jpg"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在实践中，为了保持良好的文件组织结构，通常将图像保存在单独的文件夹中。</p>
+<p>​    </p>
+<h2 id="提供替代文本"><a href="#提供替代文本" class="headerlink" title="提供替代文本"></a>提供替代文本</h2><p>使用 alt 属性，可以为图像添加一段描述性文本，当图像因为某种原因不显示的时候，就将这段文字显示出来。HTML5 规范推荐将 alt 文本理解为图像的替代性描述 : “一般来说，替代文本是考虑图像未能正常加载的情况下需要呈现 文字。”通常，这意味着 alt 文本可以插入到图像两侧的文本流中，在大多数情况下， 它不应是对图像的描述。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"market.jpg"</span> <span class="attr">alt</span>=<span class="string">"somen description text"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果图像对内容的价值较小，则可以提供空的替代文 本，即 alt=””。</p>
+<p>如果图像与邻近的文本表达的信息相似，也可以将 alt 属性留空。 </p>
+<p>如果图像是页面设计的一部分，而不是内容的一部分，则应使用 CSS background-image 属性引入该图像，而不是使用 img 标记。</p>
+<p>​    </p>
+<h2 id="指定图像尺寸"><a href="#指定图像尺寸" class="headerlink" title="指定图像尺寸"></a>指定图像尺寸</h2><p>通常我们会在 HTML 中明确指定图像的高度和宽度，这样浏览器就不必花时间来判断图像的尺寸，从而更快地将图像显示出来。 而且指定图像的尺寸，浏览器就可以预留空间，在图像加载的同时让文本显示在周围，保持布局的稳定。</p>
+<p>可以通过浏览器或图像编辑软件获取图像的精确尺寸。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"market.jpg"</span> <span class="attr">width</span>=<span class="string">"300"</span> <span class="attr">height</span>=<span class="string">"300"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><p>链接有两个主要的部分:目标和标签。 </p>
+<p>使用目标(destination)可以指定访问者点击链接时会发生什么。可以创建链接进入另一个页面、在页面内跳转、显示图像、下载文件、 呼叫电话等等。不过，最常见的是连接到其他网页的链接，其次是连接到其他网页特定位置(称为锚，anchor)的链接。目标是通过编写 URL 定义的，通常只能在(桌面)浏览器的状态栏中看到。</p>
+<p>链接的第二个部分是标签(label)，即访问者在浏览器中看到或在屏幕阅读器中听到的部分。激活标签就可以到达链接的目标。 例如，航空公司网站上可能有这样的链接标 签:预订航班。标签可以是文本、图像或二者兼有。浏览器通常会将标签文本默认显示为带下划线的蓝色文字。</p>
+<h2 id="指向网页的链接"><a href="#指向网页的链接" class="headerlink" title="指向网页的链接"></a>指向网页的链接</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://www.google.com"</span> <span class="attr">rel</span>=<span class="string">"external"</span>&gt;</span>Search with Google<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当要连接的页面与当前页面在同一目录下时，只需文件名即可进行访问。</p>
+<p>rel 属性是可选的，它用来描述包含链接的页面和链接指向的页面之间的关系。</p>
+<h3 id="HTML-块级链接"><a href="#HTML-块级链接" class="headerlink" title="HTML 块级链接"></a>HTML 块级链接</h3><p>HTML 5 几乎允许在链接内包含任何类型的元素或元素组。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"giraffe-escapes.html"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        ···</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Read more<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h2 id="创建锚并链接到锚"><a href="#创建锚并链接到锚" class="headerlink" title="创建锚并链接到锚"></a>创建锚并链接到锚</h2><p>通常，激活一个链接会将用户带到对应网页的顶端。如果要想用户跳至网页的特定区域，可以创建一个锚，并在链接中引用该锚 。</p>
+<p>首先你需要在目标网页中创建一个锚</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://www.site.com/home.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"anchro-name"</span>&gt;</span></span><br><span class="line"> 	···   </span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>创建链接到特定锚的链接</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://www.site.com/home.html#anchor-name"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果锚位于页面的底部，且它下面的内容的高度小于浏览器的可视区域的高度， 那么它可能不会显示在窗口的顶部，而是显 示在中间。 </p>
+<p>​    </p>
+<h2 id="其它类型的链接"><a href="#其它类型的链接" class="headerlink" title="其它类型的链接"></a>其它类型的链接</h2><p>并非只能创建指向其他网页的链接，其实可以创建指向任何 URL 的链接——RSS 源、 图像、希望访问者可以下载的文件、电子邮 件地址、电话号码等 。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"img/market.jpg"</span>&gt;</span> 链接到图片 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"media/song.mp3"</span>&gt;</span> 链接到音频 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"media/movie.mp4"</span>&gt;</span> 链接到视频 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"mailto:someone@somedomain.com"</span>&gt;</span> 链接到邮箱地址 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"tel:+18002134567"</span>&gt;</span> 链接到电话 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对于指向万维网上任何文件(包括图像、 ZIP 文件、程序、PDF 及其他等)的链接，输 入 <a href="http://www.site.com/dir/file.ext，" target="_blank" rel="noopener">http://www.site.com/dir/file.ext，</a> 其 中 <a href="http://www.site.com" target="_blank" rel="noopener">www.site.com</a> 是主机名称，dir/file.ext 是目标文件的路径。后者包括了文件目录和文件名(以及扩展名)。</p>
+<p>对于电子邮件地址，输入 mailto:<a href="mailto:name@domain.com">name@domain.com</a>(不以 http:// 开头)，其中 <a href="mailto:name@domain.com">name@domain.com</a> 是电子邮件地址。</p>
+<p>对于电话号码，输入 tel:+(不以 http:// 开头)并紧跟着国家代码和电话号码(所有的号码中都不必包含短横线)。</p>
+<p>如果链接指向的文件是浏览器不知道如何处理的类型(例如 Excel 文件)，浏览器将试着打开一个辅助程序来查看这个文件，或试着将它下载到访问者的磁盘上。 </p>
+<p>​    </p>
+<h1 id="CSS-构造块"><a href="#CSS-构造块" class="headerlink" title="CSS 构造块"></a>CSS 构造块</h1><p>CSS (层叠样式表)是一种文本文件，其中包含一个或多个(通过属性和值)决定网页某特定元素如何显示的规则。CSS 里有控制基本格式的属性(如 font-size 和 color)，有控制布局的属性(如 position 和 float)，还有决定访问者打印时在哪里换页的打印控制 元素。CSS 还有很多控制项目显示或消失的动态属性，可以用于创建下拉列表和其他交互性组件。 </p>
+<p>CSS2 是目前浏览器支持最为广泛的版本，CSS3 是以CSS2 为基础，提供了大量设计人员和开发人员长期期待的功能，但可惜的是目前还没有成为规范。</p>
+<h2 id="构造样式规则"><a href="#构造样式规则" class="headerlink" title="构造样式规则"></a>构造样式规则</h2><p>样式表中包含了定义网页外观的规则。</p>
+<p>样式表中的每条规则都有两个主要部分 ：选择器和声明块。选择器决定哪些元素受到影响；声明块由一个或多个 属性 - 值</p>
+<p>对组成，它们指定应该做什么。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">selector</span> &#123;</span><br><span class="line">	<span class="attribute">property-name</span>:property-value;</span><br><span class="line">				···</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">	<span class="attribute">background-color</span>: green;</span><br><span class="line">	<span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在样式规则中可以添加额外的空格、制表符或回车，从而提高样式表的可读性 。</p>
+<p>​    </p>
+<h2 id="为样式规则添加注释"><a href="#为样式规则添加注释" class="headerlink" title="为样式规则添加注释"></a>为样式规则添加注释</h2><p>在 CSS 中添加注释是个好主意，这样就可以标注样式表的主要区域，或者只是针对某条规则或声明进行解释。注释不仅对开发 人员有用，对阅读代码的其他人也有好处。 </p>
+<p>注释可以包含回车，因此可以跨越多行。类似地，/* 和 */ 既可以单独成行，也可以跟文本同处一行。另外，注释还可以放到声明块内部，或者样式规则后面。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* This is a single line comment */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	···</span></span><br><span class="line"><span class="comment">    This is multi-ling comment</span></span><br><span class="line"><span class="comment">	···</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">    <span class="attribute">font-size</span>: .<span class="number">875em</span>;</span><br><span class="line">    <span class="comment">/* This is a comment in declarations bloc */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，不能将一个注释嵌套在另一个注释内部 ，这样的做法是错误的。</p>
+<p>注释是很有用的组织工具。样式表很快就会变得很长，因此，组织好样式表对于保持 CSS 易于维护至关重要。通常，将相关的规则放在一起，形成分组，并在每组前面放置一段描述性的注释 </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Section-1 */</span></span><br><span class="line">	···</span><br><span class="line"><span class="comment">/* Section-2 */</span></span><br><span class="line">	···</span><br><span class="line"><span class="comment">/* Section-3 */</span></span><br><span class="line">	···</span><br></pre></td></tr></table></figure>
+
+<p>当然，你也可以注释掉属性值，来进行调试，就像你在其它语言中做的那样。</p>
+<p>​    </p>
+<h2 id="CSS-中的继承"><a href="#CSS-中的继承" class="headerlink" title="CSS 中的继承"></a>CSS 中的继承</h2><p>当你为某个元素应用 CSS 属性时，这些属性不仅会影响该元素，还会影响其下的分支元素。也就是说，这些下层的元素继承了其祖先元素的属性。 </p>
+<p>任何一个直接包含在另一个元素中的元素，都是其父元素的分支。</p>
+<p>此外，对大多数属性来说，还可以使用 inherit 值进行强行继承。</p>
+<p>那么，哪些属性会被继承呢？</p>
+<ul>
+<li><strong>文本</strong><ul>
+<li>color(颜色，a 元素除外)  </li>
+<li>direction(方向)</li>
+<li>font(字体)</li>
+<li>font-family(字体系列)  </li>
+<li>font-size(字体大小)</li>
+<li>font-style(用于设置斜体)</li>
+<li>font-variant(用于设置小型大写字母)  </li>
+<li>font-weight(用于设置粗体)</li>
+<li>letter-spacing(字母间距)</li>
+<li>line-height(行高)</li>
+<li>text-align(用于设置对齐方式)</li>
+<li>text-indent(用于设置首行缩进)</li>
+<li>text-transform(用于修改大小写)</li>
+<li>visibility(可见性)</li>
+<li>white-space(用于指定如何处理空格)  </li>
+<li>word-spacing(字间距)</li>
+</ul>
+</li>
+<li><strong>列表</strong><ul>
+<li>list-style(列表样式)</li>
+<li>list-style-image(用于为列表指定定制的标记)  </li>
+<li>list-style-position(用于确定列表标记的位置)  </li>
+<li>list-style-type(用于设置列表的标记)</li>
+</ul>
+</li>
+<li><strong>表格</strong><ul>
+<li>border-collapse(用于控制表格相邻单元格的边框是否合并为单一边框)  </li>
+<li>border-spacing(用于指定表格边框之间的空隙大小)</li>
+<li>caption-side(用于设置表格标题的位置)</li>
+<li>empty-cells(用于设置是否显示表格中的空单元格)</li>
+</ul>
+</li>
+<li><strong>页面设置</strong><ul>
+<li>orphans(用于设置当元素内部发生分页时在页面底部需要保留的最少行数)  </li>
+<li>page-break-inside(用于设置元素内部的分页方式)</li>
+<li>widows(用于设置当元素内部发生分页时在页面顶部需要保留的最少行数)</li>
+</ul>
+</li>
+<li><strong>其它</strong><ul>
+<li>cursor(鼠标指针)</li>
+<li>quotes(用于指定引号样式)</li>
+</ul>
+</li>
+</ul>
+<p>​    </p>
+<h2 id="层叠：当规则发生冲突时"><a href="#层叠：当规则发生冲突时" class="headerlink" title="层叠：当规则发生冲突时"></a>层叠：当规则发生冲突时</h2><p>样式的来源很多，每个浏览器都有其默认的样式，你可以使用自己的样式覆盖它们或对它们进行补充。</p>
+<p>有时候，多条规则会定义元素的同一个属性，这是应该怎么办呢？CSS 用层叠的原则来考虑样式声明，从而判断相互冲突的规则中哪个规则应该起作用。</p>
+<p>首先，你编写的样式如果与浏览器的默认样式冲突，均以你编写的样式为准。在此基础上，CSS 用层叠的原则来考虑特殊性(specificity)、顺序(order)和重要性(importance)，从而判断相互冲突的规则中哪个规则应该起作用。 </p>
+<ul>
+<li><p>特殊性</p>
+<p>特殊性规则指定选择器的具体程度。选择器越特殊，规则就越强。遇到冲突时，优先应用特殊性强的规则 。</p>
+<p>一般来说，我们任务 id 选择器是最特殊的，而继承的样式是最一般的。</p>
+<p>不过，建议在样式表中多使用类选择器，避免使用 id 选择器。</p>
+</li>
+<li><p>顺序</p>
+<p>有时候，特殊性还不足以判断在相互冲突的规则中应该优先应用哪一个。在这种情况下，规则的顺序就可以起到决定作用:晚出现的优先级高。</p>
+</li>
+<li><p>重要性</p>
+<p>如果这还不够，可以声明一条特殊的规则覆盖整个系统中的规则，这条规则的重要程度要比其他所有规则高。也可以在某条声 明的末尾加上 !important，比如 p{ color: orange !important; }(除非是在特殊情况 下，否则不推荐使用这种方法)。 </p>
+</li>
+</ul>
+<p>你编写的样式会覆盖浏览器的默认样式。 当两个或两个以上的样式发生冲突时，会应用特殊性高的样式声明，不管它位于样式表中的哪个位置。如果两个或两个以上的规则拥有相同的特殊性，则使用后出现的规则， 除非其中某条规则标记了 !important。</p>
+<p>如果某元素没有直接指定某条规则，则使用继承的值(如果有的话)。</p>
+<p>​    </p>
+<h2 id="属性的值"><a href="#属性的值" class="headerlink" title="属性的值"></a>属性的值</h2><p>每个 CSS 属性对于它可以接受哪些值都有不同的规定。有的属性只能接受预定义的值。有的属性接受数字、整数、相对值、百分数、 URL 或者颜色。有的属性可以接受多种类型的值。</p>
+<ol>
+<li><p><strong>inherit</strong></p>
+<p>对于任何属性，如果希望显式地指出该属性的值与对应元素的父元素对该属性设定的值相同，就可以使用 inherit 值。 </p>
+</li>
+<li><p><strong>预定义的值</strong></p>
+<p>大多数 CSS 属性都有一些可供使用的预定义值。例如，float 属性可被设为 left、right 或 none。与 HTML 不同，不需要(也不能)将预定义的值放在引号里。实际上， 大多数 CSS 值，无论是否为预定义的值，都不需要加引号。(也有一些例外，如超过一个单 词的 font-family 名称，以及要生成的内容。) </p>
+</li>
+<li><p><strong>长度和百分数</strong></p>
+<p>很多 CSS 属性的值是长度。所有长度都必须包含数字和单位，并且它们之间没有空 格。例如 3em、10px。唯一的例 外是 0，它可以带单位也可以不带。效果是一样的，因此 0 一般不带单位。</p>
+<p>有的长度是相对于其他值的。一个 em 的长度大约与对应元素的字号相等。一般来说，应该只在输出尺寸已知的情况下使用绝对长度 。</p>
+<p>百分数(如 65%)的工作方式很像 em， 它们都是相对于其他值的值 ，百分数通常是相对于父元素的 。</p>
+</li>
+<li><p><strong>纯数字</strong></p>
+<p>只有极少数的 CSS 属性接受不带单位的数字，典型的如 line-height、z-index 和 opacity。</p>
+</li>
+<li><p><strong>URL</strong></p>
+<p>有的 CSS 属性允许开发人员指定另一个文件的 URL，background-image 就是这样一个属性。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">url</span>(<span class="selector-tag">bg-patern</span><span class="selector-class">.png</span>);</span><br></pre></td></tr></table></figure>
+
+<p>注意，规范指出，相对 URL 应该相对于样式表的位置而不是相对于 HTML 文档的位置。 </p>
+</li>
+<li><p><strong>CSS 颜色</strong></p>
+<p>我们可以使用预定义颜色关键字或以十六进制(通常称为 hex)、RGB、HSL、 RGBA、HSLA 等格式表示的值中为 CSS 属性指定颜色。 </p>
+<p>实践中，定义 CSS 颜色更常规的方法是使用十六进制格式或 RGB 格式。如果要指定透明度的话，请使用 RGBA。</p>
+</li>
+<li><p><strong>RGB</strong></p>
+<p>可以通过指定红、绿、蓝(这也是 RGB 这一名称的由来)的量来构建自己的颜色。 可以使用百分数、0 ~ 255 之间的数字来指定这三种颜色的值。 </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">color</span>: <span class="selector-tag">rgb</span>(0,0,0);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>十六进制数</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">color</span>: <span class="selector-id">#FFFFF</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>RGBA</strong></p>
+<p>RGBA 在 RGB 的基础上加了一个代表 alpha 透明度(alpha transparency) 的 A。 alpha 透明度的一种常见使用场景是将其用在对元素设置 background-color 或 background 的情况(均用于设置背景)，因为 alpha 透明度允许元素下面的任何东西(如图像、其他颜色、文本等)透过来并与元素混合在一起。 也可以对其他基于颜色的属性使用 alpha 透明度，如 color、border、border-color、box- shadow、text-shadow 等。 </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 不透明，和 rgb(89, 0, 127); 效果相同 */</span> <span class="selector-tag">background-color</span>: <span class="selector-tag">rgba</span>(89,0,127,1);</span><br><span class="line"><span class="comment">/* 完全透明 */</span></span><br><span class="line"><span class="selector-tag">background-color</span>: <span class="selector-tag">rgba</span>(89,0,127,0);</span><br><span class="line"><span class="comment">/* 25%透明 */</span></span><br><span class="line"><span class="selector-tag">background-color</span>: <span class="selector-tag">rgba</span>(89,0,127,0<span class="selector-class">.75</span>); <span class="comment">/* 60%透明 */</span></span><br><span class="line"><span class="selector-tag">background-color</span>: <span class="selector-tag">rgba</span>(89,0,127,0<span class="selector-class">.4</span>);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>​    </p>
+<h1 id="操作样式表"><a href="#操作样式表" class="headerlink" title="操作样式表"></a>操作样式表</h1><p>将 CSS 应用到多个网页(包括整个网站)、单个页面或单独的 HTML 元素 ，有三种方式：外部样式表、嵌入样式表和内联样式表。外部样式表非常适合给网站上的大多数页面或者所有页面设置一致的外观。可以在一个外部样式表中定义全部样式，然后让网 站上的每个页面加载这个外部样式表，从而确保每个页面都有相同的设置 。</p>
+<p>外部样式表是作为操作样式表的最佳实践。</p>
+<h2 id="链接到外部样式表"><a href="#链接到外部样式表" class="headerlink" title="链接到外部样式表"></a>链接到外部样式表</h2><p>将已经编写好的样式表加载到 HTML 页面中去，最好的方式是链接到样式表。对外部样式表进行修改时，所有引用它的页面也会自动更新 。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">title</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>link 元素位于 HTML 文档的 head 部分。 页面可以包含一个以上的 link 元素，但使用它的次数最好尽可能地少，让页面得以更快地加载 。</p>
+<p>外部样式表的另一个好处是，一旦浏览器在某个页面加载了它，在随后浏览引用它的页面时，通常无需再向 Web 服务器请求 该文件。浏览器会将它保存到缓存里，也就是保存到用户的计算机里，并使用这个版本的文件。这样做可以加快对页面的加载。如果随后对样式表作了修改，再将它传到 Web 服务器，浏览器就会下载更新后的文件，而不是使用缓存的文件(从技术上讲也有例外，但通常不会遇到这种情况)。 </p>
+<p>可以在页面中使用多个 link 元素， 从而加载多个样式表文件。如果在不同的文件中有显示声明产生冲突，则后面文件中的规则的优先级更高。 </p>
+<p>​    </p>
+<h2 id="嵌入式样式表"><a href="#嵌入式样式表" class="headerlink" title="嵌入式样式表"></a>嵌入式样式表</h2><p>嵌入样式表是在页面中应用 CSS 的第二种方式。我们在 HTML 页面的 head 部分创建一个 style 元素，其中包含了我们的样式表。由于这些样式只在一个网页里存在，因此不会像外部样式表中的规则那样应用到其他的页面，同时，缓存的好处也不存在了。如上文所述，对于大多数情况， 我们推荐使用外部样式表，但理解其他的选择以备不时之需也是很重要的。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">title</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        img &#123;</span><br><span class="line">            border: 4px solid red;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用嵌入样式表时，style 元素及其包围的样式规则通常位于文档的 head 部分。 </p>
+<p>当且仅当 style 元素出现在 link 元素后面的时候，嵌入样式表中的样式才会覆盖外部样式表中的样式。 </p>
+<p>​    </p>
+<h2 id="应用内联样式"><a href="#应用内联样式" class="headerlink" title="应用内联样式"></a>应用内联样式</h2><p>内联样式将内容和变现会在一起，严重违背了最佳规范。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">title</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"imgs/market.png"</span> <span class="attr">width</span>=<span class="string">"20"</span> <span class="attr">height</span>=<span class="string">"20"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">style</span>=<span class="string">"border: 4px solid red"</span> /&gt;</span>1</span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>更好的做法是通过类名来应用外部样式表中的规则。如果你希望其它元素也是用这种样式，只需为其添加 class=”class-name” 即可。</p>
+<p>内联样式的优先级高于其它所有样式，除非其它地方与之冲突的样式标记了 !important。</p>
+<p>​    </p>
+<h2 id="样式的层叠和顺序"><a href="#样式的层叠和顺序" class="headerlink" title="样式的层叠和顺序"></a>样式的层叠和顺序</h2><p>将多个样式规则应用于同一元素的情况并不少见，大型网站更是如此，他们需要更多精力维护 CSS。有时候这些规则针对的是 同一条属性。在规则的特殊性相同的情况下，样式的顺序就成为关键。基本规则是:在其他条件相同的情况下， 越晚出现的样式优先级越高 。</p>
+<p>以下解释了顺序如何决定样式规则的优先级：</p>
+<ul>
+<li>嵌入样式表（位于 style 元素内）与任何链接的外部样式表之间的关系取决于它们在 HTML 中的相对位置。</li>
+<li>内联样式(实际上直接应用于元素) 在外部样式表和嵌入样式表之后。由于顺序最靠后，其优先级是最高的。 一旦应用到任何地方，都会覆盖与之冲突的其他样式。 </li>
+<li>关于相互冲突的样式的顺序对优先级的影响，有一种例外情况，就是标记 !important 的样式总是具有最高的优先级，无论它出现在最前、最后，还是中间。不过，要尽量避免这种用法，极端情况除外。几乎在全部情况下，使用选择器都能达到同样的效果。此外，!important 让声明变得太强，如果要覆盖这样的样式，就不得不借助于更长的规则。 </li>
+</ul>
+<p>有一种使用 !important 的合理情形。 有时网页会包含一些你无法修改的 HTML， 例如来自第三方服务的新闻源。如果这些 HTML 中有一些内联样式与你的设计不符， 你就可以在自己的样式表中使用 !important 覆盖这些样式。 </p>
+<p>​    </p>
+<h2 id="使用与媒体相关的样式表"><a href="#使用与媒体相关的样式表" class="headerlink" title="使用与媒体相关的样式表"></a>使用与媒体相关的样式表</h2><p>可以指定一个只用于特定输出的样式表， 如只用于打印，或只用于在浏览器中查看屏幕。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">title</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span> <span class="attr">media</span>=<span class="string">"screen"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"css/print.css"</span> <span class="attr">media</span>=<span class="string">"print"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过对 link 元素添加 media 属性，可 以将样式表限于特定输出。 </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 针对所有样式 */</span></span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">4px</span> solid red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: orange;</span><br><span class="line">    <span class="attribute">font-style</span>: italic;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 打印样式表 */</span></span><br><span class="line"><span class="keyword">@media</span> print &#123;</span><br><span class="line">    <span class="selector-tag">body</span> &#123;</span><br><span class="line">		<span class="comment">/* 加大字号 */</span> </span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">25pt</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">p</span>&#123;</span><br><span class="line">		<span class="comment">/* 黑色的十六进制值 */</span> </span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">img</span> &#123;</span><br><span class="line">		<span class="comment">/* 不显示图像 */</span> </span><br><span class="line">        <span class="attribute">display</span>: none;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>联合使用 CSS3 引入的媒体查询和这里介绍的媒体输出类型可以形成强大的威力。 通过这些技术，可以根据输出设备的属性确 定需要应用到页面的样式。 </p>
+<p>​    </p>
+<h1 id="定义选择器"><a href="#定义选择器" class="headerlink" title="定义选择器"></a>定义选择器</h1><p>CSS 样式规则有两个主要部分。选择器决定将格式化应用到哪些元素，而声明则定义要应用的格式化。 </p>
+<h2 id="构造选择器"><a href="#构造选择器" class="headerlink" title="构造选择器"></a>构造选择器</h2><p>选择器可以定义五个不同的标准来选择要进行格式化的元素。</p>
+<ul>
+<li><p>元素的类型和名称</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
 <ul>
-<li><p>查看信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment"># 查看 git 配置</span></span><br><span class="line">  git config --list</span><br><span class="line">  <span class="comment"># 查看用户配置</span></span><br><span class="line">  git ~/.gitconfig</span><br><span class="line">  <span class="comment"># 查看当前项目的 git 配置</span></span><br><span class="line">  git .git/config</span><br><span class="line">  <span class="comment"># 查看暂存区的文件</span></span><br><span class="line">git ls-files</span><br><span class="line">  <span class="comment"># 查看本地 git 命令历史</span></span><br><span class="line">  git reflog</span><br><span class="line">  <span class="comment"># 查看当前 HEAD 指向</span></span><br><span class="line">  cat .git/HEAD</span><br><span class="line">  <span class="comment"># git 中 D 向下翻一行 F 向下翻页 B 向上翻页</span></span><br><span class="line">  <span class="comment"># git 查看提交历史</span></span><br><span class="line">  git <span class="built_in">log</span> --oneline</span><br><span class="line">  <span class="comment"># 查找和关键字有关的 log            </span></span><br><span class="line">  git <span class="built_in">log</span> --grep=<span class="string">"关键字"</span></span><br><span class="line">  <span class="comment"># 图形化显示 log</span></span><br><span class="line">  git <span class="built_in">log</span> --graph</span><br><span class="line">  <span class="comment"># 查找指定作者的 log</span></span><br><span class="line">  git <span class="built_in">log</span> --author <span class="string">"username"</span></span><br><span class="line">  <span class="comment"># 显示最近 num 次提交</span></span><br><span class="line">  git <span class="built_in">log</span> -num</span><br><span class="line">  <span class="comment"># 显示每次更新的文件修改统计信息</span></span><br><span class="line">  git <span class="built_in">log</span>    --<span class="built_in">stat</span></span><br></pre></td></tr></table></figure>
+<li><p>元素所在的上下文</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* em 为元素名称，这个选择器只应用于 h1 元素中的 em 元素*/</span></span><br><span class="line"><span class="selector-tag">h1</span> <span class="selector-tag">em</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>元素的类或 id</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 选择所有属于 error 类的元素 */</span></span><br><span class="line"><span class="selector-class">.error</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 选择 id 为 gaudi 的元素 */</span></span><br><span class="line"><span class="selector-id">#gaudi</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>通过在 class 或 id 选择器前面添加目标元素的名称，可以增强选择器的特殊性。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 选择属于 error 的 strong 元素 */</span></span><br><span class="line"><span class="selector-tag">strong</span><span class="selector-class">.error</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果要定位的元素有多个类名，可以在选择器中将它们连在一起。</p>
+</li>
+<li><p>元素的伪类或伪元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 选择属于 link 伪类的 a 元素 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>元素是否有某些属性的值</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 选择所有 title 属性的 a 元素 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[title]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 选择指向维基百科的 a 元素 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[href=<span class="string">"https://www.wikipedia.ort"</span>]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
+<p>编写 CSS 的一个重要目标就是让选择器尽可能的简单，仅保持必要的特殊性。应该充分利用样式的层叠特性，即元素的后代会继承祖先元素的样式。同时，应该将页面中的通用设计元素挑选出来，编写一个选择器(如类名)，从而可以在全站不同的元素上共享该样式。 </p>
+<p>​    </p>
+<h2 id="按照名称选择元素"><a href="#按照名称选择元素" class="headerlink" title="按照名称选择元素"></a>按照名称选择元素</h2><p>选择要格式化的元素，最常用的就是按照元素的名称进行选择。比如 ：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除非指定其它情况，指定类型的所有元素都将被格式化，无论它们出现在文档的什么位置。</p>
+<p>通配符 <code>*</code> 匹配代码中的任何元素名称。但是因为匹配范围太广，一般不建议使用，因为这会使得浏览器加载页面变慢。</p>
+<p>可以在一个选择器中使用一组元素名称，名称之间用逗号分隔。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h2 id="按类或-ID-选择元素"><a href="#按类或-ID-选择元素" class="headerlink" title="按类或 ID 选择元素"></a>按类或 ID 选择元素</h2><p>如果已经在元素中标识了 class 或 id ，就可以在选择器中使用这个标准，从而只对已标识的元素进行格式化。</p>
+<p>可以单独用使用 class 和 id，也可以同其它选择器标准混在一起使用，比如</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 会影响所有属于 news 类的元素</span><br><span class="line"><span class="selector-class">.news</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line">// 只会影响属于 news 类的 h1 元素</span><br><span class="line"><span class="selector-tag">h1</span><span class="selector-class">.news</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除非必须特别针对目标元素，否则不要在 id 或 class 选择器中添加元素名称。</p>
+<p>如果要定位的类名有多个，可以在选择器中将它们连在一起</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.class-news</span><span class="selector-class">.class-video</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里需要主要的是，任何 <code>.class-news</code> 和 <code>.class-video</code> 选择器的规则仍会应用于该元素，但是 <code>.class-news.class-video</code> 的规则的特殊性更高。</p>
+<p>​    </p>
+<h2 id="按上下文选择元素"><a href="#按上下文选择元素" class="headerlink" title="按上下文选择元素"></a>按上下文选择元素</h2><p>在 CSS 中，可以根据元素的祖先、父元素或同胞元素来定位它们。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 组合使用了类选择器和类型选择器</span><br><span class="line">// 这将作用于任何作为 class-news 类元素的后代的 p 元素</span><br><span class="line"><span class="selector-class">.class-news</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line">// 作用于所有以 article 元素为祖先的 p 元素</span><br><span class="line"><span class="selector-tag">article</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line">// 作用于以属于 class-news 类的 article 元素为祖先的任何 p 元素</span><br><span class="line">// 这种类型的选择器的特殊性最高，通常会比实际需要的特殊性更高</span><br><span class="line"><span class="selector-tag">article</span><span class="selector-class">.class-news</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>祖先元素是包含目标元素的任何元素，不管它们之间相隔多少代，而父元素是直接包含另一个元素的元素，它们之间只隔一代。</p>
+<p>通常将基于祖先元素的选择器成为后代选择器，不过 CSS 3 中将其称为后代结合符。</p>
+<h3 id="按照祖先元素选择要格式化的元素"><a href="#按照祖先元素选择要格式化的元素" class="headerlink" title="按照祖先元素选择要格式化的元素"></a>按照祖先元素选择要格式化的元素</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">element-ancestor</span> <span class="selector-tag">element-target</span> &#123;</span><br><span class="line">    ···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="按照父元素选择要格式化的元素"><a href="#按照父元素选择要格式化的元素" class="headerlink" title="按照父元素选择要格式化的元素"></a>按照父元素选择要格式化的元素</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">element-father</span> &gt; <span class="selector-tag">element-target</span> &#123;</span><br><span class="line">    ···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="按照相邻同胞元素选择要格式化的元素"><a href="#按照相邻同胞元素选择要格式化的元素" class="headerlink" title="按照相邻同胞元素选择要格式化的元素"></a>按照相邻同胞元素选择要格式化的元素</h3><p>CSS 相邻同胞结合符可以选择直接跟在指定的同胞元素后面的同胞元素。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.class-news</span> <span class="selector-tag">p</span>+<span class="selector-tag">p</span> &#123;</span><br><span class="line">    ···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h2 id="选择第一个或最后一个子元素"><a href="#选择第一个或最后一个子元素" class="headerlink" title="选择第一个或最后一个子元素"></a>选择第一个或最后一个子元素</h2><p>有时候需要选择仅作为某元素第一个或最后一个子元素的元素，这时候就要用到 <code>:first-child</code> 和 <code>:last-child</code> 伪类。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 选择子元素中的第一个 li 元素</span><br><span class="line"><span class="selector-tag">li</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line">// 选择子元素中的最后一个 li 元素</span><br><span class="line"><span class="selector-tag">li</span><span class="selector-pseudo">:last-child</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line">// 选择任何作为另一个元素的第一个子元素</span><br><span class="line"><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在伪类之前添加其它选择器可以使其特殊性更高</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 仅对 class-news 类的第一个 h1 子元素起作用</span><br><span class="line"><span class="selector-class">.class-news</span> <span class="selector-tag">h1</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h2 id="选择元素的第一个字母或第一行"><a href="#选择元素的第一个字母或第一行" class="headerlink" title="选择元素的第一个字母或第一行"></a>选择元素的第一个字母或第一行</h2><p>使用 <code>:first-letter</code> 和 <code>:first-line</code> 伪元素只选择元素的第一个字母或第一行。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 选择 p 元素的第一个字母</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:first-letter</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">1.4em</span>;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line">// 选择 p 元素的第一行</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:first-line</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以将 <code>:first-letter</code> 和 <code>:first-line</code> 伪元素与其它选择器结合使用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 作用于 class-news 类中每个段落的第一个字母</span><br><span class="line"><span class="selector-class">.class-news</span> <span class="selector-tag">p</span><span class="selector-pseudo">:first-letter</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，只有某些特定的 CSS 属性可以应用于 <code>:first-letter</code> 伪元素，包括 font、color、background、text-decoration、vertical-algin、text-transform、line-height、margin、padding、border、float 和 clear。</p>
+<blockquote>
+<p>伪元素、伪类及 CSS 3 语法</p>
+<p>在 CSS  3 中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:first-line -&gt; ::first-line</span><br><span class="line">:first-letter -&gt; ::first-letter</span><br></pre></td></tr></table></figure>
+
+<p>这样是为了将伪类和伪元素进行区分。</p>
+</blockquote>
+<p>​    </p>
+<h2 id="按照状态选择链接元素"><a href="#按照状态选择链接元素" class="headerlink" title="按照状态选择链接元素"></a>按照状态选择链接元素</h2><p>CSS 允许根据链接的当前状态对其进行格式化。</p>
+<p>链接的状态包括访问者是否将鼠标停留在链接上，链接是否被访问过等等。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 从未被激活或指向，当前也没有被激活或指向的链接</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 已激活过的链接</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: orange;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 通过键盘选择并已准备好激活的</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: purple;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 光标指向连接时</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 激活的链接</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以对其它类型的元素使用 <code>:active</code> 和 <code>:hover</code> 伪类</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 鼠标停留在任何段落上都会使其显示红色</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h2 id="按照属性选择元素"><a href="#按照属性选择元素" class="headerlink" title="按照属性选择元素"></a>按照属性选择元素</h2><p>可以对具有给定属性或属性值的元素进行格式化。</p>
+<p>CSS 提供了多种方式匹配属性和属性值，包括只检查属性名、检查全部或者部分属性值。如果在选择器中呼略了属性值，就可以为具有给定属性的元素应用样式。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">element[attribute]			// 匹配指定属性，无论属性值是什么</span><br><span class="line">	   [attribute="value"]  // 完全匹配指定属性值</span><br><span class="line">	   [attribute~="value"] // 匹配属性值以空格分隔的多个单词，其中有一个完全匹配指定值</span><br><span class="line">       [attribute|="value"] // 匹配以 value- 打头的属性值</span><br><span class="line">	   [attribute^="value"] // 匹配以 value 开头的属性值，value 为完整的单词或完整的单词的一部分</span><br><span class="line">       [attribute$="value"] // 匹配属性值以 value 结尾，value 为完整的单词或完整的单词的一部分</span><br><span class="line">	   [attribute*="value"] // 属性值为指定值的子字符串</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 选择所有具有 class 属性的段落</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-attr">[class]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h2 id="指定元素组"><a href="#指定元素组" class="headerlink" title="指定元素组"></a>指定元素组</h2><p>我们经常需要将相同的样式规则应用于多个元素。可以为每个元素重复地设置样式规则，也可以组合选择器，一次性地设置样式规则。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">element-1</span>,</span><br><span class="line"><span class="selector-tag">element-2</span>,</span><br><span class="line">  ···</span><br><span class="line"><span class="selector-tag">element-n</span> &#123;</span><br><span class="line">    ···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以列出任意数量的单独的选择器，无论它们包含的是元素名称、类还是伪元素，只需用逗号将它们隔开。</p>
+<p>通过元素组添加样式只是一种简写方式。</p>
+<p>有时，为应用于多个选择器的共同样式创建一个样式规则，再为没有共同点的样式分别创建单独的样式规则是很有用的。要记住，在样式表中后指定的规则会覆盖先指定的规则。</p>
+<p>​    </p>
+<h1 id="为文本添加样式"><a href="#为文本添加样式" class="headerlink" title="为文本添加样式"></a>为文本添加样式</h1><p>使用 CSS 可以修改文本的字体、大小、粗细、倾斜、行高、前景和背景颜色、间距和对齐方式、添加下划线和删除线等。</p>
+<h2 id="选择字体系列"><a href="#选择字体系列" class="headerlink" title="选择字体系列"></a>选择字体系列</h2><p>并非所有的系统都支持相同的默认字体，因此应该定义替代字体作为备选。</p>
+<h3 id="设置字体的方法"><a href="#设置字体的方法" class="headerlink" title="设置字体的方法"></a>设置字体的方法</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: Geneva;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span>，<span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">"Gill Sans"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于 font-family 是继承属性，当我们对 body 元素设置了字体以后，该样式也会应用到其它元素。但是有几个元素不会继承父元素的字体设置，其中有表单的 select、textarea 和 input 元素。不过，可以强制它们继承父元素的字体。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="指定替代字体"><a href="#指定替代字体" class="headerlink" title="指定替代字体"></a>指定替代字体</h3><p>为了使得文本以你想要呈现的字体来展示，你需要设置替代字体以防止在某些系统上没有安装你指定的字体的情况。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 浏览器会使用列表中的第一个已安装在访问者系统内的字体</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: Geneva, Tahoma, sans-serif;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span>,</span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">"Gill Sans"</span>,<span class="string">"Gill Sans MT"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>OS X 和 Windows 上默认的共有的字体</strong> 它们仅包括 Arial、Comic、Sans MS、Courier New、Georgia、Impact、Trebuchet MS、Times New Roman 和 Verdana。</p>
+</blockquote>
+<p>系统通常都有下列表示类属的字体名称对应的字体：serif、sans-serif、cursive、fantasy 和 monospace。因此，标准的做法就是字体栈的末尾指定上述字体名称中的一种。</p>
+<p>可以在同一个 font-family 规则中为不同的字母表指定字体，从而对包含不同怨言和书写体系的文本进行格式化。</p>
+<p>​    </p>
+<h2 id="创建斜体"><a href="#创建斜体" class="headerlink" title="创建斜体"></a>创建斜体</h2><p>浏览器通常让一些 HTML 元素默认以斜体显示，因此，不比在 CSS 中对这些元素设置斜体。有时，你需要让一些内容以斜体显示，但是用元素却没有合适的语义，这时，使用 CSS 的 font-style 属性就可以让任何元素中的文本以斜体显示。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">font-style</span>: italic;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为 font-style 属性是继承的，如果你想要在某些地方不以斜体显示，则可以取消斜体</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">font-style</span>: <span class="selector-tag">normal</span>;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h2 id="创建粗体"><a href="#创建粗体" class="headerlink" title="创建粗体"></a>创建粗体</h2><p>粗体格式可能是让文本突出显示的最常见、最有效的方式。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">em</span>,</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置 font-weight 属性的值为 bold，让文本显示为有平均加粗值的字体，或者输入 100 ~ 900 之间的 100 的倍数，其中 400 代表正常粗细，700 代表粗体。</p>
+<p>设置 font-weight 为 normal 来取消粗体。</p>
+<p>​    </p>
+<h2 id="设置字体大小"><a href="#设置字体大小" class="headerlink" title="设置字体大小"></a>设置字体大小</h2><p>为网页里的文本设置字体大小有两种方式：直接使用像素指定要使用的特定字号或使用百分数、em、rem 指定相对于父元素文本的大小。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">35px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">28px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 em 这样的相对单位有更大的灵活性，而且对定义页面中特定的设计部件的尺寸很有帮助。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// body 中设置的 font-size：100% 声明为 em 字体大小设置了参考的基准。这里的 100% 将被翻译为默认字体大小</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">100%</span>; <span class="comment">/* 16px */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">2.1875em</span>; <span class="comment">/* 35px/16px */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">1.75em</span>; <span class="comment">/* 28px/16px */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用 rem 设置字体大小</strong></p>
+<p>CSS 3 引入了一些新的单位，其中很有意思的一个便是 rem。它同 em 很像，不过它总是以根元素为参照系设置其它元素的字体大小，而不是父元素。这样做字体大小的设置。</p>
+<p>​    </p>
+<h2 id="设置行高"><a href="#设置行高" class="headerlink" title="设置行高"></a>设置行高</h2><p>行高指的是段落的行距，即段落内诶航之间的距离。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">class-news</span> &#123;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果使用数字设定行高，那么所有的子元素都会继承这个因子。因此，如果父元素的字体大小是 16 像素或以 em 表示的等价大小，行高是 1.5 的话，则该元素的行高就是 24 像素。</p>
+<p>​    </p>
+<h2 id="同时设置所有字体值"><a href="#同时设置所有字体值" class="headerlink" title="同时设置所有字体值"></a>同时设置所有字体值</h2><p>可以使用 font 简写属性同时设置字体样式，但是需要注意的是 font 简写属性至少应该包括字体系列和字体大小属性。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font</span>: <span class="number">100%</span> Geneva, Tahoma, Verdana, sans-serif;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span>,</span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="comment">/* 这些声明无法使用 font 简记法，除非同时声明字体大小 */</span></span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">"Gill Sans"</span>, <span class="string">"Gill Sans MT"</span>, Calibri, sans-serif;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.class-news</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="comment">/* 这些声明无法使用 font 简记法，除非同时声明字体大小 */</span></span><br><span class="line">    <span class="attribute">font-size</span>: .<span class="number">9375em</span>;</span><br><span class="line">    <span class="attribute">ling-height</span>: <span class="number">1.65</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h2 id="设置颜色"><a href="#设置颜色" class="headerlink" title="设置颜色"></a>设置颜色</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除了 link 元素，其它元素都会继承 body 元素中的 color 属性，你必须显示设置 link 元素的 color 属性。</p>
+<p>​    </p>
+<h2 id="设置背景"><a href="#设置背景" class="headerlink" title="设置背景"></a>设置背景</h2><p>设置背景有很多属性可以利用，包括 background-color、background-image、background-repeat、background-attachment 及 background-position 等。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#88b2d2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#eaebef</span>;</span><br><span class="line">&#125;</span><br><span class="line">// 使用背景图像作为背景</span><br><span class="line"><span class="selector-tag">h3</span> &#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(bg-pattern.png);</span><br><span class="line">    <span class="attribute">background-repeat</span>: repeat-x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>background-color 的默认值是 transparent，background-image 的默认值是 none，background-repeat 的默认值是 repeat，background-attachment 的默认值是 scroll，background-position 的默认值时 0 0。只有在需要覆盖其它样式规则的时候才会显示的指定默认值。</p>
+<p>​    </p>
+<h2 id="控制间距"><a href="#控制间距" class="headerlink" title="控制间距"></a>控制间距</h2><p>可以增加或减少单词之间或字母之间的距离，前者成为字间距，后者称为字偶距。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// word-spacing 和 letter-spacing 是继承的</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">letter-spacing</span>: <span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">word-spacing</span>: <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>单词间距和字母间距还可能受到所选对齐方式的和字体系列的影响。</p>
+<p>要将字母间距和单词间距设置为默认值，可使用 normal 或 0 。</p>
+<p>​    </p>
+<h2 id="添加缩进"><a href="#添加缩进" class="headerlink" title="添加缩进"></a>添加缩进</h2><p>通过设置 text-indent 属性，可以指定段落第一行前面应该空出多大的空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">text-indent</span>: <span class="number">2em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其实我们也可以为其它元素应用 text-indent 属性，而不仅是段落元素，不过默认情况下对 em、strong、cite 等内联元素没有效果。可以将它们设置为 display：block；或 display: inline-block; 为其添加 text-indent 属性。</p>
+<p>​    </p>
+<h2 id="对齐文本"><a href="#对齐文本" class="headerlink" title="对齐文本"></a>对齐文本</h2><p>根据需要，可以让文本左对齐、右对齐、居中对齐或两端对齐。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    text-align: left; // right/center/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="修改文本的大小写"><a href="#修改文本的大小写" class="headerlink" title="修改文本的大小写"></a>修改文本的大小写</h2><p>使用 text-transform 属性，可以为样式定义文本的大小写。通过这种方法，可以将文本显示为首字母大写、全部大写、全部小写或原样显示。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    text-transform: uppercase;   // 让所有字母大写</span><br><span class="line">    text-transform：capitalize; 	// 让每个单词的首字母大写</span><br><span class="line">    text-transform：lowercase; 	// 让所有字母小写</span><br><span class="line">    text-transform：none; 		// 让文本保持原来的样子或用来取消继承的值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="使用小型大写字母"><a href="#使用小型大写字母" class="headerlink" title="使用小型大写字母"></a>使用小型大写字母</h2><p>很多字体都有对应的小型大写字母变体， 其中一些字母是大写的，但缩小到了小写字母的大小。可以使用 font-variant 调用小型大写字母变体 。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">font-variant</span>: small-caps;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="装饰文本"><a href="#装饰文本" class="headerlink" title="装饰文本"></a>装饰文本</h2><p>可以使用 text-decoration 属性装饰文本，如添加下划线或者其他类型的线条。目前最常用到这个属性的情况是为链接状态添加 样式 。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#e1000</span>;</span><br><span class="line">    text-decoration: none; 			//	无装饰样式 </span><br><span class="line">    text-decoration: underline; 	//  下划线</span><br><span class="line">    text-decoration: overline; 		//  上划线</span><br><span class="line">    text-decoration: line-through;  //  删除线</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="设置空白属性"><a href="#设置空白属性" class="headerlink" title="设置空白属性"></a>设置空白属性</h2><p>默认情况下，HTML 文档里的多个空格和回车会显示为一个空格，或者被忽略。 如果要让浏览器显示这些额外的空格，可以使 用 white-space 属性 ：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    white-space: nowarp;	// 确保所有空格不断行，也就是文本全部显示在一行</span><br><span class="line">    white-space: pre;		// 显示原文本中的所有空格和回车</span><br><span class="line">    white-space: normal;	// 按正常方式处理空格</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h1 id="用CSS进行布局"><a href="#用CSS进行布局" class="headerlink" title="用CSS进行布局"></a>用CSS进行布局</h1><p>使用 CSS 进行布局的注意事项</p>
 <ul>
-<li><p>初始化 <code>git</code> 仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-
-<p>在本地创建一个新的仓库</p>
+<li><p>内容与显示分离</p>
 </li>
-<li><p>Clone</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> /path/to/repository</span><br></pre></td></tr></table></figure>
-
-<p>创建一个本地仓库的备份</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> username@host:/path/to/repository</span><br></pre></td></tr></table></figure>
-
-<p>创建一个服务上仓库的备份</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> [url] &lt;custom_name&gt;</span><br></pre></td></tr></table></figure>
-
-<p>为克隆的仓库指定别名</p>
-</li>
-<li><p>Add</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加一个或多个文件到索引</span></span><br><span class="line">git add [file1] [file2] ...</span><br><span class="line"><span class="comment"># 将当前目录的所有文件变更提交到暂存区，不包括被删除的文件</span></span><br><span class="line">git add .</span><br><span class="line"><span class="comment"># 将工作区已经追踪的文件变更提交到暂存区，不会提交新文件(即 untracked file)</span></span><br><span class="line">git add -u</span><br><span class="line"><span class="comment"># 将工作区的所有文件变更提交到暂存区</span></span><br><span class="line">git add -A</span><br><span class="line"><span class="comment"># 删除工作区/暂存区的文件</span></span><br><span class="line">git rm [file1] [file2] ...</span><br><span class="line"><span class="comment"># 停止追踪指定文件，但此文件会保留在工作区</span></span><br><span class="line">git rm --cached [file]</span><br><span class="line"><span class="comment"># 修改工作区/暂存区的文件的名称</span></span><br><span class="line">git mv [file_original] [file_renames]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Commit</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提交变更到本地仓库</span></span><br><span class="line">git commit -m <span class="string">"Commit message"</span></span><br><span class="line"><span class="comment"># add 和 commit 的合并的便捷写法</span></span><br><span class="line">git commit -am <span class="string">"Commit message"</span></span><br><span class="line"><span class="comment"># 跳过验证继续提交</span></span><br><span class="line">git commit --no-verify</span><br><span class="line">git commit -n</span><br><span class="line"><span class="comment"># 修改上一次提交的信息</span></span><br><span class="line">git commit --amend</span><br><span class="line"><span class="comment"># 修复提交并修改提交信息</span></span><br><span class="line">git commit --amend -m <span class="string">"commit message"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Push/Pull</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将本地仓库的文件推送到远程分支</span></span><br><span class="line"><span class="comment"># 如果远程仓库没有这个分支，会创建一个同名的远程分支</span></span><br><span class="line"><span class="comment"># 如果两者同名，则可省略远程分支名称</span></span><br><span class="line">git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</span><br><span class="line"><span class="comment"># 如果省略本地分支名称，则表示删除指定的远程分支</span></span><br><span class="line">git push origin :&lt;远程分支名&gt;</span><br><span class="line"><span class="comment"># 相当于</span></span><br><span class="line">git push origin --delete &lt;远程分支名&gt;</span><br><span class="line"><span class="comment"># 将当前分支与远程分支进行关联</span></span><br><span class="line">git push -u origin &lt;远程分支名&gt;</span><br><span class="line"><span class="comment"># 将本地的所有分支推送到远程仓库</span></span><br><span class="line">git push --all origin</span><br><span class="line"><span class="comment"># 从关联的远程分支拉取更改到当前分支</span></span><br><span class="line">git pull</span><br><span class="line"><span class="comment"># 拉取其它分支并合并到当前分支</span></span><br><span class="line">git pull origin &lt;远程分支名&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Diff</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 比较的是工作目录文件与暂存区文件的区别</span></span><br><span class="line">git diff</span><br><span class="line"><span class="comment"># 比较的是暂存区的文件与仓库分支里的文件的区别</span></span><br><span class="line">git diff --cached</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Status </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-
-<p>列出你已经更改过但是还没有添加或提交的文件</p>
-</li>
-<li><p>Remote</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有远程主机</span></span><br><span class="line">git remote</span><br><span class="line">  <span class="comment"># 查看关联的远程仓库的详细信息</span></span><br><span class="line">git remote -v</span><br><span class="line">  <span class="comment"># 移除与远程仓库的关联</span></span><br><span class="line">git remote rm &lt;仓库名称&gt;</span><br><span class="line"><span class="comment"># 设置关联的远程仓库</span></span><br><span class="line">git remote <span class="built_in">set</span>-url origin &lt;远程仓库地址&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Branches</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看本地分支</span></span><br><span class="line">git branch | git branch -l</span><br><span class="line">  <span class="comment"># 查看远程分支</span></span><br><span class="line">git branch -r</span><br><span class="line">  <span class="comment"># 查看所有分支</span></span><br><span class="line">git branch -a</span><br><span class="line"><span class="comment"># 查看所有分支和最新的提交</span></span><br><span class="line">git branch -av</span><br><span class="line">  <span class="comment"># 新建分支，新分支会复制当前分支已经提交到仓库的内容</span></span><br><span class="line">git branch &lt;分支名&gt;</span><br><span class="line">  <span class="comment"># 切换分支</span></span><br><span class="line">git checkout &lt;分支名&gt;</span><br><span class="line"><span class="comment"># 创建一个新分支并切换到新分支</span></span><br><span class="line">git checkout -b &lt;分支名&gt;</span><br><span class="line">  <span class="comment"># 删除本地分支，会阻止删除包含未合并更改的分支</span></span><br><span class="line">git branch -d &lt;分支名&gt;</span><br><span class="line">  <span class="comment"># 强制删除一个本地分支，即使是包含未合并更改的分支</span></span><br><span class="line">git branch -D &lt;分支名&gt;</span><br><span class="line"><span class="comment"># 删除远程分支</span></span><br><span class="line">git push origin :&lt;分支名&gt;</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">  git push origin --delete &lt;分支名&gt;</span><br><span class="line"><span class="comment"># 修改当前分支名称</span></span><br><span class="line">  git branch -m &lt;分支名&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Merge</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认的合并方式，fast-forward，HEAD 指针直接指向被合并的分支</span></span><br><span class="line">git merge</span><br><span class="line">  <span class="comment"># 禁止快进式合并</span></span><br><span class="line">git merge --no-ff</span><br><span class="line">  <span class="comment">#</span></span><br><span class="line">git merge --squash</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Tags</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在指定的 commit id 上创建一个标签</span></span><br><span class="line">git tag &lt;标签名&gt; &lt;commit_id&gt;</span><br><span class="line"><span class="comment"># 默认在 HEAD 上创建一个标签</span></span><br><span class="line">git tag &lt;标签名&gt;</span><br><span class="line"><span class="comment"># 创建带有说明的表亲啊</span></span><br><span class="line">git tag -a &lt;标签名&gt; -m <span class="string">"tag message"</span></span><br><span class="line"><span class="comment"># 查看所有标签</span></span><br><span class="line">git tag</span><br><span class="line"><span class="comment"># 推送一个本地标签</span></span><br><span class="line">git push origin &lt;标签名&gt;</span><br><span class="line"><span class="comment"># 推送所有本地标签</span></span><br><span class="line">git push origin --tags</span><br><span class="line"><span class="comment"># 删除本地标签</span></span><br><span class="line">git tag -d &lt;标签名&gt;</span><br><span class="line"><span class="comment"># 删除一个远程标签</span></span><br><span class="line">git push origin :refs/tags/&lt;标签名&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Checkout</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 恢复暂存区的指定文件到工作区</span></span><br><span class="line">git checkout &lt;filename&gt;</span><br><span class="line"><span class="comment"># 恢复暂存区的所有文件到工作区</span></span><br><span class="line">git checkout .</span><br><span class="line"><span class="comment"># 回滚到最近的一次提交</span></span><br><span class="line">git checkout HEAD</span><br><span class="line"><span class="comment"># 回滚到最近一次提交的上一个版本</span></span><br><span class="line">git checkout HEAD^</span><br><span class="line"><span class="comment"># 切换到指定 commit</span></span><br><span class="line">git checkot &lt;commit id&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Clean</p>
-<p>从当前文件夹开始，通过递归删除的方式删除不在版本控制中的文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从工作区移除没有被追踪的文件</span></span><br><span class="line">git clean -f</span><br><span class="line"><span class="comment"># 从工作区移除没有被追踪的目录和文件</span></span><br><span class="line">git clean -fd</span><br><span class="line"><span class="comment"># 查看 clean 命令会删除哪些文件</span></span><br><span class="line">git clean -nfd</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Reset</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从暂存区撤销指定文件的修改，但并不改变工作区</span></span><br><span class="line">git reset &lt;file&gt;</span><br><span class="line"><span class="comment"># 重置暂存区最近的一次提交</span></span><br><span class="line">git reset</span><br><span class="line"><span class="comment"># 相当于</span></span><br><span class="line">git reset HEAD</span><br><span class="line"><span class="comment"># 重置工作区和暂存区</span></span><br><span class="line">git reset --hard</span><br><span class="line"><span class="comment"># 将当前分支的指针指向指定的 commit，同时重置暂存区，工作区不变</span></span><br><span class="line">git reset &lt;commit id&gt;</span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line">git reset --mixed &lt;commit id&gt;</span><br><span class="line"><span class="comment"># 将当前分支的指针指向指定的 commit，不改变暂存区和工作区</span></span><br><span class="line">git reset --soft &lt;commit id&gt;</span><br><span class="line"><span class="comment"># 将当前分支的指针指向指定的 commit，同时重置暂存区和工作区</span></span><br><span class="line">git reset --hard &lt;commit id&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Revert</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成一个撤销最近一次提交的新提交</span></span><br><span class="line">git revert HEAD</span><br><span class="line"><span class="comment"># 生成一个撤销最近一次提交的上num次提交的新提交</span></span><br><span class="line">git revert HEAD~num</span><br><span class="line"><span class="comment"># 生成一个撤销指定提交的新提交</span></span><br><span class="line">git revert &lt;commit id&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Cherry-pick</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将指定的提交应用于当前分支</span></span><br><span class="line">git cherry-pick &lt;commit id&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Search </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git grep <span class="string">"search key word"</span></span><br></pre></td></tr></table></figure>
-
-<p>在工作目录中查找指定的关键字</p>
-</li>
-</ul>
-<h2 id="一些运用场景"><a href="#一些运用场景" class="headerlink" title="一些运用场景"></a>一些运用场景</h2><ul>
-<li><p>撤销提交到远程的某些提交</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过 `git log` 命令来获得指定的某次提交的 `id`</span></span><br><span class="line">git reset [&lt;mode&gt;] [&lt;commit&gt;]</span><br><span class="line"><span class="comment"># 这个命令将当前分支的 `head` 指针指向指定的 `commit` 而且可能会根据选择的 `mode` 更新索引和工作树</span></span><br><span class="line"><span class="comment"># 如果 `mode` 省略，则默认值是 `--mixed`</span></span><br><span class="line"><span class="comment"># `--soft` 仅仅只是将 `head` 指向指定的 `commit`</span></span><br><span class="line"><span class="comment"># `--mixed` 会重置索引，但不会重置工作区</span></span><br><span class="line"><span class="comment"># `--hard` 重置索引和工作区，任何在指定的 `commit` 之后的修改将被丢弃</span></span><br><span class="line"><span class="comment"># `--merge`</span></span><br><span class="line"><span class="comment"># `--keep`</span></span><br><span class="line">git reset --hard &lt;commit_id&gt;</span><br><span class="line"><span class="comment"># 然后将重置后的 `branch` 推送到远程仓库</span></span><br><span class="line"><span class="comment"># `--force` 会使用本地分支的提交覆盖远程分支的提交</span></span><br><span class="line">git push origin HEAD --force</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>保存当前未提交修改</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将当前未提交的修改保存下来，工作目录的 Head 回到上一提交</span></span><br><span class="line">git stash</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">git stash save <span class="string">'message'</span></span><br><span class="line"><span class="comment"># 列出通过 stash 保存的修改</span></span><br><span class="line">git stash list</span><br><span class="line"><span class="comment"># 列出 stash 的修改与 上一次提交的 diff</span></span><br><span class="line">git stash show</span><br><span class="line"><span class="comment"># 恢复之前通过 stash 保存的修改</span></span><br><span class="line"><span class="comment"># 这个命令将第一个 stash 恢复，并从 stash 列表中删除</span></span><br><span class="line">git stash pop</span><br><span class="line"><span class="comment"># 或者使用 apply 命令将修改恢复，但不从 stash 列表中删除</span></span><br><span class="line">git stash apply</span><br><span class="line"><span class="comment"># 手动删除指定的 stash</span></span><br><span class="line">git stash drop stash@&#123;0&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>更换远程仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除远程仓库地址</span></span><br><span class="line">git remote rm origin</span><br><span class="line"><span class="comment"># 添加远程仓库地址</span></span><br><span class="line">git remote add origin &lt;remote_git_address&gt;</span><br><span class="line"><span class="comment"># 推送本地所有分支</span></span><br><span class="line">git push --all origin -u</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>fast-forward</code> 与 <code>no-fast-forward</code> 合并</p>
-<p>当执行 <code>get merge</code> 命令时，git 会根据当前分支和目标分支(将要合并的分支)的状况不同而选择合适的合并方式。</p>
+<li><p>布局方法</p>
 <ul>
-<li>如果当前分支与目标分支相比没有额外的提交时，执行 <code>fast-foward</code> 合并，<code>fast-foward</code> 合并不会产生新的提交，而是将目标分支的提交直接合并到当前分支</li>
+<li>固定布局，真个页面和每一栏都有基于像素的宽度</li>
+<li>响应式页面也称为流式页面，使用百分数定义宽度，允许页面随显示环境的改变进行放大或缩小。</li>
 </ul>
 </li>
-<li><p>如果当前分支与目标分支相比有目标分支并没有的提交，执行 <code>no-fast-foward</code> 合并，这会产生新的提交，这个提交的父提交既指向当前分支，也指向目标分支。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>变基</p>
-<p><code>git rebase</code> 会将指定分支的</p>
+<li><p>浏览器注意事项</p>
+<p>并非所有的访问者都是用同样的浏览器，同样的操作系统，甚至同样的设备访问你的网站，因此通常在将网站放到服务器上发布之前，尽量在不同的操作系统用不同的浏览器进行充分的测试。</p>
 </li>
 </ul>
+<h2 id="对默认的样式进行重置或标准化"><a href="#对默认的样式进行重置或标准化" class="headerlink" title="对默认的样式进行重置或标准化"></a>对默认的样式进行重置或标准化</h2><p>每个浏览器都有内置的默认样式表，HTML 会遵照该样式显示，除非你自己编写的 CSS 覆盖了它们。整体上，不同浏览器提供的默认样式是相似的，但也存在一定的差异，为此，在应用自己的 CSS 之前，应抹平这些差异。</p>
+<p>抹平差异的方法主要有两种 ：</p>
+<ul>
+<li>使用 CSS 重置开始主样式表</li>
+<li>使用 Nicolas Gallagher 和 Jonathan Neal 创建的 normalizes.css 开始主样式表</li>
+</ul>
+<p>CSS 重置可以有效地将所有默认样式都设为 ‘零’，而第二种方法，即 normalize.css，则采用了不同的方式，它并非对所有样式进行充值，而是对默认样式进行微调，是它们在不同的浏览器中具有相似的外观。</p>
+<h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h2><p>CSS 处理网页时，它认为每个元素都包含在一个不可见的盒子里。这就是众所周知的盒模型，这里的盒子由内容区域、内容区 域周围的空间(内边距，padding)、内边距的外边缘(边框，border)和边框外面将元素与相邻元素隔开的不可见区域(外边距，margin)构成 。</p>
+<h3 id="宽度、高度和盒模型"><a href="#宽度、高度和盒模型" class="headerlink" title="宽度、高度和盒模型"></a>宽度、高度和盒模型</h3><p>关于 CSS 的 Width 属性对元素所显示宽度的影响，默认的处理方式实际上有悖常理。浏览器中元素的宽度与其 width 属性并不一致。CSS 中的宽度指示的是内边距里内容区域的宽度，而元素在浏览器中的显示宽度则是内容宽度、左右内边距和左右边框的总和。显示高度与之类似，只不过计算的是上下内边距和边框值。</p>
+<p>通过对元素设置 <code>box-sizing: border-box</code> ，可以使元素的显示宽度就等于 width 属性的值。</p>
+<h2 id="控制元素的显示类型和可见性"><a href="#控制元素的显示类型和可见性" class="headerlink" title="控制元素的显示类型和可见性"></a>控制元素的显示类型和可见性</h2><p>每个元素在默认情况下要门显示在单独的行要么显示在行内，造成这种原因的本质是它们的 display 属性，即块级元素被设置为 display：block（对于 li 元素为 display：list-item，而行内元素被设置为 display：inline）。</p>
+<p>不过，可以使用 CSS 改变元素的默认显示类型。</p>
+<p>指定元素的显示方式 ：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    display: block;			// 让元素显示为块级元素，就像开始新的段落</span><br><span class="line">	display: inline;		// 让元素显示为行内元素</span><br><span class="line">    display: inline-block;	// 让元素显示为行内元素，同时具有块级元素的特征</span><br><span class="line">    display: none;			// 隐藏元素</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制元素的可见性 ：</p>
+<p>使用 visibility 属性可以控制元素是否可见。与 display 不同的是，使用 visibility 隐藏元素时，元素及其内容应该出现的位置会留下一片空白区域。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">em</span> &#123;</span><br><span class="line">    <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置为 display：none；或 visibility：hidden；的元素里的所有内容，包括后代都会受到影响。</p>
+<h2 id="设置元素的高度和宽度"><a href="#设置元素的高度和宽度" class="headerlink" title="设置元素的高度和宽度"></a>设置元素的高度和宽度</h2><p>可以为很多元素设置高度和宽度，如分块内容、段落、列表项、div、图像、video、 表单元素等。</p>
+<p>同时，可以为短语内容元素(默认以行内方式显示)设置 display: block; 或 display: inline-block;，再对它们设置宽度 或高度。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">em</span> &#123;</span><br><span class="line">    width: w;	// w 是元素内容区域的宽度，可以表示为长度或父元素的百分数</span><br><span class="line">    height: h;  // h 是元素内容区域的高度，只能表示为长度</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，内边距、边框和外边距都不包含在宽度或高度的数值里。</p>
+<p>可以使用 * 通配符对所有元素应用 border-box 规则</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">    <span class="attribute">-webkit-box-sizing</span>: border-box;</span><br><span class="line">    <span class="attribute">-moz-box-sizing</span>: border-box;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>百分数是相对于父元素的宽度的，而不是相对于元素本身的原始宽度的。</p>
+<p>如果不显式设置宽度和高度，浏览器就会使用 auto。对于大多数默认显示为块级元素的元素，width 的 auto 值是由包含块的宽度减去元素的内边距、边框和外边距计算出来的。简单说来， 包含块的宽度指的是父元素给元素留出的宽度。 </p>
+<p>对于图像这样的元素，auto 宽度等于它们固有的宽度，即外部文件实际尺寸大小。</p>
+<p>除非你确定元素的内容不会变的更高，最好避免在样式表中指定高度。大多数情况下，可以让内容和浏览器自动控制高度。</p>
+<h2 id="在元素周围添加内边距"><a href="#在元素周围添加内边距" class="headerlink" title="在元素周围添加内边距"></a>在元素周围添加内边距</h2><p>内边距就是元素内容周围、 边框以内的空间。 可以改变内边距的厚度，不能改变它的颜色或纹理。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.about</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#2b2b2b</span>;</span><br><span class="line">    <span class="attribute">padding</span>: .<span class="number">3125em</span> .<span class="number">625em</span> .<span class="number">625em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同 border 和 margin 属性一样，padding 也可以使用简计法：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">padding: 5px;		// 应用于全部四个边距</span><br><span class="line">padding: 5px 10px;	// 前一个应用于上下两边，后一个应用于左右两边</span><br><span class="line">padding: 5px 10px 15px;	// 分别应用于 上边 左右两边 下边</span><br></pre></td></tr></table></figure>
+
+<p>默认的情况下，元素的 width 和 height 不包含 padding 的大小，并且，内边距是不继承的。</p>
+<p>当 em 值用于内边距和外边距时，它的值是相对于元素的字体大小的，而不是相对于父元素的字体大小的。</p>
+<h2 id="设置边框"><a href="#设置边框" class="headerlink" title="设置边框"></a>设置边框</h2><p>可以在元素周围创建边框，或针对元素的某一边设置边框，并设置它的厚度、风格和颜色。边框可以应用于任何元素，包括图像。 如果希望对一个以上的元素设置相同的边框样式， 最好引入一个类，从而可以复用 。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.em</span> &#123;</span><br><span class="line">    <span class="attribute">border-top</span>: <span class="number">5px</span> solid <span class="number">#019443</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义边框的风格 ：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">none</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">dotted</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">dashed</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">solid</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">double</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">groove</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">ridge</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">inset</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">outset</span>;</span><br></pre></td></tr></table></figure>
+
+<p>定义边框宽度和颜色 ：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">border-width</span>: <span class="selector-tag">n</span>;</span><br><span class="line"><span class="selector-tag">border-color</span>: <span class="selector-tag">color</span>;</span><br></pre></td></tr></table></figure>
+
+<p>border 简写属性及各个边框属性 (border-width、border-style 和 border- color)均可接受一至四个值。如果使用一个值，那么它会应用于全部四个边。如果使用两个值，那么前一个值会应用于上下两边， 后一个值会应用于左右两边。如果使用三个值，那么第一个值会应用于上边，第二个值会应用于左右两边，第三个值会应用于下边。 如果使用四个值，那么它们会按照时钟顺序， 依次应用于上、右、下、左四个边。 </p>
+<h2 id="设置元素周围的外边距"><a href="#设置元素周围的外边距" class="headerlink" title="设置元素周围的外边距"></a>设置元素周围的外边距</h2><p>外边距是元素与相邻元素之间的透明空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">em</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">1.25em</span> <span class="number">0</span> .<span class="number">8em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果元素位于另一个元素的上面，对 于相互接触的两个 margin(即元素相互接触的下外边距和上外边距)，仅使用其中较大的一个，另一个外边距会被叠加。左右外边 距不叠加。 </p>
+<h2 id="使元素浮动"><a href="#使元素浮动" class="headerlink" title="使元素浮动"></a>使元素浮动</h2><p>可以通过 float 属性使得元素浮动在文本或其它元素上。可以使用这种技术让文本环绕在图像或者其它元素周围，也可以使用这种技术创建多栏布局。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    float: left;	// 让元素浮动在左边，其它内容环绕在它右边</span><br><span class="line">    float: right;	// 让元素浮动在右边，其它内容环绕在它左边</span><br><span class="line">    float: none;	// 让元素不浮动</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，float 属性是不继承的。</p>
+<h2 id="控制元素浮动的位置"><a href="#控制元素浮动的位置" class="headerlink" title="控制元素浮动的位置"></a>控制元素浮动的位置</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">clear</span>: left;</span><br><span class="line">    <span class="attribute">clear</span>: right;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">    <span class="attribute">clear</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 clear 属性清除浮动效果。如果对某个元素使用该属性，该元素和它后面的元素就会显示在浮动元素的下面。应该将 clear 属性添加到不希望环网浮动对象的元素上。</p>
+<p>浮动元素的 display 属性会变成 display: block; ，哪怕将其设置为 display: inline;，该属性值依然为 block。</p>
+<p>浮动元素并不影响父元素的高度。如果要让浮动元素的祖先元素在高度上包含浮动元素，并消除浮动，可以使用 clearfix 或 overflow 方法。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::before</span>,</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">" "</span>;</span><br><span class="line">    <span class="attribute">display</span>: table;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">    *zoom: 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="对元素进行相对定位"><a href="#对元素进行相对定位" class="headerlink" title="对元素进行相对定位"></a>对元素进行相对定位</h2><p>每个元素在页面的文档流中都有一个自然位置。相对于这个原始位置对元素进行移动就称为相对定位。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">  	<span class="attribute">top</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">1em</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其它元素不会受到便宜的影响，仍然按照这个元素原来的盒子进行排列。设置了相对定位的内容可能与其它内容重叠。</p>
+<p>使用相对定位、绝对定位或固定定位时，对于相互重叠的元素，可以用 z-index 属性指定它们的叠放次序。 </p>
+<p>对元素设置 position: static，可以覆盖 position: relative 设置。static 是元素的默认值，这就是元素出现在常规文档流中的原因。 </p>
+<p>而且定位是不继承的。</p>
+<h2 id="对元素进行绝对定位"><a href="#对元素进行绝对定位" class="headerlink" title="对元素进行绝对定位"></a>对元素进行绝对定位</h2><p>正如前面提到的，网页中的元素通常按照它们在 HTML 源代码中出现的次序进行排列，除非你使用 CSS 规则改变前面的样式。而通过对元素进行绝对定位，即指定它们相对于 body 或最近的已定位祖先元素的精确位置，可以让元素脱离正常的文档流。这与相对定位不同，绝对定位的元素不会在原先的位置留下空白。这与让元素浮动也不同。对于绝对定位的元素，其他元素不 会环绕在它的周围。事实上，其他内容不知道它的存在，它也不知道其他内容的存在。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">32px</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">2em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 由于绝对定位的元素脱离了文档流， 因此它们可能会相互重叠，或与其他元素重叠 。如果不为绝对定位的元素指定偏移量，这个元素将显示在它的自然位置上，但不会影响后续元素在文档流中的位置。 </p>
+<p>还有一种定位类型称为固定定位。 当访问者滚动浏览器窗口时，页面内容通常随之上下移动。如果对元素设置 position: fixed;，它就会固定在浏览器窗口中。当访问者上下滚动浏览器窗口时，该元素不会随之移动，页面的其余部分仍照常滚动。 </p>
+<h2 id="在栈中定位元素"><a href="#在栈中定位元素" class="headerlink" title="在栈中定位元素"></a>在栈中定位元素</h2><p>当你开始使用相对定位、绝对定位和固定定位以后，很可能发现元素相互重叠的情况，这时可以选择哪些元素应该出现在顶层。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    z-index: 100;	// z-index 的值越大，元素在堆中就越高。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意，z-index 属性仅对定位过的元素有效且是不继承的。</p>
+<h2 id="处理溢出"><a href="#处理溢出" class="headerlink" title="处理溢出"></a>处理溢出</h2><p>当元素溢出盒子时，可以使用 overflow 属性控制元素在盒子外面的部分。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    overflow: visible;	// 让元素盒子中的所有内容可见，默认项</span><br><span class="line">    overflow: hidden;	// 隐藏盒子容纳不了的内容</span><br><span class="line">    overflow: scroll;	// 无论元素是否需要，都在元素上添加滚动条</span><br><span class="line">    overflow: auto;		// 让滚动条仅在访问者访问溢出内容时出现</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="垂直对齐元素"><a href="#垂直对齐元素" class="headerlink" title="垂直对齐元素"></a>垂直对齐元素</h2><p>可以使用除默认对齐方式以外的多种方式对齐元素，让它们在页面上显得较为整齐 。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    vertical-algin: baseline;	// 使元素的基准线对齐父元素的基准线</span><br><span class="line">	vertical-algin: middle;		// 使元素位于父元素的中央</span><br><span class="line">	vertical-algin: sub;		// 使元素成为父元素的下标</span><br><span class="line">    vertical-algin: super;		// 使元素成为父元素的上标</span><br><span class="line">    vertical-algin: text-top;	// 使元素的顶部对齐父元素的顶部</span><br><span class="line">    vertical-algin: text-bottom;// 使元素的底部对齐父元素的底部</span><br><span class="line">    vertical-algin: top;		// 使元素的顶部对齐当前行里最高元素的顶部</span><br><span class="line">    vertical-algin: bottom;		// 使元素的顶部对齐当前行里最低元素的底部</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="修改鼠标指针"><a href="#修改鼠标指针" class="headerlink" title="修改鼠标指针"></a>修改鼠标指针</h2><p>一般情况下，由浏览器负责控制鼠标指针的形状。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">    <span class="attribute">cursor</span>: default;</span><br><span class="line">    <span class="attribute">cursor</span>: crosshair;</span><br><span class="line">    <span class="attribute">cursor</span>: move;</span><br><span class="line">    <span class="attribute">cursor</span>: wait;</span><br><span class="line">    <span class="attribute">cursor</span>: help;</span><br><span class="line">    <span class="attribute">cursor</span>: text;</span><br><span class="line">    <span class="attribute">cursor</span>: progress;</span><br><span class="line">    <span class="attribute">cursor</span>: auto;</span><br><span class="line">    <span class="attribute">cursor</span>: e-resize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -339,7 +1041,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -405,14 +1107,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
