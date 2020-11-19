@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2015/11/01/iOS-Multi-Thread/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2015/10/21/ios-background-execution/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2015/11/01/iOS-Multi-Thread/" class="post-title-link" itemprop="url">多线程编程基础</a>
+            <a href="/2015/10/21/ios-background-execution/" class="post-title-link" itemprop="url">后台运行探索与解析</a>
         </h2>
 
         <div class="post-meta">
@@ -187,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2015-11-01 00:00:00" itemprop="dateCreated datePublished" datetime="2015-11-01T00:00:00+08:00">2015-11-01</time>
+              <time title="创建时间：2015-10-21 00:00:00" itemprop="dateCreated datePublished" datetime="2015-10-21T00:00:00+08:00">2015-10-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-01-17 11:35:49" itemprop="dateModified" datetime="2019-01-17T11:35:49+08:00">2019-01-17</time>
+                <time title="修改时间：2019-01-17 11:35:39" itemprop="dateModified" datetime="2019-01-17T11:35:39+08:00">2019-01-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,142 +217,209 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="iOS-多线程"><a href="#iOS-多线程" class="headerlink" title="iOS 多线程"></a>iOS 多线程</h1><h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>进程(Process)是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础，是正在运行的程序的实例(An instance of a computer program that is being executed)。</p>
-<p>进程的概念主要有两点：</p>
+          <h1 id="iOS-后台运行"><a href="#iOS-后台运行" class="headerlink" title="iOS 后台运行"></a>iOS 后台运行</h1><hr>
+<p>当用户没有主动的使用你的应用程序时，系统会将它转换为后台运行状态。对于大多说应用程序来说，后台运行状态只是应用程序在被系统挂起前的一个阶段。挂起应用程序是一个改善电池寿命并让系统为前台应用程序释放重要资源的方式。</p>
+<p>大多数应用程序都能很容易的挂起，但是拥有合理的理由在后台继续运行的应用程序也是有的。一个远足应用程序想要随着时间来定位用户的位置，让它能够在地图上显示用户的运动进程。一个音频应用程序可能需要在屏幕锁定时继续播放音乐。其它的应用程序可能想要在后台下载内容以便能够减少将内容呈献给用户的延迟。当你发现你的应用程序需要保持在后台继续运行的时候，iOS系统能够帮助你有效率的且尽可能少地占用系统资源的完成这个目的。</p>
+<p>iOS提供的技术分为三类：</p>
 <ul>
-<li>进程是一个实体。每一个进程都有它自己的地址空间，一般情况下，包括文本区域(Text Region)、数据区域(Data Region)和堆栈(Stack Region)。文本区域存储处理器执行的代码；数据区域存储变量和进程执行期间使用的动态分配的内存；堆栈区存储着活动过程调用的指令和本地变量。</li>
-<li>进程是一个执行中的程序。</li>
+<li>在前台开始短任务的应用程序可以在进入后台状态时向系统请求完成这个任务的额外时间。</li>
+<li>在前台启动下载的应用程序可以将这些下载的管理移交给系统，从而允许在下载过程中暂停或终止该应用。</li>
+<li>需要在后台运行以支持特定类型任务的应用程序可以声明对一个或多个后台执行模式的支持。</li>
 </ul>
-<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>线程是程序执行流的最小单元。一个标准的线程由线程ID、当前指令指针、寄存器集合和堆栈组成。另外，线程是进程中的一个实体，是被系统独立调度和分配的基本单位，线程自己不拥有系统资源，只拥有一点在运行中必不可少的资源，但它可以与同属一个进程的其它线程共享进程所拥有的全部资源。</p>
-<h3 id="进程与线程的关系与区别"><a href="#进程与线程的关系与区别" class="headerlink" title="进程与线程的关系与区别"></a>进程与线程的关系与区别</h3><p>进程是资源分配的基本单位。所有与该进程有关的资源，都被记录在进程控制块PCB中，以表示该进程拥有这些资源或正在使用它们。另外，进程也是抢占处理机的基本单位，它拥有一个完整的虚拟地址空间。当进程发生调度时，不同的进程拥有不同的虚拟地址空间，而同一进程内的不同线程共享同一地址空间。</p>
-<p>与进程相对应，线程与资源分配无关，它属于某一个进程，并与进程内的其它线程一起共享进程的资源。线程只由相关堆栈、寄存器和线程控制表TCB组成。寄存器可被用来存储线程内的局部变量，但不能存储其它线程的相关变量。</p>
-<p>通常在一个进程中可以包含多个线程，它们可以利用进程所拥有的资源。在引入线程的操作系统中，通常都是把进程作为分配资源的基本单位，而把线程作为独立运行和独立调度的基本单位。由于线程比进程更小，基本上不拥有系统资源，故对它的调度所付出的开销就会小得多，能更叫高效的提高系统内多个程序之间并发执行的程度。</p>
-<p>线程和进程区别：</p>
-<ul>
-<li>地址空间和其它资源：进程之间相互独立，同一进程的各线程间共享。某进程内的线程在其它进程不可见。</li>
-<li>通信：进程间通信主要方式有管道、系统IPC(消息队列、信号、共享存储)、套接字(Socket)。而线程间可以直接读写进程数据段来进行通信(需要进程同步和互斥手段的辅助，以保证数据的异质性)</li>
-<li>调度和切换：线程上下文切换比进程快的多。</li>
-<li>在多线程OS中，进程不是一个可执行的实体</li>
-</ul>
-<h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><p>线程安全就是多线程访问时，采用了加锁机制，当一个线程访问该类的某个数据时，进行保护，其它线程不能进行访问直到该线程读取完，其它线程才可以使用。</p>
-<h2 id="iOS中的多线程"><a href="#iOS中的多线程" class="headerlink" title="iOS中的多线程"></a>iOS中的多线程</h2><p>目前在iOS中有四种多线程解决方案：</p>
-<ul>
-<li>Pthreads</li>
-<li>NSThread</li>
-<li>GCD</li>
-<li>NSOperation &amp; NSOperationQueue</li>
-</ul>
-<h3 id="Pthreads"><a href="#Pthreads" class="headerlink" title="Pthreads"></a>Pthreads</h3><p>POSIX线程，简称Pthreads，是线程的POSIX标准。该标准定义了创建和操作线程的一整套API。在类Unix操作系统中，都使用Pthreads作为操作系统的线程。</p>
-<h3 id="NSThread"><a href="#NSThread" class="headerlink" title="NSThread"></a>NSThread</h3><p>NSThread是经常Apple封装的完全面向对象的。你可以直观方便的操控线程对象，但是生命周期需要手动管理。</p>
-<h3 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h3><p>GCD是Apple为多核的并行运算提出的的解决方案，能够自动合理地利用更多的CPU内核，并自动管理线程的声明周期。GCD使用C进行编写，并使用了Block。</p>
-<p>####任务</p>
-<p>即代码所要完成的操作。</p>
-<p>任务的执行方式有两种：同步执行和异步执行。</p>
-<p>同步执行操作，它会阻塞当前线程并等待任务执行完毕，然后当前线程才会继续往下运行。</p>
-<p>异步执行操作，则不会阻塞当前线程，当前线程会直接往下执行。</p>
-<h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><p>用于存放要执行的任务。</p>
-<p>串行队列中的任务，GCD会遵循FIFO原则来执行，串行队列的同步执行任务，会在当前线程一个一个执行，而异步执行任务，则会在它线程中一个一个执行。</p>
-<p>并行队列中的任务执行顺序则要复杂一点，任务会根据同步或异步有不同的执行方式。并行队列中的同步执行任务会在当前线程中一个一个执行，而异步执行则会开很多线程一起执行。</p>
-<h5 id="如何创建队列？"><a href="#如何创建队列？" class="headerlink" title="如何创建队列？"></a><strong>如何创建队列？</strong></h5><ul>
-<li>主队列：特殊的串行队列，主要用于刷新UI，任何需要刷新UI的工作都必须在主队列中执行。</li>
-</ul>
-<figure class="highlight plain"><figcaption><span>mainQueue </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+ 自己创建的队列：</span><br><span class="line"></span><br><span class="line">  创建串行队列</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;dispatch_queue_t serialQueue &#x3D; dispatch_queue_create(&quot;CustomSerialQueue&quot;,DISPATCH_QUEUE_SERIAL);</span><br></pre></td></tr></table></figure>
-
-<p>​    创建并行队列</p>
-<figure class="highlight plain"><figcaption><span>concurrentQueue </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+ 全局队列：这是一个并行队列，并行任务一般都加入到这个队列。</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;dispatch_queue_t globalQueue &#x3D; dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)</span><br></pre></td></tr></table></figure>
-
-<p><strong>如何创建任务？</strong></p>
-<ul>
-<li><p>创建同步任务</p>
-<figure class="highlight plain"><figcaption><span>execute code));```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+ 创建异步任务</span><br><span class="line"></span><br><span class="line">  &#96;&#96;&#96;dispatch_async(,^&#123;&#x2F;&#x2F; execute code&#125;);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h5 id="队列组"><a href="#队列组" class="headerlink" title="队列组"></a>队列组</h5><p>队列组可以将很多队列添加到一个组里，当组中的所有任务都执行完了，队列组将会通知给用户。</p>
-<p><code>dispatch_group_enter</code> 和 <code>dispatch_group_leave</code> 分别表示一个任务追加到队列组和一个任务执行完毕离开了队列组。</p>
-<p>只有当group中未执行完毕的任务数量为0时，才会使 <code>dispatch_group_wait</code> 解除阻塞，以及执行追加到 <code>dispatch_group_notify</code> 的任务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">dispatch_group_t group &#x3D; dispatch_group_create();</span><br><span class="line">dispatch_queue_t queue &#x3D; dispatch_get_global_queue(DISPATCH_QUEUE_PRIOITY_DEFAULT,0);</span><br><span class="line">dispatch_group_async(group, queue, ^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 向group中添加在主队列中执行的任务</span><br><span class="line">dispatch_group_async(group, dispatch_get_main_queue(),^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 向group中追加任务</span><br><span class="line">dispatch_group_enter(group);</span><br><span class="line">dispatch_async(queue，^&#123;</span><br><span class="line">    &#x2F;&#x2F; execute code</span><br><span class="line">    dispatch_group_leave(group);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 直到前面加入到group中的所有任务都执行完毕后，才会执行</span><br><span class="line">dispatch_group_notify(group,dispatch_get_main_queue(),^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;);</span><br><span class="line">OR</span><br><span class="line">&#x2F;&#x2F; 直到前面加入到group中的所有任务都执行完成后，才会继续往下执行</span><br><span class="line">dispatch_group_wait(group, DISPATCH_TIME_FOREVER);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="GCD的信号量机制"><a href="#GCD的信号量机制" class="headerlink" title="GCD的信号量机制"></a>GCD的信号量机制</h4><p>并发队列可以分配多个线程，同时处理不同的任务，虽然提升了效率，但是多线程的并发是通过时间片轮转的方法实现的，线程的创建、销毁、上下文切换等会消耗资源。适当的并发可以提高效率，但是无节制的并发，则会抢占CPU资源，造成性能下降。此外，提交给并发队列的任务中，有些任务内部会有全局的锁，会导致线程休眠、阻塞，一旦这类任务过多，并发队列还需要创建新的线程来执行其它任务，会造成线程数量的增加。</p>
-<p>因此控制并发队列中的线程数量就成了不能忽视的问题。</p>
-<h5 id="GCD并发线程数量控制"><a href="#GCD并发线程数量控制" class="headerlink" title="GCD并发线程数量控制"></a>GCD并发线程数量控制</h5><p>GCD中的信号量（dispatch_semaphore）是一个整形值，有初始计数值，可以接收通知信号和等待信号。当信号量收到通知信号时，计数+1；当信号量收到等待信号时，计数-1。如果信号量为0，线程会被阻塞，直到信号量大于0，才会继续执行。</p>
-<p>使用信号量机制可以实现线程的同步，也可以控制最大并发数。</p>
-<h5 id="使用GCD信号量机制实现并发线程数量控制"><a href="#使用GCD信号量机制实现并发线程数量控制" class="headerlink" title="使用GCD信号量机制实现并发线程数量控制"></a>使用GCD信号量机制实现并发线程数量控制</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t	workConcurrentQueue	&#x3D;	dispatch_queue_create(@&quot;WORK_CONCURRENT_QUEUE&quot;,DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">dispatch_queue_t	workSerialQueue	&#x3D;	dispatch_queue_create(@&quot;WORK_SERIAL_QUEUE&quot;,DISPATCH_QUEUE_SERIAL);</span><br><span class="line">int	maxConcurrent	&#x3D;	10;</span><br><span class="line">dispatch_semaphore_t	semaphore	&#x3D;	dispatch_semaphore_create(maxConcurrent);</span><br><span class="line">for (NSInteger i &#x3D; 0; i &lt; 10; i++) &#123;</span><br><span class="line">  dispatch_async(workSerialQueue, ^&#123;</span><br><span class="line">      &#x2F;&#x2F; 使信号量-1，当信号量为0时就一直等待，即阻塞所在线程</span><br><span class="line">      &#x2F;&#x2F; 这里使信号量 maxConcurrent-1，表示最大并发数量已被占用一个位置</span><br><span class="line">      dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">      dispatch_async(workConcurrentQueue, ^&#123;</span><br><span class="line">          &#x2F;&#x2F; 发送一个信号，让信号量+1</span><br><span class="line">          &#x2F;&#x2F; 这里使信号量 maxConcurrent+1，表示任务被执行，释放了最大并发数量中的一个位置</span><br><span class="line">          dispatch_semaphore_signal(semaphore);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="使用GCD信号量机制实现线程同步"><a href="#使用GCD信号量机制实现线程同步" class="headerlink" title="使用GCD信号量机制实现线程同步"></a>使用GCD信号量机制实现线程同步</h5><p>有时候我们会遇到需要异步执行一些耗时任务，并在这些任务完成后进行一些额外的操作，相当于将异步执行任务转化为同步执行任务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue &#x3D; dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">dispatch_semaphore_t semaphore &#x3D; dispatch_semaphore_create(0);</span><br><span class="line">     </span><br><span class="line">dispatch_async(queue, ^&#123;</span><br><span class="line">    	&#x2F;&#x2F; 执行耗时任务</span><br><span class="line">    	···</span><br><span class="line">        &#x2F;&#x2F; 任务完成后使信号量+1，被阻塞的线程继续执行</span><br><span class="line">        dispatch_semaphore_signal(semaphore);</span><br><span class="line">    &#125;);</span><br><span class="line">&#x2F;&#x2F; 如果信号量为0，则会阻塞当前线程，直到信号量</span><br><span class="line">dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br></pre></td></tr></table></figure>
-
-<h5 id="使用GCD信号量机制实现线程安全"><a href="#使用GCD信号量机制实现线程安全" class="headerlink" title="使用GCD信号量机制实现线程安全"></a>使用GCD信号量机制实现线程安全</h5><p>如果你的代码所在的进程中有多个线程在同时运行，而这些线程可能会同时运行这段代码。如果每次运行结果和单线程运行的结果是一样的，而且其它变量的值也和预期的是一样的，就是线程安全的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dispatch_semaphore_t semaphoreLock	&#x3D;	dispatch_semaphore_create(1);</span><br><span class="line">&#x2F;&#x2F; 相当于加锁</span><br><span class="line">dispatch_semaphore_wait(semaphoreLock, DISPATCH_TIME_FOREVER);</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; 需要保证安全的执行代码</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 相当于解锁</span><br><span class="line">dispatch_semaphore_singal(semaphoreLock);</span><br></pre></td></tr></table></figure>
-
-<h4 id="GCD的一些使用场景"><a href="#GCD的一些使用场景" class="headerlink" title="GCD的一些使用场景"></a>GCD的一些使用场景</h4><h5 id="使用GCD实现延迟执行"><a href="#使用GCD实现延迟执行" class="headerlink" title="使用GCD实现延迟执行"></a>使用GCD实现延迟执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue	&#x3D;	dispatch_ger_gloabl_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">double delay			&#x3D;	3;</span><br><span class="line">dispatch_after(dispatch_time(DISPATCH_TIME_NOW), (int64_t)(delay*NSEC_PER_SEC)), queue, ^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h5 id="使用GCD实现单例模式"><a href="#使用GCD实现单例模式" class="headerlink" title="使用GCD实现单例模式"></a>使用GCD实现单例模式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">static id _instance;</span><br><span class="line">+ (instancetype)sharedInstance &#123;</span><br><span class="line">  static dispatch_once_t onceToken;</span><br><span class="line">  dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">    &#x2F;&#x2F; initial code</span><br><span class="line">  &#125;);</span><br><span class="line">  retur _instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="任务同步"><a href="#任务同步" class="headerlink" title="任务同步"></a>任务同步</h5><p>我们有时需要异步执行两组操作，而且第一组操作执行完之后，才能开始执行第二组操作。这样我们就需要一个相当于 栅栏 一样的一个方法将两组异步执行的操作组给分割起来，当然这里的操作组里可以包含一个或多个任务。这就需要用到dispatch_barrier_async方法在两个操作组间形成栅栏。</p>
-<p><code>dispatch_barrier_async</code> 函数会等待前边追加到并发队列中的任务全部执行完毕之后，再将指定的任务追加到该异步队列中。然后在 <code>dispatch_barrier_async</code> 函数追加的任务执行完毕之后，异步队列才恢复为一般动作，接着追加任务到该异步队列并开始执行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue &#x3D; dispatch_queue_create(&quot;com.codelei.queue&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">     </span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">  		&#x2F;&#x2F; Task 1</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        &#x2F;&#x2F; Task 2</span><br><span class="line">    &#125;);</span><br><span class="line">     </span><br><span class="line">    dispatch_barrier_async(queue, ^&#123;</span><br><span class="line">        &#x2F;&#x2F; 追加的任务 Task 3</span><br><span class="line">    &#125;);</span><br><span class="line">     </span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        &#x2F;&#x2F; 追加的任务 Task 4</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        &#x2F;&#x2F; 追加的任务 Task 5</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>直到 Task 1 和 Task 2 执行完成后，才会执行使用 <code>dispatch_barrier_asynce</code> 追加的任务 Task 3，然后在 Task 3 执行完成后，并行队列会正常执行。</p>
-<h3 id="NSOperation-amp-NSOperationQueue"><a href="#NSOperation-amp-NSOperationQueue" class="headerlink" title="NSOperation &amp; NSOperationQueue"></a>NSOperation &amp; NSOperationQueue</h3><p>NSOperation是Apple对GCD的封装，完全面向对象。NSOperation和NSOperationQueue分别对应GCD的任务和队列。</p>
-<h4 id="添加任务"><a href="#添加任务" class="headerlink" title="添加任务"></a>添加任务</h4><p>NSOperation只是一个抽象类，并不能直接封装任务。它有两个子类NSInvocationOperation和NSBlockOperation用来完成封装任务的操作。创建一个Operation后，需要调用<code>start</code>方法来启动任务，它默认在当前队列同步执行。如果需要在执行途中取消执行一个任务，调用<code>cancel</code>方法即可。</p>
-<ul>
-<li><p>NSInvocationOperation</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSInvocationOperation *invocationOperation &#x3D; [[NSInvocation alloc] initWithTarget:self selector:@selector(executeMethod)];</span><br><span class="line">invocationOperation start];</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>NSBlockOperation</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSBlockOperation *blockOperation &#x3D; [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;];</span><br><span class="line">[blockOperation start];</span><br></pre></td></tr></table></figure>
-<p>上面提到，NSInvocationOperation和NSBlockOperation创建的任务默认在当前线程执行，但是NSBlockOperation可以通过<code>addExecutionBlock:</code>方法向Operation中添加多个可执行的Block。这样的Operation中的任务会并发执行，它会在主线程和其它多个线程执行这些任务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NSBlockOperation *blockOperation &#x3D; [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;];</span><br><span class="line">[blockOpertation addExecutionBlock:^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;];</span><br><span class="line">[blockOperation start];</span><br></pre></td></tr></table></figure>
+<p>尽可能避免在后台执行任何任务除非这样做能全面的提升用户的体验。应用程序可能会因为启动了另一个应用程序，锁定了屏幕或现在不使用它而被转入后台。在这些情况下，用户都表明你的应用程序现在不需要做任何有意义的工作。在这种情况下继续运行只会浪费设备的电量并可能导致用户强制的完全退出你的应用程序。所以你应该审慎的考虑在后台运行应用程序。</p>
+<h2 id="执行有限长度的任务"><a href="#执行有限长度的任务" class="headerlink" title="执行有限长度的任务"></a>执行有限长度的任务</h2><p>被转入后台的应用程序期待尽可能快的进入非活动状态以便它们能够被系统挂起。如果你的应用程序正在执行某个任务而且完成这个任务还需要一些时间的话，你可用调用 <code>UIApplication</code> 的<code>beginBackgroundTaskWithName:expirationHandler:</code> 或<code>beginBackgroundTaskWithExpirationHandler:</code>方法来请求一些额外的执行时间。调用这两个方法的任一个都会暂时的推迟你的应用程序被挂起，从而为完成你正在进行的任务赢得一些额外的时间。一旦你的应用程序完成了任务，你必须调用<code>endBackgroundTask:</code>方法让系统知道你的应用程序已经完成了任务，可以被挂起了。</p>
+<p>每个调用<code>beginBackgroundTaskWithName:expirationHandler:</code> 或 <code>beginBackgroundTaskWithExpirationHandler:</code> 方法的应用程序都会生成一个与相应的任务相关的标记。当你的应用程序完成任务时，它必须以这个标记来调用 <code>endBackgroundTask:</code>方法告知系统任务已经完成。调用 <code>endBackgroundTask:</code>方法失败会导致你的应用程序被终止。如果你在启动任务的时候提供了一个完成处理模块，系统会调用这个模块并给你最后一次结束任务避免程序被终止的机会。</p>
+<p>你不需要一直到等到应用程序进入后台才指定后台任务。一个更有用的设计是在开始任务之前调用<code>beginBackgroundTaskWithName：expirationHandler：</code>或<code>beginBackgroundTaskWithExpirationHandler：</code>方法，一旦完成就调用<code>endBackgroundTask：</code>方法.</p>
+<p>下面的的代码展示了当你的应用程序进入后台时如何开始一个长时运行的任务。在这个例子中，开始后台任务的请求包含了一个完成处理模块以防这个任务耗时太长。这个任务稍后会被提交到一个异步执行的队列中以便<code>applicationDidEnterBackground:</code>方法能够正常返回。blocks的使用简化了维护一些重要变量引用所需要的代码。<code>bgTask</code>变量是指向存储当前任务标识符的指针的类的成员变量，它在调用这个方法之前被初始化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (void)applicationDidEnterBackground:(UIApplication *)application &#123;</span><br><span class="line">    bgTask &#x3D; [application beginBackgroundTaskWithName:@&quot;MyTask&quot; expirationHandler:^&#123;</span><br><span class="line">        &#x2F;&#x2F; Clean up any unfinished task business by marking where you</span><br><span class="line">        &#x2F;&#x2F; stopped or ending the task outright.</span><br><span class="line">        [application endBackgroundTask:bgTask];</span><br><span class="line">        bgTask &#x3D; UIBackgroundTaskInvalid;</span><br><span class="line">    &#125;];</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; Start the long-running task and return immediately.</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line"> </span><br><span class="line">        &#x2F;&#x2F; Do the work associated with the task, preferably in chunks.</span><br><span class="line"> </span><br><span class="line">        [application endBackgroundTask:bgTask];</span><br><span class="line">        bgTask &#x3D; UIBackgroundTaskInvalid;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p><strong>NOTE</strong>:<code>addExecutionBlock:</code>方法必须在<code>start</code>方法之前执行，否则会报错。</p>
+<p><strong>注意:</strong> 你总是要在开始一个任务的时候提供完成处理模块，但是如果你想知道你的应用程序还能运行多长时间，你可以通过<code>UIApplication</code>对象的<code>backgroundTimeRemaining</code>属性来获得。</p>
 </blockquote>
-</li>
-<li><p>自定义的Operation</p>
-<p>自定义Operation类需要继承Operation类，并实现其<code>main()</code>方法，因为在调用<code>start()</code>方法的时候，内部会调用<code>main()</code>方法完成相关逻辑。</p>
-</li>
-</ul>
-<h4 id="创建队列"><a href="#创建队列" class="headerlink" title="创建队列"></a>创建队列</h4><p>通过调用一个NSOperation类的<code>start()</code>方法来启动的任务，默认在当前线程同步执行。如果要避免占用当前线程，就需要使用到队列NSOperationQueue。只要将Operation添加到队列，就会自动调用任务的<code>start()</code>方法。</p>
+<p>在你的完成处理模块中，你可以加入一些必须的代码来关闭你的任务。但是，完成处理模块中的任何代码都不应该耗费太长的时间去执行，因为你的完成处理模块一旦被调用，就说明你的应用程序已经快要被关闭了。因此，只执行最少的清理状态信息并结束任务。</p>
+<h2 id="在后台执行下载任务"><a href="#在后台执行下载任务" class="headerlink" title="在后台执行下载任务"></a>在后台执行下载任务</h2><p>当下载文件时，应用程序应该使用<code>NSURLSession</code>对象来开始下载，这样系统就能控制下载的进程即使应用程序被挂起或终止。当你配置<code>NSURLSession</code>对象进行后台传输时，系统用一个单独的队列管理这些任务并以常规方式将传输的状态报告给你的应用程序。如果你的应用程序在传输正在进行时被终止，系统会在后台继续传输，并在传输完成或一个甚至多个任务需要你的应用程序时启动你的应用程序(若果使用)。</p>
+<p>为了支持后台传输，你必须合适地配置你的<code>NSURLSession</code>对象。为了配置<code>NSURLSession</code>有必须先创建一个<code>NSURLSessionConfiguration</code>对象并给它的一些属性赋予合适的值。然后将这个<code>NSURLSessionConfiguration</code>对象在初始化<code>NSURLSession</code>对象时传递过去。</p>
+<p>创建支持后台下载的<code>NSURLSessionConfiguration</code>对象的过程如下：</p>
+<p>   1.使用<code>NSURLSessionConfiguration</code>的<code>backgroundSessionConfigurationWithIdentifier：</code>方法创建配置对象。</p>
+<p>   2.将配置对象的<code>sessionSendLaunchEvents</code>属性的值设置为<code>YES</code>。</p>
+<p>   3.如果你的应用程序在前台进行转移，建议你将<code>sessionSendsLaunchEvents</code>属性设置为<code>YES</code>。</p>
+<p>   4.根据需要配置配置对象的任何其他属性。</p>
+<p>   5.使用配置对象创建您的<code>NSURLSession</code>对象。</p>
+<p>一旦配置完成，你的<code>NSURLSession</code>对象会在合适的时间将上传和下载任务移交给系统。如果任务在你的应用程序仍在运行时完成(无论是在前台或是后台)，<code>NSURLSession</code>对象都会以常规方式通知它的代理。如果任务还未完成时你的应用程序就被终止，系统会自动地在后台管理任务。如果用户终止了你的应用程序，系统会停止任何待处理的任务。</p>
+<p>当所有与后台会话管理的任务完成时，系统会重启被终止的应用程序(假定<code>sessionSendsLaunchEvents</code>属性被设置为<code>YES</code>而且这个应用程序不是被用户强制终止的)并调用应用代理的<code>application:handleEventsForBackgroundURLSession:completionHandler:</code>方法。(系统还可以重新启动应用程序来处理身份验证或其他需要你的应用程序注意的任务的相关事件)在执行该委托方法时，请使用提供的标识符创建一个新的与之前相同的<code>NSURLSessionConfiguration</code>和<code>NSURLSession</code>对象。 系统将你的新会话对象重新连接到先前的任务，并将其状态报告给会话对象的委托。</p>
+<h2 id="执行长时间运行的任务"><a href="#执行长时间运行的任务" class="headerlink" title="执行长时间运行的任务"></a>执行长时间运行的任务</h2><p>对于需要更多后台执行时间的任务，你必须请求特定的权限才能在后台运行它们而不被挂起。iOS中，只有特定类型的应用程序被允许在后台运行：</p>
 <ul>
-<li><p>主队列</p>
-<p>添加到主队列中的任务时串行执行的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSOperationQueue *mainQueue &#x3D; [NSOperationQueue mainQueue];</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>其它队列</p>
-<p>其它队列中的任务会在其它线程并行执行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSOperationQueue *queue &#x3D; [NSOperatin alloc] init];</span><br><span class="line">NSBlockOperatin	 *blockOperation &#x3D; [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;]</span><br><span class="line">[queue addOperation:blockOperation];</span><br></pre></td></tr></table></figure>
-
-<p>如果需要任务在队列中串行执行，可以通过设置NSOperationQueue的<code>maxConcurrentOperationCount</code>来实现。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSOperationQueue *queue &#x3D; [NSOperatin alloc] init];</span><br><span class="line">[queue setMaxConcurrentOperationCount:1];</span><br></pre></td></tr></table></figure>
-
-<p>你还可以通过<code>addOperationWithBlock:</code>方法来向队列中添加新任务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSOperationQueue *queue &#x3D; [NSOperatin alloc] init];</span><br><span class="line">[queue addOperationWithBlock:^&#123;</span><br><span class="line">  &#x2F;&#x2F; cxecute code</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>在后台播放音频内容给用户，比如音乐播放器</li>
+<li>在后台录制音频文件</li>
+<li>使用户随时了解其位置的应用程序，比如导航应用程序</li>
+<li>支持VoIP的应用程序</li>
+<li>需要经常性的下载和处理新内容的应用程序</li>
+<li>周期性的从外部配件接收更新的应用程序</li>
 </ul>
-<h4 id="添加任务依赖"><a href="#添加任务依赖" class="headerlink" title="添加任务依赖"></a>添加任务依赖</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">NSBlockOperation	*blockOperationFirst  &#x3D; [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">	&#x2F;&#x2F; execute code</span><br><span class="line">&#125;];</span><br><span class="line">NSBlockOperation	*blockOperationSecond &#x3D; [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">	&#x2F;&#x2F; execute code</span><br><span class="line">&#125;];</span><br><span class="line">NSBlockOperation	*blockOperationThird  &#x3D; [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">	&#x2F;&#x2F; execute code</span><br><span class="line">&#125;];</span><br><span class="line">[blockOperationSecond addDependency:blockOperationFirst];</span><br><span class="line">[blockOperationThird addDependency:blockOperationSecond];</span><br><span class="line">NSOperationQueue *queue &#x3D; [NSOperatin alloc] init];</span><br><span class="line">[queue addOperations:@[blockOperationFirst,blockOperationSecond,blockOperationThird]];</span><br></pre></td></tr></table></figure>
-
-
+<p>使用这些服务的应用程序必须声明其支持的服务，并使用系统框架来实现这些服务的相关方面。</p>
+<h3 id="声明你的应用程序支持的后台模式"><a href="#声明你的应用程序支持的后台模式" class="headerlink" title="声明你的应用程序支持的后台模式"></a>声明你的应用程序支持的后台模式</h3><p>你必须在应用程序使用后台任务之前声明你要支持的后台任务类型。在Xcode 5和之后，你需要在你工程的Capabilities选项卡中声明你要支持哪些后台模式。启用后台模式选项将<code>UIBackgroundModes</code>键添加到应用程序的<code>Info.plist</code>文件中。</p>
+<p>下表列出了你可以指定的后台模式的值：</p>
+<table>
+<thead>
+<tr>
+<th>Xcode后台模式</th>
+<th>UIBackgroundModes 值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>音频和AirPlay</td>
+<td><code>audio</code></td>
+<td>应用程序在后台播放或录制音频内容。用户必须在第一次使用前就授权使用麦克风。</td>
+</tr>
+<tr>
+<td>位置更新</td>
+<td><code>location</code></td>
+<td>使用户随时知道他们的位置，即使应用在后台运行。</td>
+</tr>
+<tr>
+<td>网络电话</td>
+<td><code>voip</code></td>
+<td>应用程序提供给用户通过网络连接进行通话的能力。</td>
+</tr>
+<tr>
+<td>Newsstand下载</td>
+<td><code>newsstand-content</code></td>
+<td>Newsstand类型的应用程序在后台下载并处理报纸或杂志内容。</td>
+</tr>
+<tr>
+<td>外部附件通信</td>
+<td><code>external-accessory</code></td>
+<td>应用程序与需要通过外部附件框架定期提供更新的硬件配件配合使用。</td>
+</tr>
+<tr>
+<td>使用蓝牙设备</td>
+<td><code>bluetooth-central</code></td>
+<td>应用程序使用需要通过Core Bluetooth框架定期发送更新的蓝牙设备。</td>
+</tr>
+<tr>
+<td>作为蓝牙LE附件</td>
+<td><code>bluetooth-peripheral</code></td>
+<td>应用程序通过Core Bluetooth框架支持外设模式下的蓝牙通信。使用此模式需要用户授权</td>
+</tr>
+<tr>
+<td>后台抓取</td>
+<td><code>fetch</code></td>
+<td>应用程序定期的从网路下载并处理少量数据。</td>
+</tr>
+<tr>
+<td>远程推送</td>
+<td><code>remote-notification</code></td>
+<td>应用程序想要在接收到一个远程推送时开始下载内容。</td>
+</tr>
+</tbody></table>
+<p>以上每种模式都让系统知道应该在合适的时间唤醒或启动应用程序来响应相关的事件。</p>
+<h4 id="追踪用户位置"><a href="#追踪用户位置" class="headerlink" title="追踪用户位置"></a>追踪用户位置</h4><p>在后台追踪用户的位置的方式有好几种，大多数方式实际上并不需要你的应用程序在后台不断的运行。</p>
+<ul>
+<li>重大位置变更</li>
+<li>仅在前台定位服务</li>
+<li>后台定位服务</li>
+</ul>
+<p>对于不需要高精度位置数据的应用程序来说，推荐使用重大位置变更定位服务。这个服务只有在用户的位置发生非常重大的变化时才会产生位置更新；它对社交类应用程序或者给用户提供不是很重要的位置相关信息的应用程序来说是非常理想的定位方式。如果当一个位置更新发生时应用程序被终止，系统会在后台唤醒它来处理这个更新。如果应用程序开始使用了这个服务然后被终止，当新的位置更新产生时，系统会自动重启它。</p>
+<p>仅前台定位服务和后台定位服务都使用标准的Core Location服务获取位置数据。唯一的区别是，如果应用程序被挂起，则仅前台定位服务停止发送更新。 前台定位服务适用于只在前台需要位置数据的应用程序。</p>
+<p>你可以在Xcode工程中的<code>Capabilities</code>选项卡中启用支持定位服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>location</code>来启用这个服务)。启用这个服务并不会阻止系统挂起你的应用程序，但是它会告知系统无论何时新的位置更新被发送过来都应该唤醒应用程序来处理。</p>
 <blockquote>
-<p><strong>NOTE</strong>:</p>
-<ul>
-<li>添加相互依赖会造成死锁。</li>
-<li>使用<code>removeDependency</code>方法来移除依赖关系</li>
-</ul>
+<p><strong>重要提示:</strong>鼓励你谨慎使用标准的定位服务或改用重要的位置更改服务。 定位服务需要经常使用iOS设备的板载无线电硬件。 连续运行这个硬件会消耗大量的电量。 如果你的应用程序不需要向用户提供精确且连续的位置信息，则最好尽量减少使用位置服务。</p>
 </blockquote>
-<h4 id="其它方法"><a href="#其它方法" class="headerlink" title="其它方法"></a>其它方法</h4><ul>
-<li><p>NSOperation类的一些其它方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 判断任务是否正在执行</span><br><span class="line">BOOL exccuting;</span><br><span class="line">&#x2F;&#x2F; 判断任务是否完成</span><br><span class="line">BOOL finished；</span><br><span class="line">&#x2F;&#x2F; 设置任务完成后的后续操作</span><br><span class="line">void (^completionBlock) (void);</span><br><span class="line">&#x2F;&#x2F; 取消任务</span><br><span class="line">- (void)cancle;</span><br><span class="line">&#x2F;&#x2F; 阻塞当前线程直到此任务执行完毕</span><br><span class="line">- (void)waitUntilFinished;</span><br></pre></td></tr></table></figure>
+<h4 id="在后台播放或录制音频"><a href="#在后台播放或录制音频" class="headerlink" title="在后台播放或录制音频"></a>在后台播放或录制音频</h4><p>一个需要连续播放或录制音频的应用程序(即使应用处在后台)可以注册后台服务，实现即使在后台也能执行这些任务。你可以在Xcode工程中的<code>Capabilities</code>选项卡中启用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>audio</code>来启用这个服务)。在后台播放音频内容的应用程序必须播放听得见的内容而不能是无声的。</p>
+<p>后台音频应用程序的典型例子包括：</p>
+<ul>
+<li>音乐播放程序</li>
+<li>音频录制程序</li>
+<li>支持通过AirPlay播放音频或视频的程序</li>
+<li>VoIP程序</li>
+</ul>
+<p>当<code>UIBackgroundModes</code>键包含<code>audio</code>值时，系统的媒体框架会自动阻止相关的应用程序被挂起。只要应用程序还在播放视屏或音频内容，录制音频，它就还能在后台运行。然而，一旦录制或播放停止，就会被系统挂起。</p>
+<p>你可以使用任何系统音频框架来处理后台音频播放，并且使用这些框架的过程和在前台使用相同(对于通过AriPlay播放视频内容来说，你可以使用Media Player或AVFoundation框架来实现)。因为应用程序在播放媒体文件时不会被挂起，所以即使应用程序在后台也能正常的进行回调操作。在你的回调中，你应该只做为播放提供数据的工作，不应该在回调中执行任何与播放无关的任务。</p>
+<p>在任何给定的时刻，因为可能有不止一个应用程序支持音频服务，所以由系统来决定哪个应用程序能够播放或录制音频。前台应用程序总是有优先的音频操作权利。可能有不止一个应用程序被允许在后台播放音频，这个时候决定哪个应用程序能够播放音频就取决于每个应用程序的音频会话的配置。</p>
+<h4 id="实现一个VoIP应用程序"><a href="#实现一个VoIP应用程序" class="headerlink" title="实现一个VoIP应用程序"></a>实现一个VoIP应用程序</h4><p>一个Voice over Internet Protocol应用程序允许用户通过互联网而不是设备的蜂窝网络设备进行语音通话。这样的一个应用程序需要为它的服务维持一个持续的网络连接，以便它能接收到打进来的电话和其它相关数据。系统允许VoIP应用程序被挂起并给它提供了监测它们的sockets的便利，而不是让它一直处于唤醒状态。当检测到传入流量时，系统唤醒VoIP程序并将socket的控制权交还给它。</p>
+<p>为了配置VoIP应用程序，你必须：</p>
+<ul>
+<li>在Xcode工程中的<code>Capabilities</code>选项卡中启用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>voip</code>来启用这个服务)。</li>
+<li>为VoIP应用程序配置一个socket。</li>
+<li>在移动到后台之前，调用<code>setKeepAliveTimeout:handler:</code>方法来安装一个定期执行的程序。你的应用程序可以使用这个处理程序来保持服务连接。</li>
+<li>配置你的音频会话来操作进入或退出活跃的使用状态的转换。</li>
+</ul>
+<p>设置<code>UIBackgroundModes</code>的值为<code>voip</code>让系统知道，当VoIP应用程序需要管理它的网络会话时，系统应该允许它在后台运行。为了让VoIP应用程序总是可用，系统会在启动后立刻重新启动拥有这个键值的应用程序。</p>
+<p>大多数的VoIP应用程序也需要配置后台音频模式，因为它也需要在后台发送音频内容。因此，你应该将<code>UIBackgroundModes</code>的值设置为<code>audio</code>和<code>voip</code>。如果你不这样做的话，你的应用程序将不能在后台播放或录制音频内容。</p>
+<h4 id="适时的获取少量内容"><a href="#适时的获取少量内容" class="headerlink" title="适时的获取少量内容"></a>适时的获取少量内容</h4><p>需要定期的检查新内容的应用程序可以请求系统唤醒它们，以便它们可以初始化一个获取内容的拉取操作。为了支持这种模式，你需要在Xcode工程中的<code>Capabilities</code>选项卡中启用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>fetch</code>来启用这个服务)。启用这个服务并不能保证系统会给你的应用程序任何时间来执行后台拉取操作。系统必须在你的应用程序拉取内容的请求和其它应用程序以及系统自身之间做出平衡。在评估所有信息后，如果有很好的机会的话，系统会给请求拉取内容的应用程序一些执行时间。</p>
+<p>当有好机会产生时，系统会唤醒或启动你的应用程序到后台并调用应用程序代理对象的<code>application:performFetchWithCompletionHandler:</code>方法。使用这个方法来检查新内容，如果新内容可用则开始下载操作。一旦新内容下载完成，你必须将新内容是否可用的结果传递给提供好的完成处理块。执行这个块告诉系统它可以将你的应用程序转换到挂起状态并评估其使用功率。可以快速下载少量内容并在它们有可用的下载内容时准确反应的应用程序，比起花费更长的下载时间或声称有可用的下载内容但没有下载任何东西的应用程序，更可能在未来获得执行时间。</p>
+<p>在下载任何内容时，推荐你使用<code>NSURLSession</code>类来开始和管理你的下载。</p>
+<h4 id="使用推送通知来开始下载"><a href="#使用推送通知来开始下载" class="headerlink" title="使用推送通知来开始下载"></a>使用推送通知来开始下载</h4><p>如果你的服务器在有新的应用程序可用内容时向用户的设备发送了一个推送通知，你可以请求系统在后台运行你的应用程序并立即开始下载新的可用内容。这种后台模式意图在于尽可能减少从你的用户看见推送通知到你的应用程序可以展示相关内容之间的时间。应用程序通常会在用户看见推送通知的差不多相同的时间被唤醒，但是仍会给你更多的准备时间。</p>
+<p>为了支持这种模式，你需要在Xcode工程中的<code>Capabilities</code>选项卡中启这项用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>remote-notification</code>来启用这个服务)。</p>
+<p>对于一个使用推送通知来触发下载操作的应用程序来说，通知的有效内容必须包含值为<code>1</code>的<code>content-available</code>的键。当这个键值对被检测到时，系统会启动或唤醒你的应用程序到后台同时调用应用程序的代理对象的<code>application:didReceiveRemoteNotification:fetchCompletionHandler:</code>方法。你应该在这个方法里实现对相关内容的下载并将下载好的内容在加入到你的应用程序中。</p>
+<p>在下载任何内容时，推荐你使用<code>NSURLSession</code>类来开始和管理你的下载。</p>
+<h4 id="在后台下载新闻站内容"><a href="#在后台下载新闻站内容" class="headerlink" title="在后台下载新闻站内容"></a>在后台下载新闻站内容</h4><p>下载新闻和新的杂志文章的新闻站应用程序可以注册在后台进行这些下载。你需要在Xcode工程中的<code>Capabilities</code>选项卡中启这项用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>newsstand-content</code>来启用这个服务)。当你提供这个关键字时，如果你的应用程序没有在运行，系统会启动你的应用程序以便它能开始下载新的文章。</p>
+<p>当你使用Newsstand Kit框架来开始一个下载时，由系统为你的应用程序操作下载的进程。即使你的应用程序被挂起或终止，系统仍会继续下载文件。当下载操作完成后，系统将下载好的文件传输到你的应用程序的沙盒并向你的应用程序发送一个通知。如果应用程序没有在运行，这个通知会唤醒它并给它一个处理新的下载文件的机会。如果在下载过程中发生了错误，你的应用程序也会这样被唤醒来处理这个错误。</p>
+<h4 id="与外部附件通信"><a href="#与外部附件通信" class="headerlink" title="与外部附件通信"></a>与外部附件通信</h4><p>使用外部附件的应用程序可以请求在附件发送了一个更新时被唤醒，即使它处在挂起状态。这种支持对于某些定期发送数据的附件来说是非常重要的，比如心率监视器。你需要在Xcode工程中的<code>Capabilities</code>选项卡中启这项用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>external-accessory</code>来启用这个服务)。当你启用这个模式时，外部附件框架不会关闭活跃的外部附件会话。当外部附件发送来新的内容时，这个框架唤醒你的应用程序以便它能处理这些数据内容。在外部附件建立连接或失去连接时，系统也会唤醒应用程序来进行处理。</p>
+<p>任何支持附件更新后台处理的应用程序都必须遵循以下基本准则：</p>
+<ul>
+<li><p>应用程序必须提供一个界面，让用户来开始或者停止附件更新事件的发送。</p>
 </li>
-<li><p>NSOperationQueue</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取队列的任务数量</span><br><span class="line">NSUInteger operationCount;</span><br><span class="line">&#x2F;&#x2F; 取消队列中的所有任务</span><br><span class="line">- (void)cancelAllOperations;</span><br><span class="line">&#x2F;&#x2F; 阻塞当前线程直到此队列中的所有任务执行完毕</span><br><span class="line">- (void)waitUntilAllOperationsAreFinished;</span><br><span class="line">&#x2F;&#x2F; 暂停或继续队列</span><br><span class="line">BOOL suspended;</span><br></pre></td></tr></table></figure>
-
+<li><p>一旦被唤醒，应用程序大约有10S时间来处理数据。理想情况下，它应该尽可能快速地处理数据然后转换到挂起状态。但是，如果需要更多的时间，应用程序可以使用<code>beginBackgroundTaskWithExpirationHandler:</code>方法来申请额外的执行时间。</p>
+</li>
+</ul>
+<h4 id="与蓝牙附件通信"><a href="#与蓝牙附件通信" class="headerlink" title="与蓝牙附件通信"></a>与蓝牙附件通信</h4><p>使用蓝牙外设的应用程序可以请求在外设发送了一个更新时被唤醒，即使它处在挂起状态。这种支持对于需要定期发送数据的Bluetooth-LE外设来说是非常重要的。你需要在Xcode工程中的<code>Capabilities</code>选项卡中启这项用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>bluetooth-central</code>来启用这个服务)。当你启用这个模式时，Core Bluetooth框架会保持相应外设的任何活跃会话连接。此外，当有新的数据从外设传来，系统会唤醒应用程序让他能够处理数据。在外设建立连接或失去连接时，系统也会唤醒应用程序来进行处理。</p>
+<p>iOS 6中，一个使用蓝牙外设的应用程序也可以在外设模式下运行。要充当蓝牙外设，你需要在Xcode工程中的<code>Capabilities</code>选项卡中启这项用服务(您也可以通过在应用程序<code>Info.plis</code>t文件中包含<code>UIBackgroundModes</code>键和<code>bluetooth-peripheral</code>值来启用此支持)。启用此模式可让Core Bluetooth框架在后台简单地唤醒应用程序，以便它可以处理外设的相关请求。</p>
+<p>支持蓝牙数据后台处理的任何应用程序都必须基于会话，并遵循以下基本准则：</p>
+<ul>
+<li><p>应用程序必须提供一个界面，允许用户启动和停止蓝牙事件的传递。</p>
+</li>
+<li><p>被唤醒后，应用程序大概需要10秒钟才能处理数据。理想情况下，它应该尽可能快地处理数据，并允许自己再次暂停。但是，如果需要更多的时间，应用程序可以使用<code>beginBackgroundTaskWithExpirationHandler</code>：方法来请求更多的时间，它应该只有在绝对必要的时候才这样做。</p>
 <p>​</p>
 </li>
 </ul>
+<h2 id="在后台获得用户的注意"><a href="#在后台获得用户的注意" class="headerlink" title="在后台获得用户的注意"></a>在后台获得用户的注意</h2><p>通知是处在挂起，在后台运行或没有运行的应用程序获得用户的注意的一种方式。应用程序可以使用本地通知来显示提醒框，播放声音，标记应用程序的图标或者全部一起使用。比如，一个闹钟应用程序可能会使用本地通知来播放闹铃声并显示一个提醒框来使闹钟不可用。当一个通知被发送给用户，用户必须决定是否授权让应用程序来到前台。如果应用程序已经在前台，本地通知将会被静默的发送给你的应用程序而不是发送给用户。</p>
+<p>为了安排本地通知的发送，需要创建一个配置了通知的各个参数的<code>UILocalNotification</code>类的实例并调用<code>UIApplication</code>类的方法。本地通知对象包含了发送通知的类型和在什么时间发送它的信息。<code>UIApplication</code>类的方法提供了是立即发送还是按时间表发送通知的选项。</p>
+<p>下面的代码片段展示了如何安排一个由用户设置的使用了日期和时间的闹钟的例子。这个例子在一个时间只配置了一个闹钟并在安排它之前终止了前一个闹钟(你的应用程序在任何给定的时刻都不能拥有超过128个处在活跃状态的本地通知，它们每一个都能设置成以固定的时间间隔重复)。如果闹钟被触发时，应用程序没有运行或者处在后台，闹钟会弹出提醒框并在后台播放音频。如果应用程序是活动且处在前台，则会调用应用程序的代理对象的<code>application:didReceiveLocalNotification:</code>方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (void)scheduleAlarmForDate:(NSDate*)theDate &#123;</span><br><span class="line">    UIApplication* app &#x3D; [UIApplication sharedApplication];</span><br><span class="line">    NSArray*    oldNotifications &#x3D; [app scheduledLocalNotifications];</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; Clear out the old notification before scheduling a new one.</span><br><span class="line">    if ([oldNotifications count] &gt; 0)</span><br><span class="line">        [app cancelAllLocalNotifications];</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; Create a new notification.</span><br><span class="line">    UILocalNotification* alarm &#x3D; [[UILocalNotification alloc] init];</span><br><span class="line">    if (alarm)</span><br><span class="line">    &#123;</span><br><span class="line">        alarm.fireDate &#x3D; theDate;</span><br><span class="line">        alarm.timeZone &#x3D; [NSTimeZone defaultTimeZone];</span><br><span class="line">        alarm.repeatInterval &#x3D; 0;</span><br><span class="line">        alarm.soundName &#x3D; @&quot;alarmsound.caf&quot;;</span><br><span class="line">        alarm.alertBody &#x3D; @&quot;Time to wake up!&quot;;</span><br><span class="line"> </span><br><span class="line">        [app scheduleLocalNotification:alarm];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本地通知使用的音频文件和推送通知使用的要求相同。自定义的音频文件必须位于你应用程序主要包中且必须是以下几种格式：Linear PCM，MA4，μ-Law或者a-Law。你也可以指定<code>UILocalNotificationDefaultSoundName</code>常量来使设备播放默认的提醒声音。当通知被发送且音频被播放时，系统也会触发设备震动来配合。</p>
+<h2 id="何时启动应用程序进入后台"><a href="#何时启动应用程序进入后台" class="headerlink" title="何时启动应用程序进入后台"></a>何时启动应用程序进入后台</h2><p>支持后台执行的应用程序可能会被系统重启来处理发生的事件。如果应用程序不是被用户强制退出，系统会启动应用程序在下列事件发生时：</p>
+<ul>
+<li>对于定位应用程序<ul>
+<li>系统收到一个满足发送给应用程序标准的位置更新。</li>
+<li>设备进入或退出一个已注册的区域。</li>
+</ul>
+</li>
+<li>对于音频应用程序，音频框架需要应用程序来处理某些数据。</li>
+<li>对于蓝牙应用程序<ul>
+<li>应用程序作为从连接的外设接收数据的核心角色。</li>
+<li>应用程序作为从连接核心接收命令的外设。</li>
+</ul>
+</li>
+<li>对于后台下载应用程序<ul>
+<li>应用程序收到一个包含 <code>content-available</code> 键并且值为 <code>1</code>的远程通知。</li>
+<li>系统在随机时间唤醒应用程序来开始新内容的下载。</li>
+<li>使用<code>NSURLSession</code>对象在后台下载内容的应用程序，当这个会话相关的任务全部成功完成或发生了一个错误。</li>
+<li>Newsstand应用程序内容下载完成。</li>
+</ul>
+</li>
+</ul>
+<p>在大多数情况下，系统并不会重启被用户强制退出的应用程序。定位应用程序是个例外，在iOS8和之后。如果不是的话，用户必须显式的启动应用程序或者重启设备，系统才能自动的启动程序进入后台。当启用密码保护时，在用户第一次解锁设备之前，系统不会启动任何应用程序进入后台。</p>
+<h2 id="成为一个负责的后台运行应用程序"><a href="#成为一个负责的后台运行应用程序" class="headerlink" title="成为一个负责的后台运行应用程序"></a>成为一个负责的后台运行应用程序</h2><p>在使用系统资源和硬件时，前台应用程序始终比后台应用程序的优先级高。后台应用程序需要为这个差异做准备并调整它们的行为：</p>
+<ul>
+<li><strong>不要在你的代码中进行任何OpenGL ES调用</strong>。在后台运行时，你绝不能创建<code>EAGLContext</code>对象或发出任何OpenGL ES绘图命令。使用这些会使你的应用程序被立即终止。应用程序必须保证任何先前提交的命令在移入后台之前完成。</li>
+</ul>
+<ul>
+<li><strong>在挂起之前停止任何Bonjour-related服务</strong>。在你的应用程序移入后台但未被挂起之前，它应该从Bonjour注销并关闭任何与网络服务相关的监听sockets。一个挂起的应用程序无论如何不能响应任何传入的服务请求。如果你没有关闭Bonjour服务，在应用程序挂起时，系统会自动的关闭它们。</li>
+<li><strong>准备好处理基于网络的sockets的连接失败</strong>。系统可能会销毁socket连接，当你的应用程序因为某些原因被挂起时。只要你的基于网络的socket代码准备好了如何处理其他类型的网络失败，比如使用失败信号或网络转化，socket被销毁就不会导致出现任何不寻常的问题。当你的应用程序重新开始运行时，如果使用socket遭遇故障，只需重新建立一个。</li>
+<li><strong>在转入后台之前保存你的应用程序的状态</strong>。处于低内存的情况下，后台应用程序可能会被从内存中移除以释放空间。挂起的应用程序首先被移除，并且不会在移除之前通知应用程序。因此，应用程序应该利用iOS 6及之后提供的状态保存机制将应用程序状态信息保存到磁盘。</li>
+<li><strong>在转入后台时移除对任何不需要的对象的强引用</strong>。</li>
+<li><strong>在挂起之前停止使用共享系统资源</strong>。与共享系统资源进行交互的应用程序应该在被挂起之前停止使用这些资源。前台应用程序总是拥有这些资源的优先使用权。当你的应用程序挂起时，如果被发现它在使用这些共享资源，则会被系统杀死进程。</li>
+<li><strong>避免更新窗口和视图</strong>。因为你的应用程序的窗口和视图在后台是不可见的，你应该避免更新它们。如果你的应用程序需要在系统拍摄快照前更新窗口的内容的话则是一种例外情况。</li>
+<li><strong>响应外部附件的连接和断开通知</strong>。对于和外部附件通信的应用程序来说，当应用程序转入后台时系统会自动的发送一个断开通知。应用程序必须注册这个通知并用它来关闭当前附件的会话。当应用程序转入前台时，一个匹配连接的通知被发送，给应用程序重新连接的机会。</li>
+<li><strong>在转入后台时清理活动的提醒框的资源</strong>。为了在各个应用程序之间进行切换时保存上下文，在你的应用程序进入后台时，系统不会自动地释放上拉菜单或提醒视图。在应用程序转入后台之前，你需要提供合适的清理行为。</li>
+<li><strong>在转入后台之前从视图中移除敏感信息</strong>。当应用程序转入后台时，系统会对应用程序的主窗口拍摄快照，当应用程序转入到前台时，这个快照会短暂的显示。在从<code>applicationDidEnterBackground:</code>方法返回之前，你应该隐藏或混淆可能被作为快照一部分拍摄的密码和其它敏感的个人信息</li>
+<li><strong>在后台运行时尽可能的少做工作</strong>。给与后台应用程序的执行时间相比于前台应用程序来说有更多的限制。应用程序不应该在后台执行太长时间，这可能导致应用程序被终止。</li>
+</ul>
+<h2 id="选择退出后台执行"><a href="#选择退出后台执行" class="headerlink" title="选择退出后台执行"></a>选择退出后台执行</h2><p>如果你不希望你的应用程序在后台运行，你可以通过将值为<code>YES</code>的<code>UIApplicationExitsOnSuspend</code>键加入<code>Info.plist</code>来显式的退出后台模式。当一个应用程序选择退出后台，它的生命周期将在未运行，非活动和活动状态之间转换，永远不会进入后台或被挂起状态。当用户按下Home按钮来退出应用程序时，应用程序代理对象的<code>applicationWillTerminate:</code>方法将会被调用，应用程序将有大约5秒时间在它被终止或移入未运行状态之前来执行清理任务并退出。</p>
+<p>强烈不鼓励退出后台执行，但在某些情况下可能是首选。 具体来说，如果后台执行的编码对你的应用程序来说增加了很大的复杂性，那么终止应用程序可能会更简单。 此外，如果你的应用程序消耗大量内存，并且无法轻松释放任何内存，系统可能会迅速杀死你的应用程序，为其他应用程序腾出空间。 因此，选择终止，而不是切换到后台，可能会产生相同的结果，并节省你的开发时间和精力。</p>
 
       
     </div>
@@ -371,7 +438,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -437,7 +504,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
