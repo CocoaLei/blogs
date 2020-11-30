@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2018/03/13/ObjectOrientedProgramming/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2018/03/19/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2018/03/13/ObjectOrientedProgramming/" class="post-title-link" itemprop="url">Object Oriented Programming</a>
+            <a href="/2018/03/19/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/" class="post-title-link" itemprop="url">防抖和节流</a>
         </h2>
 
         <div class="post-meta">
@@ -187,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2018-03-13 00:00:00" itemprop="dateCreated datePublished" datetime="2018-03-13T00:00:00+08:00">2018-03-13</time>
+              <time title="创建时间：2018-03-19 00:00:00" itemprop="dateCreated datePublished" datetime="2018-03-19T00:00:00+08:00">2018-03-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-17 13:17:54" itemprop="dateModified" datetime="2019-09-17T13:17:54+08:00">2019-09-17</time>
+                <time title="修改时间：2020-11-30 10:57:29" itemprop="dateModified" datetime="2020-11-30T10:57:29+08:00">2020-11-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -202,7 +202,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                  <a href="/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">大前端</span></a>
                 </span>
             </span>
 
@@ -217,62 +217,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="面向对象编程-Object-Oriented-Programming"><a href="#面向对象编程-Object-Oriented-Programming" class="headerlink" title="面向对象编程 (Object Oriented Programming)"></a>面向对象编程 (Object Oriented Programming)</h2><p>面向对象编程是一种基于 <code>对象</code> 概念的编程范例，对象可以以字段的形式包含数据(通常被称为属性)，以程序的形式包含代码(通常被称为方法)。</p>
-<p>对象的一个特点就是它的方法可以访问和修改与之关联的对象的数据字段。在面向对象编程中，计算机程序被设计为由能够互相交互的对象们组成。面向对象编程语言是多种多样，最受欢迎的是基于类(Class)的那些。</p>
-<h3 id="面向对象编程的特征"><a href="#面向对象编程的特征" class="headerlink" title="面向对象编程的特征"></a>面向对象编程的特征</h3><p>通常，面向对象编程被理解为一种将程序分解为封装数据及相关操作的模块的编程范例。它的特征如下：</p>
+          <h1 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流"></a>防抖和节流</h1><p>处理频繁触发的事件时，如果没有进行限制，每次触发都调用处理函数进行处理不仅会浪费资源，还会降低用户体验，所以需要限制处理函数的调用频率，这便是用到防抖和节流的地方。</p>
+<h2 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h2><p>当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时。</p>
+<p>函数防抖的一个典型应用场景是根据 <code>input</code> 的输入内容搜索相关信息，如果 <code>input</code> 内容每次改变都发起搜索请求，则会在短时间内发次多个请求，这种情况下，对事件处理函数进行防抖处理，在给定的时间段 T 内，<code>input</code> 内容没有改变，才发起搜索请求。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个简单的防抖函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, wait</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timeout = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (timeout !== <span class="literal">null</span>) &#123;</span><br><span class="line">      clearTimeOut(timeout);</span><br><span class="line">    &#125;</span><br><span class="line">		timeout = setTimeOut(fn, wait);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h2><p>当持续触发事件时，保证一定时间段内只调用一次事件处理函数。</p>
+<p>函数节流适合的处理的情况是更高频次的触发事件处理函数的情况，比如 <code>resize</code>、<code>mousemove</code> 、<code>scroll</code> 等，强制事件处理函数以固定频率执行。</p>
 <ul>
-<li><p>类与对象</p>
-<p>支持面向对象编程的语言通常使用继承类来达到代码重用或可扩展性。</p>
+<li>时间戳实现</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用时间戳实现节流函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> prev = <span class="built_in">Date</span>.now();</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">let</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">let</span> now = Data.now();</span><br><span class="line">    <span class="keyword">if</span> (now - prev &gt;= delay) &#123;</span><br><span class="line">      fn.apply(context, args);</span><br><span class="line">      prev = <span class="built_in">Date</span>.now();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 事件处理函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handler</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 事件监听</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, throttle(handler, <span class="number">500</span>))</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>类 ：定义了事物的抽象特点</li>
-<li>对象 ：类的实例</li>
+<li>定时器实现</li>
 </ul>
-</li>
-<li><p>动态配置( dynamic dispatch )与消息传递机制</p>
-<p>对象的任务是通过选择执行合适的程序代码响应方法调用，通常这种选择是在运行时查找与对象关联的表中的方法来实现的。这被称之为动态分配，它将对象与抽象数据类型(或模块)区分开来，后者具有所有实例的操作静态实现。</p>
-<p>方法调用也被称之为消息传递。它被概念化为传递给对象进行分配的消息(即方法的名称和输入的参数)。</p>
-</li>
-<li><p>封装</p>
-<p>封装是面向对象编程的一个概念，它将数据和对数据的操作绑定在一起，并保护它们免受外部的干扰和误用(仅让允许的类和对象进行访问)。数据封装引入了重要的面向对象编程数据隐藏概念。</p>
-<p>如果一个类不允许调用代码直接访问对象内部的数据，而只允许通过它提供的方法进行访问，这种强大的抽象或信息隐藏被称之为封装。</p>
-<p>具备封装性的面向对象编程隐藏了某一方法对的具体执行过程，取而代之的是通过消息传递机制传递消息给它。</p>
-</li>
-<li><p>继承</p>
-<p>几乎所有支持类的语言都支持继承。继承使得类能够以层级结构表示 <code>is-a-type-of</code> 的关系。父类的所有数据和方法都能被子类以同样的名字所继承，这使得相同的代码和数据复用变得更加简单，而且还是镜像真实世界关系的一种直观方式。</p>
-<p>子类可以重写父类定义的方法。在一些语言中存在多重继承，这可能会造成重写冲突。</p>
-<p>抽象类不能实例化为对象，它们的存在只是为了可以被继承到其它可以被实例化的具体类中。</p>
-<p>继承的过程就是一个从一般到特殊的过程。</p>
-</li>
-<li><p>多态</p>
-<p>多态是指有继承产生的相关但不同的类，对统一消息会做出不同的响应。它能极大减少类型之间的耦合。</p>
-</li>
-<li><p>抽象</p>
-</li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 利用定时器实现节流函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">let</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">if</span> (!timer) &#123;</span><br><span class="line">      timer = setTimeOut(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        fn.apply(context, args);</span><br><span class="line">        timer = <span class="literal">null</span>;</span><br><span class="line">      &#125;, delay)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 事件处理函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handler</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 事件监听</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, throttle(handler, <span class="number">500</span>))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>混合实现</li>
 </ul>
-<h3 id="JavaScript-与面向对象编程"><a href="#JavaScript-与面向对象编程" class="headerlink" title="JavaScript 与面向对象编程"></a>JavaScript 与面向对象编程</h3><p>JavaScript 的核心是支持面向对象的，同时它也提供了强大灵活的 OOP 语言能力。</p>
-<h4 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h4><p>命名空间是一个容器，它允许开发人员在一个独特的、特定于应用程序的名称下捆绑所有功能。在 JavaScript 中，命名空间是一个包含方法、属性和对象的对象，它和普通对象在语言层面上并无差别。</p>
-<p>使用命名空间可以最大程度上减少应用程序名称冲突的可能性。</p>
-<h4 id="自定义对象"><a href="#自定义对象" class="headerlink" title="自定义对象"></a>自定义对象</h4><h5 id="类"><a href="#类" class="headerlink" title="类"></a>类</h5><p>JavaScript 是基于原型的语言，并没有声明类的语句。它使用函数做类，定义一个类和定义一个函数相同。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">let</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttleFun</span>(<span class="params">fun, duration</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">let</span> startT = <span class="built_in">Date</span>.now();</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">const</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">const</span> remaining = duration - ( startT - <span class="built_in">Date</span>.now());</span><br><span class="line">    clearTimeout(timer);</span><br><span class="line">    <span class="keyword">if</span> (remaining &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">      fun.apply(context, args);</span><br><span class="line">      startT = <span class="built_in">Date</span>.now();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      timer = setTimeout(fun, remaining);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h5><p>对象是类的实例。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="comment">// 创建为初始化的实例</span></span><br><span class="line"><span class="keyword">let</span> person1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">let</span> person2 = <span class="built_in">Object</span>.create(Person)</span><br></pre></td></tr></table></figure>
 
-<h5 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h5><p>构造器在实例化时被调用，它是对象中的一个方法，常用于给对象的属性赋值或者为调用函数做准备。在 JavaScript 中函数就可以作为构造器使用，因此不需要特别地定义一个构造器方法，每个声明的函数都可以在实例化后被调用执行。</p>
-<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><p>属性就是类中包含的变量。每一个对象实例有若干个属性. 为了正确的继承，属性应该被定义在类的原型属性 (函数)中。</p>
-<p>可以使用 <code>this</code> 关键字调用类的属性，它是对当前对象的引用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> Person(<span class="string">'Li Lei'</span>);</span><br></pre></td></tr></table></figure>
 
-<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><p>在JavaScript中方法通常是一个绑定到对象中的普通函数, 这意味着方法可以在其所在上下文之外被调用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.sayHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'My name is '</span> + <span class="keyword">this</span>.anme);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在方法调用的过程中，<code>this</code> 的值取决于我们如何调用方法。可以通过 <code>Function#call</code> 或 <code>Funcation#apply</code> 显式的指定 <code>this</code> 的值。</p>
-<h5 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h5><p>在 Javascript 中，继承通过赋予子类一个父类的实例并专门化子类来实现。在现代浏览器中你可以使用 <code>Object.create()</code> 实现继承。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  Person.call(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student.prototype = <span class="built_in">Object</span>.create(Person.prototype);</span><br><span class="line">Student.prototype.constructor = Student;</span><br></pre></td></tr></table></figure>
-
-<h5 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h5><p>类的实例调用存在于类中的方法时，并不清楚它是如何实现并运行的，这就是封装。</p>
-<h5 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h5><p>抽象是允许模拟工作问题中通用部分的一种机制。这可以通过继承（具体化）或组合来实现。<br>JavaScript通过继承实现具体化，通过让类的实例是其他对象的属性值来实现组合。</p>
-<h5 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h5><p>就像所有定义在原型属性内部的方法和属性一样，不同的类可以定义具有相同名称的方法;方法是作用于所在的类中。并且这仅在两个类不是父子关系时成立（继承链中，一个类不是继承自其他类）。</p>
+<h2 id="防抖和节流的区别"><a href="#防抖和节流的区别" class="headerlink" title="防抖和节流的区别"></a>防抖和节流的区别</h2><p>防抖将几次操作合并为一次操作，节流则保证一段时间内只触发一次函数。</p>
+<p>函数节流不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数，而函数防抖只是在最后一次事件后才触发一次函数。</p>
 
       
     </div>
@@ -291,7 +263,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -357,7 +329,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
