@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2019/09/13/typescript-tutorial/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2019/06/06/JavaScript%20Event%20Loop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/09/13/typescript-tutorial/" class="post-title-link" itemprop="url">TypeScript 概览</a>
+            <a href="/2019/06/06/JavaScript%20Event%20Loop/" class="post-title-link" itemprop="url">JavaScript 中的事件循环</a>
         </h2>
 
         <div class="post-meta">
@@ -187,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-09-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-13T00:00:00+08:00">2019-09-13</time>
+              <time title="创建时间：2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+08:00">2019-06-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-18 13:31:20" itemprop="dateModified" datetime="2020-09-18T13:31:20+08:00">2020-09-18</time>
+                <time title="修改时间：2020-12-01 15:58:04" itemprop="dateModified" datetime="2020-12-01T15:58:04+08:00">2020-12-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -202,7 +202,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
                 </span>
             </span>
 
@@ -217,270 +217,71 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h1><p>TypeScript 是 JavaScript 类型的超集，它可以编译成纯 JavaScript，可以在任何浏览器、任何计算机和任何操作系统上运行，并且是开源的。</p>
-<h2 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h2><p>TypeScript 支持与 JavaScript 几乎相同的数据类型，此外还提供了方便使用的枚举类型。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// boolean</span></span><br><span class="line"><span class="keyword">let</span> isDone: <span class="built_in">boolean</span> = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">// number</span></span><br><span class="line"><span class="comment">// JavaScript 和 TypeScript 中的数字不是浮点类型 floating point 就是大整数类型 BigInteger</span></span><br><span class="line"><span class="keyword">let</span> decLiteral: <span class="built_in">number</span> = <span class="number">6</span>;</span><br><span class="line"><span class="keyword">let</span> bigLiteral: <span class="built_in">number</span> = <span class="number">100n</span>;</span><br><span class="line"><span class="comment">// string</span></span><br><span class="line"><span class="keyword">let</span> name: <span class="built_in">string</span> = <span class="string">'bob'</span>;</span><br><span class="line"><span class="comment">// Array</span></span><br><span class="line"><span class="keyword">let</span> list: <span class="built_in">number</span>[] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> list: <span class="built_in">Array</span>&lt;<span class="built_in">number</span>&gt; = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="comment">// Tuple</span></span><br><span class="line"><span class="comment">// 元组类型要求值类型、顺序和个数一一对应</span></span><br><span class="line"><span class="keyword">let</span> tuple: [<span class="built_in">string</span>, <span class="built_in">string</span>] = [<span class="string">'string'</span>, <span class="string">'string'</span>];</span><br><span class="line"><span class="comment">// enum</span></span><br><span class="line"><span class="keyword">enum</span> Color &#123;Red = <span class="number">0</span>, Green, Blue&#125;</span><br><span class="line"><span class="keyword">let</span> c: Color = Color.Green;</span><br><span class="line"><span class="comment">// Any</span></span><br><span class="line"><span class="keyword">let</span> source: <span class="built_in">any</span> = <span class="number">4</span></span><br><span class="line"><span class="comment">// Void</span></span><br><span class="line"><span class="keyword">let</span> unusable: <span class="built_in">void</span> = <span class="literal">undefined</span>;</span><br><span class="line"><span class="comment">// Null &amp; Undefined</span></span><br><span class="line"><span class="keyword">let</span> u: <span class="literal">undefined</span> = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">let</span> n: <span class="literal">null</span> = <span class="literal">null</span>;</span><br><span class="line"><span class="comment">// Never</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">error</span>(<span class="params">message: <span class="built_in">string</span></span>): <span class="title">never</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(message);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 类型断言</span></span><br><span class="line"><span class="comment">// 明确知道值的类型时可使用类型断言</span></span><br><span class="line"><span class="keyword">let</span> strValue: <span class="built_in">any</span> = <span class="string">'str'</span>;</span><br><span class="line"><span class="keyword">let</span> length: <span class="built_in">number</span> = (&lt;<span class="built_in">string</span>&gt;strValue).length;</span><br><span class="line"><span class="keyword">let</span> length: <span class="built_in">number</span> = (strValue <span class="keyword">as</span> <span class="built_in">string</span>).length</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h2><ul>
-<li><p><code>var</code></p>
-<p>可以通过 <code>var</code> 关键字定义变量，但是 <code>var</code> 声明可以在包含它的函数、模块、命名空间或全局作用域内部任何位置被访问，包含它的代码块对此没有影响，这可能会引发一些错误，比如多次声明同一个变量并不会报错。</p>
-</li>
-<li><p><code>let</code></p>
-<p>当用 <code>let</code> 声明一个变量，它使用的是词法作用域或块作用域。不同于使用 <code>var</code> 声明的变量那样可以在包含它们的函数外访问，块作用域变量在包含它们的块之外是不能访问的。</p>
-</li>
-<li><p><code>const</code></p>
-<p><code>const</code> 拥有与 <code>let</code> 相同的作用域规则，但是声明的变量被赋值后不能再改变。</p>
-</li>
-</ul>
-<p>每次进入一个作用域时，它创建了一个变量的环境，就算作用域内代码已经执行完毕，这个环境与其捕获的变量依然存在。当 <code>let</code> 声明出现在循环体里时拥有完全不同的行为，不仅是在循环里引入了一个新的变量环境，而是针对每次迭代都会创建这样一个新作用域。</p>
-<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p><strong>TypeScript 的核心原则之一是对值所具有的结构进行类型检查</strong>。 它有时被称做 “鸭式辨型法”或”结构性子类型化”。 在 TypeScript 里，接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约。</p>
-<p>JavaScript 为开发者提供了非常大的灵活性：比如你可以为一个初始化为整数的变量赋值一个函数。但同时这种不确定性也会带来很多的麻烦，TypeScript 内置的接口就可以用来解决这个问题。 </p>
-<p><em>接口帮助我们在赋值和传递参数时进行类型检查，确保我们给变量的赋值符合变量的类型或接收参数正确(接口在某种程度上表示了变量或函数对于赋值给它的值或传递给它的参数的一种期望和要求)。</em></p>
-<h3 id="可选属性"><a href="#可选属性" class="headerlink" title="可选属性"></a>可选属性</h3><p>接口里的属性不全都是必需的，有些是只在某些条件下存在，或者根本不存在，可以为接口定义可选属性来实现这些需求。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> OptionAttribute &#123;</span><br><span class="line">    optionNum?: <span class="built_in">number</span>;</span><br><span class="line">    optionStr?: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可选属性的好处之一是可以对可能存在的属性进行预定义，好处之二是可以捕获引用了不存在的属性时的错误。 </p>
-<h3 id="只读属性"><a href="#只读属性" class="headerlink" title="只读属性"></a>只读属性</h3><p>如果希望对象的某些属性只有在刚创建的时候修改其值，可以通过在属性名前用 readonly 来指定属性为只读属性。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> ReadonlyAttribute &#123;</span><br><span class="line">    readonly num: <span class="built_in">number</span>;</span><br><span class="line">    readonly str: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>TypeScript</code> 具有 <code>ReadonlyArray&lt;T&gt;</code> 类型，它与 <code>Array&lt;T&gt;</code> 类似，只是把所有可变方法去掉了，因此可以保证数组创建后再也不能被修改。</p>
+          <p><code>JavaScript</code> 有一个基于事件循环的并发模型，它负责执行代码、收集和处理事件以及执行队列中子任务，它被称为<strong>事件循环</strong>(Event Loop)。了解事件循环的工作方式和原理对于进行优化非常重要。</p>
+<h2 id="运行时概念"><a href="#运行时概念" class="headerlink" title="运行时概念"></a>运行时概念</h2><p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201130135627.svg" alt="Stack,Heap,Queue"></p>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>函数调用形成了一个有若干帧组成的栈。</p>
 <blockquote>
-<p><strong>readonly</strong> vs <strong>const</strong></p>
-<p>使用 <code>const</code> 来修饰变量，使用 <code>readonly</code> 来修饰属性</p>
+<p>栈是一种仅限在表为进行添加和删除的线性数据结构。</p>
 </blockquote>
-<h3 id="额外的类型检查"><a href="#额外的类型检查" class="headerlink" title="额外的类型检查"></a>额外的类型检查</h3><p>在 <code>TypeScript</code> 中，对象字面量赋值给变量或作为参数进行传递的时候，会经过 “额外属性检查”，如果一个对象字面量存在任何 “目标类型” 不包含的属性时，会发生错误。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> SquareConfig &#123; </span><br><span class="line">  width: <span class="built_in">number</span>;</span><br><span class="line">  color?: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createSquare</span>(<span class="params">config: SquareConfig</span>): </span>&#123; color: <span class="built_in">string</span>, area: <span class="built_in">number</span> &#125; &#123;</span><br><span class="line">  <span class="keyword">let</span> newSquare = &#123; color: <span class="string">'blue'</span>, area: <span class="number">0</span> &#125;;</span><br><span class="line">  <span class="keyword">if</span> (config.width) newSquare.area = config.width * config.width;</span><br><span class="line">  <span class="keyword">if</span> (config.color) newSquare.color = config.color;</span><br><span class="line">  <span class="keyword">return</span> newSquare;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// error: height not expected in type SquareConfig</span></span><br><span class="line"><span class="keyword">let</span> mySquare = createSquare(&#123; color: <span class="string">'green'</span>, width: <span class="number">10</span>, height: <span class="number">10</span> &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>使用 ‘类型断言’ 可以绕开额外属性检查</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySquare = createSquare(&#123; color: <span class="string">'green'</span>, width: <span class="number">10</span>, height: <span class="number">10</span> &#125; <span class="keyword">as</span> SquareConfig);</span><br></pre></td></tr></table></figure>
-
-<p>但是更好的做法是在接口中提供一个字符串索引签名</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> SquareConfig &#123; </span><br><span class="line">  width: <span class="built_in">number</span>;</span><br><span class="line">  color?: <span class="built_in">string</span>;</span><br><span class="line">  [propName: <span class="built_in">string</span>]: <span class="built_in">any</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h3><p>接口能够描述 <code>JavaScript</code> 中对象拥有的各种各样的外形。 除了描述带有属性的普通对象外，接口也可以描述函数类型。</p>
-<p>为了使用接口表示函数类型，我们需要给接口定义一个调用签名。 它就像是一个只有参数列表和返回值类型的函数定义。</p>
-<p>参数列表里的每个参数都需要名字和类型。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> TypeFunc &#123;</span><br><span class="line">    (source: <span class="built_in">string</span>, subString: <span class="built_in">string</span>): <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样定义后，我们可以像使用其它接口一样使用这个函数类型的接口。 下例展示了如何创建一个函数类型的变量，并将一个同类型的函数赋值给这个变量。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySearchFunc: TypeFunc;</span><br><span class="line">mySearchFunc = <span class="function"><span class="keyword">function</span>(<span class="params">source: <span class="built_in">string</span>, subString: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = source.search(subString);</span><br><span class="line">    <span class="keyword">return</span> result &gt; <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>对于函数类型的类型检查来说，函数的参数名不需要与接口定义里的名字相匹配。</p>
-<p>函数的参数会逐个进行检查，要求对应位置上的参数类型是兼容的。如果没有指定类型，<code>TypeScript</code> 的类型系统会推断出参数类型，而函数的返回值类型是通过其返回值推断出来的。</p>
-<h3 id="可索引的类型"><a href="#可索引的类型" class="headerlink" title="可索引的类型"></a>可索引的类型</h3><p>与使用接口描述函数类型差不多，我们也可以描述那些能够通过索引得到的类型。可索引类型具有一个索引签名，它描述了对象索引的类型，还有相应的索引返回值类型。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表明了当用 number 去索引 StringArr 时会得到 string 类型的返回值</span></span><br><span class="line"><span class="keyword">interface</span> StringArr &#123;</span><br><span class="line">    [index: <span class="built_in">number</span>]: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myArr: StringArr;</span><br><span class="line">myArr = [<span class="string">"A"</span>,<span class="string">"B"</span>];</span><br><span class="line"><span class="keyword">let</span> myStr: <span class="built_in">string</span> = myArr[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
-
-<p>索引签名共有两种类型：字符串和数字。可以同时使用这两种类型的索引，但是数字索引的返回值必须是字符串索引返回值类型的子类型。这是因为当使用 <code>number</code> 来索引时，<code>TypeScript</code> 会将它转换为 <code>string</code> 然后再去索引对象。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> StringArray &#123; </span><br><span class="line">  [index: <span class="built_in">string</span>]: <span class="built_in">string</span>;</span><br><span class="line">  [index: <span class="built_in">number</span>]: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>一般将索引签名设置为只读，这样可以防止给索引赋值。</p>
-<h3 id="类类型"><a href="#类类型" class="headerlink" title="类类型"></a>类类型</h3><p><code>TypeScript</code> 中的接口也能够用来明确的强制一个类去符合某种协议/契约。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> ClockInterface &#123;</span><br><span class="line">    currentTime: <span class="built_in">Date</span>;</span><br><span class="line">    setTime:(d: <span class="built_in">Date</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Clock <span class="keyword">implements</span> ClockInterface &#123;</span><br><span class="line">    currentTime: <span class="built_in">Date</span>;</span><br><span class="line">    setTime:(d: <span class="built_in">Date</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.currentTime = d;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">h: <span class="built_in">number</span>, m: <span class="built_in">number</span></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>接口描述了类的公共部分，而不是公共和私有两部分，它不会帮你检查类是否具有某些私有成员。</p>
-<h3 id="类静态部分与实例部分的区别"><a href="#类静态部分与实例部分的区别" class="headerlink" title="类静态部分与实例部分的区别"></a>类静态部分与实例部分的区别</h3><p>类具有两个类型 ：静态部分的类型和实例的类型。</p>
-<p>当一个类实现了一个接口时，只对其实例部分进行类型检查。<code>constructor</code> 存在于类的静态部分，不在检查范围内。因此我们应该直接操作类的静态部分。</p>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>对象被分配在堆中。堆是一个用来表示一块非结构化内存区域的计算机术语。</p>
 <blockquote>
-<p>可以认为类的静态部分指的是类本身，实例部分指的是类实例化出来的对象。</p>
+<p>堆是一种利用完全二叉树维护的线性数据结构。</p>
 </blockquote>
-<h3 id="继承接口"><a href="#继承接口" class="headerlink" title="继承接口"></a>继承接口</h3><p>和类一样，接口也可以相互继承。这让我们能够从一个接口里复制成员到另一个接口里，可以更灵活地将接口分割到可重用的模块里。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Father &#123;</span><br><span class="line">    familyName: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Son <span class="keyword">extends</span> Father &#123;</span><br><span class="line">    givenName: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> aPerson = &lt;Son&gt;&#123;&#125;;</span><br><span class="line">aPerson.familyName = <span class="string">'S'</span>;</span><br><span class="line">aPerson.givenName = <span class="string">'T'</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>一个 <code>JavaScript</code> 运行时包含了一个待处理消息的消息队列。每一个消息都关联着一个用来处理这个消息的回调函数。</p>
+<p>在事件循环的合适时刻，<code>JavaScript</code> 运行时会从最早进入消息队列的消息开始处理消息。被处理的消息会被移出消息队列，并以自身为参数调用与之关联的函数。</p>
+<p>函数的处理会一直到执行栈再次为空为止，然后事件循环会处理下一个消息。</p>
+<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>事件循环的概念非常简单，一个无限的循环：<code>JavaScript</code> 引擎等待任务、执行任务，然后进入休眠状态，等待更多任务。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (queue.waitForMessage()) &#123;</span><br><span class="line">  queue.processNextMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>一个接口可以继承多个接口，创建出多个接口的合成接口。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Shape &#123;</span><br><span class="line">  color: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Stroke &#123;</span><br><span class="line">  penWidth: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Square <span class="keyword">extends</span> Shape, Stroke &#123;</span><br><span class="line">  width: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="混合类型"><a href="#混合类型" class="headerlink" title="混合类型"></a>混合类型</h3><p>接口能够描述 <code>JavaScript</code> 中丰富的类型，可以使用 混合类型 来使某个对象具有多个类型。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Counter &#123;</span><br><span class="line">  (start: <span class="built_in">number</span>): <span class="built_in">number</span>;</span><br><span class="line">	interval: <span class="built_in">number</span>;</span><br><span class="line">	reset(): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCounter</span>(<span class="params"></span>): <span class="title">Counter</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> counter = &lt;Counter&gt;<span class="function"><span class="keyword">function</span> (<span class="params">start: <span class="built_in">number</span></span>) </span>&#123;&#125;;</span><br><span class="line">  counter.interval = <span class="number">1</span>;</span><br><span class="line">  counter.reset = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">  <span class="keyword">return</span> counter;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> c = getCounter();</span><br><span class="line">c(<span class="number">10</span>);</span><br><span class="line">c.reset();</span><br><span class="line">c.interval = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="接口继承类"><a href="#接口继承类" class="headerlink" title="接口继承类"></a>接口继承类</h3><p>当接口继承了一个类类型时，它会继承类的成员但不继承其实现。就好像接口声明了所有类中存在的成员，但没有提供具体实现一样。接口同样会继承到类的 <code>private</code> 和 <code>protected</code> 成员。这意味着当你创建了一个接口继承了一个拥有私有或受保护的成员的类时，这个接口类型只能被这个类或其子类所实现。</p>
-<p>当你有一个庞大的继承结构时这很有用，但要指出的是你的代码只在子类拥有特定的属性时起作用。</p>
-<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>从 <code>ECMAScript 2015</code> , 也就是 <code>ECMAScript 6</code> 开始， <code>JavaScript</code> 中也能使用基于类的面向对象的方式。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个类</span></span><br><span class="line"><span class="keyword">class</span> Person &#123;</span><br><span class="line">    familyName: <span class="built_in">string</span>;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">familyName: <span class="built_in">string</span>, givenName: <span class="built_in">string</span>, age: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.familyName = familyName;</span><br><span class="line">    &#125;</span><br><span class="line">    say() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Hello, my name is '</span> + <span class="keyword">this</span>.familyName + <span class="string">' '</span> + <span class="keyword">this</span>.givenName;</span><br><span class="line">    &#125;</span><br><span class="line">    move(distanceInMeters = <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'$&#123;this.name&#125; moved $&#123;distanceInMeters&#125;m.'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建类实例</span></span><br><span class="line">lei aPerson = <span class="keyword">new</span> Person(<span class="string">'Wang'</span>, <span class="string">'XiaoHong'</span>, <span class="number">22</span>);</span><br></pre></td></tr></table></figure>
-
-<p>在引用任何一个类的成员时都需要使用 <code>this</code> ，它表示我们访问的是类的成员。</p>
-<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>在 <code>TypeScript</code> 中允许使用继承来扩展现有的类。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Student <span class="keyword">extends</span> Person &#123;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">familyName: <span class="built_in">string</span>, givenName: <span class="built_in">string</span>, age: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">        <span class="keyword">super</span>(familyName, givenName, age);</span><br><span class="line">    &#125;</span><br><span class="line">    move(distanceInMeters = <span class="number">5</span>) &#123;</span><br><span class="line">			<span class="keyword">super</span>.move(distanceInMeters);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果子类包含了构造函数，它必须调用 <code>super()</code> ，它会执行基类的构造函数。在构造函数中访问 <code>this</code> 的属性之前，一定要先调用 <code>super()</code> 。</p>
-<p>子类从父类中继承属性和方法</p>
-<h3 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h3><ul>
-<li><p><code>public</code></p>
-<p><code>public</code> 是 <code>TypeScript</code> 中类成员的默认属性</p>
-</li>
-<li><p><code>private</code></p>
-<p>类成员声明为 <code>private</code> 时，不能在生声明它的类的外部访问</p>
-</li>
-<li><p><code>protected</code></p>
-<p>类成员声明为 <code>protected</code> 时，在派生类中仍可访问</p>
-<p>构造函数也能被标记为 <code>protected</code> ，这意味着它不能在包含它的类外被实例化，但是能被继承</p>
-</li>
-<li><p><code>readonly</code></p>
-<p>通过 <code>readonly</code> 属性将属性设置为只读，只读属性必须在声明时或构造函数里被初始化</p>
-</li>
-</ul>
-<h4 id="参数属性"><a href="#参数属性" class="headerlink" title="参数属性"></a>参数属性</h4><p>参数属性通过给构造函数参数前添加一个访问限定符来声明。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Student &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> familyName: <span class="built_in">string</span>, <span class="keyword">public</span> givenName: <span class="built_in">string</span>, <span class="keyword">public</span> age: <span class="built_in">number</span></span>)&#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过这个特性我们可以方便的在一个地方定义并初始化一个成员。</p>
-<h3 id="存取器"><a href="#存取器" class="headerlink" title="存取器"></a>存取器</h3><p><code>TypeScript</code> 支持通过 <code>getters/setters</code> 来截取对对象成员的访问，它们可以有效的控制对对象成员的访问。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> student &#123;</span><br><span class="line">  <span class="keyword">private</span> _familyName: <span class="built_in">string</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">get</span> familyName(): <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._familyNmae;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">set</span> familyName(fName: <span class="built_in">string</span>) &#123;</span><br><span class="line">		<span class="keyword">this</span>._familyName = fName;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是，存取器只支持 <code>ECMAScript 5</code> 或更高，其次，只带有 <code>getter</code> 存取器被推断为 <code>readonly</code>。</p>
-<h3 id="静态属性"><a href="#静态属性" class="headerlink" title="静态属性"></a>静态属性</h3><p>类的实例成员是那些仅当类被实例化时才会被初始化的属性，而类的静态成员存在于类本身上面而不是类的实例上。实例想要访问静态属性时，需要在其加上类名。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> student &#123;</span><br><span class="line">  <span class="keyword">static</span> school = <span class="string">'ts'</span>;</span><br><span class="line">  ...</span><br><span class="line">  getStudentSchool() &#123;</span><br><span class="line">    <span class="keyword">return</span> student.school;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>抽象类一般作为其它派生类的基类使用，一般不会被实例化。不同于接口，抽象类可以包含成员的实现细节。</p>
-<p>使用 <code>abstract</code> 关键字定义抽象类和在抽象类中定义抽象方法。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> Human &#123;</span><br><span class="line">  <span class="keyword">abstract</span> function_name: return_type;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>抽象类中的抽象方法不包含具体实现并且必须在派生类中实现。</p>
-<p>抽象方法的语法与接口语法相似，两者都是定义方法签名但不包含方法体。然而，抽象方法必须包含 <code>abstract</code> 关键字并且可以包含访问修饰符。</p>
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>函数是 <code>JavaScript</code> 应用程序的基础。 它帮助你实现抽象层，模拟类，信息隐藏和模块。 在 <code>TypeScript</code> 里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。 <code>TypeScript</code> 为 <code>JavaScript</code> 函数添加了额外的功能，让我们可以更容易地使用。</p>
-<h3 id="函数类型-1"><a href="#函数类型-1" class="headerlink" title="函数类型"></a>函数类型</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">arg_1: arg_type, arg_2: arg_type, ...</span>): <span class="title">return_type</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>TypeScript</code> 能够通过返回语句自动推断出返回值类型，因此函数返回类型一般是省略的。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fun_var_name: <span class="function">(<span class="params">arg_1: arg_type, arg_2: arg_type, ...</span>) =&gt;</span> return_type;</span><br></pre></td></tr></table></figure>
-
-<p>函数类型包括两部分，参数类型和返回值类型。而且只要参数类型是匹配的，就认为它是有效的函数类型，而不在乎参数名是否准确。</p>
-<h3 id="可选参数和默认参数"><a href="#可选参数和默认参数" class="headerlink" title="可选参数和默认参数"></a>可选参数和默认参数</h3><p><code>JavaScript</code> 中函数的每个参数都是可选的，可传可不传，没有传参的时候它的值就是 <code>undefined</code>。而 <code>TypeScript</code> 中函数的每个参数默认情况下都是必须的，编译器检查用户是否为每个参数都传入了值，还会假设只有这些参数被传递进函数-即传递给一个函数的参数个数必须与函数期望的参数个数一致。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myAdd: <span class="function">(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">number</span> = <span class="function"><span class="keyword">function</span> (<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) </span>&#123; </span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sum = myAdd(<span class="number">1</span>); <span class="comment">// error: Expected 2 arugements, but got 1</span></span><br><span class="line"><span class="keyword">const</span> sum1 = myAdd(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// error: Expected 2 arugements, but got 3</span></span><br></pre></td></tr></table></figure>
-
-<p>在 <code>TypeScript</code> 中，可以在参数名称旁使用 <code>?</code> 实现可选参数的功能。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可选参数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildStudent</span>(<span class="params">name: <span class="built_in">string</span>, grade: <span class="built_in">number</span>, gender?: <span class="built_in">string</span></span>) </span>&#123; </span><br><span class="line">  <span class="keyword">return</span> name + <span class="string">' '</span> + grade + <span class="string">' '</span> + (gender ? gender : <span class="string">''</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> student_1 = buildStudent(<span class="string">'Tom'</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">const</span> student_2 = buildStudent(<span class="string">'Jerry'</span>, <span class="number">2</span>, <span class="string">'male'</span>);</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是，可选参数必须跟在可选参数后面。</p>
-<p>在 <code>TypeScript</code> 中，当用户没有传递这个参数或传递的值是 <code>undefined</code> 时，我们可以为参数提供一个默认值。在所有必须参数后面的带默认初始化的参数都是可选的，与可选参数一样，在调用函数的时候可以省略-即可选参数与末尾的默认参数共享参数类型。</p>
-<p>需要注意的是，如果带默认值的参数出现在必须参数之前，用户必须明确的传入 <code>undefined</code> 值来获得默认值。</p>
-<h3 id="剩余参数"><a href="#剩余参数" class="headerlink" title="剩余参数"></a>剩余参数</h3><p>如果你想同时操作多个参数或不知道会有多少个参数传递进来，在 <code>JavaScript</code> 中，你可以通过 <code>arguments</code> 来访问所有传入的参数，在 <code>TypeScript</code> 中，你则可以将所有参数收集到一个变量里。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 剩余参数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildChildren</span>(<span class="params">name: <span class="built_in">string</span>, age: <span class="built_in">number</span>, ...restOfProperty: <span class="built_in">string</span>[]</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;name&#125;</span> <span class="subst">$&#123;age&#125;</span> <span class="subst">$&#123;restOfProperty.join(<span class="string">' '</span>)&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> children = buildChildren(<span class="string">'Mike'</span>, <span class="number">12</span>, <span class="string">'male'</span>, <span class="string">'grade 3'</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>泛型是程序设计语言的一种特性，是程序员在编写代码时定义的一些可变部分，这些部分在使用前必须做出指明。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类型变量 T 会捕获用户传入的类型，之后我们就可以使用者个类型</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identity</span>&lt;<span class="title">T</span>&gt;(<span class="params">arg: T</span>): <span class="title">T</span> </span>&#123; </span><br><span class="line">  <span class="keyword">return</span> arg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> strId = identity(<span class="string">'JavaScript'</span>);</span><br><span class="line"><span class="keyword">const</span> numId = identity(<span class="number">12</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="泛型变量"><a href="#泛型变量" class="headerlink" title="泛型变量"></a>泛型变量</h3><p>使用泛型函数时，编译器要求你在函数体必须正确的使用这个通用的类型-即你必须把这些参数当做是任意或所有类型。</p>
-<h3 id="泛型函数"><a href="#泛型函数" class="headerlink" title="泛型函数"></a>泛型函数</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">combineFunc</span>&lt;<span class="title">T</span>,<span class="title">K</span>&gt;(<span class="params">x: T, y: K</span>): [<span class="title">T</span>, <span class="title">K</span>] </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [T, K];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> combine: &lt;T,K&gt;<span class="function">(<span class="params">x: T, y: K</span>) =&gt;</span> [T,K] = combineFunc;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">let</span> combine: &#123; &lt;T,K&gt;(x: T, y: K): [T, K] &#125; = combineFunc;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> CombineFunc &#123;</span><br><span class="line">  &lt;T,K&gt;(x: T, y: K): [T, K];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> combine: CombineFunc = <span class="function">(<span class="params">x, y</span>) =&gt;</span> [x, y];</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> CombineFunC &#123;</span><br><span class="line">  combine: &lt;T,K&gt;<span class="function">(<span class="params">x: T, y: K</span>) =&gt;</span> [T, K];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> combineC: CombineFunC = <span class="keyword">new</span> CombineFunC&lt;<span class="built_in">number</span>, <span class="built_in">number</span>&gt;();</span><br><span class="line">combineC.combine = <span class="function">(<span class="params">x, y</span>) =&gt;</span> [x, y];</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><p>使用枚举可以定义一些带名字的常量，清晰的表达意图或创建一组有区别的用例。<code>TypeScript</code> 支持数字的和基于字符串的枚举。</p>
-<h3 id="数字枚举"><a href="#数字枚举" class="headerlink" title="数字枚举"></a>数字枚举</h3><p>数字枚举默认的枚举值是从 0 开始自增长的，如果你为第一个枚举名字指定了一个数字枚举值，则会从这个数字值开始自增长。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Status &#123;</span><br><span class="line">  DELETED = <span class="number">-1</span>,</span><br><span class="line">  VALID,</span><br><span class="line">  UNPAID,</span><br><span class="line">  PAID</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h3><p>字符串枚举中，每个成员都需要使用字符串字面量或另外一个字符串枚举成员进行初始化。</p>
-<p>需要注意的是，字符串枚举没有自增长行为。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> StatusTip &#123;</span><br><span class="line">  DELETED = <span class="string">'Order has been deleted.'</span>,</span><br><span class="line">  VALID = <span class="string">'Order is valid.'</span>,</span><br><span class="line">  UNPAID = <span class="string">'Order is unpaid.'</span>,</span><br><span class="line">  PAID = <span class="string">'Order is paid'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="异构枚举"><a href="#异构枚举" class="headerlink" title="异构枚举"></a>异构枚举</h3><p>枚举可以混合字符串和数字成员。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> HeterogeneousEnum &#123;</span><br><span class="line">  NO = <span class="number">0</span>,</span><br><span class="line">  YES = <span class="string">'Yes'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="计算的和常量成员"><a href="#计算的和常量成员" class="headerlink" title="计算的和常量成员"></a>计算的和常量成员</h3><p>每个枚举成员都带有一个值，它可以是常量或计算出来的。当满足如下条件时，枚举成员被当做常量：</p>
+<p><code>queue.waitForMessage()</code> 会同步地等待消息到达。</p>
+<p>消息队列中的消息只有在当前消息完全的执行完成后，接下来的消息才会被执行。这个特性会带来一些优秀的特性，包括：当一个函数执行时，它不会被抢占，只有在它运行完毕之后才会去运行任何其他的代码，才能修改这个函数操作的数据。</p>
+<p>这个模型的一个缺点在于当一个消息需要太长时间才能处理完毕时，Web应用程序就无法处理与用户的交互。一个良好的习惯是缩短单个消息处理时间，并在可能的情况下将一个消息裁剪成多个消息。</p>
+<h3 id="零延迟"><a href="#零延迟" class="headerlink" title="零延迟"></a>零延迟</h3><p>零延迟并不意味着回调会立即执行。以 0 为第二参数调用 <code>setTimeout</code> 并不表示在 0 毫秒后就立即调用回调函数，其等待的时间取决于队列里待处理的消息数量。延迟参数是运行时处理请求所需的最小等待时间，但并不保证是准确的等待时间。</p>
+<h3 id="运行时通信"><a href="#运行时通信" class="headerlink" title="运行时通信"></a>运行时通信</h3><p>一个 web worker 或者一个跨域的 <code>iframe</code> 都有自己的栈、堆和消息队列。两个不同的运行时只能通过 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage" target="_blank" rel="noopener"><code>postMessage</code></a> 方法进行通信。如果另一个运行时侦听 <code>message</code> 事件，则此方法会向该运行时添加消息。</p>
+<h2 id="浏览器下的事件循环实现"><a href="#浏览器下的事件循环实现" class="headerlink" title="浏览器下的事件循环实现"></a>浏览器下的事件循环实现</h2><p>浏览器中所有任务都会被放到调用栈中等待主线程执行。</p>
+<h3 id="调用栈"><a href="#调用栈" class="headerlink" title="调用栈"></a>调用栈</h3><p>调用栈是解释器（比如浏览器中的 <code>JavaScript</code> 解释器）追踪函数执行流的一种机制。当执行环境中调用了多个函数时，通过这种机制，我们能够追踪到哪个函数正在执行，执行的函数体中又调用了哪个函数。</p>
+<h3 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h3><p>在每一个宏任务执行完成后，浏览器会立即执行所有来自微任务队列的微任务，这是比执行任何其它宏任务或者渲染更具有优先级的操作。</p>
+<p>只有当微任务队列中的所有微任务都执行完之后，才会执行其它宏任务，这保证了在微任务执行时应用程序的环境不会改变。</p>
+<p>如果想要在渲染或处理新的事件之前运行一个异步函数，可以通过 <code>queueMicrotsk</code> 方法来达成。</p>
 <ul>
-<li><p>它是枚举的第一个成员，且没有初始化器，此时它的值为 0</p>
-</li>
-<li><p>它不带有初始化器且它之前的枚举成员是一个数字常量，此时它的值为上一个枚举成员的值 + 1</p>
-</li>
-<li><p>枚举成员使用常量枚举表达式初始化。常量枚举表达式是 <code>TypeScript</code> 表达式的子集，它可以在编译阶段求值。当一个表达式满足以下条件时，它就是一个常量枚举表达式：</p>
+<li>宏任务 - <code>scripts</code>/<code>setTimeOut</code>/<code>setInterval</code>/<code>I/O</code>/<code>UI Rendering</code></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110149.png" alt="image-20201201110148857"></p>
 <ul>
-<li><p>一个枚举表达式字面量</p>
+<li>微任务 - <code>Promise.then catch finally</code>/<code>MutationObserver</code></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110211.png" alt="image-20201201110210529"></p>
+<h3 id="同步任务和异步任务"><a href="#同步任务和异步任务" class="headerlink" title="同步任务和异步任务"></a>同步任务和异步任务</h3><p><code>Javascript</code> 单线程任务被分为<strong>同步任务</strong>和<strong>异步任务</strong>，同步任务会在调用栈中按照顺序等待主线程依次执行，异步任务会在异步任务有了结果后，将注册的回调函数放入任务队列中等待主线程空闲的时候（调用栈被清空），被读取到栈内等待主线程的执行。</p>
+<h3 id="任务执行逻辑"><a href="#任务执行逻辑" class="headerlink" title="任务执行逻辑"></a>任务执行逻辑</h3><ul>
+<li><p>-&gt; 选择当前要执行的任务队列，选择任务队列中最先进入的任务，如果任务队列为空即<code>null</code>，则执行跳转到微任务（<code>MicroTask</code>）的执行步骤。</p>
+<p>-&gt; 将事件循环中的任务设置为已选择任务。</p>
+<p>-&gt; 执行任务。</p>
+<p>-&gt; 将事件循环中当前运行任务设置为 <code>null</code>。</p>
+<p>-&gt; 将已经运行完成的任务从任务队列中删除。</p>
+<p>-&gt; microtasks 步骤：进入microtask检查点。</p>
+<p>-&gt; 更新界面渲染。</p>
+<p>-&gt; 返回第一步。</p>
 </li>
-<li><p>一个对之前定义的常量枚举成员的引用</p>
-</li>
-<li><p>带括号的常量枚举表达式</p>
-</li>
-<li><p>一元运算符 <code>+ - ~</code> 其中之一应用在了常量枚举表达式</p>
-</li>
-<li><p>常量枚举表达式作为二元运算符 <code>+, -, *, /, %, &lt;&lt;, &gt;&gt;, &gt;&gt;&gt;, &amp;, |, ^</code> 的操作对象(若常量枚举表达式求值后为 <code>NaN</code> 或 <code>Infinity</code>，则会在编译时报错)</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> FileAccess &#123;</span><br><span class="line">  None,</span><br><span class="line">  Read = <span class="number">1</span> &lt;&lt; <span class="number">1</span>,</span><br><span class="line">  Write = <span class="number">1</span> &lt;&lt; <span class="number">2</span>,</span><br><span class="line">  ReadWrite = Read | Write,</span><br><span class="line">  G = <span class="string">'1024'</span>.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<li><p>-&gt; 设置 <code>microtask</code> 检查点标志为 <code>true</code>。</p>
+<p>-&gt; 当事件循环 <code>microtask</code> 执行不为空时：选择一个最先进入的 <code>microtask</code> 队列的 <code>microtask</code>，将事件循环的 <code>microtask</code> 设置为已选择的 <code>microtask</code>，运行 <code>microtask</code>，将已经执行完成的 <code>microtask</code> 为 <code>null</code>，移出 <code>microtask</code> 中的 <code>microtask</code>。</p>
+<p>-&gt; 清理 <code>IndexDB</code> 事务</p>
+<p>-&gt; 设置进入 <code>microtask</code> 检查点的标志为 <code>false</code>。</p>
 </li>
 </ul>
-</li>
-</ul>
-<h3 id="联合枚举与枚举成员的类型"><a href="#联合枚举与枚举成员的类型" class="headerlink" title="联合枚举与枚举成员的类型"></a>联合枚举与枚举成员的类型</h3><p>存在一种特殊的非计算的常量枚举成员的子集：字面量枚举成员。字面量枚举成员是指不带有初始值的常量枚举成员或是被初始化为</p>
-<ul>
-<li>任何字符串字面量</li>
-<li>任何数字字面量</li>
-<li>应用了一元 <code>-</code> 符号的数字字面量</li>
-</ul>
-<p>当所有枚举成员都拥有字面量枚举值时，它就带有了一种特殊的语义。</p>
-<h3 id="运行时枚举"><a href="#运行时枚举" class="headerlink" title="运行时枚举"></a>运行时枚举</h3><p>枚举是在运行时真正存在的对象</p>
-<h3 id="反向映射"><a href="#反向映射" class="headerlink" title="反向映射"></a>反向映射</h3><p>数字枚举成员具有从枚举值到枚举名字的反向映射。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Status &#123;</span><br><span class="line">  DELETED = <span class="number">-1</span>,</span><br><span class="line">  VALID,</span><br><span class="line">  UNPAID,</span><br><span class="line">  PAID</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Status[<span class="number">0</span>]); <span class="comment">// VALID</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110436" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110501" alt="img"></p>
+<h2 id="事件循环的一些应用"><a href="#事件循环的一些应用" class="headerlink" title="事件循环的一些应用"></a>事件循环的一些应用</h2><h3 id="分割占用-CPU-较多的任务"><a href="#分割占用-CPU-较多的任务" class="headerlink" title="分割占用 CPU 较多的任务"></a>分割占用 CPU 较多的任务</h3><p>假设我们有一个需要占用非常多 CPU 的任务，当浏览器在处理这个任务时，它就不能做其它 DOM 相关的操作，处理用户事件等，这将导致浏览器变的卡顿甚至崩溃，显然这是不可接受的。但我们可以通过将大任务分割成较小任务的方法来避免这个问题。</p>
+<p>比如下面的代码，在执行时会导致浏览器挂起一段不短的时间，这期间用户事件都不会得到处理。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> start = <span class="built_in">Date</span>.now();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 大任务</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">1e9</span>; j++) &#123;</span><br><span class="line">    j++;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Done in "</span> + (<span class="built_in">Date</span>.now() - start) + <span class="string">"ms"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">count();</span><br></pre></td></tr></table></figure>
+
+<p>如果用 <code>setTimeout</code> 将其分割成较小的任务，如果在小任务执行时有其它任务要执行，会被放入任务队列，当目前的分割小任务完成后立即执行这个任务。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> start = <span class="built_in">Date</span>.now();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">do</span> &#123;</span><br><span class="line">    i++;</span><br><span class="line">  &#125; <span class="keyword">while</span>(i % <span class="number">1e6</span> !== <span class="number">0</span>)</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (i === <span class="number">1e9</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Done in "</span> + (<span class="built_in">Date</span>.now() - start) + <span class="string">"ms"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    setTimeout(count);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">count();</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="const-枚举"><a href="#const-枚举" class="headerlink" title="const 枚举"></a><code>const</code> 枚举</h3><p>常量枚举只能使用常量枚举表达式，并且不同于常规的枚举，它们在编译阶段会被删除-常量枚举成员会在使用的地方被内联进来，这是因为常量枚举不允许包含计算成员。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">enum</span> Directions &#123;</span><br><span class="line">  Up,</span><br><span class="line">  Down,</span><br><span class="line">  Left,</span><br><span class="line">  Right</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> directions = [ Directions.Up, Directions.Down, Directions.Left, Directions.Right ];</span><br></pre></td></tr></table></figure>
 
 
-
-<h2 id="类型推论"><a href="#类型推论" class="headerlink" title="类型推论"></a>类型推论</h2><p>类型推论是指能够在编译期间自动推导出值的类型的能力。一般发生在初始化变量和成员，设置默认参数值和决定函数返回值时。</p>
-<h3 id="最佳通用类型"><a href="#最佳通用类型" class="headerlink" title="最佳通用类型"></a>最佳通用类型</h3><p>当需要从几个表达式中推断类型时，会使用这几个表达式的类型来推断出一个最合适的通用类型。</p>
-<h3 id="上下文类型"><a href="#上下文类型" class="headerlink" title="上下文类型"></a>上下文类型</h3><p>当表达式的类型与所处的位置相关时，类型推论按照上下文归类来推论类型。当然，如果表达式包含了明确的类型信息，上下文的类型会被忽略。</p>
-<h2 id="类型兼容性"><a href="#类型兼容性" class="headerlink" title="类型兼容性"></a>类型兼容性</h2><p><code>TypeScript</code> 中的类型兼容性是基于结构子类型的-结构子类型是一种只使用其成员来描述类型的方式。</p>
-<h3 id="原始类型和对象类型的兼容性"><a href="#原始类型和对象类型的兼容性" class="headerlink" title="原始类型和对象类型的兼容性"></a>原始类型和对象类型的兼容性</h3><p>如果 x 要兼容 y， 那么 y 至少需要具有与 x 相同的属性。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果 x 要兼容 y， y 至少要与 x 拥有相同的属性</span></span><br><span class="line"><span class="keyword">let</span> x = &#123; name: <span class="string">'x'</span> &#125;;</span><br><span class="line"><span class="keyword">let</span> y = &#123; name: <span class="string">'y'</span>, alias: <span class="string">'Y'</span> &#125;;</span><br><span class="line">x = y;</span><br><span class="line">y = x; <span class="comment">// Property 'alias' is missing in type '&#123; name: string; &#125;' but required in type '&#123; name: string; alias: string; &#125;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="函数的类型兼容性"><a href="#函数的类型兼容性" class="headerlink" title="函数的类型兼容性"></a>函数的类型兼容性</h3><p>如果函数 x 要兼容函数 y，那么 x 至少要与 y 具有相同的参数并且返回值类型相同。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> funCom = <span class="function">(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) =&gt;</span> x + y;</span><br><span class="line"><span class="keyword">let</span> funAbc = <span class="function">(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) =&gt;</span> [x, y];</span><br><span class="line"><span class="keyword">let</span> funSub = <span class="function">(<span class="params">x: <span class="built_in">number</span></span>) =&gt;</span> x;</span><br><span class="line"><span class="keyword">let</span> funDef = <span class="function">(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) =&gt;</span> x * y;</span><br><span class="line">funCom = funSub;</span><br><span class="line">funSub = funCom; <span class="comment">// Type '(x: number, y: number) =&gt; number' is not assignable to type '(x: number) =&gt; number'</span></span><br><span class="line">funCom = funAbc; <span class="comment">// Type '(x: number, y: number) =&gt; number[]' is not assignable to type '(x: number, y: number) =&gt; number'.Type 'number[]' is not assignable to type 'number'</span></span><br><span class="line">funCom = funDef;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="类的兼容性"><a href="#类的兼容性" class="headerlink" title="类的兼容性"></a>类的兼容性</h3><p>比较两个类类型的对象时，只有实例的成员会被比较。 静态成员和构造函数不在比较的范围内。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> W &#123;</span><br><span class="line">  <span class="keyword">static</span> sign: <span class="built_in">string</span> = <span class="string">'AAAAA'</span>;</span><br><span class="line">  pro: <span class="built_in">string</span> = <span class="string">'W'</span>;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">name: <span class="built_in">string</span></span>)&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Y &#123;</span><br><span class="line">  pro: <span class="built_in">string</span> = <span class="string">'W'</span>;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">length: <span class="built_in">number</span></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> wC = <span class="keyword">new</span> W(<span class="string">'W'</span>);</span><br><span class="line"><span class="keyword">let</span> yC = <span class="keyword">new</span> Y(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">wC = yC; <span class="comment">// OK</span></span><br><span class="line">yC = wC; <span class="comment">// OK</span></span><br></pre></td></tr></table></figure>
-
-<p>类的私有成员和受保护成员会影响兼容性。 当检查类实例的兼容时，如果目标类型包含一个私有成员，那么源类型必须包含来自同一个类的这个私有成员。 同样地，这条规则也适用于包含受保护成员实例的类型检查。 这允许子类赋值给父类，但是不能赋值给其它有同样类型的类。</p>
-<h3 id="泛型的兼容性"><a href="#泛型的兼容性" class="headerlink" title="泛型的兼容性"></a>泛型的兼容性</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> NotEmpty&lt;T&gt; &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> gA: NotEmpty&lt;<span class="built_in">number</span>&gt;;</span><br><span class="line"><span class="keyword">let</span> gB: NotEmpty&lt;<span class="built_in">string</span>&gt;;</span><br><span class="line">gA = gB; <span class="comment">// ok</span></span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> NotEmpty&lt;T&gt; &#123;</span><br><span class="line">  data: T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> gA: NotEmpty&lt;<span class="built_in">number</span>&gt;;</span><br><span class="line"><span class="keyword">let</span> gB: NotEmpty&lt;<span class="built_in">string</span>&gt;;</span><br><span class="line">gA = gB; <span class="comment">// Error</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="高级类型"><a href="#高级类型" class="headerlink" title="高级类型"></a>高级类型</h2><h3 id="交叉类型"><a href="#交叉类型" class="headerlink" title="交叉类型"></a>交叉类型</h3><p>交叉类型是将多个类型合并为一个类型。 这让我们可以把现有的多种类型叠加到一起成为一种类型，它包含了所需的所有类型的特性。</p>
-<h3 id="联合类型"><a href="#联合类型" class="headerlink" title="联合类型"></a>联合类型</h3><p>联合类型表示一个值可以是几种类型之一。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/ 联合类型</span><br><span class="line"><span class="comment">// 联合类型表示一个值可以是几个类型之一</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pad</span>(<span class="params">padding: <span class="built_in">number</span> | <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> padding;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(pad(<span class="number">1</span>));</span><br><span class="line"><span class="built_in">console</span>.log(pad(<span class="string">'A'</span>));</span><br></pre></td></tr></table></figure>
-
-<p>如果一个值是联合类型，我们只能访问联合类型所有类型里共有的成员</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Elephant &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  walk();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Shark &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  swim();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAnimal</span>(<span class="params"></span>): <span class="title">Elephant</span> | <span class="title">Shark</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; name: <span class="string">'Elephant'</span>, walk() &#123; <span class="built_in">console</span>.log(<span class="string">'walk'</span>) &#125; &#125; <span class="keyword">as</span> Elephant;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> aAnimal = getAnimal();</span><br><span class="line"><span class="built_in">console</span>.log(aAnimal.name);</span><br><span class="line">aAnimal.walk();</span><br><span class="line">aAnimal.swim();</span><br></pre></td></tr></table></figure>
-
-
-
+<h2 id="永不阻塞"><a href="#永不阻塞" class="headerlink" title="永不阻塞"></a>永不阻塞</h2><p><code>JavaScript</code> 的事件循环模型与许多其他语言不同的一个非常有趣的特性是，它永不阻塞。 处理 I/O 通常通过事件和回调来执行，所以当一个应用正等待一个 <code>IndexedDB</code> 查询返回或者一个 <code>XHR</code> 请求返回时，它仍然可以处理其它事情，比如用户输入。</p>
 
       
     </div>
@@ -499,7 +300,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -565,7 +366,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
