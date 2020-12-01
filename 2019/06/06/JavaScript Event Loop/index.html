@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"cocoalei.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="JavaScript 有一个基于事件循环的并发模型，它负责执行代码、收集和处理事件以及执行队列中子任务。 运行时概念 栈函数调用形成了一个有若干帧组成的栈。  栈是一种仅限在表为进行添加和删除的线性数据结构。  堆对象被分配在堆中。堆是一个用来表示一块非结构化内存区域的计算机术语。  堆是一种利用完全二叉树维护的线性数据结构。  队列一个 JavaScript 运行时包含了一个待处理消息的消息队列">
+  <meta name="description" content="JavaScript 有一个基于事件循环的并发模型，它负责执行代码、收集和处理事件以及执行队列中子任务，它被称为事件循环(Event Loop)。了解事件循环的工作方式和原理对于进行优化非常重要。 运行时概念 栈函数调用形成了一个有若干帧组成的栈。  栈是一种仅限在表为进行添加和删除的线性数据结构。  堆对象被分配在堆中。堆是一个用来表示一块非结构化内存区域的计算机术语。  堆是一种利用完全二叉树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 中的事件循环">
 <meta property="og:url" content="https://cocoalei.github.io/blogs/2019/06/06/JavaScript%20Event%20Loop/index.html">
 <meta property="og:site_name" content="关于代码的碎碎念">
-<meta property="og:description" content="JavaScript 有一个基于事件循环的并发模型，它负责执行代码、收集和处理事件以及执行队列中子任务。 运行时概念 栈函数调用形成了一个有若干帧组成的栈。  栈是一种仅限在表为进行添加和删除的线性数据结构。  堆对象被分配在堆中。堆是一个用来表示一块非结构化内存区域的计算机术语。  堆是一种利用完全二叉树维护的线性数据结构。  队列一个 JavaScript 运行时包含了一个待处理消息的消息队列">
+<meta property="og:description" content="JavaScript 有一个基于事件循环的并发模型，它负责执行代码、收集和处理事件以及执行队列中子任务，它被称为事件循环(Event Loop)。了解事件循环的工作方式和原理对于进行优化非常重要。 运行时概念 栈函数调用形成了一个有若干帧组成的栈。  栈是一种仅限在表为进行添加和删除的线性数据结构。  堆对象被分配在堆中。堆是一个用来表示一块非结构化内存区域的计算机术语。  堆是一种利用完全二叉树">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201130135627.svg">
 <meta property="og:image" content="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110149.png">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110436">
 <meta property="og:image" content="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110501">
 <meta property="article:published_time" content="2019-06-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-01T03:21:20.592Z">
+<meta property="article:modified_time" content="2020-12-01T07:58:04.155Z">
 <meta property="article:author" content="Y2hlbmdsZWk&#x3D;">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content=" Event Loop">
@@ -199,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-01 11:21:20" itemprop="dateModified" datetime="2020-12-01T11:21:20+08:00">2020-12-01</time>
+                <time title="修改时间：2020-12-01 15:58:04" itemprop="dateModified" datetime="2020-12-01T15:58:04+08:00">2020-12-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -222,7 +222,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><code>JavaScript</code> 有一个基于事件循环的并发模型，它负责执行代码、收集和处理事件以及执行队列中子任务。</p>
+        <p><code>JavaScript</code> 有一个基于事件循环的并发模型，它负责执行代码、收集和处理事件以及执行队列中子任务，它被称为<strong>事件循环</strong>(Event Loop)。了解事件循环的工作方式和原理对于进行优化非常重要。</p>
 <h2 id="运行时概念"><a href="#运行时概念" class="headerlink" title="运行时概念"></a>运行时概念</h2><p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201130135627.svg" alt="Stack,Heap,Queue"></p>
 <h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>函数调用形成了一个有若干帧组成的栈。</p>
 <blockquote>
@@ -235,7 +235,7 @@
 <h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>一个 <code>JavaScript</code> 运行时包含了一个待处理消息的消息队列。每一个消息都关联着一个用来处理这个消息的回调函数。</p>
 <p>在事件循环的合适时刻，<code>JavaScript</code> 运行时会从最早进入消息队列的消息开始处理消息。被处理的消息会被移出消息队列，并以自身为参数调用与之关联的函数。</p>
 <p>函数的处理会一直到执行栈再次为空为止，然后事件循环会处理下一个消息。</p>
-<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>之所以被称为事件循环，是因为其实现原理大致如下：</p>
+<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>事件循环的概念非常简单，一个无限的循环：<code>JavaScript</code> 引擎等待任务、执行任务，然后进入休眠状态，等待更多任务。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (queue.waitForMessage()) &#123;</span><br><span class="line">  queue.processNextMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><code>queue.waitForMessage()</code> 会同步地等待消息到达。</p>
@@ -245,9 +245,16 @@
 <h3 id="运行时通信"><a href="#运行时通信" class="headerlink" title="运行时通信"></a>运行时通信</h3><p>一个 web worker 或者一个跨域的 <code>iframe</code> 都有自己的栈、堆和消息队列。两个不同的运行时只能通过 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage" target="_blank" rel="noopener"><code>postMessage</code></a> 方法进行通信。如果另一个运行时侦听 <code>message</code> 事件，则此方法会向该运行时添加消息。</p>
 <h2 id="浏览器下的事件循环实现"><a href="#浏览器下的事件循环实现" class="headerlink" title="浏览器下的事件循环实现"></a>浏览器下的事件循环实现</h2><p>浏览器中所有任务都会被放到调用栈中等待主线程执行。</p>
 <h3 id="调用栈"><a href="#调用栈" class="headerlink" title="调用栈"></a>调用栈</h3><p>调用栈是解释器（比如浏览器中的 <code>JavaScript</code> 解释器）追踪函数执行流的一种机制。当执行环境中调用了多个函数时，通过这种机制，我们能够追踪到哪个函数正在执行，执行的函数体中又调用了哪个函数。</p>
-<h3 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h3><p>宏任务 - <code>scripts</code>/<code>setTimeOut</code>/<code>setInterval</code>/<code>I/O</code>/<code>UI Rendering</code></p>
+<h3 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h3><p>在每一个宏任务执行完成后，浏览器会立即执行所有来自微任务队列的微任务，这是比执行任何其它宏任务或者渲染更具有优先级的操作。</p>
+<p>只有当微任务队列中的所有微任务都执行完之后，才会执行其它宏任务，这保证了在微任务执行时应用程序的环境不会改变。</p>
+<p>如果想要在渲染或处理新的事件之前运行一个异步函数，可以通过 <code>queueMicrotsk</code> 方法来达成。</p>
+<ul>
+<li>宏任务 - <code>scripts</code>/<code>setTimeOut</code>/<code>setInterval</code>/<code>I/O</code>/<code>UI Rendering</code></li>
+</ul>
 <p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110149.png" alt="image-20201201110148857"></p>
-<p>微任务 - <code>Promise.then catch finally</code>/<code>MutationObserver</code></p>
+<ul>
+<li>微任务 - <code>Promise.then catch finally</code>/<code>MutationObserver</code></li>
+</ul>
 <p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110211.png" alt="image-20201201110210529"></p>
 <h3 id="同步任务和异步任务"><a href="#同步任务和异步任务" class="headerlink" title="同步任务和异步任务"></a>同步任务和异步任务</h3><p><code>Javascript</code> 单线程任务被分为<strong>同步任务</strong>和<strong>异步任务</strong>，同步任务会在调用栈中按照顺序等待主线程依次执行，异步任务会在异步任务有了结果后，将注册的回调函数放入任务队列中等待主线程空闲的时候（调用栈被清空），被读取到栈内等待主线程的执行。</p>
 <h3 id="任务执行逻辑"><a href="#任务执行逻辑" class="headerlink" title="任务执行逻辑"></a>任务执行逻辑</h3><ul>
@@ -268,6 +275,17 @@
 </ul>
 <p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110436" alt="img"></p>
 <p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110501" alt="img"></p>
+<h2 id="事件循环的一些应用"><a href="#事件循环的一些应用" class="headerlink" title="事件循环的一些应用"></a>事件循环的一些应用</h2><h3 id="分割占用-CPU-较多的任务"><a href="#分割占用-CPU-较多的任务" class="headerlink" title="分割占用 CPU 较多的任务"></a>分割占用 CPU 较多的任务</h3><p>假设我们有一个需要占用非常多 CPU 的任务，当浏览器在处理这个任务时，它就不能做其它 DOM 相关的操作，处理用户事件等，这将导致浏览器变的卡顿甚至崩溃，显然这是不可接受的。但我们可以通过将大任务分割成较小任务的方法来避免这个问题。</p>
+<p>比如下面的代码，在执行时会导致浏览器挂起一段不短的时间，这期间用户事件都不会得到处理。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> start = <span class="built_in">Date</span>.now();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 大任务</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">1e9</span>; j++) &#123;</span><br><span class="line">    j++;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Done in "</span> + (<span class="built_in">Date</span>.now() - start) + <span class="string">"ms"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">count();</span><br></pre></td></tr></table></figure>
+
+<p>如果用 <code>setTimeout</code> 将其分割成较小的任务，如果在小任务执行时有其它任务要执行，会被放入任务队列，当目前的分割小任务完成后立即执行这个任务。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> start = <span class="built_in">Date</span>.now();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">do</span> &#123;</span><br><span class="line">    i++;</span><br><span class="line">  &#125; <span class="keyword">while</span>(i % <span class="number">1e6</span> !== <span class="number">0</span>)</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (i === <span class="number">1e9</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Done in "</span> + (<span class="built_in">Date</span>.now() - start) + <span class="string">"ms"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    setTimeout(count);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">count();</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h2 id="永不阻塞"><a href="#永不阻塞" class="headerlink" title="永不阻塞"></a>永不阻塞</h2><p><code>JavaScript</code> 的事件循环模型与许多其他语言不同的一个非常有趣的特性是，它永不阻塞。 处理 I/O 通常通过事件和回调来执行，所以当一个应用正等待一个 <code>IndexedDB</code> 查询返回或者一个 <code>XHR</code> 请求返回时，它仍然可以处理其它事情，比如用户输入。</p>
 
     </div>
@@ -352,7 +370,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行时概念"><span class="nav-number">1.</span> <span class="nav-text">运行时概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#栈"><span class="nav-number">1.1.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆"><span class="nav-number">1.2.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">1.3.</span> <span class="nav-text">队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件循环"><span class="nav-number">2.</span> <span class="nav-text">事件循环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#零延迟"><span class="nav-number">2.1.</span> <span class="nav-text">零延迟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时通信"><span class="nav-number">2.2.</span> <span class="nav-text">运行时通信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器下的事件循环实现"><span class="nav-number">3.</span> <span class="nav-text">浏览器下的事件循环实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用栈"><span class="nav-number">3.1.</span> <span class="nav-text">调用栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#宏任务和微任务"><span class="nav-number">3.2.</span> <span class="nav-text">宏任务和微任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步任务和异步任务"><span class="nav-number">3.3.</span> <span class="nav-text">同步任务和异步任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务执行逻辑"><span class="nav-number">3.4.</span> <span class="nav-text">任务执行逻辑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#永不阻塞"><span class="nav-number">4.</span> <span class="nav-text">永不阻塞</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行时概念"><span class="nav-number">1.</span> <span class="nav-text">运行时概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#栈"><span class="nav-number">1.1.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆"><span class="nav-number">1.2.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">1.3.</span> <span class="nav-text">队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件循环"><span class="nav-number">2.</span> <span class="nav-text">事件循环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#零延迟"><span class="nav-number">2.1.</span> <span class="nav-text">零延迟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时通信"><span class="nav-number">2.2.</span> <span class="nav-text">运行时通信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器下的事件循环实现"><span class="nav-number">3.</span> <span class="nav-text">浏览器下的事件循环实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用栈"><span class="nav-number">3.1.</span> <span class="nav-text">调用栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#宏任务和微任务"><span class="nav-number">3.2.</span> <span class="nav-text">宏任务和微任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步任务和异步任务"><span class="nav-number">3.3.</span> <span class="nav-text">同步任务和异步任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务执行逻辑"><span class="nav-number">3.4.</span> <span class="nav-text">任务执行逻辑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件循环的一些应用"><span class="nav-number">4.</span> <span class="nav-text">事件循环的一些应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分割占用-CPU-较多的任务"><span class="nav-number">4.1.</span> <span class="nav-text">分割占用 CPU 较多的任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#永不阻塞"><span class="nav-number">5.</span> <span class="nav-text">永不阻塞</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -366,7 +384,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
