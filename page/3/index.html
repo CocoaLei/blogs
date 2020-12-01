@@ -194,7 +194,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-30 15:59:27" itemprop="dateModified" datetime="2020-11-30T15:59:27+08:00">2020-11-30</time>
+                <time title="修改时间：2020-12-01 11:21:20" itemprop="dateModified" datetime="2020-12-01T11:21:20+08:00">2020-12-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -241,8 +241,28 @@
 <h2 id="浏览器下的事件循环实现"><a href="#浏览器下的事件循环实现" class="headerlink" title="浏览器下的事件循环实现"></a>浏览器下的事件循环实现</h2><p>浏览器中所有任务都会被放到调用栈中等待主线程执行。</p>
 <h3 id="调用栈"><a href="#调用栈" class="headerlink" title="调用栈"></a>调用栈</h3><p>调用栈是解释器（比如浏览器中的 <code>JavaScript</code> 解释器）追踪函数执行流的一种机制。当执行环境中调用了多个函数时，通过这种机制，我们能够追踪到哪个函数正在执行，执行的函数体中又调用了哪个函数。</p>
 <h3 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h3><p>宏任务 - <code>scripts</code>/<code>setTimeOut</code>/<code>setInterval</code>/<code>I/O</code>/<code>UI Rendering</code></p>
-<p>微任务 - <code>Promise</code>/<code>MutationObserver</code></p>
+<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110149.png" alt="image-20201201110148857"></p>
+<p>微任务 - <code>Promise.then catch finally</code>/<code>MutationObserver</code></p>
+<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110211.png" alt="image-20201201110210529"></p>
 <h3 id="同步任务和异步任务"><a href="#同步任务和异步任务" class="headerlink" title="同步任务和异步任务"></a>同步任务和异步任务</h3><p><code>Javascript</code> 单线程任务被分为<strong>同步任务</strong>和<strong>异步任务</strong>，同步任务会在调用栈中按照顺序等待主线程依次执行，异步任务会在异步任务有了结果后，将注册的回调函数放入任务队列中等待主线程空闲的时候（调用栈被清空），被读取到栈内等待主线程的执行。</p>
+<h3 id="任务执行逻辑"><a href="#任务执行逻辑" class="headerlink" title="任务执行逻辑"></a>任务执行逻辑</h3><ul>
+<li><p>-&gt; 选择当前要执行的任务队列，选择任务队列中最先进入的任务，如果任务队列为空即<code>null</code>，则执行跳转到微任务（<code>MicroTask</code>）的执行步骤。</p>
+<p>-&gt; 将事件循环中的任务设置为已选择任务。</p>
+<p>-&gt; 执行任务。</p>
+<p>-&gt; 将事件循环中当前运行任务设置为 <code>null</code>。</p>
+<p>-&gt; 将已经运行完成的任务从任务队列中删除。</p>
+<p>-&gt; microtasks 步骤：进入microtask检查点。</p>
+<p>-&gt; 更新界面渲染。</p>
+<p>-&gt; 返回第一步。</p>
+</li>
+<li><p>-&gt; 设置 <code>microtask</code> 检查点标志为 <code>true</code>。</p>
+<p>-&gt; 当事件循环 <code>microtask</code> 执行不为空时：选择一个最先进入的 <code>microtask</code> 队列的 <code>microtask</code>，将事件循环的 <code>microtask</code> 设置为已选择的 <code>microtask</code>，运行 <code>microtask</code>，将已经执行完成的 <code>microtask</code> 为 <code>null</code>，移出 <code>microtask</code> 中的 <code>microtask</code>。</p>
+<p>-&gt; 清理 <code>IndexDB</code> 事务</p>
+<p>-&gt; 设置进入 <code>microtask</code> 检查点的标志为 <code>false</code>。</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110436" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110501" alt="img"></p>
 <h2 id="永不阻塞"><a href="#永不阻塞" class="headerlink" title="永不阻塞"></a>永不阻塞</h2><p><code>JavaScript</code> 的事件循环模型与许多其他语言不同的一个非常有趣的特性是，它永不阻塞。 处理 I/O 通常通过事件和回调来执行，所以当一个应用正等待一个 <code>IndexedDB</code> 查询返回或者一个 <code>XHR</code> 请求返回时，它仍然可以处理其它事情，比如用户输入。</p>
 
       
