@@ -20,35 +20,40 @@
     var CONFIG = {"hostname":"cocoalei.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="ODQ4NjUwMTI5QHFxLmNvbQ&#x3D;&#x3D;">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于代码的碎碎念">
-<meta property="og:url" content="https://cocoalei.github.io/blogs/page/3/index.html">
+  <meta name="description" content="很多面向对象语言都支持两种继承实现方式：接口继承和实现继承 - 接口继承继承方法签名，实现继承则继承方法的实现。但由于 JavaScript 中没有方法签名，因此只支持实现继承者一种方式，而原型链正是实现它的方式。 原型链JavaScript 中每个对象都有一个被称为原型的持有其它对象引用的私有属性，而原型对象也有其自己的原型，以此类推，这种链条持续到某个原型对象的原型为 null 。根据定义，n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 原型和继承">
+<meta property="og:url" content="https://cocoalei.github.io/blogs/2019/06/13/JavaScript%20%E5%8E%9F%E5%9E%8B%E4%B8%8E%E7%BB%A7%E6%89%BF/index.html">
 <meta property="og:site_name" content="关于代码的碎碎念">
-<meta property="og:description" content="ODQ4NjUwMTI5QHFxLmNvbQ&#x3D;&#x3D;">
+<meta property="og:description" content="很多面向对象语言都支持两种继承实现方式：接口继承和实现继承 - 接口继承继承方法签名，实现继承则继承方法的实现。但由于 JavaScript 中没有方法签名，因此只支持实现继承者一种方式，而原型链正是实现它的方式。 原型链JavaScript 中每个对象都有一个被称为原型的持有其它对象引用的私有属性，而原型对象也有其自己的原型，以此类推，这种链条持续到某个原型对象的原型为 null 。根据定义，n">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201202145301.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201202145813.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201202160041.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201202160158.png">
+<meta property="article:published_time" content="2019-06-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-02T08:05:37.098Z">
 <meta property="article:author" content="Y2hlbmdsZWk&#x3D;">
-<meta property="article:tag" content="iOS">
-<meta property="article:tag" content="HTML">
-<meta property="article:tag" content="CSS">
 <meta property="article:tag" content="JavaScript">
-<meta property="article:tag" content="Vue.js">
+<meta property="article:tag" content=" Prototype">
+<meta property="article:tag" content=" Inherit">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201202145301.png">
 
-<link rel="canonical" href="https://cocoalei.github.io/blogs/page/3/">
+<link rel="canonical" href="https://cocoalei.github.io/blogs/2019/06/13/JavaScript%20%E5%8E%9F%E5%9E%8B%E4%B8%8E%E7%BB%A7%E6%89%BF/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>关于代码的碎碎念</title>
+  <title>JavaScript 原型和继承 | 关于代码的碎碎念</title>
   
 
 
@@ -157,9 +162,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -175,10 +181,9 @@
       <meta itemprop="name" content="关于代码的碎碎念">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/13/JavaScript%20%E5%8E%9F%E5%9E%8B%E4%B8%8E%E7%BB%A7%E6%89%BF/" class="post-title-link" itemprop="url">JavaScript 原型和继承</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript 原型和继承
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -217,7 +222,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>很多面向对象语言都支持两种继承实现方式：接口继承和实现继承 - 接口继承继承方法签名，实现继承则继承方法的实现。但由于 <code>JavaScript</code> 中没有方法签名，因此只支持实现继承者一种方式，而<strong>原型链</strong>正是实现它的方式。</p>
+        <p>很多面向对象语言都支持两种继承实现方式：接口继承和实现继承 - 接口继承继承方法签名，实现继承则继承方法的实现。但由于 <code>JavaScript</code> 中没有方法签名，因此只支持实现继承者一种方式，而<strong>原型链</strong>正是实现它的方式。</p>
 <h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p><code>JavaScript</code> 中每个对象都有一个被称为<strong>原型</strong>的持有其它对象引用的私有属性，而原型对象也有其自己的原型，以此类推，这种链条持续到某个原型对象的原型为 <code>null</code> 。根据定义，<code>null</code> 是没有对象的，被作为原型链的最后一环。</p>
 <p>当试图访问一个对象的属性时，不仅会搜索对象本身 - 如果对象本身未找到对应的属性，则会沿着对象的原型链层层向上搜索，直到找到匹配的属性或达到原型链的末尾。</p>
 <p>每个构造函数都有一个原型对象 ，原型有一个属性指回构造函数，而实例有一个内部指针指向原型。</p>
@@ -252,25 +257,37 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> anotherFoo = <span class="keyword">new</span> foo.constructor();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(anotherFoo.constructor === Foo); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/06/06/JavaScript%20Event%20Loop/" rel="prev" title="JavaScript 中的事件循环">
+      <i class="fa fa-chevron-left"></i> JavaScript 中的事件循环
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/09/13/typescript-tutorial/" rel="next" title="TypeScript 概览">
+      TypeScript 概览 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
-
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -322,6 +339,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型链"><span class="nav-number">1.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它补充"><span class="nav-number">3.</span> <span class="nav-text">其它补充</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数的-prototype"><span class="nav-number">3.0.1.</span> <span class="nav-text">函数的 prototype</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
