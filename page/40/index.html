@@ -20,34 +20,35 @@
     var CONFIG = {"hostname":"cocoalei.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="基础概念 atomic &amp; nonatomic决定编译器生成的setter&#x2F;getter是否为原子操作 。atomic是Objc使用的一种线程保护技术，防止在某个操作未完成时被另外一个线程操作，造成数据错误。然而这种多线程安全机制对资源的占用很大，在iPhone等小型设备中，除非需要使用多线程之间通讯编程，采用这种技术需要慎重考量。一般情况下，使用nonatomic来修饰成员变量，存取器直">
-<meta property="og:type" content="article">
-<meta property="og:title" content="属性修饰符分析">
-<meta property="og:url" content="https://cocoalei.github.io/blogs/2015/09/02/ios-property/index.html">
+  <meta name="description" content="ODQ4NjUwMTI5QHFxLmNvbQ&#x3D;&#x3D;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="关于代码的碎碎念">
+<meta property="og:url" content="https://cocoalei.github.io/blogs/page/40/index.html">
 <meta property="og:site_name" content="关于代码的碎碎念">
-<meta property="og:description" content="基础概念 atomic &amp; nonatomic决定编译器生成的setter&#x2F;getter是否为原子操作 。atomic是Objc使用的一种线程保护技术，防止在某个操作未完成时被另外一个线程操作，造成数据错误。然而这种多线程安全机制对资源的占用很大，在iPhone等小型设备中，除非需要使用多线程之间通讯编程，采用这种技术需要慎重考量。一般情况下，使用nonatomic来修饰成员变量，存取器直">
+<meta property="og:description" content="ODQ4NjUwMTI5QHFxLmNvbQ&#x3D;&#x3D;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2015-09-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2019-01-17T03:35:13.000Z">
 <meta property="article:author" content="Y2hlbmdsZWk&#x3D;">
 <meta property="article:tag" content="iOS">
-<meta property="article:tag" content="property">
+<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Vue.js">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://cocoalei.github.io/blogs/2015/09/02/ios-property/">
+<link rel="canonical" href="https://cocoalei.github.io/blogs/page/40/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
-    isPost : true,
+    isHome : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>属性修饰符分析 | 关于代码的碎碎念</title>
+  <title>关于代码的碎碎念</title>
   
 
 
@@ -156,10 +157,9 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content index posts-expand">
             
-
-    
+      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -175,9 +175,10 @@
       <meta itemprop="name" content="关于代码的碎碎念">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          属性修饰符分析
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/09/02/ios-property/" class="post-title-link" itemprop="url">属性修饰符分析</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -216,7 +217,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><hr>
+          <h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><hr>
 <h5 id="atomic-amp-nonatomic"><a href="#atomic-amp-nonatomic" class="headerlink" title="atomic &amp; nonatomic"></a>atomic &amp; nonatomic</h5><p>决定编译器生成的setter/getter是否为原子操作 。<br>atomic是Objc使用的一种线程保护技术，防止在某个操作未完成时被另外一个线程操作，造成数据错误。然而这种多线程安全机制对资源的占用很大，在iPhone等小型设备中，除非需要使用多线程之间通讯编程，采用这种技术需要慎重考量。<br>一般情况下，使用nonatomic来修饰成员变量，存取器直接返回一个值，而不需要管当不同的线程同时访问时会发生什么。</p>
 <h5 id="readwrite-amp-readonly"><a href="#readwrite-amp-readonly" class="headerlink" title="readwrite &amp; readonly"></a>readwrite &amp; readonly</h5><p>  任何属性都可以声明为readwrite或readonly，且默认设置为readwrite 。<br>  将一个属性声明为readwrite时，编译器将会为这个属性生成setter和getter。<br>  将一个属性生命为readonly时，编译器将只会生成getter。</p>
 <h5 id="assign"><a href="#assign" class="headerlink" title="assign"></a>assign</h5><p>   直接赋值，不更改引用计数，一般用于基础数据类型和C语言类型数据。</p>
@@ -247,31 +248,25 @@
 <p>除了上面的三种情况，剩下的就使用strong来进行修饰。</p>
 <hr>
 
+      
     </div>
 
     
     
     
-
       <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item"></div>
-      <div class="post-nav-item">
-    <a href="/2015/10/18/ios-application-life-cycle/" rel="next" title="应用程序生命周期和状态转换操作策略">
-      应用程序生命周期和状态转换操作策略 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
+        <div class="post-eof"></div>
       </footer>
-    
   </article>
   
   
   
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/39/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><span class="page-number current">40</span>
+  </nav>
 
 
 
@@ -323,7 +318,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础概念"><span class="nav-number">1.</span> <span class="nav-text">基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#atomic-amp-nonatomic"><span class="nav-number">1.0.1.</span> <span class="nav-text">atomic &amp; nonatomic</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#readwrite-amp-readonly"><span class="nav-number">1.0.2.</span> <span class="nav-text">readwrite &amp; readonly</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#assign"><span class="nav-number">1.0.3.</span> <span class="nav-text">assign</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#retain"><span class="nav-number">1.0.4.</span> <span class="nav-text">retain</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#strong"><span class="nav-number">1.0.5.</span> <span class="nav-text">strong</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#copy"><span class="nav-number">1.0.6.</span> <span class="nav-text">copy</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#weak"><span class="nav-number">1.0.7.</span> <span class="nav-text">weak</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进阶问题"><span class="nav-number">2.</span> <span class="nav-text">进阶问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#strong-amp-weak"><span class="nav-number">2.0.1.</span> <span class="nav-text">strong &amp; weak</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#copy-amp-retain"><span class="nav-number">2.0.2.</span> <span class="nav-text">copy &amp; retain</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#深拷贝-amp-浅拷贝"><span class="nav-number">2.0.3.</span> <span class="nav-text">深拷贝 &amp; 浅拷贝</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#property-amp-synthesize"><span class="nav-number">2.0.4.</span> <span class="nav-text">@property &amp; @synthesize</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#block作为实例变量为何要用copy修饰？"><span class="nav-number">2.0.5.</span> <span class="nav-text">block作为实例变量为何要用copy修饰？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么NSString、NSDictionary、NSArray要使用copy修饰？"><span class="nav-number">2.0.6.</span> <span class="nav-text">为什么NSString、NSDictionary、NSArray要使用copy修饰？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#weak、copy、strong、assgin分别用在什么地方？"><span class="nav-number">2.0.7.</span> <span class="nav-text">weak、copy、strong、assgin分别用在什么地方？</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
