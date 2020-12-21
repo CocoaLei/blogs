@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2015/10/21/ios-background-execution/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2015/11/20/iOS-RunLoop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2015/10/21/ios-background-execution/" class="post-title-link" itemprop="url">后台运行探索与解析</a>
+            <a href="/2015/11/20/iOS-RunLoop/" class="post-title-link" itemprop="url">RunLoop 探索与分析</a>
         </h2>
 
         <div class="post-meta">
@@ -187,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2015-10-21 00:00:00" itemprop="dateCreated datePublished" datetime="2015-10-21T00:00:00+08:00">2015-10-21</time>
+              <time title="创建时间：2015-11-20 00:00:00" itemprop="dateCreated datePublished" datetime="2015-11-20T00:00:00+08:00">2015-11-20</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-01-17 11:35:39" itemprop="dateModified" datetime="2019-01-17T11:35:39+08:00">2019-01-17</time>
+                <time title="修改时间：2019-01-17 11:36:00" itemprop="dateModified" datetime="2019-01-17T11:36:00+08:00">2019-01-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,209 +217,112 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="iOS-后台运行"><a href="#iOS-后台运行" class="headerlink" title="iOS 后台运行"></a>iOS 后台运行</h1><hr>
-<p>当用户没有主动的使用你的应用程序时，系统会将它转换为后台运行状态。对于大多说应用程序来说，后台运行状态只是应用程序在被系统挂起前的一个阶段。挂起应用程序是一个改善电池寿命并让系统为前台应用程序释放重要资源的方式。</p>
-<p>大多数应用程序都能很容易的挂起，但是拥有合理的理由在后台继续运行的应用程序也是有的。一个远足应用程序想要随着时间来定位用户的位置，让它能够在地图上显示用户的运动进程。一个音频应用程序可能需要在屏幕锁定时继续播放音乐。其它的应用程序可能想要在后台下载内容以便能够减少将内容呈献给用户的延迟。当你发现你的应用程序需要保持在后台继续运行的时候，iOS系统能够帮助你有效率的且尽可能少地占用系统资源的完成这个目的。</p>
-<p>iOS提供的技术分为三类：</p>
+          <h2 id="RunLoop-基础"><a href="#RunLoop-基础" class="headerlink" title="RunLoop 基础"></a>RunLoop 基础</h2><h3 id="什么是RunLoop？"><a href="#什么是RunLoop？" class="headerlink" title="什么是RunLoop？"></a>什么是RunLoop？</h3><p>RunLoop 是一种让线程能随时处理事件但并不退出的机制，是一个用来调度工作的和协调接受的事件的循环。</p>
+<p>iOS系统中，提供了 NSRunLoop 和 CFRunLoopRef 两个对象来实现 RunLoop。RunLoop 对象管理其需要处理的事件和消息，并提供了一个入口函数来执行事件循环的逻辑。线程执行了这个函数之后，就会一直处于这个函数内部的循环中，直到这个循环结束，函数返回。</p>
+<p>CFRunLoopRef 是在 CoreFoundation 框架内的，提供了纯C函数的API，所有这些API都是线程安全的。</p>
+<p>NSRunLoop 是基于 CFRunLoopRef 的封装，提供了面向对象的API，但这些API不是线程安全的。</p>
+<h3 id="RunLoop与线程的关系"><a href="#RunLoop与线程的关系" class="headerlink" title="RunLoop与线程的关系"></a>RunLoop与线程的关系</h3><p>线程和 RunLoop 之间是一一对应的，其关系保存在一个全局的 Dictionary 中。线程刚创建是并没有 RunLoop，如果你不主动获取，那它一直不会有。RunLoop 的创建是在第一次获取时发生的，RunLoop 的销毁是在线程结束时发生的。</p>
+<p>你只能在一个线程内部获取它的 RunLoop(主线程除外)。</p>
+<h3 id="RunLoop的对外接口"><a href="#RunLoop的对外接口" class="headerlink" title="RunLoop的对外接口"></a>RunLoop的对外接口</h3><p>在 CoreFoundation 中关于 RunLoop 的类有以下几个：</p>
 <ul>
-<li>在前台开始短任务的应用程序可以在进入后台状态时向系统请求完成这个任务的额外时间。</li>
-<li>在前台启动下载的应用程序可以将这些下载的管理移交给系统，从而允许在下载过程中暂停或终止该应用。</li>
-<li>需要在后台运行以支持特定类型任务的应用程序可以声明对一个或多个后台执行模式的支持。</li>
+<li>CFRunLoopRef</li>
+<li>CFRunLoopModeRef</li>
+<li>CFRunLoopSourceRef</li>
+<li>CFRunLoopTImerRef</li>
+<li>CFRunLoopObserverRef</li>
 </ul>
-<p>尽可能避免在后台执行任何任务除非这样做能全面的提升用户的体验。应用程序可能会因为启动了另一个应用程序，锁定了屏幕或现在不使用它而被转入后台。在这些情况下，用户都表明你的应用程序现在不需要做任何有意义的工作。在这种情况下继续运行只会浪费设备的电量并可能导致用户强制的完全退出你的应用程序。所以你应该审慎的考虑在后台运行应用程序。</p>
-<h2 id="执行有限长度的任务"><a href="#执行有限长度的任务" class="headerlink" title="执行有限长度的任务"></a>执行有限长度的任务</h2><p>被转入后台的应用程序期待尽可能快的进入非活动状态以便它们能够被系统挂起。如果你的应用程序正在执行某个任务而且完成这个任务还需要一些时间的话，你可用调用 <code>UIApplication</code> 的<code>beginBackgroundTaskWithName:expirationHandler:</code> 或<code>beginBackgroundTaskWithExpirationHandler:</code>方法来请求一些额外的执行时间。调用这两个方法的任一个都会暂时的推迟你的应用程序被挂起，从而为完成你正在进行的任务赢得一些额外的时间。一旦你的应用程序完成了任务，你必须调用<code>endBackgroundTask:</code>方法让系统知道你的应用程序已经完成了任务，可以被挂起了。</p>
-<p>每个调用<code>beginBackgroundTaskWithName:expirationHandler:</code> 或 <code>beginBackgroundTaskWithExpirationHandler:</code> 方法的应用程序都会生成一个与相应的任务相关的标记。当你的应用程序完成任务时，它必须以这个标记来调用 <code>endBackgroundTask:</code>方法告知系统任务已经完成。调用 <code>endBackgroundTask:</code>方法失败会导致你的应用程序被终止。如果你在启动任务的时候提供了一个完成处理模块，系统会调用这个模块并给你最后一次结束任务避免程序被终止的机会。</p>
-<p>你不需要一直到等到应用程序进入后台才指定后台任务。一个更有用的设计是在开始任务之前调用<code>beginBackgroundTaskWithName：expirationHandler：</code>或<code>beginBackgroundTaskWithExpirationHandler：</code>方法，一旦完成就调用<code>endBackgroundTask：</code>方法.</p>
-<p>下面的的代码展示了当你的应用程序进入后台时如何开始一个长时运行的任务。在这个例子中，开始后台任务的请求包含了一个完成处理模块以防这个任务耗时太长。这个任务稍后会被提交到一个异步执行的队列中以便<code>applicationDidEnterBackground:</code>方法能够正常返回。blocks的使用简化了维护一些重要变量引用所需要的代码。<code>bgTask</code>变量是指向存储当前任务标识符的指针的类的成员变量，它在调用这个方法之前被初始化。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (void)applicationDidEnterBackground:(UIApplication *)application &#123;</span><br><span class="line">    bgTask &#x3D; [application beginBackgroundTaskWithName:@&quot;MyTask&quot; expirationHandler:^&#123;</span><br><span class="line">        &#x2F;&#x2F; Clean up any unfinished task business by marking where you</span><br><span class="line">        &#x2F;&#x2F; stopped or ending the task outright.</span><br><span class="line">        [application endBackgroundTask:bgTask];</span><br><span class="line">        bgTask &#x3D; UIBackgroundTaskInvalid;</span><br><span class="line">    &#125;];</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; Start the long-running task and return immediately.</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line"> </span><br><span class="line">        &#x2F;&#x2F; Do the work associated with the task, preferably in chunks.</span><br><span class="line"> </span><br><span class="line">        [application endBackgroundTask:bgTask];</span><br><span class="line">        bgTask &#x3D; UIBackgroundTaskInvalid;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个 RunLoop 包含若干个 Mode ，每个 Mode 又包含若干个 Source/Timer/Observer。每次调用 RunLoop 的主函数时，只能指定其中一个 Mode。如果需要切换 Mode ，只能退出 RunLoop，再重新指定一个 Mode 进入。这样做的目的是为了分隔开不同组的 Source/Timer/Observer，使其不能互相影响。</p>
+<p>CFRunLoopSourceRef 是事件产生的地方，有两个版本 Source0 和 Source1：</p>
+<ul>
+<li>Source0 只包含了一个回调(函数指针)，它并不能主动触发事件。使用时，你需要先调用 CFRunLoopSourceSignal(source)，将这个 Source 标记为待处理，然后手动调用 CFRunLoopWakeUp(runLoop) 来唤醒 RunLoop ，让其处理这个事件。</li>
+<li>Source1 包含了一个 mach_port 和一个回调(函数指针)，被用于通过内核和其它线程相互发送消息，它能主动唤醒 RunLoop 的线程。</li>
+</ul>
+<p>CFRunLoopTimerRef 是基于时间的触发器，他和 NSTimer 是 toll-free bridge 的，可以混用。包含一个时间长度和一个回调(函数指针)。当其加入到 RunLoop 中时，RunLoop 会注册对应的时间点，当时间点到时，RunLoop 会被唤醒执行那个回调。</p>
+<p>CFRunLoopObserverRef 是观察者，每个 Observer 都包含了一个回调(函数指针)，当 RunLoop的状态发生变化时，观察者就能通过回调接收到这个变化。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActiviry) &#123;</span><br><span class="line">	kCFRunLoopEntry			&#x3D;	(1UL &lt;&lt; 0),	&#x2F;&#x2F; 即将进入 RunLoop</span><br><span class="line">  	kCFRunLoopBeforeTimers	&#x3D;	(1UL &lt;&lt; 1), &#x2F;&#x2F; 即将处理 Timer</span><br><span class="line">    kCFRunLoopBeforeSources	&#x3D;	(1UL &lt;&lt; 2), &#x2F;&#x2F; 即将处理 Source</span><br><span class="line">  	kCFRunLoopBeforeWaiting	&#x3D;	(1UL &lt;&lt; 5), &#x2F;&#x2F; 即将进入休眠</span><br><span class="line">    kCFRunLoopAfterWaiting	&#x3D;	(1UL &lt;&lt; 6), &#x2F;&#x2F; 刚从休眠中唤醒</span><br><span class="line">    kCFRunLoopExit			&#x3D;	(1UL &lt;&lt; 7), &#x2F;&#x2F; 即将退出 RunLoop</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p><strong>注意:</strong> 你总是要在开始一个任务的时候提供完成处理模块，但是如果你想知道你的应用程序还能运行多长时间，你可以通过<code>UIApplication</code>对象的<code>backgroundTimeRemaining</code>属性来获得。</p>
-</blockquote>
-<p>在你的完成处理模块中，你可以加入一些必须的代码来关闭你的任务。但是，完成处理模块中的任何代码都不应该耗费太长的时间去执行，因为你的完成处理模块一旦被调用，就说明你的应用程序已经快要被关闭了。因此，只执行最少的清理状态信息并结束任务。</p>
-<h2 id="在后台执行下载任务"><a href="#在后台执行下载任务" class="headerlink" title="在后台执行下载任务"></a>在后台执行下载任务</h2><p>当下载文件时，应用程序应该使用<code>NSURLSession</code>对象来开始下载，这样系统就能控制下载的进程即使应用程序被挂起或终止。当你配置<code>NSURLSession</code>对象进行后台传输时，系统用一个单独的队列管理这些任务并以常规方式将传输的状态报告给你的应用程序。如果你的应用程序在传输正在进行时被终止，系统会在后台继续传输，并在传输完成或一个甚至多个任务需要你的应用程序时启动你的应用程序(若果使用)。</p>
-<p>为了支持后台传输，你必须合适地配置你的<code>NSURLSession</code>对象。为了配置<code>NSURLSession</code>有必须先创建一个<code>NSURLSessionConfiguration</code>对象并给它的一些属性赋予合适的值。然后将这个<code>NSURLSessionConfiguration</code>对象在初始化<code>NSURLSession</code>对象时传递过去。</p>
-<p>创建支持后台下载的<code>NSURLSessionConfiguration</code>对象的过程如下：</p>
-<p>   1.使用<code>NSURLSessionConfiguration</code>的<code>backgroundSessionConfigurationWithIdentifier：</code>方法创建配置对象。</p>
-<p>   2.将配置对象的<code>sessionSendLaunchEvents</code>属性的值设置为<code>YES</code>。</p>
-<p>   3.如果你的应用程序在前台进行转移，建议你将<code>sessionSendsLaunchEvents</code>属性设置为<code>YES</code>。</p>
-<p>   4.根据需要配置配置对象的任何其他属性。</p>
-<p>   5.使用配置对象创建您的<code>NSURLSession</code>对象。</p>
-<p>一旦配置完成，你的<code>NSURLSession</code>对象会在合适的时间将上传和下载任务移交给系统。如果任务在你的应用程序仍在运行时完成(无论是在前台或是后台)，<code>NSURLSession</code>对象都会以常规方式通知它的代理。如果任务还未完成时你的应用程序就被终止，系统会自动地在后台管理任务。如果用户终止了你的应用程序，系统会停止任何待处理的任务。</p>
-<p>当所有与后台会话管理的任务完成时，系统会重启被终止的应用程序(假定<code>sessionSendsLaunchEvents</code>属性被设置为<code>YES</code>而且这个应用程序不是被用户强制终止的)并调用应用代理的<code>application:handleEventsForBackgroundURLSession:completionHandler:</code>方法。(系统还可以重新启动应用程序来处理身份验证或其他需要你的应用程序注意的任务的相关事件)在执行该委托方法时，请使用提供的标识符创建一个新的与之前相同的<code>NSURLSessionConfiguration</code>和<code>NSURLSession</code>对象。 系统将你的新会话对象重新连接到先前的任务，并将其状态报告给会话对象的委托。</p>
-<h2 id="执行长时间运行的任务"><a href="#执行长时间运行的任务" class="headerlink" title="执行长时间运行的任务"></a>执行长时间运行的任务</h2><p>对于需要更多后台执行时间的任务，你必须请求特定的权限才能在后台运行它们而不被挂起。iOS中，只有特定类型的应用程序被允许在后台运行：</p>
-<ul>
-<li>在后台播放音频内容给用户，比如音乐播放器</li>
-<li>在后台录制音频文件</li>
-<li>使用户随时了解其位置的应用程序，比如导航应用程序</li>
-<li>支持VoIP的应用程序</li>
-<li>需要经常性的下载和处理新内容的应用程序</li>
-<li>周期性的从外部配件接收更新的应用程序</li>
-</ul>
-<p>使用这些服务的应用程序必须声明其支持的服务，并使用系统框架来实现这些服务的相关方面。</p>
-<h3 id="声明你的应用程序支持的后台模式"><a href="#声明你的应用程序支持的后台模式" class="headerlink" title="声明你的应用程序支持的后台模式"></a>声明你的应用程序支持的后台模式</h3><p>你必须在应用程序使用后台任务之前声明你要支持的后台任务类型。在Xcode 5和之后，你需要在你工程的Capabilities选项卡中声明你要支持哪些后台模式。启用后台模式选项将<code>UIBackgroundModes</code>键添加到应用程序的<code>Info.plist</code>文件中。</p>
-<p>下表列出了你可以指定的后台模式的值：</p>
-<table>
-<thead>
-<tr>
-<th>Xcode后台模式</th>
-<th>UIBackgroundModes 值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>音频和AirPlay</td>
-<td><code>audio</code></td>
-<td>应用程序在后台播放或录制音频内容。用户必须在第一次使用前就授权使用麦克风。</td>
-</tr>
-<tr>
-<td>位置更新</td>
-<td><code>location</code></td>
-<td>使用户随时知道他们的位置，即使应用在后台运行。</td>
-</tr>
-<tr>
-<td>网络电话</td>
-<td><code>voip</code></td>
-<td>应用程序提供给用户通过网络连接进行通话的能力。</td>
-</tr>
-<tr>
-<td>Newsstand下载</td>
-<td><code>newsstand-content</code></td>
-<td>Newsstand类型的应用程序在后台下载并处理报纸或杂志内容。</td>
-</tr>
-<tr>
-<td>外部附件通信</td>
-<td><code>external-accessory</code></td>
-<td>应用程序与需要通过外部附件框架定期提供更新的硬件配件配合使用。</td>
-</tr>
-<tr>
-<td>使用蓝牙设备</td>
-<td><code>bluetooth-central</code></td>
-<td>应用程序使用需要通过Core Bluetooth框架定期发送更新的蓝牙设备。</td>
-</tr>
-<tr>
-<td>作为蓝牙LE附件</td>
-<td><code>bluetooth-peripheral</code></td>
-<td>应用程序通过Core Bluetooth框架支持外设模式下的蓝牙通信。使用此模式需要用户授权</td>
-</tr>
-<tr>
-<td>后台抓取</td>
-<td><code>fetch</code></td>
-<td>应用程序定期的从网路下载并处理少量数据。</td>
-</tr>
-<tr>
-<td>远程推送</td>
-<td><code>remote-notification</code></td>
-<td>应用程序想要在接收到一个远程推送时开始下载内容。</td>
-</tr>
-</tbody></table>
-<p>以上每种模式都让系统知道应该在合适的时间唤醒或启动应用程序来响应相关的事件。</p>
-<h4 id="追踪用户位置"><a href="#追踪用户位置" class="headerlink" title="追踪用户位置"></a>追踪用户位置</h4><p>在后台追踪用户的位置的方式有好几种，大多数方式实际上并不需要你的应用程序在后台不断的运行。</p>
-<ul>
-<li>重大位置变更</li>
-<li>仅在前台定位服务</li>
-<li>后台定位服务</li>
-</ul>
-<p>对于不需要高精度位置数据的应用程序来说，推荐使用重大位置变更定位服务。这个服务只有在用户的位置发生非常重大的变化时才会产生位置更新；它对社交类应用程序或者给用户提供不是很重要的位置相关信息的应用程序来说是非常理想的定位方式。如果当一个位置更新发生时应用程序被终止，系统会在后台唤醒它来处理这个更新。如果应用程序开始使用了这个服务然后被终止，当新的位置更新产生时，系统会自动重启它。</p>
-<p>仅前台定位服务和后台定位服务都使用标准的Core Location服务获取位置数据。唯一的区别是，如果应用程序被挂起，则仅前台定位服务停止发送更新。 前台定位服务适用于只在前台需要位置数据的应用程序。</p>
-<p>你可以在Xcode工程中的<code>Capabilities</code>选项卡中启用支持定位服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>location</code>来启用这个服务)。启用这个服务并不会阻止系统挂起你的应用程序，但是它会告知系统无论何时新的位置更新被发送过来都应该唤醒应用程序来处理。</p>
-<blockquote>
-<p><strong>重要提示:</strong>鼓励你谨慎使用标准的定位服务或改用重要的位置更改服务。 定位服务需要经常使用iOS设备的板载无线电硬件。 连续运行这个硬件会消耗大量的电量。 如果你的应用程序不需要向用户提供精确且连续的位置信息，则最好尽量减少使用位置服务。</p>
-</blockquote>
-<h4 id="在后台播放或录制音频"><a href="#在后台播放或录制音频" class="headerlink" title="在后台播放或录制音频"></a>在后台播放或录制音频</h4><p>一个需要连续播放或录制音频的应用程序(即使应用处在后台)可以注册后台服务，实现即使在后台也能执行这些任务。你可以在Xcode工程中的<code>Capabilities</code>选项卡中启用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>audio</code>来启用这个服务)。在后台播放音频内容的应用程序必须播放听得见的内容而不能是无声的。</p>
-<p>后台音频应用程序的典型例子包括：</p>
-<ul>
-<li>音乐播放程序</li>
-<li>音频录制程序</li>
-<li>支持通过AirPlay播放音频或视频的程序</li>
-<li>VoIP程序</li>
-</ul>
-<p>当<code>UIBackgroundModes</code>键包含<code>audio</code>值时，系统的媒体框架会自动阻止相关的应用程序被挂起。只要应用程序还在播放视屏或音频内容，录制音频，它就还能在后台运行。然而，一旦录制或播放停止，就会被系统挂起。</p>
-<p>你可以使用任何系统音频框架来处理后台音频播放，并且使用这些框架的过程和在前台使用相同(对于通过AriPlay播放视频内容来说，你可以使用Media Player或AVFoundation框架来实现)。因为应用程序在播放媒体文件时不会被挂起，所以即使应用程序在后台也能正常的进行回调操作。在你的回调中，你应该只做为播放提供数据的工作，不应该在回调中执行任何与播放无关的任务。</p>
-<p>在任何给定的时刻，因为可能有不止一个应用程序支持音频服务，所以由系统来决定哪个应用程序能够播放或录制音频。前台应用程序总是有优先的音频操作权利。可能有不止一个应用程序被允许在后台播放音频，这个时候决定哪个应用程序能够播放音频就取决于每个应用程序的音频会话的配置。</p>
-<h4 id="实现一个VoIP应用程序"><a href="#实现一个VoIP应用程序" class="headerlink" title="实现一个VoIP应用程序"></a>实现一个VoIP应用程序</h4><p>一个Voice over Internet Protocol应用程序允许用户通过互联网而不是设备的蜂窝网络设备进行语音通话。这样的一个应用程序需要为它的服务维持一个持续的网络连接，以便它能接收到打进来的电话和其它相关数据。系统允许VoIP应用程序被挂起并给它提供了监测它们的sockets的便利，而不是让它一直处于唤醒状态。当检测到传入流量时，系统唤醒VoIP程序并将socket的控制权交还给它。</p>
-<p>为了配置VoIP应用程序，你必须：</p>
-<ul>
-<li>在Xcode工程中的<code>Capabilities</code>选项卡中启用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>voip</code>来启用这个服务)。</li>
-<li>为VoIP应用程序配置一个socket。</li>
-<li>在移动到后台之前，调用<code>setKeepAliveTimeout:handler:</code>方法来安装一个定期执行的程序。你的应用程序可以使用这个处理程序来保持服务连接。</li>
-<li>配置你的音频会话来操作进入或退出活跃的使用状态的转换。</li>
-</ul>
-<p>设置<code>UIBackgroundModes</code>的值为<code>voip</code>让系统知道，当VoIP应用程序需要管理它的网络会话时，系统应该允许它在后台运行。为了让VoIP应用程序总是可用，系统会在启动后立刻重新启动拥有这个键值的应用程序。</p>
-<p>大多数的VoIP应用程序也需要配置后台音频模式，因为它也需要在后台发送音频内容。因此，你应该将<code>UIBackgroundModes</code>的值设置为<code>audio</code>和<code>voip</code>。如果你不这样做的话，你的应用程序将不能在后台播放或录制音频内容。</p>
-<h4 id="适时的获取少量内容"><a href="#适时的获取少量内容" class="headerlink" title="适时的获取少量内容"></a>适时的获取少量内容</h4><p>需要定期的检查新内容的应用程序可以请求系统唤醒它们，以便它们可以初始化一个获取内容的拉取操作。为了支持这种模式，你需要在Xcode工程中的<code>Capabilities</code>选项卡中启用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>fetch</code>来启用这个服务)。启用这个服务并不能保证系统会给你的应用程序任何时间来执行后台拉取操作。系统必须在你的应用程序拉取内容的请求和其它应用程序以及系统自身之间做出平衡。在评估所有信息后，如果有很好的机会的话，系统会给请求拉取内容的应用程序一些执行时间。</p>
-<p>当有好机会产生时，系统会唤醒或启动你的应用程序到后台并调用应用程序代理对象的<code>application:performFetchWithCompletionHandler:</code>方法。使用这个方法来检查新内容，如果新内容可用则开始下载操作。一旦新内容下载完成，你必须将新内容是否可用的结果传递给提供好的完成处理块。执行这个块告诉系统它可以将你的应用程序转换到挂起状态并评估其使用功率。可以快速下载少量内容并在它们有可用的下载内容时准确反应的应用程序，比起花费更长的下载时间或声称有可用的下载内容但没有下载任何东西的应用程序，更可能在未来获得执行时间。</p>
-<p>在下载任何内容时，推荐你使用<code>NSURLSession</code>类来开始和管理你的下载。</p>
-<h4 id="使用推送通知来开始下载"><a href="#使用推送通知来开始下载" class="headerlink" title="使用推送通知来开始下载"></a>使用推送通知来开始下载</h4><p>如果你的服务器在有新的应用程序可用内容时向用户的设备发送了一个推送通知，你可以请求系统在后台运行你的应用程序并立即开始下载新的可用内容。这种后台模式意图在于尽可能减少从你的用户看见推送通知到你的应用程序可以展示相关内容之间的时间。应用程序通常会在用户看见推送通知的差不多相同的时间被唤醒，但是仍会给你更多的准备时间。</p>
-<p>为了支持这种模式，你需要在Xcode工程中的<code>Capabilities</code>选项卡中启这项用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>remote-notification</code>来启用这个服务)。</p>
-<p>对于一个使用推送通知来触发下载操作的应用程序来说，通知的有效内容必须包含值为<code>1</code>的<code>content-available</code>的键。当这个键值对被检测到时，系统会启动或唤醒你的应用程序到后台同时调用应用程序的代理对象的<code>application:didReceiveRemoteNotification:fetchCompletionHandler:</code>方法。你应该在这个方法里实现对相关内容的下载并将下载好的内容在加入到你的应用程序中。</p>
-<p>在下载任何内容时，推荐你使用<code>NSURLSession</code>类来开始和管理你的下载。</p>
-<h4 id="在后台下载新闻站内容"><a href="#在后台下载新闻站内容" class="headerlink" title="在后台下载新闻站内容"></a>在后台下载新闻站内容</h4><p>下载新闻和新的杂志文章的新闻站应用程序可以注册在后台进行这些下载。你需要在Xcode工程中的<code>Capabilities</code>选项卡中启这项用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>newsstand-content</code>来启用这个服务)。当你提供这个关键字时，如果你的应用程序没有在运行，系统会启动你的应用程序以便它能开始下载新的文章。</p>
-<p>当你使用Newsstand Kit框架来开始一个下载时，由系统为你的应用程序操作下载的进程。即使你的应用程序被挂起或终止，系统仍会继续下载文件。当下载操作完成后，系统将下载好的文件传输到你的应用程序的沙盒并向你的应用程序发送一个通知。如果应用程序没有在运行，这个通知会唤醒它并给它一个处理新的下载文件的机会。如果在下载过程中发生了错误，你的应用程序也会这样被唤醒来处理这个错误。</p>
-<h4 id="与外部附件通信"><a href="#与外部附件通信" class="headerlink" title="与外部附件通信"></a>与外部附件通信</h4><p>使用外部附件的应用程序可以请求在附件发送了一个更新时被唤醒，即使它处在挂起状态。这种支持对于某些定期发送数据的附件来说是非常重要的，比如心率监视器。你需要在Xcode工程中的<code>Capabilities</code>选项卡中启这项用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>external-accessory</code>来启用这个服务)。当你启用这个模式时，外部附件框架不会关闭活跃的外部附件会话。当外部附件发送来新的内容时，这个框架唤醒你的应用程序以便它能处理这些数据内容。在外部附件建立连接或失去连接时，系统也会唤醒应用程序来进行处理。</p>
-<p>任何支持附件更新后台处理的应用程序都必须遵循以下基本准则：</p>
-<ul>
-<li><p>应用程序必须提供一个界面，让用户来开始或者停止附件更新事件的发送。</p>
-</li>
-<li><p>一旦被唤醒，应用程序大约有10S时间来处理数据。理想情况下，它应该尽可能快速地处理数据然后转换到挂起状态。但是，如果需要更多的时间，应用程序可以使用<code>beginBackgroundTaskWithExpirationHandler:</code>方法来申请额外的执行时间。</p>
-</li>
-</ul>
-<h4 id="与蓝牙附件通信"><a href="#与蓝牙附件通信" class="headerlink" title="与蓝牙附件通信"></a>与蓝牙附件通信</h4><p>使用蓝牙外设的应用程序可以请求在外设发送了一个更新时被唤醒，即使它处在挂起状态。这种支持对于需要定期发送数据的Bluetooth-LE外设来说是非常重要的。你需要在Xcode工程中的<code>Capabilities</code>选项卡中启这项用服务(你也可以通过在<code>Info.plist</code>文件中设置<code>UIBackgroundModes</code>的值为<code>bluetooth-central</code>来启用这个服务)。当你启用这个模式时，Core Bluetooth框架会保持相应外设的任何活跃会话连接。此外，当有新的数据从外设传来，系统会唤醒应用程序让他能够处理数据。在外设建立连接或失去连接时，系统也会唤醒应用程序来进行处理。</p>
-<p>iOS 6中，一个使用蓝牙外设的应用程序也可以在外设模式下运行。要充当蓝牙外设，你需要在Xcode工程中的<code>Capabilities</code>选项卡中启这项用服务(您也可以通过在应用程序<code>Info.plis</code>t文件中包含<code>UIBackgroundModes</code>键和<code>bluetooth-peripheral</code>值来启用此支持)。启用此模式可让Core Bluetooth框架在后台简单地唤醒应用程序，以便它可以处理外设的相关请求。</p>
-<p>支持蓝牙数据后台处理的任何应用程序都必须基于会话，并遵循以下基本准则：</p>
-<ul>
-<li><p>应用程序必须提供一个界面，允许用户启动和停止蓝牙事件的传递。</p>
-</li>
-<li><p>被唤醒后，应用程序大概需要10秒钟才能处理数据。理想情况下，它应该尽可能快地处理数据，并允许自己再次暂停。但是，如果需要更多的时间，应用程序可以使用<code>beginBackgroundTaskWithExpirationHandler</code>：方法来请求更多的时间，它应该只有在绝对必要的时候才这样做。</p>
-<p>​</p>
-</li>
-</ul>
-<h2 id="在后台获得用户的注意"><a href="#在后台获得用户的注意" class="headerlink" title="在后台获得用户的注意"></a>在后台获得用户的注意</h2><p>通知是处在挂起，在后台运行或没有运行的应用程序获得用户的注意的一种方式。应用程序可以使用本地通知来显示提醒框，播放声音，标记应用程序的图标或者全部一起使用。比如，一个闹钟应用程序可能会使用本地通知来播放闹铃声并显示一个提醒框来使闹钟不可用。当一个通知被发送给用户，用户必须决定是否授权让应用程序来到前台。如果应用程序已经在前台，本地通知将会被静默的发送给你的应用程序而不是发送给用户。</p>
-<p>为了安排本地通知的发送，需要创建一个配置了通知的各个参数的<code>UILocalNotification</code>类的实例并调用<code>UIApplication</code>类的方法。本地通知对象包含了发送通知的类型和在什么时间发送它的信息。<code>UIApplication</code>类的方法提供了是立即发送还是按时间表发送通知的选项。</p>
-<p>下面的代码片段展示了如何安排一个由用户设置的使用了日期和时间的闹钟的例子。这个例子在一个时间只配置了一个闹钟并在安排它之前终止了前一个闹钟(你的应用程序在任何给定的时刻都不能拥有超过128个处在活跃状态的本地通知，它们每一个都能设置成以固定的时间间隔重复)。如果闹钟被触发时，应用程序没有运行或者处在后台，闹钟会弹出提醒框并在后台播放音频。如果应用程序是活动且处在前台，则会调用应用程序的代理对象的<code>application:didReceiveLocalNotification:</code>方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (void)scheduleAlarmForDate:(NSDate*)theDate &#123;</span><br><span class="line">    UIApplication* app &#x3D; [UIApplication sharedApplication];</span><br><span class="line">    NSArray*    oldNotifications &#x3D; [app scheduledLocalNotifications];</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; Clear out the old notification before scheduling a new one.</span><br><span class="line">    if ([oldNotifications count] &gt; 0)</span><br><span class="line">        [app cancelAllLocalNotifications];</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; Create a new notification.</span><br><span class="line">    UILocalNotification* alarm &#x3D; [[UILocalNotification alloc] init];</span><br><span class="line">    if (alarm)</span><br><span class="line">    &#123;</span><br><span class="line">        alarm.fireDate &#x3D; theDate;</span><br><span class="line">        alarm.timeZone &#x3D; [NSTimeZone defaultTimeZone];</span><br><span class="line">        alarm.repeatInterval &#x3D; 0;</span><br><span class="line">        alarm.soundName &#x3D; @&quot;alarmsound.caf&quot;;</span><br><span class="line">        alarm.alertBody &#x3D; @&quot;Time to wake up!&quot;;</span><br><span class="line"> </span><br><span class="line">        [app scheduleLocalNotification:alarm];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Source/Timer/Observer 被统称为 Mode Item，一个 item 可以被同时加入多个 Mode。但是一个item被重复加入一个 Mode 不会产生效果。如果一个 Mode 中没有一个 item，则 RunLoop会直接退出，不进入循环。</p>
+<h3 id="RunLoop-的Mode"><a href="#RunLoop-的Mode" class="headerlink" title="RunLoop 的Mode"></a>RunLoop 的Mode</h3><p>CFRunLoopMode 和 CFRunLoop 的结构大致如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">CFRunLoopMode</span> &#123;</span></span><br><span class="line">	CFStringRef			_name;</span><br><span class="line">  	CFMutableSetRef		_source0;</span><br><span class="line">  	CFMutableSetRef		_source1;</span><br><span class="line">  	CFMutableArrayRef	_observers;</span><br><span class="line">  	CFMutableArrayRef	_timers;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struce __CFRunLoop &#123;</span><br><span class="line">	CFMutableSetRef		_commonModes;</span><br><span class="line">  	CFMutableSetRef		_commonModeItems;</span><br><span class="line">  	CFRunLoopModeRef	_currentMode;</span><br><span class="line">  	CFMutableSetRef		_modes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>本地通知使用的音频文件和推送通知使用的要求相同。自定义的音频文件必须位于你应用程序主要包中且必须是以下几种格式：Linear PCM，MA4，μ-Law或者a-Law。你也可以指定<code>UILocalNotificationDefaultSoundName</code>常量来使设备播放默认的提醒声音。当通知被发送且音频被播放时，系统也会触发设备震动来配合。</p>
-<h2 id="何时启动应用程序进入后台"><a href="#何时启动应用程序进入后台" class="headerlink" title="何时启动应用程序进入后台"></a>何时启动应用程序进入后台</h2><p>支持后台执行的应用程序可能会被系统重启来处理发生的事件。如果应用程序不是被用户强制退出，系统会启动应用程序在下列事件发生时：</p>
+<p>一个 Mode 可以将自己标记为 “Common” 属性(通过将其 ModeName 添加到 RunLoop 的 “CommonModes”中)。每当 RunLoop 的内容发生变化时，RunLoop 都会自动将 _commonModeItmes 里的 Source/Observer/Timer 同步到具有 “Common” 标记的所有 Mode 里。</p>
+<p>CFRunLoop对外暴露的管理 Mode 的接口只有两个：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CFRunLoopAddCommonMode(CFRunLoopRef runloop, CFStringRef modeName);</span><br><span class="line">CFRunLoopRunInMode(CFStringRef modeName);</span><br></pre></td></tr></table></figure>
+
+<p>CFRunLoopModeRef 暴露的管理 Mode Item 接口有：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CFRunLoopAddSource(CFRunLoopRef runloop, CFRunLoopSourceRef source, CFStringRef modeName);</span><br><span class="line">CFRunLoopAddObserver(CFRunLoopRef runloop, CFRunLoopObserverRef observer, CFStringRef modeName);</span><br><span class="line">CFRunLoopAddTimer(CFRunLoopRef runloop, CFRunLoopTimerRef timer, CFStringRef modeName);</span><br><span class="line">CFRunLoopRemoveSource(CFRunLoopRef runloop, CFRunLoopSourceRef source, CFStringRef modeName);</span><br><span class="line">CFRunLoopRemoveObserver(CFRunLoopRef runloop, CFRunLoopObserverRef observer, CFStringRef modeName);</span><br><span class="line">CFRunLoopRemoveTimer(CFRunLoopRef runloop, CFRunLoopTimerRef timer, CFStringRef modeName);</span><br></pre></td></tr></table></figure>
+
+<p>你只能通过 mode name 来操作内部的 mode，当你传入一个新的 mode name 时但 RunLoop内部没有对应的 mode 时，RunLoop 会自动的帮你创建对应的 CFRunLoopModeRef。对于一个 RunLoop ，其内部的 mode 只能添加不能删除。</p>
+<p>Apple公开提供的 Mode 只有两个：kCFRunLoopDefaultMode(NSDefaultRunLoopMode) 和 UITrackingRunLoopMode，你可以用这两个 Mode Name 来操作其对应的 Mode。</p>
+<p>同时 Apple 还提供了一个操作 Common 标记的字符串 : kCFRunLoopModes(NSDefaultRunLoopCommonModes)，你可以用这个字符串来操作 Common Items，或标记一个 Mode 为 “Common”。使用时要注意区分这个字符串和其它 Mode Name。</p>
+<h3 id="RunLoop-的内部逻辑"><a href="#RunLoop-的内部逻辑" class="headerlink" title="RunLoop 的内部逻辑"></a>RunLoop 的内部逻辑</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; DefaultMode 启动</span><br><span class="line">void CFRunLoopRun(void) &#123;</span><br><span class="line">  CFRunLoopRunSpecific(CFRunLoopGetCurrent(),kCFRunLoopDefaultMode, 1.0e10, false);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 用指定的 Mode 启动，允许设置 RunLoop 超时时间</span><br><span class="line">int CFRunLoopRunInMode(CFStringRef ModeName, CFTimeInterval seconds, Boolean stopAfterHandle) &#123;</span><br><span class="line">  return CFRunLoopSpecific(CFRunLoopGetCurrent(), modeName , seconds ,returnAfterSourceHandle)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; RunLoop 的实现</span><br><span class="line">int CFRunLoopRunSpecific(runloop, modeName ,seconds , stopeAfterHandle) &#123;</span><br><span class="line">  &#x2F;&#x2F; 根据 ModeName 找到对应 Mode</span><br><span class="line">  CFRunLoopModeRef currentMode &#x3D; __CFRunLoopFinMode(runloop, modeName, false);</span><br><span class="line">  &#x2F;&#x2F; 如果 Mode 里没有 source&#x2F;timer&#x2F;observer，直接返回</span><br><span class="line">  if (__CFRunLoopModeIsEmpty(currentMode)) &#123;</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  &#x2F;&#x2F; 通知 Observer , RunLoop 即将进入 loop</span><br><span class="line">  __CFRunLoopDoObservers(runloop, currentMode, kCFRunLoopEntry);</span><br><span class="line">  &#x2F;&#x2F; 进入 loop</span><br><span class="line">  __CFRunLoopRun(runloop, currentMode, seconds, returnAfterSourceHandle) &#123;</span><br><span class="line">    Boolean sourceHandledThisLoop	&#x3D;	NO;</span><br><span class="line">    int retVal	&#x3D;	0;</span><br><span class="line">    do &#123;</span><br><span class="line">      &#x2F;&#x2F; 通知 Observers : RunLoop 即将触发 Timer 回调</span><br><span class="line">      __CFRunLoopDoObservers(runloop, currentMode, kCFRunLoopBeforeTimers);</span><br><span class="line">      &#x2F;&#x2F; 通知 Observers : RunLoop 即将触发 Source0 (非port) 回调</span><br><span class="line">      __CFRunLoopDoObservers(runloop, currentMode, kCFRunLoopBeforeSources);</span><br><span class="line">      &#x2F;&#x2F; 执行被加入的 block</span><br><span class="line">      __CFRunLoopDoBlocks(runloop, currentMode);</span><br><span class="line">      &#x2F;&#x2F; RunLoop 触发 Source0(非port) 回调</span><br><span class="line">      sourceHandledThisLoop	&#x3D;	__CFRunLoopDoSource0(runloop, currentMode, stopAfterHandele);</span><br><span class="line">      &#x2F;&#x2F; 执行被加入的 block</span><br><span class="line">      __CFRunLoopDoBlocks(runloop, currentMode);</span><br><span class="line">      </span><br><span class="line">      &#x2F;&#x2F; 如果有 Source1 处于 ready 状态，直接处理这个 Source1 然后跳转去处理消息</span><br><span class="line">      if (__Source0DidDispatchPortLastTime) &#123;</span><br><span class="line">        Boolean hasMsg	&#x3D;	__CFRunLoopServiceMachPort(dispatchPort, &amp;msg);</span><br><span class="line">        if (hasMsg)</span><br><span class="line">        &#123;</span><br><span class="line">          goto handle_msg;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      &#x2F;&#x2F; 通知 Observers : RunLoop 的线程即将结束进入休眠(Sleep)</span><br><span class="line">      if (!sourceHandleThisLoop) &#123;</span><br><span class="line">        __CFRunLoopDoObservers(runloop, currentMode, kCFRunLoopBeforeWaiting);</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      &#x2F;&#x2F; 调用 mach_msg 等待接受 mach_port 的消息。线程进入休眠，直到被下面一个事件唤醒</span><br><span class="line">      &#x2F;&#x2F; 1.一个基于 port 的 Source 的事件</span><br><span class="line">      &#x2F;&#x2F; 2.一个 Timer 时间到了</span><br><span class="line">      &#x2F;&#x2F; 3.RunLoop 自身的超时时间到了</span><br><span class="line">      &#x2F;&#x2F; 4.被其它调用者手动唤醒了</span><br><span class="line">      __CFRunLoopServiceMachPort(waitSet, &amp;msg, sizeof(msg_buffer), &amp;livePort) &#123;</span><br><span class="line">        mach_msg(msg, MACH_RCV_MSG, port);</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      &#x2F;&#x2F; 通知 Observers : RunLoop 的线程刚刚被唤醒了</span><br><span class="line">      __CFRunLoopDoObservers(runloop, currentMode, kCFRunLoopAfterWaiting);</span><br><span class="line">      </span><br><span class="line">      &#x2F;&#x2F; 收到消息，处理消息</span><br><span class="line">      handle_msg;</span><br><span class="line">      </span><br><span class="line">      &#x2F;&#x2F; 如果一个 Timer 的时间到了，触发这个 Timer 的回调</span><br><span class="line">      if (msg_is_timer) &#123;</span><br><span class="line">        __CFRunLoopDoTimers(runloop, currentMode, mach_absolute_time());</span><br><span class="line">      &#125; else if (msg_is_dispatch) &#123;</span><br><span class="line">      &#x2F;&#x2F; 如果有 dispatch 到  main_queue 的 block ，执行 block  </span><br><span class="line">        __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE_(msg);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">      &#x2F;&#x2F; 如果有一个 Source1 发出事件了， 处理这个事件</span><br><span class="line">        CFRunLoopSourceRef	source1	&#x3D;	__CFRunLoopModeFindSourceForMachPort(runloop, currentMode, livePort);</span><br><span class="line">        sourceHandleThisLoop	&#x3D;	__CFRunLoopDoSource1(runloop, currentMode, source1,  msg);</span><br><span class="line">        if (sourceHandleThisLoop) &#123;</span><br><span class="line">          mach_msg(reply, MACH_SEND_MSG, reply);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      &#x2F;&#x2F; 执行加入到 Loop 的 block</span><br><span class="line">      __CFRunLoopDoBlocks(runloop, currentMode);</span><br><span class="line">      </span><br><span class="line">      if (sourceHandleThisLoop &amp;&amp; stopAfterHandle) &#123;</span><br><span class="line">        &#x2F;&#x2F; 进入 loop 时参数说处理完事件就返回</span><br><span class="line">        retVal	&#x3D;	kCFRunLoopRunHandledSource;</span><br><span class="line">      &#125; else if (timeOut) &#123;</span><br><span class="line">        &#x2F;&#x2F; 超出传入参数标记的超时时间了</span><br><span class="line">        retVal	&#x3D;	kCFRunLoopRunTimeOut;</span><br><span class="line">      &#125; else if (__CFRunLoopIsStoped(runloop)) &#123;</span><br><span class="line">        &#x2F;&#x2F; 被外部调用者强行停止了</span><br><span class="line">        retVal	&#x3D;	kCFRunLoopRunStoped;</span><br><span class="line">      &#125; else if (__CFRunLoopModeIsEmpty(runloop, currentMode)) &#123;</span><br><span class="line">        &#x2F;&#x2F; Source&#x2F;Timer&#x2F;Observer 一个都没有了</span><br><span class="line">        retVal	&#x3D;	kCFRunLoopRunFinished;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      &#x2F;&#x2F; 如果没超时，mode 里没空， loop 也没有被停止，那就继续 loop</span><br><span class="line">    &#125; while (retVal &#x3D;&#x3D; 0)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="RunLoop有什么用？"><a href="#RunLoop有什么用？" class="headerlink" title="RunLoop有什么用？"></a>RunLoop有什么用？</h2><p>App 启动后 RunLoop 的状态 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">CFRunLoop &#123;</span><br><span class="line">    current mode &#x3D; kCFRunLoopDefaultMode</span><br><span class="line">    common modes &#x3D; &#123;</span><br><span class="line">        UITrackingRunLoopMode</span><br><span class="line">        kCFRunLoopDefaultMode</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    common mode items &#x3D; &#123;</span><br><span class="line">  </span><br><span class="line">        &#x2F;&#x2F; source0 (manual)</span><br><span class="line">        CFRunLoopSource &#123;order &#x3D;-1, &#123;</span><br><span class="line">            callout &#x3D; _UIApplicationHandleEventQueue&#125;&#125;</span><br><span class="line">        CFRunLoopSource &#123;order &#x3D;-1, &#123;</span><br><span class="line">            callout &#x3D; PurpleEventSignalCallback &#125;&#125;</span><br><span class="line">        CFRunLoopSource &#123;order &#x3D; 0, &#123;</span><br><span class="line">            callout &#x3D; FBSSerialQueueRunLoopSourceHandler&#125;&#125;</span><br><span class="line">  </span><br><span class="line">        &#x2F;&#x2F; source1 (mach port)</span><br><span class="line">        CFRunLoopSource &#123;order &#x3D; 0,  &#123;port &#x3D; 17923&#125;&#125;</span><br><span class="line">        CFRunLoopSource &#123;order &#x3D; 0,  &#123;port &#x3D; 12039&#125;&#125;</span><br><span class="line">        CFRunLoopSource &#123;order &#x3D; 0,  &#123;port &#x3D; 16647&#125;&#125;</span><br><span class="line">        CFRunLoopSource &#123;order &#x3D;-1, &#123;</span><br><span class="line">            callout &#x3D; PurpleEventCallback&#125;&#125;</span><br><span class="line">        CFRunLoopSource &#123;order &#x3D; 0, &#123;port &#x3D; 2407,</span><br><span class="line">            callout &#x3D; _ZL20notify_port_callbackP12__CFMachPortPvlS1_&#125;&#125;</span><br><span class="line">        CFRunLoopSource &#123;order &#x3D; 0, &#123;port &#x3D; 1c03,</span><br><span class="line">            callout &#x3D; __IOHIDEventSystemClientAvailabilityCallback&#125;&#125;</span><br><span class="line">        CFRunLoopSource &#123;order &#x3D; 0, &#123;port &#x3D; 1b03,</span><br><span class="line">            callout &#x3D; __IOHIDEventSystemClientQueueCallback&#125;&#125;</span><br><span class="line">        CFRunLoopSource &#123;order &#x3D; 1, &#123;port &#x3D; 1903,</span><br><span class="line">            callout &#x3D; __IOMIGMachPortPortCallback&#125;&#125;</span><br><span class="line">  </span><br><span class="line">        &#x2F;&#x2F; Ovserver</span><br><span class="line">        CFRunLoopObserver &#123;order &#x3D; -2147483647, activities &#x3D; 0x1, &#x2F;&#x2F; Entry</span><br><span class="line">            callout &#x3D; _wrapRunLoopWithAutoreleasePoolHandler&#125;</span><br><span class="line">        CFRunLoopObserver &#123;order &#x3D; 0, activities &#x3D; 0x20,          &#x2F;&#x2F; BeforeWaiting</span><br><span class="line">            callout &#x3D; _UIGestureRecognizerUpdateObserver&#125;</span><br><span class="line">        CFRunLoopObserver &#123;order &#x3D; 1999000, activities &#x3D; 0xa0,    &#x2F;&#x2F; BeforeWaiting | Exit</span><br><span class="line">            callout &#x3D; _afterCACommitHandler&#125;</span><br><span class="line">        CFRunLoopObserver &#123;order &#x3D; 2000000, activities &#x3D; 0xa0,    &#x2F;&#x2F; BeforeWaiting | Exit</span><br><span class="line">            callout &#x3D; _ZN2CA11Transaction17observer_callbackEP19__CFRunLoopObservermPv&#125;</span><br><span class="line">        CFRunLoopObserver &#123;order &#x3D; 2147483647, activities &#x3D; 0xa0, &#x2F;&#x2F; BeforeWaiting | Exit</span><br><span class="line">            callout &#x3D; _wrapRunLoopWithAutoreleasePoolHandler&#125;</span><br><span class="line">  </span><br><span class="line">        &#x2F;&#x2F; Timer</span><br><span class="line">        CFRunLoopTimer &#123;firing &#x3D; No, interval &#x3D; 3.1536e+09, tolerance &#x3D; 0,</span><br><span class="line">            next fire date &#x3D; 453098071 (-4421.76019 @ 96223387169499),</span><br><span class="line">            callout &#x3D; _ZN2CAL14timer_callbackEP16__CFRunLoopTimerPv (QuartzCore.framework)&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  </span><br><span class="line">    modes ＝ &#123;</span><br><span class="line">        CFRunLoopMode  &#123;</span><br><span class="line">            sources0 &#x3D;  &#123; &#x2F;* same as &#39;common mode items&#39; *&#x2F; &#125;,</span><br><span class="line">            sources1 &#x3D;  &#123; &#x2F;* same as &#39;common mode items&#39; *&#x2F; &#125;,</span><br><span class="line">            observers &#x3D; &#123; &#x2F;* same as &#39;common mode items&#39; *&#x2F; &#125;,</span><br><span class="line">            timers &#x3D;    &#123; &#x2F;* same as &#39;common mode items&#39; *&#x2F; &#125;,</span><br><span class="line">          	</span><br><span class="line">        CFRunLoopMode  &#123;</span><br><span class="line">            sources0 &#x3D;  &#123; &#x2F;* same as &#39;common mode items&#39; *&#x2F; &#125;,</span><br><span class="line">            sources1 &#x3D;  &#123; &#x2F;* same as &#39;common mode items&#39; *&#x2F; &#125;,</span><br><span class="line">            observers &#x3D; &#123; &#x2F;* same as &#39;common mode items&#39; *&#x2F; &#125;,</span><br><span class="line">            timers &#x3D;    &#123; &#x2F;* same as &#39;common mode items&#39; *&#x2F; &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">  </span><br><span class="line">        CFRunLoopMode  &#123;</span><br><span class="line">            sources0 &#x3D; &#123;</span><br><span class="line">                CFRunLoopSource &#123;order &#x3D; 0, &#123;</span><br><span class="line">                    callout &#x3D; FBSSerialQueueRunLoopSourceHandler&#125;&#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            sources1 &#x3D; (null),</span><br><span class="line">            observers &#x3D; &#123;</span><br><span class="line">                CFRunLoopObserver &gt;&#123;activities &#x3D; 0xa0, order &#x3D; 2000000,</span><br><span class="line">                    callout &#x3D; _ZN2CA11Transaction17observer_callbackEP19__CFRunLoopObservermPv&#125;</span><br><span class="line">            )&#125;,</span><br><span class="line">            timers &#x3D; (null),</span><br><span class="line">        &#125;,</span><br><span class="line">  </span><br><span class="line">        CFRunLoopMode  &#123;</span><br><span class="line">            sources0 &#x3D; &#123;</span><br><span class="line">                CFRunLoopSource &#123;order &#x3D; -1, &#123;</span><br><span class="line">                    callout &#x3D; PurpleEventSignalCallback&#125;&#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            sources1 &#x3D; &#123;</span><br><span class="line">                CFRunLoopSource &#123;order &#x3D; -1, &#123;</span><br><span class="line">                    callout &#x3D; PurpleEventCallback&#125;&#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            observers &#x3D; (null),</span><br><span class="line">            timers &#x3D; (null),</span><br><span class="line">        &#125;,</span><br><span class="line">         </span><br><span class="line">        CFRunLoopMode  &#123;</span><br><span class="line">            sources0 &#x3D; (null),</span><br><span class="line">            sources1 &#x3D; (null),</span><br><span class="line">            observers &#x3D; (null),</span><br><span class="line">            timers &#x3D; (null),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>系统注册了五个默认的 Mode：</p>
+<p>1.kCFRunLoopDefaultMode ：App 的默认 Mode，通常主线程就是在这个 Mode 下运行的。</p>
+<p>2.UITrackingRunLoopMode : 界面跟踪 Mode，用于 ScrollView 追踪触摸滑动，保证界面滑动时不受其它 Mode 影响。</p>
+<p>3.UIInitializationRunLoopMode ：在刚启动 App 时进入的第一个 Mode，启动完成后就不再使用。</p>
+<p>4.GSEventReceiveRunLoopMode ：接受系统事件的内部 Mode，通常用不到。</p>
+<p>5.kCFRunLoopCommonModes ：这是一个占位的 Mode，没有实际作用。</p>
+<p>当 RunLoop 进行回调时，一般都是通过一个很长的函数调用出去(call out)，当你在你的代码中下断点时，通常能在调用栈中看到这些函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 1. 通知Observers，即将进入RunLoop</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 此处有Observer会创建AutoreleasePool: _objc_autoreleasePoolPush();</span><br><span class="line">    __CFRUNLOOP_IS_CALLING_OUT_TO_AN_OBSERVER_CALLBACK_FUNCTION__(kCFRunLoopEntry);</span><br><span class="line">    do &#123;</span><br><span class="line">  </span><br><span class="line">        &#x2F;&#x2F;&#x2F; 2. 通知 Observers: 即将触发 Timer 回调。</span><br><span class="line">        __CFRUNLOOP_IS_CALLING_OUT_TO_AN_OBSERVER_CALLBACK_FUNCTION__(kCFRunLoopBeforeTimers);</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 3. 通知 Observers: 即将触发 Source (非基于port的,Source0) 回调。</span><br><span class="line">        __CFRUNLOOP_IS_CALLING_OUT_TO_AN_OBSERVER_CALLBACK_FUNCTION__(kCFRunLoopBeforeSources);</span><br><span class="line">        __CFRUNLOOP_IS_CALLING_OUT_TO_A_BLOCK__(block);</span><br><span class="line">  </span><br><span class="line">        &#x2F;&#x2F;&#x2F; 4. 触发 Source0 (非基于port的) 回调。</span><br><span class="line">        __CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PERFORM_FUNCTION__(source0);</span><br><span class="line">        __CFRUNLOOP_IS_CALLING_OUT_TO_A_BLOCK__(block);</span><br><span class="line">  </span><br><span class="line">        &#x2F;&#x2F;&#x2F; 6. 通知Observers，即将进入休眠</span><br><span class="line">        &#x2F;&#x2F;&#x2F; 此处有Observer释放并新建AutoreleasePool: _objc_autoreleasePoolPop(); _objc_autoreleasePoolPush();</span><br><span class="line">        __CFRUNLOOP_IS_CALLING_OUT_TO_AN_OBSERVER_CALLBACK_FUNCTION__(kCFRunLoopBeforeWaiting);</span><br><span class="line">  </span><br><span class="line">        &#x2F;&#x2F;&#x2F; 7. sleep to wait msg.</span><br><span class="line">        mach_msg() -&gt; mach_msg_trap();</span><br><span class="line">         </span><br><span class="line">  </span><br><span class="line">        &#x2F;&#x2F;&#x2F; 8. 通知Observers，线程被唤醒</span><br><span class="line">        __CFRUNLOOP_IS_CALLING_OUT_TO_AN_OBSERVER_CALLBACK_FUNCTION__(kCFRunLoopAfterWaiting);</span><br><span class="line">  </span><br><span class="line">        &#x2F;&#x2F;&#x2F; 9. 如果是被Timer唤醒的，回调Timer</span><br><span class="line">        __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__(timer);</span><br><span class="line">  </span><br><span class="line">        &#x2F;&#x2F;&#x2F; 9. 如果是被dispatch唤醒的，执行所有调用 dispatch_async 等方法放入main queue 的 block</span><br><span class="line">        __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__(dispatched_block);</span><br><span class="line">  </span><br><span class="line">        &#x2F;&#x2F;&#x2F; 9. 如果如果Runloop是被 Source1 (基于port的) 的事件唤醒了，处理这个事件</span><br><span class="line">        __CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE1_PERFORM_FUNCTION__(source1);</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    &#125; while (...);</span><br><span class="line">  </span><br><span class="line">    &#x2F;&#x2F;&#x2F; 10. 通知Observers，即将退出RunLoop</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 此处有Observer释放AutoreleasePool: _objc_autoreleasePoolPop();</span><br><span class="line">    __CFRUNLOOP_IS_CALLING_OUT_TO_AN_OBSERVER_CALLBACK_FUNCTION__(kCFRunLoopExit);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="AutoreleasePool"><a href="#AutoreleasePool" class="headerlink" title="AutoreleasePool"></a>AutoreleasePool</h3><p>App 启动后，Apple 在主线程的 RunLoop 里注册了两个 Observer，其回调都是 _wrapRunLoopWithAutoreleasePoolHandler()。</p>
+<p>第一个 Observer 监视的事件是 Entry(即将进入 Loop)，其回调内会调用 _objc_autoreleasePoolPush() 创建自动释放池，优先级最高，保证创建释放池发生在其它所有回调之前。</p>
+<p>第二个 Observer 监视了两个事件：BeforeWaiting(准备进入休眠)时调用 _objc_autoreleasePoolPop() 和 _objc_auroreleasePoolPush() 释放旧的池并创建新池。Exit(即将退出Loop)时调用 _objc_autoreleasePoolPop() 来释放自动释放池，优先级最低，保证其释放发生在其它所有回调之后。</p>
+<p>在主线程执行的代码，通常是写在诸如事件回调、Timer 回调内的。这些回调会被 RunLoop 创建好的 AutoreleasePool 环绕着，所以不会出现内存泄漏。</p>
+<h3 id="事件响应"><a href="#事件响应" class="headerlink" title="事件响应"></a>事件响应</h3><p>Apple 注册了一个 Source1 (基于 mach port) 用来接收系统事件，其回调函数为 __IOHIDEventSystemClientQueueCallBack()。</p>
+<p>当一个硬件事件发生后，首先由 IOKit.framework 生成一个 IOHIDEvent 事件并由 SpringBoard 接收。SpingBoard 只接收按键、触摸、加速、接近传感器等几种 Event，随后用 mach port 转发给需要的 App 进程。随后 Apple 注册的那个 Source1 就会触发回调，并调用 _UIApplicationHandleEventQueue() 进行应用内的分发。</p>
+<p>_UIApplicationHandleEventQueue() 会把 IOHIDEvent 处理并包装成 UIEvent 进行处理或分发，其中包括识别 UIGesture、处理屏幕旋转、发送给 UIWindow等。通常事件比如 UIButton 点击、touchesBegin/Move/End/Cancle 事件都是在这个回调中完成的。</p>
+<h3 id="手势识别"><a href="#手势识别" class="headerlink" title="手势识别"></a>手势识别</h3><p>当 _UIApplicationHandleEventQueue() 识别了一个手势时，其首先会调用 Cancel 将当前的 touchesBegin/Move/End 系列回调打断。随后系统将对应的 UIGestureRecognizer 标记为待处理。</p>
+<p>Apple 注册了一个 Observer 检测 BeforeWaiting 事件，这个 Observer 的回调函数是 _UIGestureRecognizerUpdateObsever(), 其内部会获取所有刚被标记为待处理的 GestureRecognizer，并执行 GestureRecognizer 的回调。</p>
+<p>当有 UIGestureRecognizer 的变化(创建/销毁/状态改变)时，这个回调都会进行相应处理。</p>
+<h3 id="界面更新"><a href="#界面更新" class="headerlink" title="界面更新"></a>界面更新</h3><p>当在操作 UI 时，比如改变了 Frame、更新了 UIView/CALayer 的层次时，或者手动调用了 UIView/CALayer 的 setNeedsLayout/setNeedsDisplay方法后，这个 UIView/CALayer 就被标记为待处理，并被提交到一个全局的容器去。</p>
+<p>苹果注册了一个 Observer 监听 BeforeWaiting(即将进入休眠) 和 Exit (即将退出Loop) 事件，回调去执行一个很长的函数：</p>
+<p>_ZN2CA11Transaction17observer_callbackEP19__CFRunLoopObservermPv()。这个函数里会遍历所有待处理的 UIView/CAlayer 以执行实际的绘制和调整，并更新 UI 界面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">_ZN2CA11Transaction17observer_callbackEP19__CFRunLoopObservermPv()</span><br><span class="line">    QuartzCore:CA::Transaction::observer_callback:</span><br><span class="line">        CA::Transaction::commit();</span><br><span class="line">            CA::Context::commit_transaction();</span><br><span class="line">                CA::Layer::layout_and_display_if_needed();</span><br><span class="line">                    CA::Layer::layout_if_needed();</span><br><span class="line">                        [CALayer layoutSublayers];</span><br><span class="line">                            [UIView layoutSubviews];</span><br><span class="line">                    CA::Layer::display_if_needed();</span><br><span class="line">                        [CALayer display];</span><br><span class="line">                            [UIView drawRect];</span><br></pre></td></tr></table></figure>
+
+<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><p>NSTimer 其实就是 CFRunLoopTimerRef，他们之间是 toll-free bridged 的。一个 NSTimer 注册到 RunLoop 后，RunLoop 会为其重复的时间点注册好事件。例如 10:00, 10:10, 10:20 这几个时间点。RunLoop为了节省资源，并不会在非常准确的时间点回调这个Timer。Timer 有个属性叫做 Tolerance (宽容度)，标示了当时间点到后，容许有多少最大误差。</p>
+<p>如果某个时间点被错过了，例如执行了一个很长的任务，则那个时间点的回调也会跳过去，不会延后执行。就比如等公交，如果 10:10 时我忙着玩手机错过了那个点的公交，那我只能等 10:20 这一趟了。</p>
+<p>CADisplayLink 是一个和屏幕刷新率一致的定时器（但实际实现原理更复杂，和 NSTimer 并不一样，其内部实际是操作了一个 Source）。如果在两次屏幕刷新之间执行了一个长任务，那其中就会有一帧被跳过去（和 NSTimer 相似），造成界面卡顿的感觉。在快速滑动TableView时，即使一帧的卡顿也会让用户有所察觉。Facebook 开源的 AsyncDisplayLink 就是为了解决界面卡顿的问题，其内部也用到了 RunLoop。</p>
+<h3 id="PerformSelector"><a href="#PerformSelector" class="headerlink" title="PerformSelector"></a>PerformSelector</h3><p>当调用 NSObject 的 performSelecter:afterDelay: 后，实际上其内部会创建一个 Timer 并添加到当前线程的 RunLoop 中。所以如果当前线程没有 RunLoop，则这个方法会失效。</p>
+<p>当调用 performSelector:onThread: 时，实际上其会创建一个 Timer 加到对应的线程去，同样的，如果对应线程没有 RunLoop 该方法也会失效。</p>
+<h3 id="关于GCD"><a href="#关于GCD" class="headerlink" title="关于GCD"></a>关于GCD</h3><p>实际上 RunLoop 底层也会用到 GCD 的东西，比如 RunLoop 是用 dispatch_source_t 实现的 Timer。但同时 GCD 提供的某些接口也用到了 RunLoop， 例如 dispatch_async()。</p>
+<p>当调用 dispatch_async(dispatch_get_main_queue(), block) 时，libDispatch 会向主线程的 RunLoop 发送消息，RunLoop会被唤醒，并从消息中取得这个 block，并在回调 <strong>CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE</strong>() 里执行这个 block。但这个逻辑仅限于 dispatch 到主线程，dispatch 到其他线程仍然是由 libDispatch 处理的。</p>
+<h3 id="关于网络请求"><a href="#关于网络请求" class="headerlink" title="关于网络请求"></a>关于网络请求</h3><p>iOS 中，关于网络请求的接口自下至上有如下几层:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CFSocket</span><br><span class="line">CFNetwork       -&gt;ASIHttpRequest</span><br><span class="line">NSURLConnection -&gt;AFNetworking</span><br><span class="line">NSURLSession    -&gt;AFNetworking2, Alamofire</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>对于定位应用程序<ul>
-<li>系统收到一个满足发送给应用程序标准的位置更新。</li>
-<li>设备进入或退出一个已注册的区域。</li>
+<li>CFSocket 是最底层的接口，只负责 socket 通信。</li>
+<li>CFNetwork 是基于 CFSocket 等接口的上层封装，ASIHttpRequest 工作于这一层。</li>
+<li>NSURLConnection 是基于 CFNetwork 的更高层的封装，提供面向对象的接口，AFNetworking 工作于这一层。</li>
+<li>NSURLSession 是 iOS7 中新增的接口，表面上是和 NSURLConnection 并列的，但底层仍然用到了 NSURLConnection 的部分功能 (比如 com.apple.NSURLConnectionLoader 线程)，AFNetworking2 和 Alamofire 工作于这一层。</li>
 </ul>
-</li>
-<li>对于音频应用程序，音频框架需要应用程序来处理某些数据。</li>
-<li>对于蓝牙应用程序<ul>
-<li>应用程序作为从连接的外设接收数据的核心角色。</li>
-<li>应用程序作为从连接核心接收命令的外设。</li>
-</ul>
-</li>
-<li>对于后台下载应用程序<ul>
-<li>应用程序收到一个包含 <code>content-available</code> 键并且值为 <code>1</code>的远程通知。</li>
-<li>系统在随机时间唤醒应用程序来开始新内容的下载。</li>
-<li>使用<code>NSURLSession</code>对象在后台下载内容的应用程序，当这个会话相关的任务全部成功完成或发生了一个错误。</li>
-<li>Newsstand应用程序内容下载完成。</li>
-</ul>
-</li>
-</ul>
-<p>在大多数情况下，系统并不会重启被用户强制退出的应用程序。定位应用程序是个例外，在iOS8和之后。如果不是的话，用户必须显式的启动应用程序或者重启设备，系统才能自动的启动程序进入后台。当启用密码保护时，在用户第一次解锁设备之前，系统不会启动任何应用程序进入后台。</p>
-<h2 id="成为一个负责的后台运行应用程序"><a href="#成为一个负责的后台运行应用程序" class="headerlink" title="成为一个负责的后台运行应用程序"></a>成为一个负责的后台运行应用程序</h2><p>在使用系统资源和硬件时，前台应用程序始终比后台应用程序的优先级高。后台应用程序需要为这个差异做准备并调整它们的行为：</p>
-<ul>
-<li><strong>不要在你的代码中进行任何OpenGL ES调用</strong>。在后台运行时，你绝不能创建<code>EAGLContext</code>对象或发出任何OpenGL ES绘图命令。使用这些会使你的应用程序被立即终止。应用程序必须保证任何先前提交的命令在移入后台之前完成。</li>
-</ul>
-<ul>
-<li><strong>在挂起之前停止任何Bonjour-related服务</strong>。在你的应用程序移入后台但未被挂起之前，它应该从Bonjour注销并关闭任何与网络服务相关的监听sockets。一个挂起的应用程序无论如何不能响应任何传入的服务请求。如果你没有关闭Bonjour服务，在应用程序挂起时，系统会自动的关闭它们。</li>
-<li><strong>准备好处理基于网络的sockets的连接失败</strong>。系统可能会销毁socket连接，当你的应用程序因为某些原因被挂起时。只要你的基于网络的socket代码准备好了如何处理其他类型的网络失败，比如使用失败信号或网络转化，socket被销毁就不会导致出现任何不寻常的问题。当你的应用程序重新开始运行时，如果使用socket遭遇故障，只需重新建立一个。</li>
-<li><strong>在转入后台之前保存你的应用程序的状态</strong>。处于低内存的情况下，后台应用程序可能会被从内存中移除以释放空间。挂起的应用程序首先被移除，并且不会在移除之前通知应用程序。因此，应用程序应该利用iOS 6及之后提供的状态保存机制将应用程序状态信息保存到磁盘。</li>
-<li><strong>在转入后台时移除对任何不需要的对象的强引用</strong>。</li>
-<li><strong>在挂起之前停止使用共享系统资源</strong>。与共享系统资源进行交互的应用程序应该在被挂起之前停止使用这些资源。前台应用程序总是拥有这些资源的优先使用权。当你的应用程序挂起时，如果被发现它在使用这些共享资源，则会被系统杀死进程。</li>
-<li><strong>避免更新窗口和视图</strong>。因为你的应用程序的窗口和视图在后台是不可见的，你应该避免更新它们。如果你的应用程序需要在系统拍摄快照前更新窗口的内容的话则是一种例外情况。</li>
-<li><strong>响应外部附件的连接和断开通知</strong>。对于和外部附件通信的应用程序来说，当应用程序转入后台时系统会自动的发送一个断开通知。应用程序必须注册这个通知并用它来关闭当前附件的会话。当应用程序转入前台时，一个匹配连接的通知被发送，给应用程序重新连接的机会。</li>
-<li><strong>在转入后台时清理活动的提醒框的资源</strong>。为了在各个应用程序之间进行切换时保存上下文，在你的应用程序进入后台时，系统不会自动地释放上拉菜单或提醒视图。在应用程序转入后台之前，你需要提供合适的清理行为。</li>
-<li><strong>在转入后台之前从视图中移除敏感信息</strong>。当应用程序转入后台时，系统会对应用程序的主窗口拍摄快照，当应用程序转入到前台时，这个快照会短暂的显示。在从<code>applicationDidEnterBackground:</code>方法返回之前，你应该隐藏或混淆可能被作为快照一部分拍摄的密码和其它敏感的个人信息</li>
-<li><strong>在后台运行时尽可能的少做工作</strong>。给与后台应用程序的执行时间相比于前台应用程序来说有更多的限制。应用程序不应该在后台执行太长时间，这可能导致应用程序被终止。</li>
-</ul>
-<h2 id="选择退出后台执行"><a href="#选择退出后台执行" class="headerlink" title="选择退出后台执行"></a>选择退出后台执行</h2><p>如果你不希望你的应用程序在后台运行，你可以通过将值为<code>YES</code>的<code>UIApplicationExitsOnSuspend</code>键加入<code>Info.plist</code>来显式的退出后台模式。当一个应用程序选择退出后台，它的生命周期将在未运行，非活动和活动状态之间转换，永远不会进入后台或被挂起状态。当用户按下Home按钮来退出应用程序时，应用程序代理对象的<code>applicationWillTerminate:</code>方法将会被调用，应用程序将有大约5秒时间在它被终止或移入未运行状态之前来执行清理任务并退出。</p>
-<p>强烈不鼓励退出后台执行，但在某些情况下可能是首选。 具体来说，如果后台执行的编码对你的应用程序来说增加了很大的复杂性，那么终止应用程序可能会更简单。 此外，如果你的应用程序消耗大量内存，并且无法轻松释放任何内存，系统可能会迅速杀死你的应用程序，为其他应用程序腾出空间。 因此，选择终止，而不是切换到后台，可能会产生相同的结果，并节省你的开发时间和精力。</p>
+<p>通常使用 NSURLConnection 时，你会传入一个 Delegate，当调用了 [connection start] 后，这个 Delegate 就会不停收到事件回调。实际上，start 这个函数的内部会会获取 CurrentRunLoop，然后在其中的 DefaultMode 添加了4个 Source0 (即需要手动触发的Source)。CFMultiplexerSource 是负责各种 Delegate 回调的，CFHTTPCookieStorage 是处理各种 Cookie 的。</p>
+<p>当开始网络传输时，我们可以看到 NSURLConnection 创建了两个新线程：com.apple.NSURLConnectionLoader 和 com.apple.CFSocket.private。其中 CFSocket 线程是处理底层 socket 连接的。NSURLConnectionLoader 这个线程内部会使用 RunLoop 来接收底层 socket 的事件，并通过之前添加的 Source0 通知到上层的 Delegate。</p>
+<p>NSURLConnectionLoader 中的 RunLoop 通过一些基于 mach port 的 Source 接收来自底层 CFSocket 的通知。当收到通知后，其会在合适的时机向 CFMultiplexerSource 等 Source0 发送通知，同时唤醒 Delegate 线程的 RunLoop 来让其处理这些通知。CFMultiplexerSource 会在 Delegate 线程的 RunLoop 对 Delegate 执行实际的回调。</p>
+<h2 id="RunLoop-怎么用？"><a href="#RunLoop-怎么用？" class="headerlink" title="RunLoop 怎么用？"></a>RunLoop 怎么用？</h2><h3 id="AFNetWorking"><a href="#AFNetWorking" class="headerlink" title="AFNetWorking"></a>AFNetWorking</h3><p><a href="https://github.com/AFNetworking/AFNetworking/blob/master/AFNetworking%2FAFURLConnectionOperation.m" target="_blank" rel="noopener">AFURLConnectionOperation</a> 这个类是基于 NSURLConnection 构建的，其希望能在后台线程接收 Delegate 回调。为此 AFNetworking 单独创建了一个线程，并在这个线程中启动了一个 RunLoop：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">+ (void)networkRequestThreadEntryPoint:(id)__unused object &#123;</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        [[NSThread currentThread] setName:@&quot;AFNetworking&quot;];</span><br><span class="line">        NSRunLoop *runLoop &#x3D; [NSRunLoop currentRunLoop];</span><br><span class="line">        [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];</span><br><span class="line">        [runLoop run];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">+ (NSThread *)networkRequestThread &#123;</span><br><span class="line">    static NSThread *_networkRequestThread &#x3D; nil;</span><br><span class="line">    static dispatch_once_t oncePredicate;</span><br><span class="line">    dispatch_once(&amp;oncePredicate, ^&#123;</span><br><span class="line">        _networkRequestThread &#x3D; [[NSThread alloc] initWithTarget:self selector:@selector(networkRequestThreadEntryPoint:) object:nil];</span><br><span class="line">        [_networkRequestThread start];</span><br><span class="line">    &#125;);</span><br><span class="line">    return _networkRequestThread;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>RunLoop 启动前内部必须要有至少一个 Timer/Observer/Source，所以 AFNetworking 在 [runLoop run] 之前先创建了一个新的 NSMachPort 添加进去了。通常情况下，调用者需要持有这个 NSMachPort (mach_port) 并在外部线程通过这个 port 发送消息到 loop 内；但此处添加 port 只是为了让 RunLoop 不至于退出，并没有用于实际的发送消息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (void)start &#123;</span><br><span class="line">    [self.lock lock];</span><br><span class="line">    if ([self isCancelled]) &#123;</span><br><span class="line">        [self performSelector:@selector(cancelConnection) onThread:[[self class] networkRequestThread] withObject:nil waitUntilDone:NO modes:[self.runLoopModes allObjects]];</span><br><span class="line">    &#125; else if ([self isReady]) &#123;</span><br><span class="line">        self.state &#x3D; AFOperationExecutingState;</span><br><span class="line">        [self performSelector:@selector(operationDidStart) onThread:[[self class] networkRequestThread] withObject:nil waitUntilDone:NO modes:[self.runLoopModes allObjects]];</span><br><span class="line">    &#125;</span><br><span class="line">    [self.lock unlock];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当需要这个后台线程执行任务时，AFNetworking 通过调用 [NSObject performSelector:onThread:..] 将这个任务扔到了后台线程的 RunLoop 中。</p>
+<h3 id="AsyncDisplayKit"><a href="#AsyncDisplayKit" class="headerlink" title="AsyncDisplayKit"></a>AsyncDisplayKit</h3><p><a href="https://github.com/facebook/AsyncDisplayKit" target="_blank" rel="noopener">AsyncDisplayKit</a> 是 Facebook 推出的用于保持界面流畅性的框架，其原理大致如下：</p>
+<p>UI 线程中一旦出现繁重的任务就会导致界面卡顿，这类任务通常分为3类：排版，绘制，UI对象操作。</p>
+<p>排版通常包括计算视图大小、计算文本高度、重新计算子式图的排版等操作。</p>
+<p>绘制一般有文本绘制 (例如 CoreText)、图片绘制 (例如预先解压)、元素绘制 (Quartz)等操作。</p>
+<p>UI对象操作通常包括 UIView/CALayer 等 UI 对象的创建、设置属性和销毁。</p>
+<p>其中前两类操作可以通过各种方法扔到后台线程执行，而最后一类操作只能在主线程完成，并且有时后面的操作需要依赖前面操作的结果 （例如TextView创建时可能需要提前计算出文本的大小）。ASDK 所做的，就是尽量将能放入后台的任务放入后台，不能的则尽量推迟 (例如视图的创建、属性的调整)。</p>
+<p>为此，ASDK 创建了一个名为 ASDisplayNode 的对象，并在内部封装了 UIView/CALayer，它具有和 UIView/CALayer 相似的属性，例如 frame、backgroundColor等。所有这些属性都可以在后台线程更改，开发者可以只通过 Node 来操作其内部的 UIView/CALayer，这样就可以将排版和绘制放入了后台线程。但是无论怎么操作，这些属性总需要在某个时刻同步到主线程的 UIView/CALayer 去。</p>
+<p>ASDK 仿照 QuartzCore/UIKit 框架的模式，实现了一套类似的界面更新的机制：即在主线程的 RunLoop 中添加一个 Observer，监听了 kCFRunLoopBeforeWaiting 和 kCFRunLoopExit 事件，在收到回调时，遍历所有之前放入队列的待处理的任务，然后一一执行。</p>
+<blockquote>
+<p>转载整理自 ： <a href="https://blog.ibireme.com/author/ibireme/" target="_blank" rel="noopener">ibireme</a> 的博客 <a href="https://blog.ibireme.com/2015/05/18/runloop/" target="_blank" rel="noopener">深入理解RunLoop</a></p>
+</blockquote>
 
       
     </div>
@@ -438,7 +341,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/37/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><span class="page-number current">38</span><a class="page-number" href="/page/39/">39</a><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/39/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/37/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><span class="page-number current">38</span><a class="page-number" href="/page/39/">39</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/39/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -504,7 +407,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

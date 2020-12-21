@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/02/25/css-summary/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/04/10/html-css-summary-advanced/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2016/02/25/css-summary/" class="post-title-link" itemprop="url">CSS 基础概览</a>
+            <a href="/2016/04/10/html-css-summary-advanced/" class="post-title-link" itemprop="url">HTML5 概览进阶篇</a>
         </h2>
 
         <div class="post-meta">
@@ -187,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-02-25 00:00:00" itemprop="dateCreated datePublished" datetime="2016-02-25T00:00:00+08:00">2016-02-25</time>
+              <time title="创建时间：2016-04-10 00:00:00" itemprop="dateCreated datePublished" datetime="2016-04-10T00:00:00+08:00">2016-04-10</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-23 14:58:33" itemprop="dateModified" datetime="2020-11-23T14:58:33+08:00">2020-11-23</time>
+                <time title="修改时间：2020-11-23 14:58:20" itemprop="dateModified" datetime="2020-11-23T14:58:20+08:00">2020-11-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -202,7 +202,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">大前端</span></a>
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
                 </span>
             </span>
 
@@ -217,479 +217,106 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="CSS-构造块"><a href="#CSS-构造块" class="headerlink" title="CSS 构造块"></a>CSS 构造块</h1><p>CSS (层叠样式表)是一种文本文件，其中包含一个或多个(通过属性和值)<strong>决定网页某特定元素如何显示的规则</strong>。CSS 里有控制基本格式的属性(如 font-size 和 color)，有控制布局的属性(如 position 和 float)，还有决定访问者打印时在哪里换页的打印控制 元素。CSS 还有很多控制元素显示或消失的动态属性，可以用于创建下拉列表和其他交互性组件。 </p>
-<p>CSS2 是目前浏览器支持最为广泛的版本，CSS3 是以CSS2 为基础，提供了大量设计人员和开发人员长期期待的功能，但可惜的是目前还没有成为规范。</p>
-<h2 id="构造样式规则"><a href="#构造样式规则" class="headerlink" title="构造样式规则"></a>构造样式规则</h2><p>样式表中包含了定义网页外观的规则。</p>
-<p>样式表中的每条规则都有两个主要部分 ：选择器和声明块。选择器决定哪些元素受到影响；声明块由一个或多个 属性 - 值</p>
-<p>对组成，它们指定应该做什么。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">selector</span> &#123;</span><br><span class="line">	<span class="attribute">property-name</span>:property-value;</span><br><span class="line">				···</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">	<span class="attribute">background-color</span>: green;</span><br><span class="line">	<span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="构建响应式网站"><a href="#构建响应式网站" class="headerlink" title="构建响应式网站"></a>构建响应式网站</h1><p>响应式网站设计(Responsive Web design)的理念是：页面的设计与开发应当根据用户行为以及设备环境(系统平台、屏幕尺寸、屏幕定向等)进行相应的响应和调整。具体的实践方式由多方面组成，包括弹性网格和布局、图片、CSS media query 的使用等。无论用户正在使用笔记本还是iPad，我们的页面都应该能够自动切换分辨率、图片尺寸及相关脚本功能等，以适应不同设备；换句话说，页面应该有能力去自动响应用户的设备环境。响应式网页设计就是一个网站能够兼容多个终端——而不是为每个终端做一个特定的版本。这样，我们就可以不必为不断到来的新设备做专门的版本设计和开发了。</p>
+<h2 id="可伸缩的图像"><a href="#可伸缩的图像" class="headerlink" title="可伸缩的图像"></a>可伸缩的图像</h2><p>默认情况下， 图像显示的尺寸是 HTML 中指定的 width 和 height 属性值。如果不指定这些属性值，图像就会自动按照其原始尺寸显示。此外，你还可以通过 CSS 以像素为单位设置 width 和 height。 </p>
+<p>显然，当屏幕宽度有限的时候，按原始尺寸显示图像就不一定合适了。使用可伸缩图像技术就可以让图像在可用空间内缩放，但不会超过其本来的宽度。可用空间是由包含图像的元素决定的，它们根据包含它们的元素的尺寸按比例缩放。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.photo-full</span> &#123;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>在样式规则中可以添加额外的空格、制表符或回车，从而提高样式表的可读性 。</p>
-<p>​    </p>
-<h2 id="为样式规则添加注释"><a href="#为样式规则添加注释" class="headerlink" title="为样式规则添加注释"></a>为样式规则添加注释</h2><p>在 CSS 中添加注释是个好主意，这样就可以标注样式表的主要区域，或者只是针对某条规则或声明进行解释。注释不仅对开发 人员有用，对阅读代码的其他人也有好处。 </p>
-<p>注释可以包含回车，因此可以跨越多行。类似地，/* 和 */ 既可以单独成行，也可以跟文本同处一行。另外，注释还可以放到声明块内部，或者样式规则后面。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* This is a single line comment */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	···</span></span><br><span class="line"><span class="comment">    This is multi-ling comment</span></span><br><span class="line"><span class="comment">	···</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">    <span class="attribute">font-size</span>: .<span class="number">875em</span>;</span><br><span class="line">    <span class="comment">/* This is a comment in declarations bloc */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>图像缩放的可用空间是由其父元素建立的内容区域。如果父元素有水平方向上的内边距，可用空间就会相应减小。 </p>
+<p>可以使用 background-size 属性对背景图像进行缩放(对 IE8 无效)。 </p>
+<h2 id="弹性布局"><a href="#弹性布局" class="headerlink" title="弹性布局"></a>弹性布局</h2><p>拥有定宽容器的网页对响应式页面来说并不合适，我们希望页面能进行缩放，并正好适应浏览器视觉区域大小，流式布局就可以做到这一点。</p>
+<p>创建弹性布局需要使用百分数宽度，并将它们应用于页面里的主要区域。</p>
+<p>元素的百分数宽度基于其父元素提供的可用空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.div-flex</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">60%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>需要注意的是，不能将一个注释嵌套在另一个注释内部 ，这样的做法是错误的。</p>
-<p>注释是很有用的组织工具。样式表很快就会变得很长，因此，组织好样式表对于保持 CSS 易于维护至关重要。通常，将相关的规则放在一起，形成分组，并在每组前面放置一段描述性的注释 </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Section-1 */</span></span><br><span class="line">	···</span><br><span class="line"><span class="comment">/* Section-2 */</span></span><br><span class="line">	···</span><br><span class="line"><span class="comment">/* Section-3 */</span></span><br><span class="line">	···</span><br></pre></td></tr></table></figure>
-
-<p>当然，你也可以注释掉属性值，来进行调试，就像你在其它语言中做的那样。</p>
-<p>​    </p>
-<h2 id="CSS-中的继承"><a href="#CSS-中的继承" class="headerlink" title="CSS 中的继承"></a>CSS 中的继承</h2><p>当你为某个元素应用 CSS 属性时，这些属性不仅会影响该元素，还会影响其下的分支元素。也就是说，这些下层的元素继承了其祖先元素的属性。 </p>
-<p>任何一个直接包含在另一个元素中的元素，都是其父元素的分支。</p>
-<p>此外，对大多数属性来说，还可以使用 inherit 值进行强行继承。</p>
-<p>那么，哪些属性会被继承呢？</p>
+<p>还可以对元素设置基于百分数的 margin 和 padding 值。 </p>
+<h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><p>媒体查询增强了媒体类型方法，允许根据特定的设备特性定位样式。 要调整网站的呈现样式，让其适应不同的屏幕尺寸，采用媒体查询特别方便。下面列出了可以包含在媒体查询里的媒体特性 ：</p>
 <ul>
-<li><strong>文本</strong><ul>
-<li>color(颜色，a 元素除外)  </li>
-<li>direction(方向)</li>
-<li>font(字体)</li>
-<li>font-family(字体系列)  </li>
-<li>font-size(字体大小)</li>
-<li>font-style(用于设置斜体)</li>
-<li>font-variant(用于设置小型大写字母)  </li>
-<li>font-weight(用于设置粗体)</li>
-<li>letter-spacing(字母间距)</li>
-<li>line-height(行高)</li>
-<li>text-align(用于设置对齐方式)</li>
-<li>text-indent(用于设置首行缩进)</li>
-<li>text-transform(用于修改大小写)</li>
-<li>visibility(可见性)</li>
-<li>white-space(用于指定如何处理空格)  </li>
-<li>word-spacing(字间距)</li>
+<li>width/height/device-width/device-height</li>
+<li>orientation/aspect-ratio/device-aspect-ratio</li>
+<li>color/color-index/monochrome</li>
+<li>resolution/scan/grid</li>
+<li>-wbkit-device-pixel-ration/-moz-device-pixel-ration</li>
 </ul>
-</li>
-<li><strong>列表</strong><ul>
-<li>list-style(列表样式)</li>
-<li>list-style-image(用于为列表指定定制的标记)  </li>
-<li>list-style-position(用于确定列表标记的位置)  </li>
-<li>list-style-type(用于设置列表的标记)</li>
-</ul>
-</li>
-<li><strong>表格</strong><ul>
-<li>border-collapse(用于控制表格相邻单元格的边框是否合并为单一边框)  </li>
-<li>border-spacing(用于指定表格边框之间的空隙大小)</li>
-<li>caption-side(用于设置表格标题的位置)</li>
-<li>empty-cells(用于设置是否显示表格中的空单元格)</li>
-</ul>
-</li>
-<li><strong>页面设置</strong><ul>
-<li>orphans(用于设置当元素内部发生分页时在页面底部需要保留的最少行数)  </li>
-<li>page-break-inside(用于设置元素内部的分页方式)</li>
-<li>widows(用于设置当元素内部发生分页时在页面顶部需要保留的最少行数)</li>
-</ul>
-</li>
-<li><strong>其它</strong><ul>
-<li>cursor(鼠标指针)</li>
-<li>quotes(用于指定引号样式)</li>
-</ul>
-</li>
-</ul>
-<h2 id="层叠：当规则发生冲突时"><a href="#层叠：当规则发生冲突时" class="headerlink" title="层叠：当规则发生冲突时"></a>层叠：当规则发生冲突时</h2><p>样式的来源很多，每个浏览器都有其默认的样式，你可以使用自己的样式覆盖它们或对它们进行补充。</p>
-<p>有时候，多条规则会定义元素的同一个属性，这是应该怎么办呢？CSS 用层叠的原则来考虑样式声明，从而判断相互冲突的规则中哪个规则应该起作用。</p>
-<p>首先，你编写的样式如果与浏览器的默认样式冲突，均以你编写的样式为准。在此基础上，CSS 用层叠的原则来考虑特殊性(specificity)、顺序(order)和重要性(importance)，从而判断相互冲突的规则中哪个规则应该起作用。 </p>
+<p>除了 orientation/scan/grid 以外，上述属性均可添加 min- 和 max- 前缀。</p>
 <ul>
-<li><p>特殊性</p>
-<p>特殊性规则指定选择器的具体程度。选择器越特殊，规则就越强。遇到冲突时，优先应用特殊性强的规则 。</p>
-<p>一般来说，我们任务 id 选择器是最特殊的，而继承的样式是最一般的。</p>
-<p>不过，建议在样式表中多使用类选择器，避免使用 id 选择器。</p>
+<li><p>指向外部样式表的链接</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"logic type and (feature: value)"</span> <span class="attr">href</span>=<span class="string">"stylesheet.css"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>顺序</p>
-<p>有时候，特殊性还不足以判断在相互冲突的规则中应该优先应用哪一个。在这种情况下，规则的顺序就可以起到决定作用:晚出现的优先级高。</p>
-</li>
-<li><p>重要性</p>
-<p>如果这还不够，可以声明一条特殊的规则覆盖整个系统中的规则，这条规则的重要程度要比其他所有规则高。也可以在某条声 明的末尾加上 !important，比如 p{ color: orange !important; }(除非是在特殊情况 下，否则不推荐使用这种方法)。 </p>
-</li>
-</ul>
-<p>你编写的样式会覆盖浏览器的默认样式。 当两个或两个以上的样式发生冲突时，会应用特殊性高的样式声明，不管它位于样式表中的哪个位置。如果两个或两个以上的规则拥有相同的特殊性，则使用后出现的规则， 除非其中某条规则标记了 !important。</p>
-<p>如果某元素没有直接指定某条规则，则使用继承的值(如果有的话)。</p>
-<p>​    </p>
-<h2 id="属性的值"><a href="#属性的值" class="headerlink" title="属性的值"></a>属性的值</h2><p>每个 CSS 属性对于它可以接受哪些值都有不同的规定。有的属性只能接受预定义的值。有的属性接受数字、整数、相对值、百分数、 URL 或者颜色。有的属性可以接受多种类型的值。</p>
-<ol>
-<li><p><strong>inherit</strong></p>
-<p>对于任何属性，如果希望显式地指出该属性的值与对应元素的父元素对该属性设定的值相同，就可以使用 inherit 值。 </p>
-</li>
-<li><p><strong>预定义的值</strong></p>
-<p>大多数 CSS 属性都有一些可供使用的预定义值。例如，float 属性可被设为 left、right 或 none。与 HTML 不同，不需要(也不能)将预定义的值放在引号里。实际上， 大多数 CSS 值，无论是否为预定义的值，都不需要加引号。(也有一些例外，如超过一个单 词的 font-family 名称，以及要生成的内容。) </p>
-</li>
-<li><p><strong>长度和百分数</strong></p>
-<p>很多 CSS 属性的值是长度。所有长度都必须包含数字和单位，并且它们之间没有空 格。例如 3em、10px。唯一的例 外是 0，它可以带单位也可以不带。效果是一样的，因此 0 一般不带单位。</p>
-<p>有的长度是相对于其他值的。一个 em 的长度大约与对应元素的字号相等。一般来说，应该只在输出尺寸已知的情况下使用绝对长度 。</p>
-<p>百分数(如 65%)的工作方式很像 em， 它们都是相对于其他值的值 ，百分数通常是相对于父元素的 。</p>
-</li>
-<li><p><strong>纯数字</strong></p>
-<p>只有极少数的 CSS 属性接受不带单位的数字，典型的如 line-height、z-index 和 opacity。</p>
-</li>
-<li><p><strong>URL</strong></p>
-<p>有的 CSS 属性允许开发人员指定另一个文件的 URL，background-image 就是这样一个属性。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">url</span>(<span class="selector-tag">bg-patern</span><span class="selector-class">.png</span>);</span><br></pre></td></tr></table></figure>
-
-<p>注意，规范指出，相对 URL 应该相对于样式表的位置而不是相对于 HTML 文档的位置。 </p>
-</li>
-<li><p><strong>CSS 颜色</strong></p>
-<p>我们可以使用预定义颜色关键字或以十六进制(通常称为 hex)、RGB、HSL、 RGBA、HSLA 等格式表示的值中为 CSS 属性指定颜色。 </p>
-<p>实践中，定义 CSS 颜色更常规的方法是使用十六进制格式或 RGB 格式。如果要指定透明度的话，请使用 RGBA。</p>
-</li>
-<li><p><strong>RGB</strong></p>
-<p>可以通过指定红、绿、蓝(这也是 RGB 这一名称的由来)的量来构建自己的颜色。 可以使用百分数、0 ~ 255 之间的数字来指定这三种颜色的值。 </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">color</span>: <span class="selector-tag">rgb</span>(0,0,0);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>十六进制数</strong></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">color</span>: <span class="selector-id">#FFFFF</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>RGBA</strong></p>
-<p>RGBA 在 RGB 的基础上加了一个代表 alpha 透明度(alpha transparency) 的 A。 alpha 透明度的一种常见使用场景是将其用在对元素设置 background-color 或 background 的情况(均用于设置背景)，因为 alpha 透明度允许元素下面的任何东西(如图像、其他颜色、文本等)透过来并与元素混合在一起。 也可以对其他基于颜色的属性使用 alpha 透明度，如 color、border、border-color、box- shadow、text-shadow 等。 </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 不透明，和 rgb(89, 0, 127); 效果相同 */</span> <span class="selector-tag">background-color</span>: <span class="selector-tag">rgba</span>(89,0,127,1);</span><br><span class="line"><span class="comment">/* 完全透明 */</span></span><br><span class="line"><span class="selector-tag">background-color</span>: <span class="selector-tag">rgba</span>(89,0,127,0);</span><br><span class="line"><span class="comment">/* 25%透明 */</span></span><br><span class="line"><span class="selector-tag">background-color</span>: <span class="selector-tag">rgba</span>(89,0,127,0<span class="selector-class">.75</span>); <span class="comment">/* 60%透明 */</span></span><br><span class="line"><span class="selector-tag">background-color</span>: <span class="selector-tag">rgba</span>(89,0,127,0<span class="selector-class">.4</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<h1 id="操作样式表"><a href="#操作样式表" class="headerlink" title="操作样式表"></a>操作样式表</h1><p>将 CSS 应用到多个网页(包括整个网站)、单个页面或单独的 HTML 元素 ，有三种方式：外部样式表、嵌入样式表和内联样式表。外部样式表非常适合给网站上的大多数页面或者所有页面设置一致的外观。可以在一个外部样式表中定义全部样式，然后让网 站上的每个页面加载这个外部样式表，从而确保每个页面都有相同的设置 。</p>
-<p>外部样式表是作为操作样式表的最佳实践。</p>
-<h2 id="链接到外部样式表"><a href="#链接到外部样式表" class="headerlink" title="链接到外部样式表"></a>链接到外部样式表</h2><p>将已经编写好的样式表加载到 HTML 页面中去，最好的方式是链接到样式表。对外部样式表进行修改时，所有引用它的页面也会自动更新 。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">title</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>link 元素位于 HTML 文档的 head 部分。 页面可以包含一个以上的 link 元素，但使用它的次数最好尽可能地少，让页面得以更快地加载 。</p>
-<p>外部样式表的另一个好处是，一旦浏览器在某个页面加载了它，在随后浏览引用它的页面时，通常无需再向 Web 服务器请求 该文件。浏览器会将它保存到缓存里，也就是保存到用户的计算机里，并使用这个版本的文件。这样做可以加快对页面的加载。如果随后对样式表作了修改，再将它传到 Web 服务器，浏览器就会下载更新后的文件，而不是使用缓存的文件(从技术上讲也有例外，但通常不会遇到这种情况)。 </p>
-<p>可以在页面中使用多个 link 元素， 从而加载多个样式表文件。如果在不同的文件中有显示声明产生冲突，则后面文件中的规则的优先级更高。 </p>
-<p>​    </p>
-<h2 id="嵌入式样式表"><a href="#嵌入式样式表" class="headerlink" title="嵌入式样式表"></a>嵌入式样式表</h2><p>嵌入样式表是在页面中应用 CSS 的第二种方式。我们在 HTML 页面的 head 部分创建一个 style 元素，其中包含了我们的样式表。由于这些样式只在一个网页里存在，因此不会像外部样式表中的规则那样应用到其他的页面，同时，缓存的好处也不存在了。如上文所述，对于大多数情况， 我们推荐使用外部样式表，但理解其他的选择以备不时之需也是很重要的。 </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">title</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        img &#123;</span><br><span class="line">            border: 4px solid red;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>使用嵌入样式表时，style 元素及其包围的样式规则通常位于文档的 head 部分。 </p>
-<p>当且仅当 style 元素出现在 link 元素后面的时候，嵌入样式表中的样式才会覆盖外部样式表中的样式。 </p>
-<p>​    </p>
-<h2 id="应用内联样式"><a href="#应用内联样式" class="headerlink" title="应用内联样式"></a>应用内联样式</h2><p>内联样式将内容和变现会在一起，严重违背了最佳规范。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">title</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"imgs/market.png"</span> <span class="attr">width</span>=<span class="string">"20"</span> <span class="attr">height</span>=<span class="string">"20"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">style</span>=<span class="string">"border: 4px solid red"</span> /&gt;</span>1</span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>更好的做法是通过类名来应用外部样式表中的规则。如果你希望其它元素也是用这种样式，只需为其添加 class=”class-name” 即可。</p>
-<p>内联样式的优先级高于其它所有样式，除非其它地方与之冲突的样式标记了 !important。</p>
-<p>​    </p>
-<h2 id="样式的层叠和顺序"><a href="#样式的层叠和顺序" class="headerlink" title="样式的层叠和顺序"></a>样式的层叠和顺序</h2><p>将多个样式规则应用于同一元素的情况并不少见，大型网站更是如此，他们需要更多精力维护 CSS。有时候这些规则针对的是 同一条属性。在规则的特殊性相同的情况下，样式的顺序就成为关键。基本规则是:在其他条件相同的情况下， 越晚出现的样式优先级越高 。</p>
-<p>以下解释了顺序如何决定样式规则的优先级：</p>
-<ul>
-<li>嵌入样式表（位于 style 元素内）与任何链接的外部样式表之间的关系取决于它们在 HTML 中的相对位置。</li>
-<li>内联样式(实际上直接应用于元素) 在外部样式表和嵌入样式表之后。由于顺序最靠后，其优先级是最高的。 一旦应用到任何地方，都会覆盖与之冲突的其他样式。 </li>
-<li>关于相互冲突的样式的顺序对优先级的影响，有一种例外情况，就是标记 !important 的样式总是具有最高的优先级，无论它出现在最前、最后，还是中间。不过，要尽量避免这种用法，极端情况除外。几乎在全部情况下，使用选择器都能达到同样的效果。此外，!important 让声明变得太强，如果要覆盖这样的样式，就不得不借助于更长的规则。 </li>
-</ul>
-<p>有一种使用 !important 的合理情形。 有时网页会包含一些你无法修改的 HTML， 例如来自第三方服务的新闻源。如果这些 HTML 中有一些内联样式与你的设计不符， 你就可以在自己的样式表中使用 !important 覆盖这些样式。 </p>
-<p>​    </p>
-<h2 id="使用与媒体相关的样式表"><a href="#使用与媒体相关的样式表" class="headerlink" title="使用与媒体相关的样式表"></a>使用与媒体相关的样式表</h2><p>可以指定一个只用于特定输出的样式表， 如只用于打印，或只用于在浏览器中查看屏幕。 </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">title</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"css/style.css"</span> <span class="attr">media</span>=<span class="string">"screen"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"css/print.css"</span> <span class="attr">media</span>=<span class="string">"print"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>通过对 link 元素添加 media 属性，可 以将样式表限于特定输出。 </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 针对所有样式 */</span></span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">4px</span> solid red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: orange;</span><br><span class="line">    <span class="attribute">font-style</span>: italic;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 打印样式表 */</span></span><br><span class="line"><span class="keyword">@media</span> print &#123;</span><br><span class="line">    <span class="selector-tag">body</span> &#123;</span><br><span class="line">		<span class="comment">/* 加大字号 */</span> </span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">25pt</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">p</span>&#123;</span><br><span class="line">		<span class="comment">/* 黑色的十六进制值 */</span> </span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">img</span> &#123;</span><br><span class="line">		<span class="comment">/* 不显示图像 */</span> </span><br><span class="line">        <span class="attribute">display</span>: none;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>联合使用 CSS3 引入的媒体查询和这里介绍的媒体输出类型可以形成强大的威力。 通过这些技术，可以根据输出设备的属性确 定需要应用到页面的样式。 </p>
-<p>​    </p>
-<h1 id="定义选择器"><a href="#定义选择器" class="headerlink" title="定义选择器"></a>定义选择器</h1><p>CSS 样式规则有两个主要部分。选择器决定将格式化应用到哪些元素，而声明则定义要应用的格式化。 </p>
-<h2 id="构造选择器"><a href="#构造选择器" class="headerlink" title="构造选择器"></a>构造选择器</h2><p>选择器可以定义五个不同的标准来选择要进行格式化的元素。</p>
-<ul>
-<li><p>元素的类型和名称</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<li><p>关于样式表中的媒体查询</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// logic 取值为 only 或 not 或 and</span><br><span class="line">// type 媒体类型</span><br><span class="line">// feature 预定义的媒体特性</span><br><span class="line"><span class="keyword">@media</span> logic type (<span class="attribute">feature:</span> value) &#123;</span><br><span class="line">    <span class="comment">/* 目标 CSS 样式规则写在这里 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<ul>
-<li><p>元素所在的上下文</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* em 为元素名称，这个选择器只应用于 h1 元素中的 em 元素*/</span></span><br><span class="line"><span class="selector-tag">h1</span> <span class="selector-tag">em</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>元素的类或 id</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 选择所有属于 error 类的元素 */</span></span><br><span class="line"><span class="selector-class">.error</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 选择 id 为 gaudi 的元素 */</span></span><br><span class="line"><span class="selector-id">#gaudi</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过在 class 或 id 选择器前面添加目标元素的名称，可以增强选择器的特殊性。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 选择属于 error 的 strong 元素 */</span></span><br><span class="line"><span class="selector-tag">strong</span><span class="selector-class">.error</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果要定位的元素有多个类名，可以在选择器中将它们连在一起。</p>
-</li>
-<li><p>元素的伪类或伪元素</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 选择属于 link 伪类的 a 元素 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>元素是否有某些属性的值</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 选择所有 title 属性的 a 元素 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[title]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 选择指向维基百科的 a 元素 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[href=<span class="string">"https://www.wikipedia.ort"</span>]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>编写 CSS 的一个重要目标就是让选择器尽可能的简单，仅保持必要的特殊性。应该充分利用样式的层叠特性，即元素的后代会继承祖先元素的样式。同时，应该将页面中的通用设计元素挑选出来，编写一个选择器(如类名)，从而可以在全站不同的元素上共享该样式。 </p>
-<p>​    </p>
-<h2 id="按照名称选择元素"><a href="#按照名称选择元素" class="headerlink" title="按照名称选择元素"></a>按照名称选择元素</h2><p>选择要格式化的元素，最常用的就是按照元素的名称进行选择。比如 ：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>除非指定其它情况，指定类型的所有元素都将被格式化，无论它们出现在文档的什么位置。</p>
-<p>通配符 <code>*</code> 匹配代码中的任何元素名称。但是因为匹配范围太广，一般不建议使用，因为这会使得浏览器加载页面变慢。</p>
-<p>可以在一个选择器中使用一组元素名称，名称之间用逗号分隔。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>,<span class="selector-tag">h2</span>,<span class="selector-tag">h3</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<h2 id="按类或-ID-选择元素"><a href="#按类或-ID-选择元素" class="headerlink" title="按类或 ID 选择元素"></a>按类或 ID 选择元素</h2><p>如果已经在元素中标识了 class 或 id ，就可以在选择器中使用这个标准，从而只对已标识的元素进行格式化。</p>
-<p>可以单独用使用 class 和 id，也可以同其它选择器标准混在一起使用，比如</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 会影响所有属于 news 类的元素</span><br><span class="line"><span class="selector-class">.news</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line">// 只会影响属于 news 类的 h1 元素</span><br><span class="line"><span class="selector-tag">h1</span><span class="selector-class">.news</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>除非必须特别针对目标元素，否则不要在 id 或 class 选择器中添加元素名称。</p>
-<p>如果要定位的类名有多个，可以在选择器中将它们连在一起</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.class-news</span><span class="selector-class">.class-video</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里需要主要的是，任何 <code>.class-news</code> 和 <code>.class-video</code> 选择器的规则仍会应用于该元素，但是 <code>.class-news.class-video</code> 的规则的特殊性更高。</p>
-<p>​    </p>
-<h2 id="按上下文选择元素"><a href="#按上下文选择元素" class="headerlink" title="按上下文选择元素"></a>按上下文选择元素</h2><p>在 CSS 中，可以根据元素的祖先、父元素或同胞元素来定位它们。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 组合使用了类选择器和类型选择器</span><br><span class="line">// 这将作用于任何作为 class-news 类元素的后代的 p 元素</span><br><span class="line"><span class="selector-class">.class-news</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line">// 作用于所有以 article 元素为祖先的 p 元素</span><br><span class="line"><span class="selector-tag">article</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line">// 作用于以属于 class-news 类的 article 元素为祖先的任何 p 元素</span><br><span class="line">// 这种类型的选择器的特殊性最高，通常会比实际需要的特殊性更高</span><br><span class="line"><span class="selector-tag">article</span><span class="selector-class">.class-news</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>祖先元素是包含目标元素的任何元素，不管它们之间相隔多少代，而父元素是直接包含另一个元素的元素，它们之间只隔一代。</p>
-<p>通常将基于祖先元素的选择器成为后代选择器，不过 CSS 3 中将其称为后代结合符。</p>
-<h3 id="按照祖先元素选择要格式化的元素"><a href="#按照祖先元素选择要格式化的元素" class="headerlink" title="按照祖先元素选择要格式化的元素"></a>按照祖先元素选择要格式化的元素</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">element-ancestor</span> <span class="selector-tag">element-target</span> &#123;</span><br><span class="line">    ···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="按照父元素选择要格式化的元素"><a href="#按照父元素选择要格式化的元素" class="headerlink" title="按照父元素选择要格式化的元素"></a>按照父元素选择要格式化的元素</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">element-father</span> &gt; <span class="selector-tag">element-target</span> &#123;</span><br><span class="line">    ···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="按照相邻同胞元素选择要格式化的元素"><a href="#按照相邻同胞元素选择要格式化的元素" class="headerlink" title="按照相邻同胞元素选择要格式化的元素"></a>按照相邻同胞元素选择要格式化的元素</h3><p>CSS 相邻同胞结合符可以选择直接跟在指定的同胞元素后面的同胞元素。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.class-news</span> <span class="selector-tag">p</span>+<span class="selector-tag">p</span> &#123;</span><br><span class="line">    ···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<h2 id="选择第一个或最后一个子元素"><a href="#选择第一个或最后一个子元素" class="headerlink" title="选择第一个或最后一个子元素"></a>选择第一个或最后一个子元素</h2><p>有时候需要选择仅作为某元素第一个或最后一个子元素的元素，这时候就要用到 <code>:first-child</code> 和 <code>:last-child</code> 伪类。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 选择子元素中的第一个 li 元素</span><br><span class="line"><span class="selector-tag">li</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line">// 选择子元素中的最后一个 li 元素</span><br><span class="line"><span class="selector-tag">li</span><span class="selector-pseudo">:last-child</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line">// 选择任何作为另一个元素的第一个子元素</span><br><span class="line"><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在伪类之前添加其它选择器可以使其特殊性更高</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 仅对 class-news 类的第一个 h1 子元素起作用</span><br><span class="line"><span class="selector-class">.class-news</span> <span class="selector-tag">h1</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<h2 id="选择元素的第一个字母或第一行"><a href="#选择元素的第一个字母或第一行" class="headerlink" title="选择元素的第一个字母或第一行"></a>选择元素的第一个字母或第一行</h2><p>使用 <code>:first-letter</code> 和 <code>:first-line</code> 伪元素只选择元素的第一个字母或第一行。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 选择 p 元素的第一个字母</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:first-letter</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">1.4em</span>;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line">// 选择 p 元素的第一行</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:first-line</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以将 <code>:first-letter</code> 和 <code>:first-line</code> 伪元素与其它选择器结合使用</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 作用于 class-news 类中每个段落的第一个字母</span><br><span class="line"><span class="selector-class">.class-news</span> <span class="selector-tag">p</span><span class="selector-pseudo">:first-letter</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是，只有某些特定的 CSS 属性可以应用于 <code>:first-letter</code> 伪元素，包括 font、color、background、text-decoration、vertical-algin、text-transform、line-height、margin、padding、border、float 和 clear。</p>
-<blockquote>
-<p>伪元素、伪类及 CSS 3 语法</p>
-<p>在 CSS  3 中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:first-line -&gt; ::first-line</span><br><span class="line">:first-letter -&gt; ::first-letter</span><br></pre></td></tr></table></figure>
-
-<p>这样是为了将伪类和伪元素进行区分。</p>
-</blockquote>
-<p>​    </p>
-<h2 id="按照状态选择链接元素"><a href="#按照状态选择链接元素" class="headerlink" title="按照状态选择链接元素"></a>按照状态选择链接元素</h2><p>CSS 允许根据链接的当前状态对其进行格式化。</p>
-<p>链接的状态包括访问者是否将鼠标停留在链接上，链接是否被访问过等等。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 从未被激活或指向，当前也没有被激活或指向的链接</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 已激活过的链接</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: orange;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 通过键盘选择并已准备好激活的</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:focus</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: purple;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 光标指向连接时</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 激活的链接</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>也可以对其它类型的元素使用 <code>:active</code> 和 <code>:hover</code> 伪类</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 鼠标停留在任何段落上都会使其显示红色</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<h2 id="按照属性选择元素"><a href="#按照属性选择元素" class="headerlink" title="按照属性选择元素"></a>按照属性选择元素</h2><p>可以对具有给定属性或属性值的元素进行格式化。</p>
-<p>CSS 提供了多种方式匹配属性和属性值，包括只检查属性名、检查全部或者部分属性值。如果在选择器中呼略了属性值，就可以为具有给定属性的元素应用样式。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">element[attribute]			// 匹配指定属性，无论属性值是什么</span><br><span class="line">	   [attribute="value"]  // 完全匹配指定属性值</span><br><span class="line">	   [attribute~="value"] // 匹配属性值以空格分隔的多个单词，其中有一个完全匹配指定值</span><br><span class="line">       [attribute|="value"] // 匹配以 value- 打头的属性值</span><br><span class="line">	   [attribute^="value"] // 匹配以 value 开头的属性值，value 为完整的单词或完整的单词的一部分</span><br><span class="line">       [attribute$="value"] // 匹配属性值以 value 结尾，value 为完整的单词或完整的单词的一部分</span><br><span class="line">	   [attribute*="value"] // 属性值为指定值的子字符串</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 选择所有具有 class 属性的段落</span><br><span class="line"><span class="selector-tag">p</span><span class="selector-attr">[class]</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面是一个例子</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 仅当媒体类型为 screen 且视觉区域最小宽度为 480px 时加载并使用</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"only screen and (min-width: 480px)"</span> <span class="attr">href</span>=<span class="string">"style-480.css"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>​    </p>
-<h2 id="指定元素组"><a href="#指定元素组" class="headerlink" title="指定元素组"></a>指定元素组</h2><p>我们经常需要将相同的样式规则应用于多个元素。可以为每个元素重复地设置样式规则，也可以组合选择器，一次性地设置样式规则。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">element-1</span>,</span><br><span class="line"><span class="selector-tag">element-2</span>,</span><br><span class="line">  ···</span><br><span class="line"><span class="selector-tag">element-n</span> &#123;</span><br><span class="line">    ···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以列出任意数量的单独的选择器，无论它们包含的是元素名称、类还是伪元素，只需用逗号将它们隔开。</p>
-<p>通过元素组添加样式只是一种简写方式。</p>
-<p>有时，为应用于多个选择器的共同样式创建一个样式规则，再为没有共同点的样式分别创建单独的样式规则是很有用的。要记住，在样式表中后指定的规则会覆盖先指定的规则。</p>
-<p>​    </p>
-<h1 id="为文本添加样式"><a href="#为文本添加样式" class="headerlink" title="为文本添加样式"></a>为文本添加样式</h1><p>使用 CSS 可以修改文本的字体、大小、粗细、倾斜、行高、前景和背景颜色、间距和对齐方式、添加下划线和删除线等。</p>
-<h2 id="选择字体系列"><a href="#选择字体系列" class="headerlink" title="选择字体系列"></a>选择字体系列</h2><p>并非所有的系统都支持相同的默认字体，因此应该定义替代字体作为备选。</p>
-<h3 id="设置字体的方法"><a href="#设置字体的方法" class="headerlink" title="设置字体的方法"></a>设置字体的方法</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: Geneva;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span>，<span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">"Gill Sans"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>由于 font-family 是继承属性，当我们对 body 元素设置了字体以后，该样式也会应用到其它元素。但是有几个元素不会继承父元素的字体设置，其中有表单的 select、textarea 和 input 元素。不过，可以强制它们继承父元素的字体。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以使用 and 将多个特性和值的组合串接起来，还可以创建一系列媒体查询（使用逗号分隔每个媒体查询）。在用逗号分隔的媒体查询列表中，如果有一个媒体查询为真，则整个媒体查询列表为真。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"only screen and (min-width: 480px) and (max-width: 767px)"</span> <span class="attr">href</span>=<span class="string">"style.css"</span> /&gt;</span></span><br><span class="line">//</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"only print and (color)"</span> <span class="attr">href</span>=<span class="string">"color-page.css"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="指定替代字体"><a href="#指定替代字体" class="headerlink" title="指定替代字体"></a>指定替代字体</h3><p>为了使得文本以你想要呈现的字体来展示，你需要设置替代字体以防止在某些系统上没有安装你指定的字体的情况。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 浏览器会使用列表中的第一个已安装在访问者系统内的字体</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: Geneva, Tahoma, sans-serif;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span>,</span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">"Gill Sans"</span>,<span class="string">"Gill Sans MT"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>OS X 和 Windows 上默认的共有的字体</strong> 它们仅包括 Arial、Comic、Sans MS、Courier New、Georgia、Impact、Trebuchet MS、Times New Roman 和 Verdana。</p>
-</blockquote>
-<p>系统通常都有下列表示类属的字体名称对应的字体：serif、sans-serif、cursive、fantasy 和 monospace。因此，标准的做法就是字体栈的末尾指定上述字体名称中的一种。</p>
-<p>可以在同一个 font-family 规则中为不同的字母表指定字体，从而对包含不同怨言和书写体系的文本进行格式化。</p>
-<p>​    </p>
-<h2 id="创建斜体"><a href="#创建斜体" class="headerlink" title="创建斜体"></a>创建斜体</h2><p>浏览器通常让一些 HTML 元素默认以斜体显示，因此，不比在 CSS 中对这些元素设置斜体。有时，你需要让一些内容以斜体显示，但是用元素却没有合适的语义，这时，使用 CSS 的 font-style 属性就可以让任何元素中的文本以斜体显示。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">font-style</span>: italic;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>因为 font-style 属性是继承的，如果你想要在某些地方不以斜体显示，则可以取消斜体</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">font-style</span>: <span class="selector-tag">normal</span>;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<h2 id="创建粗体"><a href="#创建粗体" class="headerlink" title="创建粗体"></a>创建粗体</h2><p>粗体格式可能是让文本突出显示的最常见、最有效的方式。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">em</span>,</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>设置 font-weight 属性的值为 bold，让文本显示为有平均加粗值的字体，或者输入 100 ~ 900 之间的 100 的倍数，其中 400 代表正常粗细，700 代表粗体。</p>
-<p>设置 font-weight 为 normal 来取消粗体。</p>
-<p>​    </p>
-<h2 id="设置字体大小"><a href="#设置字体大小" class="headerlink" title="设置字体大小"></a>设置字体大小</h2><p>为网页里的文本设置字体大小有两种方式：直接使用像素指定要使用的特定字号或使用百分数、em、rem 指定相对于父元素文本的大小。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">35px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">28px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用 em 这样的相对单位有更大的灵活性，而且对定义页面中特定的设计部件的尺寸很有帮助。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// body 中设置的 font-size：100% 声明为 em 字体大小设置了参考的基准。这里的 100% 将被翻译为默认字体大小</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">100%</span>; <span class="comment">/* 16px */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">2.1875em</span>; <span class="comment">/* 35px/16px */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">1.75em</span>; <span class="comment">/* 28px/16px */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>使用 rem 设置字体大小</strong></p>
-<p>CSS 3 引入了一些新的单位，其中很有意思的一个便是 rem。它同 em 很像，不过它总是以根元素为参照系设置其它元素的字体大小，而不是父元素。这样做字体大小的设置。</p>
-<p>​    </p>
-<h2 id="设置行高"><a href="#设置行高" class="headerlink" title="设置行高"></a>设置行高</h2><p>行高指的是段落的行距，即段落内诶航之间的距离。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">class-news</span> &#123;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果使用数字设定行高，那么所有的子元素都会继承这个因子。因此，如果父元素的字体大小是 16 像素或以 em 表示的等价大小，行高是 1.5 的话，则该元素的行高就是 24 像素。</p>
-<p>​    </p>
-<h2 id="同时设置所有字体值"><a href="#同时设置所有字体值" class="headerlink" title="同时设置所有字体值"></a>同时设置所有字体值</h2><p>可以使用 font 简写属性同时设置字体样式，但是需要注意的是 font 简写属性至少应该包括字体系列和字体大小属性。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font</span>: <span class="number">100%</span> Geneva, Tahoma, Verdana, sans-serif;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h1</span>,</span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="comment">/* 这些声明无法使用 font 简记法，除非同时声明字体大小 */</span></span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">"Gill Sans"</span>, <span class="string">"Gill Sans MT"</span>, Calibri, sans-serif;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.class-news</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="comment">/* 这些声明无法使用 font 简记法，除非同时声明字体大小 */</span></span><br><span class="line">    <span class="attribute">font-size</span>: .<span class="number">9375em</span>;</span><br><span class="line">    <span class="attribute">ling-height</span>: <span class="number">1.65</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<h2 id="设置颜色"><a href="#设置颜色" class="headerlink" title="设置颜色"></a>设置颜色</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>除了 link 元素，其它元素都会继承 body 元素中的 color 属性，你必须显示设置 link 元素的 color 属性。</p>
-<p>​    </p>
-<h2 id="设置背景"><a href="#设置背景" class="headerlink" title="设置背景"></a>设置背景</h2><p>设置背景有很多属性可以利用，包括 background-color、background-image、background-repeat、background-attachment 及 background-position 等。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#88b2d2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#eaebef</span>;</span><br><span class="line">&#125;</span><br><span class="line">// 使用背景图像作为背景</span><br><span class="line"><span class="selector-tag">h3</span> &#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(bg-pattern.png);</span><br><span class="line">    <span class="attribute">background-repeat</span>: repeat-x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>background-color 的默认值是 transparent，background-image 的默认值是 none，background-repeat 的默认值是 repeat，background-attachment 的默认值是 scroll，background-position 的默认值时 0 0。只有在需要覆盖其它样式规则的时候才会显示的指定默认值。</p>
-<p>​    </p>
-<h2 id="控制间距"><a href="#控制间距" class="headerlink" title="控制间距"></a>控制间距</h2><p>可以增加或减少单词之间或字母之间的距离，前者成为字间距，后者称为字偶距。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// word-spacing 和 letter-spacing 是继承的</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">letter-spacing</span>: <span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">word-spacing</span>: <span class="number">2px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>单词间距和字母间距还可能受到所选对齐方式的和字体系列的影响。</p>
-<p>要将字母间距和单词间距设置为默认值，可使用 normal 或 0 。</p>
-<p>​    </p>
-<h2 id="添加缩进"><a href="#添加缩进" class="headerlink" title="添加缩进"></a>添加缩进</h2><p>通过设置 text-indent 属性，可以指定段落第一行前面应该空出多大的空间。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">text-indent</span>: <span class="number">2em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其实我们也可以为其它元素应用 text-indent 属性，而不仅是段落元素，不过默认情况下对 em、strong、cite 等内联元素没有效果。可以将它们设置为 display：block；或 display: inline-block; 为其添加 text-indent 属性。</p>
-<p>​    </p>
-<h2 id="对齐文本"><a href="#对齐文本" class="headerlink" title="对齐文本"></a>对齐文本</h2><p>根据需要，可以让文本左对齐、右对齐、居中对齐或两端对齐。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    text-align: left; // right/center/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="修改文本的大小写"><a href="#修改文本的大小写" class="headerlink" title="修改文本的大小写"></a>修改文本的大小写</h2><p>使用 text-transform 属性，可以为样式定义文本的大小写。通过这种方法，可以将文本显示为首字母大写、全部大写、全部小写或原样显示。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    text-transform: uppercase;   // 让所有字母大写</span><br><span class="line">    text-transform：capitalize; 	// 让每个单词的首字母大写</span><br><span class="line">    text-transform：lowercase; 	// 让所有字母小写</span><br><span class="line">    text-transform：none; 		// 让文本保持原来的样子或用来取消继承的值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="使用小型大写字母"><a href="#使用小型大写字母" class="headerlink" title="使用小型大写字母"></a>使用小型大写字母</h2><p>很多字体都有对应的小型大写字母变体， 其中一些字母是大写的，但缩小到了小写字母的大小。可以使用 font-variant 调用小型大写字母变体 。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">font-variant</span>: small-caps;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="装饰文本"><a href="#装饰文本" class="headerlink" title="装饰文本"></a>装饰文本</h2><p>可以使用 text-decoration 属性装饰文本，如添加下划线或者其他类型的线条。目前最常用到这个属性的情况是为链接状态添加 样式 。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#e1000</span>;</span><br><span class="line">    text-decoration: none; 			//	无装饰样式 </span><br><span class="line">    text-decoration: underline; 	//  下划线</span><br><span class="line">    text-decoration: overline; 		//  上划线</span><br><span class="line">    text-decoration: line-through;  //  删除线</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="设置空白属性"><a href="#设置空白属性" class="headerlink" title="设置空白属性"></a>设置空白属性</h2><p>默认情况下，HTML 文档里的多个空格和回车会显示为一个空格，或者被忽略。 如果要让浏览器显示这些额外的空格，可以使 用 white-space 属性 ：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    white-space: nowarp;	// 确保所有空格不断行，也就是文本全部显示在一行</span><br><span class="line">    white-space: pre;		// 显示原文本中的所有空格和回车</span><br><span class="line">    white-space: normal;	// 按正常方式处理空格</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<h1 id="用CSS进行布局"><a href="#用CSS进行布局" class="headerlink" title="用CSS进行布局"></a>用CSS进行布局</h1><p>使用 CSS 进行布局的注意事项</p>
-<ul>
-<li><p>内容与显示分离</p>
-</li>
-<li><p>布局方法</p>
-<ul>
-<li>固定布局，真个页面和每一栏都有基于像素的宽度</li>
-<li>响应式页面也称为流式页面，使用百分数定义宽度，允许页面随显示环境的改变进行放大或缩小。</li>
-</ul>
-</li>
-<li><p>浏览器注意事项</p>
-<p>并非所有的访问者都是用同样的浏览器，同样的操作系统，甚至同样的设备访问你的网站，因此通常在将网站放到服务器上发布之前，尽量在不同的操作系统用不同的浏览器进行充分的测试。</p>
-</li>
-</ul>
-<h2 id="对默认的样式进行重置或标准化"><a href="#对默认的样式进行重置或标准化" class="headerlink" title="对默认的样式进行重置或标准化"></a>对默认的样式进行重置或标准化</h2><p>每个浏览器都有内置的默认样式表，HTML 会遵照该样式显示，除非你自己编写的 CSS 覆盖了它们。整体上，不同浏览器提供的默认样式是相似的，但也存在一定的差异，为此，在应用自己的 CSS 之前，应抹平这些差异。</p>
-<p>抹平差异的方法主要有两种 ：</p>
-<ul>
-<li>使用 CSS 重置开始主样式表</li>
-<li>使用 Nicolas Gallagher 和 Jonathan Neal 创建的 normalizes.css 开始主样式表</li>
-</ul>
-<p>CSS 重置可以有效地将所有默认样式都设为 ‘零’，而第二种方法，即 normalize.css，则采用了不同的方式，它并非对所有样式进行充值，而是对默认样式进行微调，是它们在不同的浏览器中具有相似的外观。</p>
-<h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h2><p>CSS 处理网页时，它认为每个元素都包含在一个不可见的盒子里。这就是众所周知的盒模型，这里的盒子由内容区域、内容区 域周围的空间(内边距，padding)、内边距的外边缘(边框，border)和边框外面将元素与相邻元素隔开的不可见区域(外边距，margin)构成 。</p>
-<h3 id="宽度、高度和盒模型"><a href="#宽度、高度和盒模型" class="headerlink" title="宽度、高度和盒模型"></a>宽度、高度和盒模型</h3><p>关于 CSS 的 Width 属性对元素所显示宽度的影响，默认的处理方式实际上有悖常理。浏览器中元素的宽度与其 width 属性并不一致。CSS 中的宽度指示的是内边距里内容区域的宽度，而元素在浏览器中的显示宽度则是内容宽度、左右内边距和左右边框的总和。显示高度与之类似，只不过计算的是上下内边距和边框值。</p>
-<p>通过对元素设置 <code>box-sizing: border-box</code> ，可以使元素的显示宽度就等于 width 属性的值。</p>
-<h2 id="控制元素的显示类型和可见性"><a href="#控制元素的显示类型和可见性" class="headerlink" title="控制元素的显示类型和可见性"></a>控制元素的显示类型和可见性</h2><p>每个元素在默认情况下要门显示在单独的行要么显示在行内，造成这种原因的本质是它们的 display 属性，即块级元素被设置为 display：block（对于 li 元素为 display：list-item，而行内元素被设置为 display：inline）。</p>
-<p>不过，可以使用 CSS 改变元素的默认显示类型。</p>
-<p>指定元素的显示方式 ：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    display: block;			// 让元素显示为块级元素，就像开始新的段落</span><br><span class="line">	display: inline;		// 让元素显示为行内元素</span><br><span class="line">    display: inline-block;	// 让元素显示为行内元素，同时具有块级元素的特征</span><br><span class="line">    display: none;			// 隐藏元素</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过媒体查询，可以根据设备的媒体属性应用不同的样式。尽管媒体查询包含了很多功能，但其中 min-width 和 max-width 是创建响应式网页时用的最多的。 </p>
+<p>有时你可能希望为高像素密度设备设定样式。一种常见的用例是为这样的显示屏准备双倍尺寸(2x)的 sprite，从而让图像显得更锋利。</p>
+<p>假设你的 sprite 的原始尺寸是 200 像素 ×150 像素，其中每个图像都用 1 像素分隔。创建一个双倍大小的版本(400 像素 ×300 像素)，每个图像之间就有 2 像素的间隔。同时， sprite 中的每个图像都是原始尺寸的 2 倍。针对高像素密度设备，可以使用下面的媒体查询:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">-o-min-device-pixel-ratio:</span> <span class="number">5</span>/<span class="number">4</span>),</span><br><span class="line">    (<span class="attribute">-webkit-min-device-pixel-ratio:</span><span class="number">1.25</span>),</span><br><span class="line">    (<span class="attribute">min-resolution:</span> <span class="number">120dpi</span>) &#123;</span><br><span class="line">        <span class="selector-class">.class</span> &#123;</span><br><span class="line">            ···</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>控制元素的可见性 ：</p>
-<p>使用 visibility 属性可以控制元素是否可见。与 display 不同的是，使用 visibility 隐藏元素时，元素及其内容应该出现的位置会留下一片空白区域。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">em</span> &#123;</span><br><span class="line">    <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要注意， 就是 Internet Explorer 8 及以下的版本不支持媒体查询。这意味着这些浏览器只会呈现媒体查询以外的样式，即基准样式。 </p>
+<h1 id="使用-CSS3-进行增强"><a href="#使用-CSS3-进行增强" class="headerlink" title="使用 CSS3 进行增强"></a>使用 CSS3 进行增强</h1><p>网站制作者多年来面临的挑战之一就是，使用 CSS 建立丰富布局的选择是有限的。在大多数情况下，要建立丰富的布局，就需要使用额外的 HTML、CSS 及大量图像。这样做的结果就是，页面变得更为复杂，可访问性降低，浏览器需要花费更长的时间下载和显示页面，同时，页面变得更为脆弱，更难维护。</p>
+<p>近年来，浏览器快速吸纳了很多新的 CSS3 属性，让上述情况有了改观。如今，仅使用 CSS 创建圆角、渐变和阴影以及调整透 明度等已经变成现实。结果是网页可以使用更少的标记和图像，这样加载的速度也会变快。 </p>
+<h2 id="渐进增强和-polyfill"><a href="#渐进增强和-polyfill" class="headerlink" title="渐进增强和 polyfill"></a>渐进增强和 polyfill</h2><p><strong>渐进增强</strong>强调创建所有用户都能访问的基本层面内容和功能，同时为更强大的浏览器提供增强的体验。总结来说，就是网站在不同 Web 浏览器中的外观和行为不一样是完全可以接受的，只要内容是可访问的。</p>
+<p>如果你想弥合较弱的浏览器和较强的浏览器之间的差距，可以使用 <strong>polyfill</strong> 。polyfill 通常使用 JavaScript 来实现，它可以为较弱的浏览器提供一定程度的对 HTML5 和 CSS3 的 API 和属性的支持。同时，当浏览器本身就具有相应的能力时，会不动声色地退而使用官方的支持。需要注意的是这样所通常会对性能产生一定的影响，因为较弱的浏览器运行 JavaScript 的速度要慢很多。</p>
+<h2 id="理解厂商前缀"><a href="#理解厂商前缀" class="headerlink" title="理解厂商前缀"></a>理解厂商前缀</h2><p>CSS3 规范要达到 W3C 的推荐标准(即定稿)状态要经过数年。浏览器则通常在 W3C 开发标准的过程中就会提前实现这些特性。这样，标准在最终敲定之前就能知道哪些地方还能进一步改进。</p>
+<p>在包含某个特性的初始阶段，浏览器通常会使用厂商前缀实现这类特性。这样，每个浏览器都可以引入自己的 CSS 属性支持方式，从而可以获取反馈， 而且一旦标准发生改变也不会造成影响。</p>
+<p>每个出浏览器都有自己的前缀：-webkit- (WebKit/Safari/及版本的 Chrome)、-moz- (Firefox)、-ms- (Internet Explorer)、-o-(Opera)。应该将前缀放在 CSS 属性名的前面。</p>
+<p>如今大多数情况下，一般只需要 -webkit 前缀，而且并非所有的 CSS3 属性都需要使用为浏览器准备的前缀。</p>
+<h2 id="为元素创建圆角"><a href="#为元素创建圆角" class="headerlink" title="为元素创建圆角"></a>为元素创建圆角</h2><p>使用 CSS3，可以在不引入额外的标记或图像的情况下，为大多数元素(包括表单元素、 图像，甚至段落文本)创建圆角 。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.all-corners</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-border-radius</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.left-corner</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-border-top-left-radius</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">border-top-left-radius</span>: <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>设置为 display：none；或 visibility：hidden；的元素里的所有内容，包括后代都会受到影响。</p>
-<h2 id="设置元素的高度和宽度"><a href="#设置元素的高度和宽度" class="headerlink" title="设置元素的高度和宽度"></a>设置元素的高度和宽度</h2><p>可以为很多元素设置高度和宽度，如分块内容、段落、列表项、div、图像、video、 表单元素等。</p>
-<p>同时，可以为短语内容元素(默认以行内方式显示)设置 display: block; 或 display: inline-block;，再对它们设置宽度 或高度。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">em</span> &#123;</span><br><span class="line">    width: w;	// w 是元素内容区域的宽度，可以表示为长度或父元素的百分数</span><br><span class="line">    height: h;  // h 是元素内容区域的高度，只能表示为长度</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同 border、margin 和 padding 属性一样，border-radius 属性也有简写方式 ：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.corner</span> &#123;</span><br><span class="line">    border-radius: 10px 20px;	// 左上方、右下方设置为 10px，右上方、左下方设置为 20px</span><br><span class="line">    border-radius: 20px 0 0 	// 左上方设置为 20px ，其它为 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>需要注意的是，内边距、边框和外边距都不包含在宽度或高度的数值里。</p>
-<p>可以使用 * 通配符对所有元素应用 border-box 规则</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">    <span class="attribute">-webkit-box-sizing</span>: border-box;</span><br><span class="line">    <span class="attribute">-moz-box-sizing</span>: border-box;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建四个相同的圆角</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// r 为圆角半径</span><br><span class="line"><span class="selector-class">.corner</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-border-radius</span>: r;</span><br><span class="line">    <span class="attribute">border-radius</span>: r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>百分数是相对于父元素的宽度的，而不是相对于元素本身的原始宽度的。</p>
-<p>如果不显式设置宽度和高度，浏览器就会使用 auto。对于大多数默认显示为块级元素的元素，width 的 auto 值是由包含块的宽度减去元素的内边距、边框和外边距计算出来的。简单说来， 包含块的宽度指的是父元素给元素留出的宽度。 </p>
-<p>对于图像这样的元素，auto 宽度等于它们固有的宽度，即外部文件实际尺寸大小。</p>
-<p>除非你确定元素的内容不会变的更高，最好避免在样式表中指定高度。大多数情况下，可以让内容和浏览器自动控制高度。</p>
-<h2 id="在元素周围添加内边距"><a href="#在元素周围添加内边距" class="headerlink" title="在元素周围添加内边距"></a>在元素周围添加内边距</h2><p>内边距就是元素内容周围、 边框以内的空间。 可以改变内边距的厚度，不能改变它的颜色或纹理。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.about</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#2b2b2b</span>;</span><br><span class="line">    <span class="attribute">padding</span>: .<span class="number">3125em</span> .<span class="number">625em</span> .<span class="number">625em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建一个圆角</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// r 为圆角半径</span><br><span class="line"><span class="selector-class">.corner-top-left</span> &#123;</span><br><span class="line">    <span class="attribute">border-top-left-radius</span>: r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.corner-top-right</span> &#123;</span><br><span class="line">    <span class="attribute">border-top-right-radius</span>: r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.corner-bottom-left</span> &#123;</span><br><span class="line">    <span class="attribute">border-bottom-left-radius</span>: r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.corner-bottom-right</span> &#123;</span><br><span class="line">    <span class="attribute">border-bottom-right-radius</span>: r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>同 border 和 margin 属性一样，padding 也可以使用简计法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">padding: 5px;		// 应用于全部四个边距</span><br><span class="line">padding: 5px 10px;	// 前一个应用于上下两边，后一个应用于左右两边</span><br><span class="line">padding: 5px 10px 15px;	// 分别应用于 上边 左右两边 下边</span><br></pre></td></tr></table></figure>
+<p>创建椭圆圆角</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// x 为水平方向上的半径大小，y 为垂直方向上的半径大小</span><br><span class="line"><span class="selector-class">.corner-ellipse</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: x/y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>默认的情况下，元素的 width 和 height 不包含 padding 的大小，并且，内边距是不继承的。</p>
-<p>当 em 值用于内边距和外边距时，它的值是相对于元素的字体大小的，而不是相对于父元素的字体大小的。</p>
-<h2 id="设置边框"><a href="#设置边框" class="headerlink" title="设置边框"></a>设置边框</h2><p>可以在元素周围创建边框，或针对元素的某一边设置边框，并设置它的厚度、风格和颜色。边框可以应用于任何元素，包括图像。 如果希望对一个以上的元素设置相同的边框样式， 最好引入一个类，从而可以复用 。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.em</span> &#123;</span><br><span class="line">    <span class="attribute">border-top</span>: <span class="number">5px</span> solid <span class="number">#019443</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不支持 border-radius 的旧的浏览器仅会以方角呈现元素。</p>
+<h2 id="添加阴影"><a href="#添加阴影" class="headerlink" title="添加阴影"></a>添加阴影</h2><p>使用 text-shadow 为段落、标题等元素中的文本添加动态的阴影效果。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">text-shadow</span>: <span class="selector-tag">x-offset</span> <span class="selector-tag">y-offset</span> <span class="selector-tag">blur-radius</span> <span class="selector-tag">color</span>;</span><br></pre></td></tr></table></figure>
 
-<p>定义边框的风格 ：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">none</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">dotted</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">dashed</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">solid</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">double</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">groove</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">ridge</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">inset</span>;</span><br><span class="line"><span class="selector-tag">border-style</span>: <span class="selector-tag">outset</span>;</span><br></pre></td></tr></table></figure>
+<p>将 text-shadow 改回默认值</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">text-shadow</span>: <span class="selector-tag">none</span>;</span><br></pre></td></tr></table></figure>
 
-<p>定义边框宽度和颜色 ：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">border-width</span>: <span class="selector-tag">n</span>;</span><br><span class="line"><span class="selector-tag">border-color</span>: <span class="selector-tag">color</span>;</span><br></pre></td></tr></table></figure>
+<p>使用 box-shadow 属性则可以为元素本身添加阴影 ，同时还允许使用两个可选的属性 inset 和 spread。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">box-shadow</span>: <span class="selector-tag">x-offset</span> <span class="selector-tag">y-offset</span> <span class="selector-tag">blur-radius</span> <span class="selector-tag">inset</span> <span class="selector-tag">spread</span> <span class="selector-tag">color</span>;</span><br></pre></td></tr></table></figure>
 
-<p>border 简写属性及各个边框属性 (border-width、border-style 和 border- color)均可接受一至四个值。如果使用一个值，那么它会应用于全部四个边。如果使用两个值，那么前一个值会应用于上下两边， 后一个值会应用于左右两边。如果使用三个值，那么第一个值会应用于上边，第二个值会应用于左右两边，第三个值会应用于下边。 如果使用四个值，那么它们会按照时钟顺序， 依次应用于上、右、下、左四个边。 </p>
-<h2 id="设置元素周围的外边距"><a href="#设置元素周围的外边距" class="headerlink" title="设置元素周围的外边距"></a>设置元素周围的外边距</h2><p>外边距是元素与相邻元素之间的透明空间。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">em</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">1.25em</span> <span class="number">0</span> .<span class="number">8em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>如果元素位于另一个元素的上面，对 于相互接触的两个 margin(即元素相互接触的下外边距和上外边距)，仅使用其中较大的一个，另一个外边距会被叠加。左右外边 距不叠加。 </p>
-<h2 id="使元素浮动"><a href="#使元素浮动" class="headerlink" title="使元素浮动"></a>使元素浮动</h2><p>可以通过 float 属性使得元素浮动在文本或其它元素上。可以使用这种技术让文本环绕在图像或者其它元素周围，也可以使用这种技术创建多栏布局。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    float: left;	// 让元素浮动在左边，其它内容环绕在它右边</span><br><span class="line">    float: right;	// 让元素浮动在右边，其它内容环绕在它左边</span><br><span class="line">    float: none;	// 让元素不浮动</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>需要注意的是，float 属性是不继承的。</p>
-<h2 id="控制元素浮动的位置"><a href="#控制元素浮动的位置" class="headerlink" title="控制元素浮动的位置"></a>控制元素浮动的位置</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">clear</span>: left;</span><br><span class="line">    <span class="attribute">clear</span>: right;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">    <span class="attribute">clear</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多重背景"><a href="#多重背景" class="headerlink" title="多重背景"></a>多重背景</h2><p>为单个 HTML 元素指定多个背景是 CSS3 引入的一个特性。 通过减少对某些元素的需求并制定多重背景便可简化 HTML 代码，并让它容易理解和维护。而且多重背景几乎可以用于任何元素。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.weather</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#FFF</span>;</span><br><span class="line">    <span class="attribute">background-image</span>:</span><br><span class="line">        <span class="built_in">url</span>(fine.png),<span class="built_in">url</span>(rain.png),</span><br><span class="line">        <span class="built_in">url</span>(cloud.png),<span class="built_in">url</span>(fog.png);</span><br><span class="line">    <span class="attribute">background-positin</span>:</span><br><span class="line">        <span class="number">50%</span> <span class="number">102%</span>,<span class="number">100%</span> -<span class="number">150px</span>,</span><br><span class="line">        <span class="number">0</span> -<span class="number">150px</span>,<span class="number">50%</span> <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background-repeat</span>:</span><br><span class="line">        no-repeat,no-repeat,</span><br><span class="line">        no-repeat,repeat-x;</span><br><span class="line">&#125;</span><br><span class="line">// 或</span><br><span class="line"><span class="selector-class">.weather</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#FFF</span>;</span><br><span class="line">    <span class="attribute">background</span>:</span><br><span class="line">		<span class="built_in">url</span>(fine.png) no-repeat <span class="number">50%</span> <span class="number">102%</span>,</span><br><span class="line">        <span class="built_in">url</span>(rain.png) no-repeat <span class="number">100%</span> -<span class="number">150px</span>,</span><br><span class="line">        <span class="built_in">url</span>(cloud.png) no-repeat <span class="number">0</span> -<span class="number">150px</span>,</span><br><span class="line">        <span class="built_in">url</span>(fog.png) repeat-x <span class="number">50%</span> <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>使用 clear 属性清除浮动效果。如果对某个元素使用该属性，该元素和它后面的元素就会显示在浮动元素的下面。应该将 clear 属性添加到不希望环网浮动对象的元素上。</p>
-<p>浮动元素的 display 属性会变成 display: block; ，哪怕将其设置为 display: inline;，该属性值依然为 block。</p>
-<p>浮动元素并不影响父元素的高度。如果要让浮动元素的祖先元素在高度上包含浮动元素，并消除浮动，可以使用 clearfix 或 overflow 方法。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::before</span>,</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">" "</span>;</span><br><span class="line">    <span class="attribute">display</span>: table;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">    *zoom: 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
+<h2 id="渐变背景"><a href="#渐变背景" class="headerlink" title="渐变背景"></a>渐变背景</h2><p>渐变背景也是 CSS3 中的新特性，通过它可以在不使用图像的情况下创建从一种颜色到另一种颜色的过渡。</p>
+<p>CSS 渐变是一个背景图像，因此，属性既可以是 background 简记法，也可以是 background-image。应该始终包含一个为旧浏览器准备的基准 background 定义，并放置在渐变背景的定义之前。默认情况下，线性渐变是从上往下渐变的，因此在属性值中不需要指定to bottom。如果要使用相反的方向，则使用to top。 </p>
+<p>使用CSS创建渐变有两种主要的方式:线性渐变和径向渐变，每种方式都有不同的必选参数和可选参数。除非指定一种颜色向另一种颜色过渡的位置，否则浏览器会自行决定不同颜色之间的过渡。</p>
+<p>使用关键字创建对角线方向的渐变：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">linear-gradient</span>(<span class="selector-tag">to</span> <span class="selector-tag">bottom</span> <span class="selector-tag">right</span>,<span class="selector-tag">color</span>,<span class="selector-tag">color</span>);</span><br><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">linear-gradient</span>(<span class="selector-tag">to</span> <span class="selector-tag">bottom</span> <span class="selector-tag">left</span>,<span class="selector-tag">color</span>,<span class="selector-tag">color</span>);</span><br><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">linear-gradient</span>(<span class="selector-tag">to</span> <span class="selector-tag">top</span> <span class="selector-tag">right</span>,<span class="selector-tag">color</span>,<span class="selector-tag">color</span>);</span><br><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">linear-gradient</span>(<span class="selector-tag">to</span> <span class="selector-tag">top</span> <span class="selector-tag">left</span>,<span class="selector-tag">color</span>,<span class="selector-tag">color</span>);</span><br></pre></td></tr></table></figure>
 
-<h2 id="对元素进行相对定位"><a href="#对元素进行相对定位" class="headerlink" title="对元素进行相对定位"></a>对元素进行相对定位</h2><p>每个元素在页面的文档流中都有一个自然位置。相对于这个原始位置对元素进行移动就称为相对定位。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">  	<span class="attribute">top</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">1em</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>指定渐变角度数</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">linear-gradient</span>(90<span class="selector-tag">deg</span>,<span class="selector-tag">color</span>,<span class="selector-tag">color</span>);</span><br></pre></td></tr></table></figure>
 
-<p>其它元素不会受到便宜的影响，仍然按照这个元素原来的盒子进行排列。设置了相对定位的内容可能与其它内容重叠。</p>
-<p>使用相对定位、绝对定位或固定定位时，对于相互重叠的元素，可以用 z-index 属性指定它们的叠放次序。 </p>
-<p>对元素设置 position: static，可以覆盖 position: relative 设置。static 是元素的默认值，这就是元素出现在常规文档流中的原因。 </p>
-<p>而且定位是不继承的。</p>
-<h2 id="对元素进行绝对定位"><a href="#对元素进行绝对定位" class="headerlink" title="对元素进行绝对定位"></a>对元素进行绝对定位</h2><p>正如前面提到的，网页中的元素通常按照它们在 HTML 源代码中出现的次序进行排列，除非你使用 CSS 规则改变前面的样式。而通过对元素进行绝对定位，即指定它们相对于 body 或最近的已定位祖先元素的精确位置，可以让元素脱离正常的文档流。这与相对定位不同，绝对定位的元素不会在原先的位置留下空白。这与让元素浮动也不同。对于绝对定位的元素，其他元素不 会环绕在它的周围。事实上，其他内容不知道它的存在，它也不知道其他内容的存在。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">32px</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">2em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>数值代表的是圆周上的点的位置:0 代表最顶端的点，90 代表最左边的点，180 代表最底端的点，270 代表最右边的点。 </p>
+<p>根据渐进增强的原则，最好为不支持背景渐变属性的浏览器提供一个备用选项。在 CSS 中，它可以位于背景渐变规则的前面。</p>
+<h2 id="设置不透明度"><a href="#设置不透明度" class="headerlink" title="设置不透明度"></a>设置不透明度</h2><p>使用 opacity 属性可以修改元素(包括图像)的透明度。其默认值为 1，可以使用 0.00 至 1.00 之间的两位小数。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">opacity</span>: <span class="selector-tag">o</span>;</span><br></pre></td></tr></table></figure>
 
-<p> 由于绝对定位的元素脱离了文档流， 因此它们可能会相互重叠，或与其他元素重叠 。如果不为绝对定位的元素指定偏移量，这个元素将显示在它的自然位置上，但不会影响后续元素在文档流中的位置。 </p>
-<p>还有一种定位类型称为固定定位。 当访问者滚动浏览器窗口时，页面内容通常随之上下移动。如果对元素设置 position: fixed;，它就会固定在浏览器窗口中。当访问者上下滚动浏览器窗口时，该元素不会随之移动，页面的其余部分仍照常滚动。 </p>
-<h2 id="在栈中定位元素"><a href="#在栈中定位元素" class="headerlink" title="在栈中定位元素"></a>在栈中定位元素</h2><p>当你开始使用相对定位、绝对定位和固定定位以后，很可能发现元素相互重叠的情况，这时可以选择哪些元素应该出现在顶层。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    z-index: 100;	// z-index 的值越大，元素在堆中就越高。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>注意，z-index 属性仅对定位过的元素有效且是不继承的。</p>
-<h2 id="处理溢出"><a href="#处理溢出" class="headerlink" title="处理溢出"></a>处理溢出</h2><p>当元素溢出盒子时，可以使用 overflow 属性控制元素在盒子外面的部分。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    overflow: visible;	// 让元素盒子中的所有内容可见，默认项</span><br><span class="line">    overflow: hidden;	// 隐藏盒子容纳不了的内容</span><br><span class="line">    overflow: scroll;	// 无论元素是否需要，都在元素上添加滚动条</span><br><span class="line">    overflow: auto;		// 让滚动条仅在访问者访问溢出内容时出现</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-
-<h2 id="垂直对齐元素"><a href="#垂直对齐元素" class="headerlink" title="垂直对齐元素"></a>垂直对齐元素</h2><p>可以使用除默认对齐方式以外的多种方式对齐元素，让它们在页面上显得较为整齐 。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    vertical-algin: baseline;	// 使元素的基准线对齐父元素的基准线</span><br><span class="line">	vertical-algin: middle;		// 使元素位于父元素的中央</span><br><span class="line">	vertical-algin: sub;		// 使元素成为父元素的下标</span><br><span class="line">    vertical-algin: super;		// 使元素成为父元素的上标</span><br><span class="line">    vertical-algin: text-top;	// 使元素的顶部对齐父元素的顶部</span><br><span class="line">    vertical-algin: text-bottom;// 使元素的底部对齐父元素的底部</span><br><span class="line">    vertical-algin: top;		// 使元素的顶部对齐当前行里最高元素的顶部</span><br><span class="line">    vertical-algin: bottom;		// 使元素的顶部对齐当前行里最低元素的底部</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="修改鼠标指针"><a href="#修改鼠标指针" class="headerlink" title="修改鼠标指针"></a>修改鼠标指针</h2><p>一般情况下，由浏览器负责控制鼠标指针的形状。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">    <span class="attribute">cursor</span>: default;</span><br><span class="line">    <span class="attribute">cursor</span>: crosshair;</span><br><span class="line">    <span class="attribute">cursor</span>: move;</span><br><span class="line">    <span class="attribute">cursor</span>: wait;</span><br><span class="line">    <span class="attribute">cursor</span>: help;</span><br><span class="line">    <span class="attribute">cursor</span>: text;</span><br><span class="line">    <span class="attribute">cursor</span>: progress;</span><br><span class="line">    <span class="attribute">cursor</span>: auto;</span><br><span class="line">    <span class="attribute">cursor</span>: e-resize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -707,7 +334,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -773,7 +400,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
