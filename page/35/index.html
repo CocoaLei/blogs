@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/01/04/TCP&IP/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/01/06/%E7%BC%93%E5%AD%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2016/01/04/TCP&IP/" class="post-title-link" itemprop="url">TCP/IP 协议族</a>
+            <a href="/2016/01/06/%E7%BC%93%E5%AD%98/" class="post-title-link" itemprop="url">缓存</a>
         </h2>
 
         <div class="post-meta">
@@ -187,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-01-04 00:00:00" itemprop="dateCreated datePublished" datetime="2016-01-04T00:00:00+08:00">2016-01-04</time>
+              <time title="创建时间：2016-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2016-01-06T00:00:00+08:00">2016-01-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-14 22:21:56" itemprop="dateModified" datetime="2020-07-14T22:21:56+08:00">2020-07-14</time>
+                <time title="修改时间：2020-07-17 13:46:36" itemprop="dateModified" datetime="2020-07-17T13:46:36+08:00">2020-07-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,102 +217,59 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="TCP-IP-协议族"><a href="#TCP-IP-协议族" class="headerlink" title="TCP/IP 协议族"></a>TCP/IP 协议族</h1><p><code>TCP/IP</code> 协议不是 <code>TCP</code> 和 <code>IP</code> 这两个协议的合称，而是指因特网整个 <code>TCP/IP</code> 协议族。</p>
-<h2 id="参考模型"><a href="#参考模型" class="headerlink" title="参考模型"></a>参考模型</h2><h3 id="TCP-IP-参考模型"><a href="#TCP-IP-参考模型" class="headerlink" title="TCP/IP 参考模型"></a>TCP/IP 参考模型</h3><p><code>TCP/IP</code> 参考模型是首先由 ARPANET 所使用的网络体系结构。这个体系结构在它的两个主要协议出现以后被称为 <code>TCP/IP</code> 参考模型。这一网络协议一般分为四层：</p>
+          <h2 id="强制缓存"><a href="#强制缓存" class="headerlink" title="强制缓存"></a>强制缓存</h2><p>强缓存策略在请求数据时，如果浏览器缓存中存在未失效的缓存数据，则直接从缓存中获取数据，不与服务器进行交互。只有在缓存中不存在要请求的数据或在缓存中的数据失效时，才会从服务器获取数据。</p>
+<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%9801.png" alt="强制缓存01"></p>
+<p>强缓存由 <code>Expires</code>/<code>Cache-control</code>/<code>Pragma</code> 三个 Header 属性进行控制。</p>
 <ul>
-<li><p>网络访问层/链路层，用来处理连接网络的硬件部分。</p>
+<li><p><code>Expires</code></p>
+<p>Expires 的值是一个 HTTP 日期，表示资源的过期时间。</p>
+<p>在发起请求时，将 Expires 日期与系统时间进行对比，如果系统时间超过了 Expires 日期，则认为资源过期失效。</p>
+<p>但由于系统时间和服务器时间可能不一致，会造成判断不准的问题。</p>
+<p>Expires 在三个强缓存控制属性中<strong>优先级最低</strong>。</p>
 </li>
-<li><p>互联网层/网络层用来处理在网络上流动的数据包，是整个体系结构的关键部分，其功能是使主机可以把分组发往任何网络，并使分组独立地传向目标。这些分组可能经过不同的网络，到达的顺序和发送的顺序也可能不同。高层如果需要顺序收发，那就必须自行处理对分组的排序。互联网层使用因特网协议(<code>IP</code>)。</p>
-</li>
-<li><p>传输层为处于网络连接中的计算机之间的通信提供数据传输服务。在这一层定义了两个端到端的协议：传输控制协议(<code>TCP</code>)和用户数据报协议(<code>UDP</code>)。</p>
+<li><p><code>Cache-control</code></p>
+<p>Cache-control 是 HTTP/1.1 中新增的特性，在请求头和响应头中都能使用，可用值如下</p>
 <ul>
-<li><p><code>TCP</code> 是面向连接的协议，它提供可靠的报文传输和对上层应用的连接服务。为此，除了基本的数据传输外，它还有可靠性保证、流量控制、多路复用、优先权和安全性控制等功能。</p>
+<li><p>max-age</p>
+<p>max-age 的值是一个秒数，表示从起发起时到缓存过期的时间</p>
+<p><code>max-age=10</code></p>
 </li>
-<li><p><code>UDP</code> 是面向无连接的不可靠传输协议，主要用于不需要 <code>TCP</code> 的排序和流量控制等功能的应用程序。</p>
+<li><p>no-cache</p>
+<p>不使用强缓存，每次请求都需要和服务器验证</p>
+</li>
+<li><p>no-store</p>
+<p>禁止使用缓存(<strong>包括协商缓存</strong>)，每次请求都向服务器请求最新的资源</p>
+</li>
+<li><p>private</p>
+<p>不允许中间代理、CDN等缓存</p>
+</li>
+<li><p>public</p>
+<p>允许中间代理、CDN等缓存</p>
+</li>
+<li><p>must-revalidate</p>
+<p>缓存过期后必须向服务器验证</p>
 </li>
 </ul>
 </li>
-<li><p>应用层包含所有的高层协议，包括：虚拟终端协议(TELNET)、文件传输协议(FPT)、电子邮件传输协议(SMTP)、域名服务(DNS,)、网上新闻传输协议(NNTP)和超文本传输协议(HTTP)，这些协议为应用提供对应的通信服务。</p>
+<li><p><code>Pragma</code></p>
+<p>Pragma 只有一个属性值，就是 no-cache ，效果和 Cache-Control 中的 no-cache 一致，不使用强缓存，需要与服务器验证缓存是否新鲜，在 3 个头部属性中的<strong>优先级最高</strong>。</p>
+</li>
+</ul>
+<h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><p>当浏览器的强缓存失效或在请求头中设置了不使用强缓存，并在请求头中设置了 <code>if-modified-since</code> 或 <code>if-none-match</code> 时，会将这两个属性值到服务器验证是否命中协商缓存。</p>
+<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%9801.png" alt="协商缓存01"></p>
 <ul>
-<li><code>TELNET</code> 是远程登录服务的标准协议和主要方式，为用户提供了在本地计算机上完成远程主机工作的能力。<ul>
-<li><code>FTP</code> 是用于在网络上进行文件传输的一套标准协议。</li>
-</ul>
+<li><p><code>ETag/If-None-Match</code></p>
+<p>ETag/If-None-Match 的值是一串 hash 码，代表的是一个资源的标识符，当服务端的文件变化的时候，它的 hash码会随之改变，通过请求头中的 If-None-Match 和当前文件的 hash 值进行比较，如果相等则表示命中协商缓存。</p>
 </li>
-<li><code>SMTP</code> 是一个提供可靠且有效的电子邮件传输的协议，它建立在 <code>FTP</code> 服务之上，主要用于完成系统之间的邮件信息传递，并提供有关来信的通知。<ul>
-<li><code>DNS</code> 主要用于域名和 IP 之间的相互转换，是一种分布式网络目录服务。</li>
-</ul>
-</li>
-<li><code>NNTP</code> 用于新闻的发布、检索和获取。<ul>
-<li><code>HTTP</code> 是一个基于 <code>TCP</code> 协议的用于客户端和服务端通信的 <code>请求-响应</code> 协议。</li>
-</ul>
+<li><p><code>Last-Modified/If-Modified-Since</code></p>
+<p>Last-Modified/If-Modified-Since 的值代表的是文件的最后修改时间，第一次请求服务端会把资源的最后修改时间放到 Last-Modified 响应头中，第二次发起请求的时候，请求头会带上上一次响应头中的 Last-Modified 的时间，并放到 If-Modified-Since 请求头属性中，服务端根据文件最后一次修改时间和 If-Modified-Since 的值进行比较，如果相等，返回 304 ，并加载浏览器缓存。</p>
 </li>
 </ul>
-</li>
+<h2 id="缓存用处"><a href="#缓存用处" class="headerlink" title="缓存用处"></a>缓存用处</h2><ul>
+<li>减少了冗余的数据传递，节省宽带流量</li>
+<li>减少了服务器的负担，大大提高了网站性能</li>
+<li>加快了客户端加载网页的速度 这也正是HTTP缓存属于客户端缓存的原因</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20200714091921.png" alt="image-20200714091919812"></p>
-<h3 id="OSI-参考模型"><a href="#OSI-参考模型" class="headerlink" title="OSI 参考模型"></a>OSI 参考模型</h3><p>OSI 参考模型是国际标准化组织指定的一个用于计算机或通信系统之间互联的标准体系。</p>
-<ul>
-<li><p>物理层 - 通过物理媒体传输原始字节流</p>
-</li>
-<li><p>链路层 - 定义网络上数据的格式</p>
-</li>
-<li><p>网络层 - 决定数据通过哪条物理路径进行传输</p>
-</li>
-<li><p>传输层 - 通过传输协议传输数据</p>
-</li>
-<li><p>会话层 - 维护链接并负责控制端口和会话</p>
-</li>
-<li><p>展示层 - 保证数据的格式时可用并加密的</p>
-</li>
-<li><p>应用层 - 计算机交互层，在这里应用可以访问网络服务</p>
-</li>
-</ul>
-<h2 id="TCP-IP-特点"><a href="#TCP-IP-特点" class="headerlink" title="TCP/IP 特点"></a>TCP/IP 特点</h2><ul>
-<li>TCP/IP 协议不依赖于任何特定的计算机硬件或操作系统，提供开放的协议标准。</li>
-<li>TCP/IP 并不依赖于特定的网络传输硬件，所以 TCP/IP 协议能够集成各种各样的网络。</li>
-<li>统一的网络地址分配方案，使整个 TCP/IP 设备在网中都有唯一的地址。</li>
-<li>标准化的高层协议，可以提供多种可靠的服务。</li>
-</ul>
-<h2 id="TCP-IP-通信传输流"><a href="#TCP-IP-通信传输流" class="headerlink" title="TCP/IP 通信传输流"></a>TCP/IP 通信传输流</h2><p>利用 TCP/IP 协议族进行网络通信时， 会通过分层顺序与对方进行通信。发送端从应用层往下走，接收端则往应用层往上走。</p>
-<p>发送端在层与层之间传输数据时，每经过一层时必定会被打上一个 该层所属的首部信息。反之，接收端在层与层传输数据时，每经过一层 时会把对应的首部消去。</p>
-<p>这种把数据信息包装起来的做法称为封装。</p>
-<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20200714103749.png" alt="image-20200714103627565"></p>
-<h2 id="IP-协议"><a href="#IP-协议" class="headerlink" title="IP 协议"></a>IP 协议</h2><p><code>IP</code> 协议位于 <code>TCP/IP</code> 参考模型中的网络层，是整个 <code>TCP/IP</code> 协议族的核心，也是构成互联网的基础。它的主要内容包括：</p>
-<ul>
-<li>IP 编址方案</li>
-<li>分组封装格式</li>
-<li>分组转发规则</li>
-</ul>
-<h2 id="TCP-协议"><a href="#TCP-协议" class="headerlink" title="TCP 协议"></a>TCP 协议</h2><p><code>TCP</code> 协议位于参考模型中的传输层，是一种面向连接的、可靠的、基于字节流的传输层通信协议。当应用层向传输层发送用于网间传输的、用8位字节表示的数据流，<code>TCP</code> 则把数据流分割成适当长度的报文段( segment )，最大传输段大小通常受该计算机连接的网络的数据链路层的最大传送单元( MTU )限制。之后TCP把数据包传给IP层，由它来通过网络将包传送给接收端实体的TCP层。 </p>
-<p>为了准确无误地将数据送达目标处，<code>TCP</code> 协议采用了三次握手策略来建立连接：</p>
-<ol>
-<li><p>发送端首先向接收端发送一个带有 <code>SYN</code> 标志的数据包</p>
-</li>
-<li><p>接收端接收到带有 <code>SYN</code> 标志的数据包后，返回带有 <code>ACK/SYN</code> 标志的数据包</p>
-</li>
-<li><p>发送端在接收到接收端回传的带有 <code>ACK/SYN</code> 标志的数据包后，发送带有 <code>ACK</code> 标志的数据包表示握手结束</p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20200714140408.png" alt="三次握手"></p>
-<p>连接建立后，就可以开始传输数据了。</p>
-<p><code>TCP</code> 连接其实是接收端和客户端保存的一份关于对方的信息，如果 <code>IP</code> 地址、端口号等。</p>
-<p>同样的，在断开连接时，<code>TCP</code> 会采用四次挥手策略来保证接数据发送安全和完整：</p>
-<ol>
-<li><p>当发送端的数据都传输完成后，发送端会向接收端发送连接释放报文 <code>FIN</code>。需要注意的是发送端发送 <code>FIN</code> 报文后，只是不能发送数据了，但是能正常接收数据的。</p>
-</li>
-<li><p>接收端收到发送端的 <code>FIN</code> 报文后，回复包含 <code>ACK</code> 标志的确认报文，此时接收端处于等待关闭状态，而不是马上给发送端发送 <code>FIN</code> 报文，因为可能还有数据没有发送完成。</p>
-</li>
-<li><p>接收端的数据发送完成后，发送带有 <code>ACK</code> 和 <code>FIN</code> 标志的连接释放报文给发送端。</p>
-</li>
-<li><p>发送端收到接收端的 <code>FIN</code> 报文后，向接收端发送 <code>ACK</code> 报文。此时接收端并不是立刻释放 <code>TCP</code> 连接，而是等待 2MSL( 最大报文段寿命的两倍时长 )后才释放连接。但是接收端一旦收到发送端的 <code>ACK</code> 报文后就会立马释放连接。</p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20200714144614.png" alt="四次挥手"></p>
-<h2 id="TCP-和-UDP"><a href="#TCP-和-UDP" class="headerlink" title="TCP 和 UDP"></a>TCP 和 UDP</h2><p><code>TCP</code> 是面向连接的传输控制协议，而 <code>UDP</code> 提供了无连接的数据报服务；</p>
-<p><code>TCP</code> 具有高可靠性，确保传输数据的正确性，不出现丢失或乱序；<code>UDP</code> 在传输数据前不建立连接，不对数据报进行检查与修改，无须等待对方的应答，所以会出现分组丢失、重复、乱序，应用程序需要负责传输可靠性方面的所有工作；</p>
-<p><code>UDP</code> 具有较好的实时性，工作效率较 <code>TCP</code> 协议高；</p>
-<p><code>UDP</code> 段结构比 <code>TCP</code> 的段结构简单，因此网络开销也小。</p>
-<p><code>TCP</code> 协议可以保证接收端毫无差错地接收到发送端发出的字节流，为应用程序提供可靠的通信服务。对可靠性要求高的通信系统往往使用 <code>TCP</code> 传输数据。比如 <code>HTTP</code> 运用 <code>TCP</code> 进行数据的传输。</p>
 
       
     </div>
@@ -331,7 +288,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -397,7 +354,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
