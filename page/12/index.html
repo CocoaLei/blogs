@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2018/12/22/GraphQL/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2019/02/16/Homebrew/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2018/12/22/GraphQL/" class="post-title-link" itemprop="url">GraphQL 概览</a>
+            <a href="/2019/02/16/Homebrew/" class="post-title-link" itemprop="url">Homebrew 命令</a>
         </h2>
 
         <div class="post-meta">
@@ -187,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2018-12-22 00:00:00" itemprop="dateCreated datePublished" datetime="2018-12-22T00:00:00+08:00">2018-12-22</time>
+              <time title="创建时间：2019-02-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-16T00:00:00+08:00">2019-02-16</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-17 13:45:36" itemprop="dateModified" datetime="2020-07-17T13:45:36+08:00">2020-07-17</time>
+                <time title="修改时间：2020-08-04 14:20:33" itemprop="dateModified" datetime="2020-08-04T14:20:33+08:00">2020-08-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -202,7 +202,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">大前端</span></a>
+                  <a href="/categories/Mac/" itemprop="url" rel="index"><span itemprop="name">Mac</span></a>
                 </span>
             </span>
 
@@ -217,124 +217,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="GraphQL"><a href="#GraphQL" class="headerlink" title="GraphQL"></a>GraphQL</h1><p>GraphQL 是一个用于 API 的查询语言，使用基于类型系统来执行查询的服务端运行时，并且它不和任何特定数据库或存储引擎绑定，依靠你现有的代码和数据支撑。</p>
-<p>一个 GraphQL 服务通过定义类型和类型上的字段创建，并为每个类型上的字段提供解析函数。</p>
-<h2 id="为什么使用-GraphQL"><a href="#为什么使用-GraphQL" class="headerlink" title="为什么使用 GraphQL"></a>为什么使用 GraphQL</h2><p>传统的 REST 标准在使用中有一些问题：</p>
-<ul>
-<li>获取比较复杂的对象需要向服务器进行多次请求</li>
-<li>REST 通常在服务端就决定了数据的结构，这导致你获得的数据很多是你不要的，即冗余数据颇多</li>
-<li>服务器返回的数据不可预测，你需要付出额外的工作来准确的理解你从服务器获得数据</li>
-</ul>
-<p>而通过 GraphQL 你可以从服务器获取你期望的数据，并且清楚的知道你获得的数据是什么样子的。</p>
-<h2 id="查询和变更"><a href="#查询和变更" class="headerlink" title="查询和变更"></a>查询和变更</h2><h3 id="字段-Fields"><a href="#字段-Fields" class="headerlink" title="字段 Fields"></a>字段 Fields</h3><p>字段可以是标量或对象，当子段位对象类型时，你可以对其进行次级选择。GraphQL 查询能够遍历相关对象及其字段，是的客户端可以一次请求查询大量相关数据。</p>
-<h3 id="参数-Arguments"><a href="#参数-Arguments" class="headerlink" title="参数 Arguments"></a>参数 Arguments</h3><p>在 GraphQL 中，每一个字段和嵌套对象都能有自己的一组参数，从而使得 GraphQL 可以完美替代多次 API 请求。</p>
-<p>参数可以是多种不同的类型。GraphQL 自带一套默认类型，但是你可以声明一套自己的定制类型，你要能序列化成的你需要的格式即可。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  queryFunction(arg: arg) &#123;</span><br><span class="line">    field,</span><br><span class="line">      ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="别名-Aliases"><a href="#别名-Aliases" class="headerlink" title="别名 Aliases"></a>别名 Aliases</h3><p>为字段设置别名，可以使你能够通过不同参数来查询相同的字段。</p>
-<h3 id="片段-Fragments"><a href="#片段-Fragments" class="headerlink" title="片段 Fragments"></a>片段 Fragments</h3><p>片段是 GraphQL 中的可复用单元，它能够组织一组字段，在需要的地方被引入。</p>
-<p>片段也可以访问查询或变更中声明的变量。</p>
-<h3 id="操作名称-Operation-name"><a href="#操作名称-Operation-name" class="headerlink" title="操作名称 Operation name"></a>操作名称 Operation name</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">query/mutation/subscription operation_name &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>操作类型可以是 query/mutation/subscription，描述你打算做什么类型的操作。操作类型是必须的，除非使用查询简写语法 - 这种情况下，你无法为操作提供名称或变量定义。</p>
-<p>操作名称是你的操作的有意义和明确的名称，它仅在有多个操作的文档中是必须的。但是操作名称在调试和服务端日志记录中非常有用，可以帮助快速定位到问题发生的位置。</p>
-<h3 id="变量-Variables"><a href="#变量-Variables" class="headerlink" title="变量 Variables"></a>变量 Variables</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">query query_function($variable_name: variable_type) &#123;</span><br><span class="line">  obj(variable: $variable_name) &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>所有声明的变量都必须是标量、枚举类型或输入对象类型。所以如果想要传递一个复杂对象到一个字段上，你必须知道服务器上其匹配的类型。</p>
-<p>变量定义可以是可选的或者必要的。但是如果你传递变量的字段要求非空参数，那变量一定是必要的。</p>
-<p>可以通过在查询中对类型定义后面附带默认值的方式，将默认值赋给变量。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">query query_function($variable_name: variable_type = "default_value") &#123;</span><br><span class="line">  obj(variable: $variable_name) &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="指令-Directives"><a href="#指令-Directives" class="headerlink" title="指令 Directives"></a>指令 Directives</h3><p>指令可以动态的改变我们的查询结构。指令可以附着在字段或者字段包含的字段上，然后以任何服务端期待的方式来改变查询的执行。</p>
-<ul>
-<li><code>@include(if: Boolean)</code> 仅在参数为 <code>true</code> 时，包含此字段</li>
-<li><code>@skip(if: Boolean)</code> 如果参数为 <code>true</code> ，跳过此字段</li>
-</ul>
-<h3 id="变更-Mutations"><a href="#变更-Mutations" class="headerlink" title="变更 Mutations"></a>变更 Mutations</h3><p>技术上而言，任何查询都能够被实现为导致数据写入的操作，然而，一个规范任何导致写入的操作都应该显式通过变更来发送也是必要的。</p>
-<p>一个变更可能包含多个字段，查询是并行执行，变更是线性执行。</p>
-<h3 id="内联片段-Inline-Fragments"><a href="#内联片段-Inline-Fragments" class="headerlink" title="内联片段 Inline Fragments"></a>内联片段 Inline Fragments</h3><p>如果你查询的字段返回的是接口或者联合类型，那么你可能需要使用内联片段来取出下层具体类型的数据。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">query numberOFAnimals($sp：Species!) &#123;</span><br><span class="line">  animals(species: $sp) &#123;</span><br><span class="line">  	number,</span><br><span class="line">  	<span class="comment">// 仅在 animals 返回为 Mammal 时执行</span></span><br><span class="line">  	... on Mammal &#123;</span><br><span class="line">  		isRare</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 仅在 animals 返回为 Human 时执行</span></span><br><span class="line">		... on Human &#123;</span><br><span class="line">      sex</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>具名片段也可以用于同样的情况，因为具名片段总是附带了一个类型。</p>
-<h4 id="原字段"><a href="#原字段" class="headerlink" title="原字段"></a>原字段</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获得那个位置的对象类型名称</span></span><br><span class="line">__typename</span><br></pre></td></tr></table></figure>
+          <p>Mac 上的软件包管理器 - Homebrew</p>
+<p>查看信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看帮助信息</span></span><br><span class="line">brew <span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询可更新的包</span></span><br><span class="line">brew outdated</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看包信息</span></span><br><span class="line">brew info &lt;packagename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看安装列表</span></span><br><span class="line">brew list</span><br></pre></td></tr></table></figure>
 
 
 
 
 
-<h2 id="Schema-和类型"><a href="#Schema-和类型" class="headerlink" title="Schema 和类型"></a>Schema 和类型</h2><h3 id="类型系统"><a href="#类型系统" class="headerlink" title="类型系统"></a>类型系统</h3><p>GraphQL 查询语言基本上就是关于选择对象上的字段。因此一个 GraphQL 查询的结构和结果非常相似，这使我们能预测服务器会返回什么样的结果。</p>
-<p>每一个 GraphQL 服务都会定义一套类型，用来描述你能从服务器能够查询到的数据。每当查询到来，服务器就会根据 schema 验证并执行查询。</p>
-<h3 id="类型语言"><a href="#类型语言" class="headerlink" title="类型语言"></a>类型语言</h3><p>GraphQL 可以用任何语言编写，因为它并不依赖于任何特定语言的句法来与 GrapahQL schema 沟通，它定义了称之为 GraphQL schema language 的简单语言。</p>
-<h3 id="对象类型和字段-Object-Types-and-Fields"><a href="#对象类型和字段-Object-Types-and-Fields" class="headerlink" title="对象类型和字段 Object Types and Fields"></a>对象类型和字段 Object Types and Fields</h3><p>GraphQL schema 中最基本的组件是对象类型，它就表示你可以从服务上获取到什么类型的对象，以及这个对象有什么字段。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">type Object_Name &#123;</span><br><span class="line">  field,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>安装和更新</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 homebrew</span></span><br><span class="line">/bin/bash -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新 homebrew</span></span><br><span class="line">brew update</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="参数-Arguments-1"><a href="#参数-Arguments-1" class="headerlink" title="参数 Arguments"></a>参数 Arguments</h3><p>GraphQL 对象类型上的每个字段都可能有零个或多个参数，并且所有参数都必须是具名的。参数可能是必选的或可选的，如果参数可选的，可以给它定义默认值。</p>
-<h3 id="查询和变更类型-The-Query-and-Mutation-Types"><a href="#查询和变更类型-The-Query-and-Mutation-Types" class="headerlink" title="查询和变更类型 The Query and Mutation Types"></a>查询和变更类型 The Query and Mutation Types</h3><p>每一个 GraphQL 服务中都有一个 <code>query</code> 类型，可能有一个 <code>mutation</code> 类型，它们定义了每一个 GraphQL 查询的入口。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">schema &#123;</span><br><span class="line">  query: Query,</span><br><span class="line">  mutation: Mutation</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="标量类型-Scalar-Types"><a href="#标量类型-Scalar-Types" class="headerlink" title="标量类型 Scalar Types"></a>标量类型 Scalar Types</h3><p>一个对象类型有自己的名字和字段，而某些时候，这些字段必然会解析到具体数据，这就是标量，表示对应 GraphQL 查询的叶子节点。</p>
-<p>它们包括 ：</p>
-<ul>
-<li><code>Int</code> : 有符号 32 位证书</li>
-<li><code>Float</code> ：有符号双精度浮点值</li>
-<li><code>String</code> ： UTF-8 字符序列</li>
-<li><code>Boolean</code> ： <code>true</code> 或 <code>false</code></li>
-<li><code>ID</code> ： ID 标量类型表示一个唯一标识符，通常用以重新获取对象或者作为缓存中的键</li>
-</ul>
-<p>你可以自定义标量类型，但需要保证其能够序列化、反序列化和验证。</p>
-<h3 id="枚举类型-Enumeration-Types"><a href="#枚举类型-Enumeration-Types" class="headerlink" title="枚举类型 Enumeration Types"></a>枚举类型 Enumeration Types</h3><p>枚举类型是一种特殊的标量，它限制在一个特殊的可选值集合内。</p>
-<h3 id="列表和非空-List-and-Non-Null"><a href="#列表和非空-List-and-Non-Null" class="headerlink" title="列表和非空 List and Non-Null"></a>列表和非空 List and Non-Null</h3><p>类型修饰符 <code>!</code> 可将字段标注为非空，即表示这个字段总是会返回一个非空值。亦可用于修饰定义字段上的参数。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Object_Name &#123;</span><br><span class="line">  field_1: Type!</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用 <code>[]</code> 标记一个类型为 <code>List</code> ，表示这个字段会返回这个类型的数组。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">query query_name &#123;</span><br><span class="line">  field_list: [String],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="接口-Interface"><a href="#接口-Interface" class="headerlink" title="接口 Interface"></a>接口 Interface</h3><p>GraphQL 支持接口，接口是一个抽象类型，它包含某些字段，而想要实现这个接口的对象必须包含这些子段。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">interface Human &#123;</span><br><span class="line">  name: String!</span><br><span class="line">  age: Int!</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Man implements Human &#123;</span><br><span class="line">  name: String!</span><br><span class="line">  age: Int!</span><br><span class="line">  height: Float!</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="联合类型-Union-Type"><a href="#联合类型-Union-Type" class="headerlink" title="联合类型 Union Type"></a>联合类型 Union Type</h3><p>联合类型和接口非常相似，但是不指定类型之间的任何共同字段。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union union_type = type_1 | type_2 | ...</span><br></pre></td></tr></table></figure>
-
-<p>联合类型的成员需要是具体对象类型。</p>
-<h3 id="输入类型-Input-Types"><a href="#输入类型-Input-Types" class="headerlink" title="输入类型 Input Types"></a>输入类型 Input Types</h3><p>使用输入类型可以将复杂的对象传递给字段，这在变更中特别有用。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">input input_type &#123;</span><br><span class="line">	field,</span><br><span class="line">	....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输入对象类型上的字段本身也可以只带输入对象类型，但是注意不能混淆输入和输出类型，输入对象类型上的字段不能拥有参数。</p>
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>通过使用类型系统，可以预判一个查询是否有效。这使得服务器和客户端可以在无效查询创建时就有效的通知开发者，而不用依赖运行时检查。</p>
-<p>以下是指的注意的基本原则</p>
-<ul>
-<li>片段不能引用自身或创造回环</li>
-<li>只能查询给定类型上的字段</li>
-<li>如果查询返回的不是标量或枚举类型，就需要指明想要从字段中获取的数据</li>
-</ul>
-<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><p>一个 GraphQL 查询在被验证之后，GraphQL 服务器将会将其执行，并返回与请求的结构相对应的结果，该结果通常会是 <code>JSON</code> 格式。</p>
-<p>每个类型的每个字段都由一个 <code>resolver</code> 函数支持，该函数由 GraphQL 服务器开发人员提供 - 当一个字段被执行时，相应的 <code>resolver</code> 函数被调用以产生下一个值。如果字段产生标量值，则执行完成。如果一个字段产生一个对象，则该查询将继续执行该对象对应字段的解析器，直到生成标量值。GraphQL 查询始终以标量值结束。</p>
-<h3 id="根字段-amp-解析器"><a href="#根字段-amp-解析器" class="headerlink" title="根字段 &amp; 解析器"></a>根字段 &amp; 解析器</h3><p>每一个 GraphQL 服务端应用的顶层，必有一个代表着所有进入 GraphQL API 可能的入口点，称之为 <code>Root</code> 类型或 <code>Query</code> 类型。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `obj` 代表上一级对象，如果字段是根节点查询类型通常不会被使用</span></span><br><span class="line"><span class="comment">// `args` 提供在 GraphQL 查询中传入的参数</span></span><br><span class="line"><span class="comment">// `context` 会提供给所有解析器，持有重要的上下文信息</span></span><br><span class="line"><span class="comment">// `info` 保存与当前查询相关的字段的特定信息以及 `schema` 详细信息的值</span></span><br><span class="line">Query &#123;</span><br><span class="line">  query_name(obj, args, context, info) &#123;</span><br><span class="line">    return context.db.query(...).then((return_data) =&gt; &#123;</span><br><span class="line">      return return_data;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当每个字段被解析后，结果被放到键值映射中，字段名称作为键值映射的键，解析器的值作为键值映射的值，这个过程从查询字段的底部叶子节点开始返回，直到根 <code>Query</code> 类型的起始节点。最后合并成为能够镜像到原始查询结果的结果，让后将其发送到请求的客户端。</p>
-<h3 id="异步解析器"><a href="#异步解析器" class="headerlink" title="异步解析器"></a>异步解析器</h3><p><code>context</code> 提供了一个数据库访问对象，用来通过查询中传递的参数查询数据，因为从数据库拉取数据是一个异步操作，它会返回一个 <code>Promise</code> 对象，当数据库查询返回结果，就能构造并返回查询结果。</p>
-<p>只有解析器能够感知 <code>Promise</code> 的进度，GraphQL 查询只关注一个结果是否返回，在执行期间如果异步操作没有完成，则 <code>GraphQL</code> 会一直等待下去。</p>
-<h2 id="内省"><a href="#内省" class="headerlink" title="内省"></a>内省</h2><p>GraphQL 通过内省系统使得我们能够直到 GraphQL Schema 支持哪些查询。</p>
-<p>我们可以通过 <code>__schema</code> 字段来向 GraphQL 询问哪些类型是可用的。一个查询的根类型总是有 <code>__schema</code> 这个字段。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  __schema &#123;</span><br><span class="line">  ...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>检验特定类型</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  __type() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<p>软件包管理</p>
+<p>homebrew 会将软件安装到自己所在文件夹内</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装软件</span></span><br><span class="line">brew install &lt;packagename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新软件</span></span><br><span class="line">brew upgrade &lt;packagename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载/删除软件</span></span><br><span class="line">brew uninstall &lt;packagename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装图形化软件</span></span><br><span class="line">brew cast &lt;appname&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索可用的软件</span></span><br><span class="line">brew search &lt;name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理旧版本</span></span><br><span class="line">brew cleanup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理指定包的旧版本</span></span><br><span class="line">brew cleanup &lt;packagename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看可清理的旧版本包</span></span><br><span class="line">brew cleanup -n</span><br><span class="line"></span><br><span class="line"><span class="comment"># 锁定某个包使其不能更新</span></span><br><span class="line">brew pin &lt;packagename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解锁</span></span><br><span class="line">brew unpin &lt;packagename&gt;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -354,7 +252,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/45/">45</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/46/">46</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -420,7 +318,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -460,7 +358,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
