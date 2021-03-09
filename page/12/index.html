@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2019/02/16/Homebrew/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2019/03/10/JavaScript%20Map%20%E5%92%8C%20Object/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/02/16/Homebrew/" class="post-title-link" itemprop="url">Homebrew 命令</a>
+            <a href="/2019/03/10/JavaScript%20Map%20%E5%92%8C%20Object/" class="post-title-link" itemprop="url">JavaScript Map 和 Object</a>
         </h2>
 
         <div class="post-meta">
@@ -187,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-02-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-16T00:00:00+08:00">2019-02-16</time>
+              <time title="创建时间：2019-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-10T00:00:00+08:00">2019-03-10</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-04 14:20:33" itemprop="dateModified" datetime="2020-08-04T14:20:33+08:00">2020-08-04</time>
+                <time title="修改时间：2021-03-09 17:03:54" itemprop="dateModified" datetime="2021-03-09T17:03:54+08:00">2021-03-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -202,7 +202,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac/" itemprop="url" rel="index"><span itemprop="name">Mac</span></a>
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
                 </span>
             </span>
 
@@ -217,23 +217,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Mac 上的软件包管理器 - Homebrew</p>
-<p>查看信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看帮助信息</span></span><br><span class="line">brew <span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询可更新的包</span></span><br><span class="line">brew outdated</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看包信息</span></span><br><span class="line">brew info &lt;packagename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看安装列表</span></span><br><span class="line">brew list</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>安装和更新</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 homebrew</span></span><br><span class="line">/bin/bash -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新 homebrew</span></span><br><span class="line">brew update</span><br></pre></td></tr></table></figure>
-
-
-
-<p>软件包管理</p>
-<p>homebrew 会将软件安装到自己所在文件夹内</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装软件</span></span><br><span class="line">brew install &lt;packagename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新软件</span></span><br><span class="line">brew upgrade &lt;packagename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载/删除软件</span></span><br><span class="line">brew uninstall &lt;packagename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装图形化软件</span></span><br><span class="line">brew cast &lt;appname&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索可用的软件</span></span><br><span class="line">brew search &lt;name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理旧版本</span></span><br><span class="line">brew cleanup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理指定包的旧版本</span></span><br><span class="line">brew cleanup &lt;packagename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看可清理的旧版本包</span></span><br><span class="line">brew cleanup -n</span><br><span class="line"></span><br><span class="line"><span class="comment"># 锁定某个包使其不能更新</span></span><br><span class="line">brew pin &lt;packagename&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解锁</span></span><br><span class="line">brew unpin &lt;packagename&gt;</span><br></pre></td></tr></table></figure>
-
+          <p><code>Map</code></p>
+<p> <code>Map</code> 是一个保存’键值对’的对象，会记忆键的插入顺序，而且不管是对象还是原始值都能作为其键或值。</p>
+<p>如果看过 <code>Map</code> 的实例方法，就会发现它在某些方面起到的作用极为相似，但也有很多的不同：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Map</th>
+<th>Object</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>意外的键</td>
+<td>默认情况下不包含任何键，只包含显式插入的键。</td>
+<td>如果 Object 有原型，原型链上的键名则可能和你在对象上设置的键名冲突</td>
+</tr>
+<tr>
+<td>键的类型</td>
+<td>可以是任意值，包括函数、对象和原始值</td>
+<td>只能是 String 或 Symbol</td>
+</tr>
+<tr>
+<td>键的顺序</td>
+<td>键是有序的，顺序为插入顺序</td>
+<td>键是无序的</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>通过 <code>size</code> 属性获取</td>
+<td>手动计算</td>
+</tr>
+<tr>
+<td>迭代</td>
+<td>可以直接迭代</td>
+<td></td>
+</tr>
+<tr>
+<td>性能</td>
+<td>在频繁增删键的情况下性能更好</td>
+<td></td>
+</tr>
+</tbody></table>
 
       
     </div>
@@ -252,7 +277,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/46/">46</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -318,7 +343,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
