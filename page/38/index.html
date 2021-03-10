@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/01/10/iOS-Runtime/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/01/25/iOS-Responder-Chain/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2016/01/10/iOS-Runtime/" class="post-title-link" itemprop="url">Objective-C Runtime</a>
+            <a href="/2016/01/25/iOS-Responder-Chain/" class="post-title-link" itemprop="url">事件传递与响应链探索</a>
         </h2>
 
         <div class="post-meta">
@@ -187,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-01-10 00:00:00" itemprop="dateCreated datePublished" datetime="2016-01-10T00:00:00+08:00">2016-01-10</time>
+              <time title="创建时间：2016-01-25 00:00:00" itemprop="dateCreated datePublished" datetime="2016-01-25T00:00:00+08:00">2016-01-25</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-10 16:59:00" itemprop="dateModified" datetime="2020-11-10T16:59:00+08:00">2020-11-10</time>
+                <time title="修改时间：2019-01-17 11:36:46" itemprop="dateModified" datetime="2019-01-17T11:36:46+08:00">2019-01-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,482 +217,71 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Objective-C-Runtime"><a href="#Objective-C-Runtime" class="headerlink" title="Objective-C Runtime"></a>Objective-C Runtime</h1><p>动态语言，是指程序在运行时可以改变其结构：新的函数可以被引进，已有的函数可以被删除等在结构上的变化，类型的检查是在运行时做的，优点为方便阅读，清晰明了，缺点为不方便调试。</p>
-<p>这里有三个名词容易被混淆：</p>
-<p>Dynamic Programming Language，即动态语言或动态编程语言</p>
-<p>Dynamically Typed  Language，即动态类型语言</p>
-<p>Statically Typed Language，即静态类型语言</p>
-<p>所谓的动态类型语言，指的是类型的检查是在运行时做的；与此相对，静态类型语言的类型判断是在运行前判断(如编译阶段)，C#、Java 等就是静态类型语言，静态类型的语言为了达到多态会采取一些类型鉴别手段，如接口、继承，而动态类型的语言却不需要，所以一般动态语言都会采用 dynamic typing，常出现于脚本语言中。</p>
-<p><strong><code>Objective-C</code> 就是一门动态语言，它有一个运行时系统来执行编译的代码。这个运行时系统就是 <code>Objc Runtime</code>，它是一个由 C 和汇编语言编写的库。</strong></p>
-<p><code>Runtime</code> 库的主要工作是封装和找出最终执行的代码。</p>
-<ul>
-<li>封装 ：在 <code>Objc Runtime</code> 库中，对象可以用 C 中的结构体表示，而方法可以用 C 中的函数来实现，另外再加上一些额外的特性。这些结构体和函数被 <code>Runtime</code> 函数封装后，我们就可以在程序运行时创建，检查，修改类、对象和它们的方法了。</li>
-<li>找出方法的最终执行代码：当程序执行 <code>[object doSomething]</code>时，会向消息接收者发送一条消息，<code>Runtime</code> 会根据消息接收者是否能响应该消息而做出不同的反应。</li>
-</ul>
-<p>Objective-C Runtime 目前有两个版本：<code>Modern Runtime</code>和 <code>Legacy Runtime</code>。<code>Moder Runtime</code>覆盖了64位的 <code>Mac  OS X Apps</code>和 <code>iOS Apps</code>，<code>Legacy Runtime</code>是早期用来给32位的 <code>Mac OS X Apps</code>用的。</p>
-<h2 id="Objective-C-Runtime-中的类与对象"><a href="#Objective-C-Runtime-中的类与对象" class="headerlink" title="Objective-C Runtime 中的类与对象"></a>Objective-C Runtime 中的类与对象</h2><h3 id="类与对象的基本数据结构"><a href="#类与对象的基本数据结构" class="headerlink" title="类与对象的基本数据结构"></a>类与对象的基本数据结构</h3><h4 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h4><p><code>Objective-C</code> 中的类是由 <code>Class</code> 类型来表示的，实际上是一个指向 <code>objc_class</code> 结构体的指针</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typedef struct objc_class	*Class;</span><br></pre></td></tr></table></figure>
-
-<p>它的结构体定义如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">struct	objc_class &#123;</span><br><span class="line">  Class isa OBJC_ISA_AVAILABILITY;</span><br><span class="line">  </span><br><span class="line"> #if !__OBJC2__</span><br><span class="line"> 	Class	super_class						OBJC2_UNAVAILABLE;</span><br><span class="line">	const 	char *name						OBJC2_UNAVAILABLE;</span><br><span class="line">	long	version							OBJC2_UNAVAILABLE;</span><br><span class="line">	long	info 							OBJC2_UNAVAILABLE;</span><br><span class="line">	long 	instance_size					OBJC2_UNAVAILABLE;</span><br><span class="line">	struct	objc_ivar_list	*ivars			OBJC2_UNAVAILABLE;</span><br><span class="line">	struct	objc_method_list **methodLists  OBJC2_UNAVAILABLE;</span><br><span class="line">	struct	objc_cache	*cache				OBJC2_UNAVAILABLE;</span><br><span class="line">	struct	objc_protocol_list	*protocols	OBJC2_UNAVAILABLE;</span><br><span class="line"> #endif</span><br><span class="line">&#125; OBJC2_UNAVAILABLE;</span><br></pre></td></tr></table></figure>
-
-<p>这些字段的意义如下：</p>
-<ul>
-<li><code>isa</code>：<code>Objective-C</code> 中所有类自身也是对象，这个对象的 <code>Class</code> 里也有一个 <code>isa</code> 指针，它指向 <code>metaClass</code> 元类。</li>
-<li><code>super_class</code> ：指向该类的父类，如果该类已经是最顶层的根类，则为 <code>NULL</code>。</li>
-<li><code>name</code> ：类名。</li>
-<li><code>version</code> ：类的版本信息，默认为0。我们可以使用这个字段来提供类的版本信息，这对于对象的序列化非常有用，它可以让我们识别出不同类定义版本中实例变量布局的改变。</li>
-<li><code>info</code> ：类信息，供运行期使用的一些位标识。</li>
-<li><code>instance_size</code> ：类的实例变量的大小。</li>
-<li><code>ivars</code> ：类的成员变量链表。</li>
-<li><code>methodLists</code> ：方法定义的链表。</li>
-<li><code>cache</code> ：用于缓存最近使用的方法。当一个接收者对象接收到一个消息时，它会根据 <code>isa</code> 指针去查找能够响应这消息的对象。在实际情况里，这个对象只有一部分方法是常用的，很多方法其实很少用或根本用不上。这种情况下，如果每次消息来时，都是在 <code>methodLists</code> 链表中遍历一遍，性能势必很差。更好的做法是，在我们每次调用过一个方法后，就将这个方法缓存到 <code>cache</code> 列表中，下次调用就会优先去 <code>cache</code> 中查找。</li>
-<li><code>protocols</code> ：协议链表。</li>
-</ul>
-<p>当我们向一个 <code>Objective-C</code> 对象发送消息时，<code>Runtime</code> 会根据实例对象的 <code>isa</code> 指针找到这个实例对象所属的类，然后 <code>Runtime</code> 会在类的方法列表及其父类的方法列表中寻找与消息对应的 <code>selector</code> 指向的方法，找到后即运行这个方法。</p>
-<p>当创建一个特定类的实例对象时，分配的内存会包含一个 <code>objc_object</code> 数据结构，然后是类的实例变量的数据。<code>NSObject</code> 类的 <code>alloc</code> 和 <code>allocWithZone:</code> 方法使用函数 <code>class_createInstance</code> 来创建 <code>objc_object</code> 数据结构。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct objc_object &#123;</span><br><span class="line">  Class isa	OBJC_ISA_AVAILABILITY;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">typedef	struct objc_object	*id;</span><br></pre></td></tr></table></figure>
-
-<p>常见的 <code>id</code> 是一个 <code>objc_object</code> 结构类型的指针。</p>
-<h4 id="objc-cache"><a href="#objc-cache" class="headerlink" title="objc_cache"></a>objc_cache</h4><p><code>objc_class</code> 中的 <code>cache</code> 字段用于缓存调用过的方法，它是一个指向 <code>objc_cache</code> 结构体的指针。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct	objc_cache &#123;</span><br><span class="line">  unsigned int mask 				OBJC2_UNAVAILABLE;	</span><br><span class="line">  unsigned int occupied				OBJC2_UNAVAILABLE;</span><br><span class="line">  Method buchets[1]					OBJC2_UNAVAILABLE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>该结构体的字段描述如下：</p>
-<ul>
-<li><code>mask</code> ：一个整数，指定分配的缓存 <code>bucket</code> 的总数。在方法查找过程中，<code>Runtime</code> 使用这个字段来确定开始线性查找数组的索引位置。指向方法的 <code>selector</code> 指针与该字段做一个 <code>AND</code> 位操作。</li>
-<li><code>occupied</code> ：一个整数，指定实际占用的缓存 <code>bucket</code> 的总数。</li>
-<li><code>buckets</code> ： 指向 <code>Method</code> 数据结构指针的数组。这个数组可能包含不超过 <code>mask+1</code> 个元素。如果指针为 <code>NULL</code>，表明这个缓存 <code>bucket</code> 没有被占用，另外被占用的 <code>bucket</code> 可能是不连续的。</li>
-</ul>
-<h4 id="元类-Meta-Class"><a href="#元类-Meta-Class" class="headerlink" title="元类(Meta Class)"></a>元类(Meta Class)</h4><p>所有的类自身也是一个对象，我们也可以向这个对象发送消息。</p>
-<p>当我们向一个对象发送消息时，<code>Runtime</code> 会在这个对象所属的类的方法列表中查找方法；而向一个类发送消息时，会在这个类的 <code>meta-class</code> 的方法列表中查找。</p>
-<p><code>meta-class</code> 存储着一个类的所有类方法。每个类都会有个一个单独的 <code>meta-class</code> ，因为每个类的类方法基本不可能完全相同。</p>
-<p><code>meta-class</code> 的 <code>isa</code> 指针指向基类的 <code>meta-class</code> ，以此作为它的所属类。可以理解为，任何 <code>NSObject</code> 继承体系下的 <code>meta-class</code> 都使用 <code>NSObject</code> 的 <code>meta-class</code> 作为自己的所属类，而基类的 <code>meta-class</code> 的 <code>isa</code> 指针则指向它自己。</p>
-<p>对于 <code>NSObject</code> 继承体系来说，其实例方法对体系中的所有实例、类和 <code>meta-class</code> 都是有效的；而类方法对于体系内的所有类和 <code>meta-class</code> 都是有效的。</p>
-<h3 id="类与对象操作函数"><a href="#类与对象操作函数" class="headerlink" title="类与对象操作函数"></a>类与对象操作函数</h3><p><code>Runtime</code> 提供了大量函数来操作类与对象。类的操作方法大部分以 <code>class_</code> 为前缀，对象的操作方法大部分是以 <code>objc_</code> 或 <code>object_</code> 为前缀。</p>
-<h4 id="类名"><a href="#类名" class="headerlink" title="类名"></a>类名</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取类的类名</span><br><span class="line">const char * class_getName	(Class cls);</span><br></pre></td></tr></table></figure>
-
-<p>对于 <code>class_getName</code> 函数来说，如果传入的 <code>cls</code> 为 <code>nil</code>，则返回一个字字符串。</p>
-<h4 id="父类-super-class-和元类-meta-class"><a href="#父类-super-class-和元类-meta-class" class="headerlink" title="父类(super_class)和元类(meta-class)"></a>父类(super_class)和元类(meta-class)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取类的父类</span><br><span class="line">Class	class_getSuperClass	(Class cls);</span><br><span class="line">&#x2F;&#x2F; 判断给定的类是否是元类</span><br><span class="line">BOOL class_isMetaClass	(Class cls);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>class_getSuperClass</code> 函数，当<code>cls</code> 为 <code>nil</code> 或 <code>cls</code> 为根类时，返回 <code>nil</code>。</li>
-<li><code>class_isMetaClass</code> 函数，如果 <code>cls</code> 是元类，返回 <code>YES</code>。如果传入的 <code>cls</code> 为 <code>nil</code>，则返回 <code>NO</code>。</li>
-</ul>
-<h4 id="实例变量大小-instance-size"><a href="#实例变量大小-instance-size" class="headerlink" title="实例变量大小(instance_size)"></a>实例变量大小(instance_size)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取实例大小</span><br><span class="line">size_t	class_getInstanceSize	(Class cls);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="成员变量-ivar-及属性"><a href="#成员变量-ivar-及属性" class="headerlink" title="成员变量(ivar)及属性"></a>成员变量(ivar)及属性</h4><p><code>objc_class</code> 中，所有的成员变量、属性的信息都是放在链表 <code>ivars</code> 中。<code>ivars</code> 是一个数组，数组中的每个元素是指向 <code>ivar</code> 的指针。</p>
-<ul>
-<li><p>成员变量操作函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取类中指定名称实例成员变量的信息</span><br><span class="line">Ivar	class_getInstanceVariable	(Class cls, const char *name);	</span><br><span class="line">&#x2F;&#x2F; 获取类成员变量的信息</span><br><span class="line">Ivar	class_getClassVariable	(Class cls, const char *name);</span><br><span class="line">&#x2F;&#x2F; 添加成员变量</span><br><span class="line">BOOL	class_addIvar	(Class cls, const char *name, size_t size, uint8_t alignment, const char *types);</span><br><span class="line">&#x2F;&#x2F; 获取整个成员变量列表</span><br><span class="line">Ivar	* class_copyIvarList	(Class cls, unsigned int *outCount);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>class_getInstanceVariable</code> 函数，它返回一个指向包含 <code>name</code> 指定的成员变量信息的 <code>objc_ivar</code> 结构体的指针 <code>Ivar</code>。</li>
-<li><code>class_getClassVariable</code> 函数，目前没有找到关于 <code>Objective-C</code> 中类变量的信息，一般认为 <code>Objective-C</code> 不支持类变量。</li>
-<li><code>Objective-C</code> 不支持向已经存在的类中添加实例变量，但如果通过 <code>Runtime</code> 来创建一个类的话，就可以使用 <code>class_addIvar</code> 函数了。需要注意的是，这个函数只能在 <code>objc_allocateClassPair</code> 与 <code>objc_registerClassPair</code> 之间调用。另外这个类也不能是元类。</li>
-<li><code>class_copyIvarList</code> ，返回一个包含成员变量信息的数组，数组中的每个元素是指向该成员变量信息的 <code>objc_ivar</code> 结构体的指针。这个数组不包含在父类中声明的变量。<code>outCount</code> 指针返回数组的大小。需要注意的是，我们必须使用 <code>free()</code> 来释放这个数组。</li>
-</ul>
-</li>
-<li><p>属性操作函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取指定的属性</span><br><span class="line">objc_property_t	class_getProperty	(Class cls, const char *name);</span><br><span class="line">&#x2F;&#x2F; 获取属性列表</span><br><span class="line">objc_property_t * class_copyPropertyList	(Class cls, unsigned int *outCount);</span><br><span class="line">&#x2F;&#x2F; 为类添加属性</span><br><span class="line">BOOL class_addProperty	(Class cls, const char *name, const objc_property_attribute_t *attributes, unsigned int attributeCount);</span><br><span class="line">&#x2F;&#x2F; 替换类的属性</span><br><span class="line">void class_replaceProperty	(Class cls, const char *name, const objc_property_attribute_t *attributes, unsigned int attributeCount);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 <code>Mac OS X</code> 系统中，<code>Runtime</code> 提供了几个函数来确定一个对象的内存区域是否可以被垃圾回收器扫描，以处理 <code>strong/weak</code> 引用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const	uint8_t * class_getIvarLayout	(Class cls);</span><br><span class="line">void	class_setIvarLayout	(Class cls, const uint8_t *layout);</span><br><span class="line">const	uint_8	* class_getWeakIvarLayout	(Class cls);</span><br><span class="line">void	class_setWeakIvarLayout	(Class cls, const uint8_t *layout);</span><br></pre></td></tr></table></figure>
-
-<p>通常情况下，我们不需要去主动调用这些方法，在调用 <code>objc_registerClassPair</code> 时，会生成合理的布局。</p>
-</li>
-</ul>
-<h4 id="方法-methodLists"><a href="#方法-methodLists" class="headerlink" title="方法(methodLists)"></a>方法(methodLists)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 添加方法</span><br><span class="line">BOOL class_addMethod	(Class cls, SEL name, IMP imp, const char *types);</span><br><span class="line">&#x2F;&#x2F; 获取实例方法</span><br><span class="line">Method	class_getInstanceMethod	(Class cls, SEL name);</span><br><span class="line">&#x2F;&#x2F; 获取类方法</span><br><span class="line">Method	class_getClassMethod	(Class cls, SEL name);</span><br><span class="line">&#x2F;&#x2F; 获取所有方法的数组</span><br><span class="line">Method	* class_copyMethodList	(Class cls, unsigned int *outCount);</span><br><span class="line">&#x2F;&#x2F; 替代方法的实现</span><br><span class="line">IMP	class_replaceMethod	(Class cls, SEL name, IMP imp, const char *types);</span><br><span class="line">&#x2F;&#x2F; 返回方法的具体实现</span><br><span class="line">IMP	class_getMethodImplementation	(Class cls, SEL name);</span><br><span class="line">IMP class_getMethodImplementation_stret	(Class cls, SEL name);</span><br><span class="line">&#x2F;&#x2F; 类实例是否响应指定的 selector</span><br><span class="line">BOOL class_respondsToSelector	(Class cls, SEL sel);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><code>class_addMethod</code> 的实现会覆盖父类的方法实现，但不会取代本类中已经存在的实现，如果本类中包含一个同名的实现，则函数会返回 <code>NO</code>。如果要修改已经存在的实现，可以使用 <code>method_setImplementation</code>。一个 <code>Objectice-C</code> 方法是一个简单的 C 函数，它至少包含两个参数 <code>self</code> 和 <code>_cmd</code>，所以我们实现函数至少需要两个参数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void myMethodIMP (id self, SEL _cmd) &#123;</span><br><span class="line">  &#x2F;&#x2F; implementation</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>与成员变量不同的是，我们可以动态的为类添加方法，不管这个类是否已经存在。</p>
-<p>参数 <code>types</code> 是一个描述传递给方法的参数类型的字符数组。</p>
-</li>
-<li><p><code>class_getInstanceMethod</code> 、<code>class_getClassMethod</code> 函数，与 <code>class_copyMethodList</code> 不同的是，这两个函数都会去搜索父类的实现。</p>
-</li>
-<li><p><code>class_copyMethodList</code> 函数，返回包含所有实例方法的数组，如果需要获取类方法，则可使用 <code>class_copyMethodList(object_getClass(Class cls), &amp;count)</code> (一个类的实例方法是定义在元类中的)。该列表不包含父类实现的方法。<code>outCount</code> 参数返回方法的个数。在获取到列表后，我们需要使用 <code>free()</code> 来释放它。</p>
-</li>
-<li><p><code>class_replaceMethod</code> 函数，该函数的行为可以分为两种 ：如果类中不存在参数 <code>name</code> 指定的方法，则类似于 <code>class_addMethod</code> 函数一样会添加方法；如果类中已经存在 <code>name</code> 指定的方法，则类似于 <code>method_setImplementation</code> 一样替代原方法的实现。</p>
-</li>
-<li><p><code>class_getMethodImplementation</code> 函数，该函数在向类实例发送消息时会被调用，并返回一个指向方法实现函数的指针。这个函数会比 <code>method_getImplementation(Class cls, const char * name)</code> 更快。返回的函数指针可能是一个指向 <code>Runtime</code> 内部的函数，而不一定是方法的实际实现。</p>
-</li>
-<li><p><code>class_respondsToSelector</code> 函数，我们经常使用 <code>NSObject</code> 类的 <code>respondsToSelector:</code> 或 <code>instanceRespondToSelector:</code> 方法来达到同样的目的。</p>
-</li>
-</ul>
-<h4 id="协议-objc-protocol-list"><a href="#协议-objc-protocol-list" class="headerlink" title="协议 (objc_protocol_list)"></a>协议 (objc_protocol_list)</h4><p>协议相关的操作包含以下函数：：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 添加协议</span><br><span class="line">BOOL class_addProtocol	(Class cls, Protocol *protocol);</span><br><span class="line">&#x2F;&#x2F; 返回类是否实现指定的协议</span><br><span class="line">BOOL class_conformsToProtocol	(Class cls, Protocol *protocol);</span><br><span class="line">&#x2F;&#x2F; 返回类实现的协议列表</span><br><span class="line">Protocol	*class_copyProtocolList	(Class cls, unsigned int *outCout);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="版本-version"><a href="#版本-version" class="headerlink" title="版本(version)"></a>版本(version)</h4><p>版本相关的操作函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取版本号</span><br><span class="line">int class_getVersion	(Class cls);</span><br><span class="line">&#x2F;&#x2F; 设置版本号</span><br><span class="line">void class_setVersion	(Class cls, int version)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="动态创建类和对象"><a href="#动态创建类和对象" class="headerlink" title="动态创建类和对象"></a>动态创建类和对象</h3><p><code>Runtime</code> 经常被用到的功能就是在运行时创建类和对象。</p>
-<h4 id="动态创建类"><a href="#动态创建类" class="headerlink" title="动态创建类"></a>动态创建类</h4><p>动态创建类涉及到一下几个函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建一个新类和元类</span><br><span class="line">Class	objc_allocateClassPair	(Class superclass, const char *name, size_t extraBytes);</span><br><span class="line">&#x2F;&#x2F; 销毁一个类及其相关的类</span><br><span class="line">void objc_disposeClassPair	(Class cls);</span><br><span class="line">&#x2F;&#x2F; 在应用中注册由 objc_allocateClassPair 创建的类</span><br><span class="line">void objc_registerClassPair	(Class cls);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>objc_allocateClassPair</code> 函数 ：如果我们要创建一个根类，则指定 <code>superClass</code> 为 <code>Nil</code>。<code>extraBytes</code> 通常指定为 0 ，该参数是分配给类和元类对象尾部的索引 <code>ivars</code> 的字节数。</li>
-</ul>
-<p>为了创建一个新类，我们需要调用 <code>objc_allocateClassPair</code> ，然后使用诸如 <code>class_addMethod</code> , <code>class_addIvar</code> 等函数来为新创建的类添加方法、实例变量和属性等。完成这些后，我们需要调用 <code>objc_registerClassPair</code> 函数来注册类，之后这个类就可以在程序中使用了。</p>
-<p>实例方法和实例变量应该添加到类自身上，而类方法应该添加到类的元类上。</p>
-<ul>
-<li><code>objc_disposeClassPair</code> 函数用于销毁一个类，值得注意的是，如果程序运行中还存在类或其子类的实例，则不能对针对类调用该方法。</li>
-</ul>
-<h4 id="动态创建对象"><a href="#动态创建对象" class="headerlink" title="动态创建对象"></a>动态创建对象</h4><p>动态创建对象的函数如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建类实例</span><br><span class="line">id class_createInstance	(Class cls, size_t extraBytes);</span><br><span class="line">&#x2F;&#x2F; 在指定位置创建类实例</span><br><span class="line">id objc_constructInstance	(Class cls, void *bytes);</span><br><span class="line">&#x2F;&#x2F; 销毁类实例</span><br><span class="line">void * objc_destructInstance (id obj);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><code>class_createInstance</code> 函数 ：创建实例时，会在默认的内存区域为类分配内存。<code>extraBytes</code> 表示分配的额外字节数。这些额外的字节数可用于存储在类定义中所定义的实例变量之外的实例变量。该函数在ARC环境下无法使用。</p>
-<p>调用 <code>class_createInstance</code> 的效果和 <code>+alloc</code> 方法类似。</p>
-</li>
-<li><p><code>objc_constructInstance</code> 函数 ：在指定的位置(bytes)创建类实例。</p>
-</li>
-<li><p><code>objc_destructInstance</code> 函数 ：销毁一个类的实例，但不会释放并移除任何与其先关的引用。</p>
-</li>
-</ul>
-<h3 id="实例操作函数"><a href="#实例操作函数" class="headerlink" title="实例操作函数"></a>实例操作函数</h3><p>实例操作函数主要是针对创建的实例对象的一系列操作函数。</p>
-<h4 id="针对整个对象进行操作的函数"><a href="#针对整个对象进行操作的函数" class="headerlink" title="针对整个对象进行操作的函数"></a>针对整个对象进行操作的函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 返回指定对象的一份拷贝</span><br><span class="line">id object_copy (id obj, size_t size);</span><br><span class="line">&#x2F;&#x2F; 释放指定对象占用的内存</span><br><span class="line">id object_dispose	(id obj);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="针对对象实例变量进行操作的函数"><a href="#针对对象实例变量进行操作的函数" class="headerlink" title="针对对象实例变量进行操作的函数"></a>针对对象实例变量进行操作的函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 修改类实例的实例变量的值</span><br><span class="line">Ivar	object_setInstanceVariable	(id obj, const char *name, void *value);</span><br><span class="line">&#x2F;&#x2F; 获取对象实例变量的值</span><br><span class="line">Ivar	object_getInstanceVariable	(id obj, const char *name, void **outValue);</span><br><span class="line">&#x2F;&#x2F; 返回指向给定对象分配的任何额外字节的指针</span><br><span class="line">void * object_getIndexedIvars (id obj);</span><br><span class="line">&#x2F;&#x2F; 返回对象中实例变量的值</span><br><span class="line">id object_getIvar	(id obj, Ivar ivar);</span><br><span class="line">&#x2F;&#x2F; 设置对象中实例变量的值</span><br><span class="line">void object_setIvar	(id obj, Ivar ivar, id value);</span><br></pre></td></tr></table></figure>
-
-<p>如果实例变量的 <code>Ivar</code> 已经知道，那么调用 <code>objc_getIvar</code> 会比 <code>objc_getInstanceVariable</code> 函数快。相同情况下，<code>object_setIvar</code> 也比 <code>object_setInstanceVariable</code> 快。</p>
-<h4 id="针对对象的类进行操作的函数"><a href="#针对对象的类进行操作的函数" class="headerlink" title="针对对象的类进行操作的函数"></a>针对对象的类进行操作的函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 返回给定对象的类名</span><br><span class="line">const char * object_getClassName	(id obj);</span><br><span class="line">&#x2F;&#x2F; 返回对象的类</span><br><span class="line">Class object_getClass (id obj);</span><br><span class="line">&#x2F;&#x2F; 设置对象的类</span><br><span class="line">Class object_setClass	(id obj, Class cls);</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="获取类定义"><a href="#获取类定义" class="headerlink" title="获取类定义"></a>获取类定义</h3><p><code>Objective-C Runtime</code> 会自动注册我们代码中定义的所有的类。我们也可以在运行时创建类定义并使用 <code>objc_addClass</code> 来注册它们。</p>
-<p>获取类定义的相关函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取以注册的类定义的列表</span><br><span class="line">int objc_getClassList	(Class *buffer, int bufferCount);</span><br><span class="line">&#x2F;&#x2F; 创建并返回一个指向所有已注册类的指针列表</span><br><span class="line">Class	*	objc_copyClassList	(unsigned int *outCount);</span><br><span class="line">&#x2F;&#x2F; 返回指定类的类定义</span><br><span class="line">Class	objc_lookUpClass	(const char *name);</span><br><span class="line">Class	objc_getClass	(const char *name);</span><br><span class="line">Class	objc_getRequiredClass	(const char *name);</span><br><span class="line">&#x2F;&#x2F; 返回指定类的元类</span><br><span class="line">Class	objc_getMetaClass	(const char *name);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>objc_getClassList</code> 函数 ：获取已注册的类定义的列表。我们不能假设从该函数中获取的类对象是继承自 <code>NSObject</code> 体系的，所以在这些类上调用方法时，都应该先检测一下这个方法是否在这个类中实现。</li>
-<li>获取类定义的方法有三个 ：<code>objc_lookUpClass</code> , <code>objc_getClass</code> 和 <code>objc_getRequiredClass</code>。如果类在运行时未注册，则 <code>objc_lookUpClass</code> 会返回 <code>nil</code>，而 <code>objc_getClass</code> 会调用类处理回调，并在此确认类是否注册，如果确认未注册，再返回 <code>nil</code>。而 <code>objc_getRequiredClass</code> 函数的操作与 <code>objc_getClass</code> 相同，只不过没有找到类，就会杀死进程。</li>
-<li><code>objc_getMetaClass</code> 函数 ：如果指定的类没有注册，则该函数会调用类处理回调，并在此确认类是否注册，如果确认未注册，再返回 <code>nil</code>。不过，每个类定义都必须有一个有效的元类定义，所以这个函数总是会返回一个元类定义。不管它是否有效。</li>
-</ul>
-<h2 id="Objective-C-Runtime-中的成员变量与属性"><a href="#Objective-C-Runtime-中的成员变量与属性" class="headerlink" title="Objective-C Runtime 中的成员变量与属性"></a>Objective-C Runtime 中的成员变量与属性</h2><h3 id="类型编码-Type-Encoding"><a href="#类型编码-Type-Encoding" class="headerlink" title="类型编码(Type Encoding)"></a>类型编码(Type Encoding)</h3><p>作为对 <code>Runtime</code> 的补充，编译器将每个方法的返回值和参数类型编码为一个字符串，并将其与方法的 <code>selector</code> 关联在一起。这种编码方案在其它情况下也是非常有用的，因此我们可以使用  <code>@encod</code> 编译器指令来获取它。当给定一个类型时，<code>@encode</code> 会返回这个类型的字符串编码。   </p>
-<h3 id="成员变量、属性"><a href="#成员变量、属性" class="headerlink" title="成员变量、属性"></a>成员变量、属性</h3><p><code>Runtime</code> 中关于成员变量和属性的相关数据结构并不多，只有三个。</p>
-<h4 id="基础数据类型"><a href="#基础数据类型" class="headerlink" title="基础数据类型"></a>基础数据类型</h4><h5 id="Ivar"><a href="#Ivar" class="headerlink" title="Ivar"></a>Ivar</h5><p><code>Ivar</code> 是表示实例变量的类型，其实际上是一个指向 <code>objc_ivar</code> 结构体的指针 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">typedef struct	objc_ivar	*Ivar;</span><br><span class="line"></span><br><span class="line">struct objc_ivar	&#123;</span><br><span class="line">  char *ivar_name		OBJC2_UNAVAILABLE;	&#x2F;&#x2F; 变量名</span><br><span class="line">  char *ivar_type		OBJC2_UNAVAILABLE;	&#x2F;&#x2F; 变量类型</span><br><span class="line">  int ivar_offset		OBJC2_UNAVAILABLE;	&#x2F;&#x2F; 基地址偏移字节</span><br><span class="line">  </span><br><span class="line">#ifdef __LP64__</span><br><span class="line">  int space				OBJC2_UNAVAILABLE;</span><br><span class="line">#endif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="objc-property-t"><a href="#objc-property-t" class="headerlink" title="objc_property_t"></a>objc_property_t</h5><p><code>objc_property_t</code> 是声明属性的类型，是一个指向 <code>objc_property</code> 结构体的指针 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typedef	struct	objc_property	*objc_property_t;</span><br></pre></td></tr></table></figure>
-
-<h5 id="objc-property-attribute-t"><a href="#objc-property-attribute-t" class="headerlink" title="objc_property_attribute_t"></a>objc_property_attribute_t</h5><p><code>objc_property_attribute_t</code> 定义了属性的特性，它是一个结构体：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span>	<span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span> *name;		<span class="comment">//	特姓名</span></span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">char</span> *value;	<span class="comment">//	特性值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="关联对象-Associated-Object"><a href="#关联对象-Associated-Object" class="headerlink" title="关联对象(Associated Object)"></a>关联对象(Associated Object)</h4><p>关联对象是<code>Runtime</code> 中一个非常实用的特性。关联对象类似于成员变量，不过是在运行时添加的。我们通常会把变量(<code>Ivar</code>)放在类声明的头文件中，或者放在类实现的 <code>@implementation</code> 后面。但这有一个缺点，我们不能在分类中添加成员变量。<code>Objective-C</code> 针对这一问题，提出了一个解决方案：即关联对象(Associated Object)。</p>
-<p>我们可以把关联对象想象成一个<code>Objective-C</code> 对象(如字典)，这个对象通过给定的key连接到类的一个实例上。不过由于使用的是C接口，所以key是一个<code>void</code> 指针。我们还需要指定一个内存管理策略，告诉<code>Runtime</code> 如何管理这个对象的内存，这个内存管理策略可以由一下指定：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">OBJC_ASSOCIATION_ASSIGN</span><br><span class="line">OBJC_ASSOCIATION_RETAIN_NONATOMIC</span><br><span class="line">OBJC_ASSOCIATION_COPY_NONATOMIC</span><br><span class="line">OBJC_ASSOCIATION_RETAIN</span><br><span class="line">OBJC_ASSOCIATION_COPY</span><br></pre></td></tr></table></figure>
-
-<p>当宿主对象被释放时，会根据指定的内存管理策略来处理关联对象。如果指定的是 <code>OBJC_ASSOCIATION_ASSIGN</code></p>
-<p>，则宿主释放时，关联对象不会被释放；而如果指定的是 <code>retain</code> 或者是 <code>copy</code> ，则宿主释放时，关联对象会被释放。</p>
-<p>将一个对象连接到其它对象所需的就是下面两行代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">static char aKey;</span><br><span class="line">objc_setAssociatedObject(self, &amp;aKey, anObject, OBJC_ASSOCIATION_RETAIN);</span><br></pre></td></tr></table></figure>
-
-<p>在这种情况下，<code>self</code> 对象将获取一个新的关联对象 <code>anObject</code> ，且内存管理策略是自动 <code>retian</code> 管理对象，当<code>self</code> 对象释放时，会自动 <code>release</code> 关联对象。另外，如果我们使用同一个key来关联另外一个对象时，也会自动释放之前关联的对象，在这种情况下，先前的关联对象会被妥善的处理掉，并且新的对象会使用它的内存。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取指定key的关联对象</span><br><span class="line">id anObject	&#x3D;	objc_getAssociatedObject(self, &amp;aKey);</span><br></pre></td></tr></table></figure>
-
-<p>使用 <code>objc_removeAssociatedObjects</code> 函数来移除一个关联对象，或者使用 <code>objc_setAssociatedObject</code> 函数将key指定的关联对象设置为<code>nil</code> 。</p>
-<h4 id="成员变量、属性的操作方法"><a href="#成员变量、属性的操作方法" class="headerlink" title="成员变量、属性的操作方法"></a>成员变量、属性的操作方法</h4><h5 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h5><p>成员变量的操作函数包括 ： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取成员变量名</span><br><span class="line">const char * ivar_getName (Ivar v);</span><br><span class="line">&#x2F;&#x2F; 获取成员变量类型编码</span><br><span class="line">const char * ivar_getTypeEncoding (Ivar v);</span><br><span class="line">&#x2F;&#x2F; 获取成员变量的偏移量</span><br><span class="line">ptrdiff_t ivar_getOffset (Ivar v);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>ivar_getOffset</code> 函数，对于 <code>id</code>  或其它对象类型的实例变量，可以调用 <code>object_getIvar</code> 和 <code>object_setIvar</code> 来直接访问成员变量，而不使用偏移量。</li>
-</ul>
-<h5 id="关联对象"><a href="#关联对象" class="headerlink" title="关联对象"></a>关联对象</h5><p>关联对象的操作函数包括 ： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置关联对象</span><br><span class="line">void objc_setAssociatedObject (id object, const void *key, id value, objc_AssociationPolicy policy);</span><br><span class="line">&#x2F;&#x2F; 获取关联对象</span><br><span class="line">id objc_getAssociatedObject (id object, const void *key);</span><br><span class="line">&#x2F;&#x2F; 移除关联对象</span><br><span class="line">void objc_removeAssociatedObjects (id object);</span><br></pre></td></tr></table></figure>
-
-<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><p>属性操作相关函数包括 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取属性名</span><br><span class="line">const char * property_getName (objc_property_t property);</span><br><span class="line">&#x2F;&#x2F; 获取属性特性描述字符串</span><br><span class="line">const char * property_getAttributes (objc_property_t property);</span><br><span class="line">&#x2F;&#x2F; 获取属性中指定的特性</span><br><span class="line">char * property_copyAttributeValue (objc_property_t property, const char *attributeName);</span><br><span class="line">&#x2F;&#x2F; 获取属性的特性列表</span><br><span class="line">objc_property_attribute_t * property_copyAttributeList (objc_property_t property, unsigned int *outCount);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>property_copyAttributeValue</code> 函数，返回的 <code>char*</code> 在使用完后需要调用 <code>free()</code> 释放。</li>
-<li><code>property_copuAttributeList</code> 函数，返回值在使用完后需要调用 <code>free()</code> 释放。</li>
-</ul>
-<h2 id="Objective-C-Runtime-中的方法与消息"><a href="#Objective-C-Runtime-中的方法与消息" class="headerlink" title="Objective-C Runtime 中的方法与消息"></a>Objective-C Runtime 中的方法与消息</h2><h3 id="基础数据类型-1"><a href="#基础数据类型-1" class="headerlink" title="基础数据类型"></a>基础数据类型</h3><h4 id="SEL"><a href="#SEL" class="headerlink" title="SEL"></a>SEL</h4><p>SEL 又叫做选择器，是表示一个方法的 <code>selector</code> 的指针，定义如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typedef struct objc_selector *SEL;</span><br></pre></td></tr></table></figure>
-
-<p>方法的 <code>selector</code> 用于表示运行时方法的名字。<code>Objective-C</code> 在编译时，会根据每一个方法的名字、参数序列，生成一个唯一的整型标识(<code>Int</code> 类型的地址)，这个标识就是 <code>SEL</code>。</p>
-<p>两个类之间，不管它们是不是父类与子类的关系，还是之间没有这种关系，只要方法名相同，那么方法的 <code>SEL</code> 就是一样的。每一个方法都对应着一个 <code>SEL</code>。所以在 <code>Objective-C</code> 的同一个类(及类的继承体系)中，不能存在两个同名的方法，即使参数类型不同也不行。因为相同的方法只能对应一个 <code>SEL</code>，这导致 <code>Objectice-C</code> 在处理相同方法名且参数个数相同但类型不同的方法方面能力很差。</p>
-<p>当然不同的类可以拥有相同的 <code>selector</code> ，这个没有问题。不同类的实例对象执行相同的 <code>selector</code> 时，会在各自的方法列表中根据 <code>selector</code> 去寻找自己对应的 <code>IMP</code>。</p>
-<p>工程中的所有的 <code>SEL</code> 组成了一个 <code>Set</code> 集合，Set 特点就是唯一，因此 SEL 也是唯一的。因此，如果我们想到这个方法集合中查找某个方法时，只需要去找到这个方法对应的 SEL 就行了，SEL 实际上就是根据方法名 <code>hash</code> 化了的一个字符串，而对于字符串的比较仅仅需要比较它们的地址就可以了。</p>
-<p>本质上，<code>SEL</code> 只是一个指向方法的指针(准确地说，只是一个根据方法名 <code>hash</code> 化了的 <code>KEY</code> 值，能唯一代表一个方法)，它的存在只是为了加快方法的查询速度。</p>
-<p>我们可以在运行时添加新的 <code>selector</code> ，也可以在运行时获取已经存在的 <code>selector</code> ，我们可以通过下面三种方式来获取 <code>SEL</code> :</p>
-<ul>
-<li><code>sel_registerName</code> 函数</li>
-<li><code>Objective-C</code> 编译器提供的 <code>@selector()</code></li>
-<li><code>NSSelectorFromString()</code> 方法</li>
-</ul>
-<h4 id="IMP"><a href="#IMP" class="headerlink" title="IMP"></a>IMP</h4><p><code>IMP</code> 实际上是一个函数指针，指向函数实现的首地址。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id (*IMP)(id, SEL, ...)</span><br></pre></td></tr></table></figure>
-
-<p>这个函数使用当前 <code>CPU</code> 架构实现的标准 C 调用约定。第一个参数是指向 <code>self</code> (如果是实例方法，则是类实例的内存地址；如果是类方法，则是指向元类的指针)的指针，第二个参数是 <code>selector</code> ，接下来是方法的实际参数列表。</p>
-<p>通过取得 <code>IMP</code> ，我们可以跳过 <code>Runtime</code> 的消息传递机制，直接执行 <code>IMP</code> 指向的函数实现，这样就省去了 <code>Runtime</code> 消息传递过程中所做的一系列查找操作。</p>
-<h4 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h4><p><code>Method</code> 用于表示类定义中的方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typedef struct objc_method *Method;</span><br><span class="line"></span><br><span class="line">struct objc_method &#123;</span><br><span class="line">  SEL	method_name			OBJC2_UNAVAILABLE;	&#x2F;&#x2F;	方法名</span><br><span class="line">  char  *method_types		OBJC2_UNAVAILABLE;	&#x2F;&#x2F;</span><br><span class="line">  IMP	method_imp			OBJC2_UNAVAILABLE;	&#x2F;&#x2F;	方法实现	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="方法操作相关函数"><a href="#方法操作相关函数" class="headerlink" title="方法操作相关函数"></a>方法操作相关函数</h3><p><code>Runtime</code> 提供了一系列的方法来处理与方法相关的操作，包括方法本身及 <code>SEL</code> 。</p>
-<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>方法的相关操作函数如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 调用指定方法的实现</span><br><span class="line">id method_invoke ( id receiver, Method m, ... );</span><br><span class="line">&#x2F;&#x2F; 调用返回一个数据结构的方法的实现</span><br><span class="line">void method_invoke_stret ( id receiver, Method m, ... );</span><br><span class="line">&#x2F;&#x2F; 获取方法名</span><br><span class="line">SEL method_getName ( Method m );</span><br><span class="line">&#x2F;&#x2F; 返回方法的实现</span><br><span class="line">IMP method_getImplementation ( Method m );</span><br><span class="line">&#x2F;&#x2F; 获取描述方法参数和返回值类型的字符串</span><br><span class="line">const char * method_getTypeEncoding ( Method m );</span><br><span class="line">&#x2F;&#x2F; 获取方法的返回值类型的字符串</span><br><span class="line">char * method_copyReturnType ( Method m );</span><br><span class="line">&#x2F;&#x2F; 获取方法的指定位置参数的类型字符串</span><br><span class="line">char * method_copyArgumentType ( Method m, unsigned int index );</span><br><span class="line">&#x2F;&#x2F; 通过引用返回方法的返回值类型字符串</span><br><span class="line">void method_getReturnType ( Method m, char *dst, size_t dst_len );</span><br><span class="line">&#x2F;&#x2F; 返回方法的参数的个数</span><br><span class="line">unsigned int method_getNumberOfArguments ( Method m );</span><br><span class="line">&#x2F;&#x2F; 通过引用返回方法指定位置参数的类型字符串</span><br><span class="line">void method_getArgumentType ( Method m, unsigned int index, char *dst, size_t dst_len );</span><br><span class="line">&#x2F;&#x2F; 返回指定方法的方法描述结构体</span><br><span class="line">struct objc_method_description * method_getDescription ( Method m );</span><br><span class="line">&#x2F;&#x2F; 设置方法的实现</span><br><span class="line">IMP method_setImplementation ( Method m, IMP imp );</span><br><span class="line">&#x2F;&#x2F; 交换两个方法的实现</span><br><span class="line">void method_exchangeImplementations ( Method m1, Method m2 );</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>method_invoke</code>函数，返回的是实际实现的返回值。参数<code>receiver</code>不能为空。这个方法的效率会比<code>method_getImplementation</code>和<code>method_getName</code>更快。</li>
-<li><code>method_getName</code>函数，返回的是一个<code>SEL</code>。如果想获取方法名的C字符串，可以使用<code>sel_getName(method_getName(method))</code>。</li>
-<li><code>method_getReturnType</code>函数，类型字符串会被拷贝到<code>dst</code>中。</li>
-<li><code>method_setImplementation</code>函数，注意该函数返回值是方法之前的实现。</li>
-</ul>
-<h4 id="方法选择器"><a href="#方法选择器" class="headerlink" title="方法选择器"></a>方法选择器</h4><p>选择器的相关操作函数包括 ：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 返回给定选择器指定的方法的名称</span><br><span class="line">const char * sel_getName ( SEL sel );</span><br><span class="line">&#x2F;&#x2F; 在Objective-C Runtime系统中注册一个方法，将方法名映射到一个选择器，并返回这个选择器</span><br><span class="line">SEL sel_registerName ( const char *str );</span><br><span class="line">&#x2F;&#x2F; 在Objective-C Runtime系统中注册一个方法</span><br><span class="line">SEL sel_getUid ( const char *str );</span><br><span class="line">&#x2F;&#x2F; 比较两个选择器</span><br><span class="line">BOOL sel_isEqual ( SEL lhs, SEL rhs );</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>sel_registerName</code>函数：在我们将一个方法添加到类定义时，我们必须在<code>Objective-C Runtime</code>系统中注册一个方法名以获取方法的选择器。</li>
-</ul>
-<h3 id="方法调用流程"><a href="#方法调用流程" class="headerlink" title="方法调用流程"></a>方法调用流程</h3><p>在 <code>Objective-C</code> 中，消息直到运行时才绑定到方法实现上。编译器会将消息表达式 <code>[receiver message]</code> 转化为一个消息调用的函数，即 <code>objc_msgSend</code> 。这个函数将消息接收者和方法名作为其基础参数。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objc_msgSend(receiver, selector)</span><br></pre></td></tr></table></figure>
-
-<p>如果消息中还有其它参数，则该方法的形式如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objc_msgSend(receiver, selector, arg1, arg2, ...)</span><br></pre></td></tr></table></figure>
-
-<p>这个函数完成了动态绑定的所有事情：</p>
-<ul>
-<li>首先它找到 <code>selector</code> 对应的方法实现。因为同一个方法在不同的类中有不同的实现，所以我们需要依赖于接收者的类来找到确切的实现。</li>
-<li>它调用方法实现，并将接收者对象及方法的所有参数传递给它。</li>
-<li>最后，它将实现返回的值作为它自己的返回值。</li>
-</ul>
-<p>消息的关键在于结构体 <code>objc_class</code> ，这个结构体中有两个字段是我们在分发消息时关注的：</p>
-<ul>
-<li>指向父类的指针</li>
-<li>一个类的方法分发表，即 <code>methodLists</code>。</li>
-</ul>
-<p>当我们创建一个新对象时，先为其分配内存，并初始化其成员变量。其中 <code>isa</code> 指针也会被初始化，让对象可以访问类及类的继承体系。</p>
-<p>当消息发送给一个对象时，<code>objc_msgSend</code> 通过对象的 <code>isa</code> 指针获取到类的结构体，然后在方法列表里查找方法的 <code>selector</code> 。如果没有找到 <code>selector</code> ，则通过 <code>objc_class</code> 结构体中指向父类的指针找到其父类，并在父类的方法列表里寻找方法的 <code>selector</code> 。依此，会一直沿着类的的继承体系到达 <code>NSObject</code> 类。一旦定位到 <code>selector</code> ，函数就会获取到实现的入口点，并传入相应的参数来执行方法的具体实现。如果没有定位到 <code>selector</code> ，则会走消息转发流程。</p>
-<p>为了加速消息的处理，运行时系统缓存使用过的 <code>selector</code> 及对应的方法的地址。</p>
-<h4 id="隐藏参数"><a href="#隐藏参数" class="headerlink" title="隐藏参数"></a>隐藏参数</h4><p><code>objc_msgSend</code> 有两个隐藏参数 ：</p>
-<ul>
-<li>消息接受对象</li>
-<li>方法的 <code>selector</code></li>
-</ul>
-<p>这两个参数为方法的实现提供了调用者的信息，之所以说是隐藏的，是因为它们在定义方法的源代码中没有声明，而是在编译期被插入实现代码的。</p>
-<p>虽然这些参数没有声明，但是我们仍然能在代码中引用它们。我们可以用 <code>self</code> 来引用接收者对象，使用 <code>_cmd</code> 来引用选择器。</p>
-<h4 id="获取方法地址"><a href="#获取方法地址" class="headerlink" title="获取方法地址"></a>获取方法地址</h4><p><code>Runtime</code> 中方法的动态绑定让我们写代码时更具灵活性，如我们可以把消息转发给我们想要的对象，或者随意交换一个方法的实现等。不过灵活性的提升也带来了性能上的一些损耗。毕竟我们需要去查找方法的实现，而不像函数调用来得那么直接。当然，方法的缓存一定程度上解决了这一问题。</p>
-<p>我们上面提到过，如果想要避开这种动态绑定方式，我们可以获取方法实现的地址，然后像调用函数一样来直接调用它。特别是当我们需要在一个循环内频繁地调用一个特定的方法时，通过这种方式可以提高程序的性能。</p>
-<p><code>NSObject</code> 类提供了<code>methodForSelector:</code>方法，让我们可以获取到方法的指针，然后通过这个指针来调用实现代码。我们需要将<code>methodForSelector:</code>返回的指针转换为合适的函数类型，函数参数和返回值都需要匹配上。</p>
-<p>我们通过以下代码来看看<code>methodForSelector:</code>的使用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void (*setter)(id, SEL, BOOL);</span><br><span class="line">int i;</span><br><span class="line">setter &#x3D; (void (*)(id, SEL, BOOL))[target methodForSelector:@selector(setFilled:)];</span><br><span class="line">for (i &#x3D; 0 ; i &lt; 1000 ; i++)</span><br><span class="line">    setter(targetList[i], @selector(setFilled:), YES);</span><br></pre></td></tr></table></figure>
-
-<p>这里需要注意的就是函数指针的前两个参数必须是<code>id</code>和<code>SEL</code>。</p>
-<p>当然这种方式只适合于在类似于<code>for</code>循环这种情况下频繁调用同一方法，以提高性能的情况。另外，<code>methodForSelector:</code>是由Cocoa运行时提供的；它不是Objective-C语言的特性。</p>
-<h3 id="消息转发"><a href="#消息转发" class="headerlink" title="消息转发"></a>消息转发</h3><p>当一个对象能接收一个消息时，就会走正常的方法调用流程。但如果一个对象无法接收指定消息时，又会发生什么事呢？默认情况下，如果是以<code>[object message]</code>的方式调用方法，如果<code>object</code>无法响应<code>message</code>消息时，编译器会报错。但如果是以<code>perform...</code>的形式来调用，则需要等到运行时才能确定object是否能接收<code>message</code>消息。如果不能，则程序崩溃。</p>
-<p>通常，当我们不能确定一个对象是否能接收某个消息时，会先调用<code>respondsToSelector:</code>来判断一下。如下代码所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if ([self respondsToSelector:@selector(method)]) &#123;</span><br><span class="line">    [self performSelector:@selector(method)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>不过，我们这边想讨论下不使用<code>respondsToSelector:</code>判断的情况。这才是我们这一节的重点。</p>
-<p>当一个对象无法接收某一消息时，就会启动所谓”<strong>消息转发(message forwarding)</strong>“机制，通过这一机制，我们可以告诉对象如何处理未知的消息。默认情况下，对象接收到未知的消息，会导致程序崩溃，并由 <code>NSObject</code> 的 <code>doesNotRecognizeSelector</code> 方法抛出 ‘unrecognized selector sent to instance’ 错误信息。不过，我们可以采取一些措施，让我们的程序执行特定的逻辑，而避免程序的崩溃。</p>
-<p>消息转发机制基本上分为三个步骤：</p>
-<ol>
-<li>动态方法解析</li>
-<li>备用接收者</li>
-<li>完整转发</li>
-</ol>
-<p>下面我们详细讨论一下这三个步骤。</p>
-<h4 id="动态方法解析"><a href="#动态方法解析" class="headerlink" title="动态方法解析"></a>动态方法解析</h4><p>对象在接收到未知的消息时，首先会调用所属类的类方法<code>+resolveInstanceMethod:</code>(实例方法)或者<code>+resolveClassMethod:</code>(类方法)。在这个方法中，我们有机会为该未知消息新增一个”处理方法””。不过使用该方法的前提是我们已经实现了该”处理方法”，只需要在运行时通过<code>class_addMethod</code>函数动态添加到类里面就可以了。如下代码所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">void functionForMethod1(id self, SEL _cmd) &#123;</span><br><span class="line">   NSLog(@&quot;%@, %p&quot;, self, _cmd);</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line">+ (BOOL)resolveInstanceMethod:(SEL)sel &#123;</span><br><span class="line">    NSString *selectorString &#x3D; NSStringFromSelector(sel);</span><br><span class="line">    if ([selectorString isEqualToString:@&quot;method1&quot;]) &#123;</span><br><span class="line">        class_addMethod(self.class, @selector(method1), (IMP)functionForMethod1, &quot;@:&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return [super resolveInstanceMethod:sel];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>不过这种方案更多的是为了实现<code>@dynamic</code>属性。</p>
-<h4 id="备用接收者"><a href="#备用接收者" class="headerlink" title="备用接收者"></a>备用接收者</h4><p>如果在上一步无法处理消息，则 <code>Runtime</code>会继续调以下方法 :</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (id)forwardingTargetForSelector:(SEL)aSelector</span><br></pre></td></tr></table></figure>
-
-<p>如果一个对象实现了这个方法，并返回一个非nil的结果，则这个对象会作为消息的新接收者，且消息会被分发到这个对象。当然这个对象不能是<code>self</code>自身，否则就是出现无限循环。当然，如果我们没有指定相应的对象来处理<code>aSelector</code>，则应该调用父类的实现来返回结果。</p>
-<p>使用这个方法通常是在对象内部，可能还有一系列其它对象能处理该消息，我们便可借这些对象来处理消息并返回，这样在对象外部看来，还是由该对象亲自处理了这一消息。</p>
-<p>这一步合适于我们只想将消息转发到另一个能处理该消息的对象上。但这一步无法对消息进行处理，如操作消息的参数和返回值。</p>
-<h4 id="完整消息转发"><a href="#完整消息转发" class="headerlink" title="完整消息转发"></a>完整消息转发</h4><p>如果在上一步还不能处理未知消息，则唯一能做的就是启用完整的消息转发机制了。此时会调用以下方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)forwardInvocation:(NSInvocation *)anInvocation</span><br></pre></td></tr></table></figure>
-
-<p>运行时系统会在这一步给消息接收者最后一次机会将消息转发给其它对象。对象会创建一个表示消息的<code>NSInvocation</code>对象，把与尚未处理的消息有关的全部细节都封装在<code>anInvocation</code>中，包括<code>selector</code>，目标(<code>target</code>)和参数。我们可以在<code>forwardInvocation</code>方法中选择将消息转发给其它对象。</p>
-<p><code>forwardInvocation:</code>方法的实现有两个任务：</p>
-<ol>
-<li>定位可以响应封装在<code>anInvocation</code>中的消息的对象。这个对象不需要能处理所有未知消息。</li>
-<li>使用<code>anInvocation</code>作为参数，将消息发送到选中的对象。<code>anInvocation</code>将会保留调用结果，运行时系统会提取这一结果并将其发送到消息的原始发送者。</li>
-</ol>
-<p>不过，在这个方法中我们可以实现一些更复杂的功能，我们可以对消息的内容进行修改，比如追回一个参数等，然后再去触发消息。另外，若发现某个消息不应由本类处理，则应调用父类的同名方法，以便继承体系中的每个类都有机会处理此调用请求。</p>
-<p>还有一个很重要的问题，我们必须重写以下方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector</span><br></pre></td></tr></table></figure>
-
-<p>消息转发机制使用从这个方法中获取的信息来创建<code>NSInvocation</code>对象。因此我们必须重写这个方法，为给定的<code>selector</code>提供一个合适的方法签名。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector &#123;</span><br><span class="line">    NSMethodSignature *signature &#x3D; [super methodSignatureForSelector:aSelector];</span><br><span class="line">    if (!signature) &#123;</span><br><span class="line">        if ([SUTRuntimeMethodHelper instancesRespondToSelector:aSelector]) &#123;</span><br><span class="line">            signature &#x3D; [SUTRuntimeMethodHelper instanceMethodSignatureForSelector:aSelector];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return signature;</span><br><span class="line">&#125;</span><br><span class="line">- (void)forwardInvocation:(NSInvocation *)anInvocation &#123;</span><br><span class="line">    if ([SUTRuntimeMethodHelper instancesRespondToSelector:anInvocation.selector]) &#123;</span><br><span class="line">        [anInvocation invokeWithTarget:_helper];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>NSObject</code>的<code>forwardInvocation:</code>方法实现只是简单调用了<code>doesNotRecognizeSelector:</code>方法，它不会转发任何消息。这样，如果不在以上所述的三个步骤中处理未知消息，则会引发一个异常。</p>
-<p>从某种意义上来讲，<code>forwardInvocation:</code>就像一个未知消息的分发中心，将这些未知的消息转发给其它对象。或者也可以像一个运输站一样将所有未知消息都发送给同一个接收对象。这取决于具体的实现。</p>
-<h4 id="消息转发与多重继承"><a href="#消息转发与多重继承" class="headerlink" title="消息转发与多重继承"></a>消息转发与多重继承</h4><p>回过头来看第二和第三步，通过这两个方法我们可以允许一个对象与其它对象建立关系，以处理某些未知消息，而表面上看仍然是该对象在处理消息。通过这种关系，我们可以模拟“多重继承”的某些特性，让对象可以“继承”其它对象的特性来处理一些事情。不过，这两者间有一个重要的区别：多重继承将不同的功能集成到一个对象中，它会让对象变得过大，涉及的东西过多；而消息转发将功能分解到独立的小的对象中，并通过某种方式将这些对象连接起来，并做相应的消息转发。</p>
-<p>不过消息转发虽然类似于继承，但<code>NSObject</code>的一些方法还是能区分两者。如<code>respondsToSelector:</code>和<code>isKindOfClass:</code>只能用于继承体系，而不能用于转发链。如果我们想让这种消息转发看起来像是继承，则可以重写这些方法，如以下代码所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)respondsToSelector:(SEL)aSelector</span><br><span class="line">&#123;</span><br><span class="line">	if ( [super respondsToSelector:aSelector])</span><br><span class="line">		return YES;</span><br><span class="line">	else &#123;</span><br><span class="line">		&#x2F;* Here, test whether the aSelector message can     *</span><br><span class="line">		 * be forwarded to another object and whether that  *</span><br><span class="line">		 * object can respond to it. Return YES if it can.  *&#x2F;</span><br><span class="line">	&#125;</span><br><span class="line">	return NO; 	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Objective-C-Runtime-Method-Swizzling"><a href="#Objective-C-Runtime-Method-Swizzling" class="headerlink" title="Objective-C Runtime Method Swizzling"></a>Objective-C Runtime Method Swizzling</h2><p><code>Method Swizzling</code>是改变一个<code>selector</code>的实际实现的技术。通过这一技术，我们可以在运行时通过修改类的分发表中<code>selector</code>对应的函数，来修改方法的实现。</p>
-<p>例如，我们想跟踪在程序中每一个view controller展示给用户的次数：当然，我们可以在每个view controller的viewDidAppear中添加跟踪代码；但是这太过麻烦，需要在每个view controller中写重复的代码。创建一个子类可能是一种实现方式，但需要同时创建UIViewController, UITableViewController, UINavigationController及其它UIKit中view controller的子类，这同样会产生许多重复的代码。</p>
-<p>这种情况下，我们就可以使用<code>Method Swizzling</code>，如在代码所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;objc&#x2F;runtime.h&gt;</span><br><span class="line"></span><br><span class="line">@implementation UIViewController (Tracking)</span><br><span class="line">  </span><br><span class="line">+ (void)load &#123;</span><br><span class="line">    static dispatch_once_t onceToken;</span><br><span class="line">    dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">        Class class &#x3D; [self class];         </span><br><span class="line">        &#x2F;&#x2F; When swizzling a class method, use the following:</span><br><span class="line">        &#x2F;&#x2F; Class class &#x3D; object_getClass((id)self);</span><br><span class="line">        SEL originalSelector &#x3D; @selector(viewWillAppear:);</span><br><span class="line">        SEL swizzledSelector &#x3D; @selector(xxx_viewWillAppear:);</span><br><span class="line">        Method originalMethod &#x3D; class_getInstanceMethod(class, originalSelector);</span><br><span class="line">        Method swizzledMethod &#x3D; class_getInstanceMethod(class, swizzledSelector);</span><br><span class="line">        BOOL didAddMethod &#x3D; class_addMethod(class,</span><br><span class="line">                originalSelector,</span><br><span class="line">                method_getImplementation(swizzledMethod),</span><br><span class="line">                method_getTypeEncoding(swizzledMethod));</span><br><span class="line">        if (didAddMethod) &#123;</span><br><span class="line">            class_replaceMethod(class,</span><br><span class="line">                swizzledSelector,</span><br><span class="line">                method_getImplementation(originalMethod),</span><br><span class="line">                method_getTypeEncoding(originalMethod));</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            method_exchangeImplementations(originalMethod, swizzledMethod);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - Method Swizzling</span><br><span class="line">- (void)xxx_viewWillAppear:(BOOL)animated &#123;</span><br><span class="line">    [self xxx_viewWillAppear:animated];</span><br><span class="line">    NSLog(@&quot;viewWillAppear: %@&quot;, self);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-
-<p>在这里，我们通过<code>method swizzling</code>修改了UIViewController的<code>@selector(viewWillAppear:)</code>对应的函数指针，使其实现指向了我们自定义的<code>xxx_viewWillAppear</code>的实现。这样，当UIViewController及其子类的对象调用<code>viewWillAppear</code>时，都会打印一条日志信息。</p>
-<p>上面的例子很好地展示了使用<code>method swizzling</code>来向一个类中注入一些我们新的操作。当然，还有许多场景可以使用<code>method swizzling</code>，在此不多举例。在此我们说说使用<code>method swizzling</code>需要注意的一些问题：</p>
-<h3 id="Swizzling应该总是在-load中执行"><a href="#Swizzling应该总是在-load中执行" class="headerlink" title="Swizzling应该总是在+load中执行"></a>Swizzling应该总是在+load中执行</h3><p>在<code>Objective-C</code>中，运行时会自动调用每个类的两个方法。<code>+load</code>会在类初始加载时调用，<code>+initialize</code>会在第一次调用类的类方法或实例方法之前被调用。这两个方法是可选的，且只有在实现了它们时才会被调用。由于<code>method swizzling</code>会影响到类的全局状态，因此要尽量避免在并发处理中出现竞争的情况。<code>+load</code>能保证在类的初始化过程中被加载，并保证这种改变应用级别的行为的一致性。相比之下，<code>+initialize</code>在其执行时不提供这种保证–事实上，如果在应用中没有给这个类发送消息，则它可能永远不会被调用。</p>
-<h3 id="Swizzling应该总是在dispatch-once中执行"><a href="#Swizzling应该总是在dispatch-once中执行" class="headerlink" title="Swizzling应该总是在dispatch_once中执行"></a>Swizzling应该总是在dispatch_once中执行</h3><p>与上面相同，因为<code>swizzling</code>会改变全局状态，所以我们需要在运行时采取一些预防措施。原子性就是这样一种措施，它确保代码只被执行一次，不管有多少个线程。GCD的<code>dispatch_once</code>可以确保这种行为，我们应该将其作为<code>method swizzling</code>的最佳实践。</p>
-<h3 id="选择器、方法与实现"><a href="#选择器、方法与实现" class="headerlink" title="选择器、方法与实现"></a>选择器、方法与实现</h3><p>在<code>Objective-C</code>中，选择器(<code>selector</code>)、方法(<code>method</code>)和实现(<code>implementation</code>)是运行时中一个特殊点，虽然在一般情况下，这些术语更多的是用在消息发送的过程描述中。</p>
-<p>以下是<code>Objective-C Runtime Reference</code>中的对这几个术语一些描述：</p>
-<ol>
-<li><code>Selector(typedef struct objc_selector *SEL)</code>：用于在运行时中表示一个方法的名称。一个方法选择器是一个C字符串，它是在<code>Objective-C</code>运行时被注册的。选择器由编译器生成，并且在类被加载时由运行时自动做映射操作。</li>
-<li><code>Method(typedef struct objc_method *Method)</code>：在类定义中表示方法的类型</li>
-<li><code>Implementation(typedef id (*IMP)(id, SEL, ...))</code>：这是一个指针类型，指向方法实现函数的开始位置。这个函数使用为当前CPU架构实现的标准C调用规范。第一个参数是指向对象自身的指针(self)，第二个参数是方法选择器。然后是方法的实际参数。</li>
-</ol>
-<p>理解这几个术语之间的关系最好的方式是：一个类维护一个运行时可接收的消息分发表；分发表中的每个入口是一个方法(Method)，其中key是一个特定名称，即选择器(SEL)，其对应一个实现(IMP)，即指向底层C函数的指针。</p>
-<p>为了swizzle一个方法，我们可以在分发表中将一个方法的现有的选择器映射到不同的实现，而将该选择器对应的原始实现关联到一个新的选择器中。</p>
-<h3 id="调用-cmd"><a href="#调用-cmd" class="headerlink" title="调用 _cmd"></a>调用 _cmd</h3><p>我们回过头来看看前面新的方法的实现代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)xxx_viewWillAppear:(BOOL)animated &#123;</span><br><span class="line">    [self xxx_viewWillAppear:animated];</span><br><span class="line">    NSLog(@&quot;viewWillAppear: %@&quot;, NSStringFromClass([self class]));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>乍看上去是会导致无限循环的。但令人惊奇的是，并没有出现这种情况。在swizzling的过程中，方法中的<code>[self xxx_viewWillAppear:animated]</code>已经被重新指定到UIViewController类的-viewWillAppear:中。在这种情况下，不会产生无限循环。不过如果我们调用的是<code>[self viewWillAppear:animated]</code>，则会产生无限循环，因为这个方法的实现在运行时已经被重新指定为<code>xxx_viewWillAppear:</code>了。</p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>Swizzling通常被称作是一种黑魔法，容易产生不可预知的行为和无法预见的后果。虽然它不是最安全的，但如果遵从以下几点预防措施的话，还是比较安全的：</p>
-<ol>
-<li>总是调用方法的原始实现(除非有更好的理由不这么做)：API提供了一个输入与输出约定，但其内部实现是一个黑盒。Swizzle一个方法而不调用原始实现可能会打破私有状态底层操作，从而影响到程序的其它部分。</li>
-<li>避免冲突：给自定义的分类方法加前缀，从而使其与所依赖的代码库不会存在命名冲突。</li>
-<li>明白是怎么回事：简单地拷贝粘贴swizzle代码而不理解它是如何工作的，不仅危险，而且会浪费学习Objective-C运行时的机会。阅读<code>Objective-C Runtime Reference</code>和查看<code>&lt;objc/runtime.h&gt;</code>头文件以了解事件是如何发生的。</li>
-<li>小心操作：无论我们对Foundation, UIKit或其它内建框架执行Swizzle操作抱有多大信心，需要知道在下一版本中许多事可能会不一样。</li>
-</ol>
-<h2 id="Objective-C-Runtime-中的协议与分类"><a href="#Objective-C-Runtime-中的协议与分类" class="headerlink" title="Objective-C Runtime 中的协议与分类"></a>Objective-C Runtime 中的协议与分类</h2><p><code>Objective-C</code> 中的分类允许我们通过给一个类添加方法来扩充它（但是通过<code>category</code>不能添加新的实例变量），并且我们不需要访问类中的代码就可以做到。</p>
-<p><code>Objective-C</code> 中的协议是普遍存在的接口定义方式，即在一个类中通过<code>@protocol</code>定义接口，在另外类中实现接口，这种接口定义方式也称为“<code>delegation</code>”模式，<code>@protocol</code>声明了可以被其他任何方法类实现的方法，协议仅仅是定义一个接口，而由其他的类去负责实现。</p>
-<h3 id="基础数据类型-2"><a href="#基础数据类型-2" class="headerlink" title="基础数据类型"></a>基础数据类型</h3><h4 id="Category"><a href="#Category" class="headerlink" title="Category"></a>Category</h4><p>Category 是表示一个指向分类的结构体的指针。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct objc_category *Category;</span><br><span class="line"></span><br><span class="line">struct objc_category &#123;</span><br><span class="line">  	char *category_name                          OBJC2_UNAVAILABLE;	&#x2F;&#x2F; 分类名</span><br><span class="line">    char *class_name                             OBJC2_UNAVAILABLE;	&#x2F;&#x2F; 分类所属的类名</span><br><span class="line">    struct objc_method_list *instance_methods    OBJC2_UNAVAILABLE;	&#x2F;&#x2F; 实例方法列表</span><br><span class="line">    struct objc_method_list *class_methods       OBJC2_UNAVAILABLE;	&#x2F;&#x2F; 类方法列表</span><br><span class="line">    struct objc_protocol_list *protocols  		 OBJC2_UNAVAILABLE;	&#x2F;&#x2F; 分类所实现的协议列表    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个结构体主要包含了分类定义的实例方法与类方法，其中<code>instance_methods</code>列表是<code>objc_class</code>中方法列表的一个子集，而<code>class_methods</code>列表是元类方法列表的一个子集。</p>
-<h4 id="Protocol"><a href="#Protocol" class="headerlink" title="Protocol"></a>Protocol</h4><p>Protocol 的定义如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typedef struct objc_object Protocol;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到，<code>Protocol</code> 其实就是一个对象结构体。</p>
-<h3 id="操作函数"><a href="#操作函数" class="headerlink" title="操作函数"></a>操作函数</h3><p><code>Runtime</code>并没有在<code>&lt;objc/runtime.h&gt;</code>头文件中提供针对分类的操作函数。因为这些分类中的信息都包含在<code>objc_class</code>中，我们可以通过针对<code>objc_class</code>的操作函数来获取分类的信息。</p>
-<p>而对于Protocol，runtime提供了一系列函数来对其进行操作，这些函数包括：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 返回指定的协议</span><br><span class="line">Protocol * objc_getProtocol ( const char *name );</span><br><span class="line">&#x2F;&#x2F; 获取运行时所知道的所有协议的数组</span><br><span class="line">Protocol ** objc_copyProtocolList ( unsigned int *outCount );</span><br><span class="line">&#x2F;&#x2F; 创建新的协议实例</span><br><span class="line">Protocol * objc_allocateProtocol ( const char *name );</span><br><span class="line">&#x2F;&#x2F; 在运行时中注册新创建的协议</span><br><span class="line">void objc_registerProtocol ( Protocol *proto );</span><br><span class="line">&#x2F;&#x2F; 为协议添加方法</span><br><span class="line">void protocol_addMethodDescription ( Protocol *proto, SEL name, const char *types, BOOL isRequiredMethod, BOOL isInstanceMethod );</span><br><span class="line">&#x2F;&#x2F; 添加一个已注册的协议到协议中</span><br><span class="line">void protocol_addProtocol ( Protocol *proto, Protocol *addition );</span><br><span class="line">&#x2F;&#x2F; 为协议添加属性</span><br><span class="line">void protocol_addProperty ( Protocol *proto, const char *name, const objc_property_attribute_t *attributes, unsigned int attributeCount, BOOL isRequiredProperty, BOOL isInstanceProperty );</span><br><span class="line">&#x2F;&#x2F; 返回协议名</span><br><span class="line">const char * protocol_getName ( Protocol *p );</span><br><span class="line">&#x2F;&#x2F; 测试两个协议是否相等</span><br><span class="line">BOOL protocol_isEqual ( Protocol *proto, Protocol *other );</span><br><span class="line">&#x2F;&#x2F; 获取协议中指定条件的方法的方法描述数组</span><br><span class="line">struct objc_method_description * protocol_copyMethodDescriptionList ( Protocol *p, BOOL isRequiredMethod, BOOL isInstanceMethod, unsigned int *outCount );</span><br><span class="line">&#x2F;&#x2F; 获取协议中指定方法的方法描述</span><br><span class="line">struct objc_method_description protocol_getMethodDescription ( Protocol *p, SEL aSel, BOOL isRequiredMethod, BOOL isInstanceMethod );</span><br><span class="line">&#x2F;&#x2F; 获取协议中的属性列表</span><br><span class="line">objc_property_t * protocol_copyPropertyList ( Protocol *proto, unsigned int *outCount );</span><br><span class="line">&#x2F;&#x2F; 获取协议的指定属性</span><br><span class="line">objc_property_t protocol_getProperty ( Protocol *proto, const char *name, BOOL isRequiredProperty, BOOL isInstanceProperty );</span><br><span class="line">&#x2F;&#x2F; 获取协议采用的协议</span><br><span class="line">Protocol ** protocol_copyProtocolList ( Protocol *proto, unsigned int *outCount );</span><br><span class="line">&#x2F;&#x2F; 查看协议是否采用了另一个协议</span><br><span class="line">BOOL protocol_conformsToProtocol ( Protocol *proto, Protocol *other );</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>objc_getProtocol</code>函数，需要注意的是如果仅仅是声明了一个协议，而未在任何类中实现这个协议，则该函数返回的是<code>nil</code>。</li>
-<li><code>objc_copyProtocolList</code>函数，获取到的数组需要使用<code>free()</code>来释放</li>
-<li><code>objc_allocateProtocol</code>函数，如果同名的协议已经存在，则返回<code>nil</code></li>
-<li><code>objc_registerProtocol</code>函数，创建一个新的协议后，必须调用该函数以在运行时中注册新的协议。协议注册后便可以使用，但不能再做修改，即注册完后不能再向协议添加方法或协议</li>
-</ul>
-<p>需要强调的是，协议一旦注册后就不可再修改，即无法再通过调用<code>protocol_addMethodDescription</code>、<code>protocol_addProtocol</code>和<code>protocol_addProperty</code>往协议中添加方法等。</p>
-<h2 id="Objective-C-Runtime-补充知识"><a href="#Objective-C-Runtime-补充知识" class="headerlink" title="Objective-C Runtime 补充知识"></a>Objective-C Runtime 补充知识</h2><h3 id="super"><a href="#super" class="headerlink" title="super"></a>super</h3><p>在<code>Objective-C</code>中，如果我们需要在类的方法中调用父类的方法时，通常都会用到<code>super</code>。</p>
-<p>如何使用<code>super</code>我们都知道。现在的问题是，它是如何工作的呢？</p>
-<p>首先我们需要知道的是<code>super</code>与<code>self</code>不同。<code>self</code>是类的一个隐藏参数，每个方法的实现的第一个参数即为<code>self</code>。而<code>super</code>并不是隐藏参数，它实际上只是一个<strong>”编译器标示符”</strong>，它负责告诉编译器，当调用viewDidLoad方法时，去调用父类的方法，而不是本类中的方法。而它实际上与<code>self</code>指向的是相同的消息接收者。为了理解这一点，我们先来看看<code>super</code>的定义：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">struct objc_super &#123; id receiver; Class superClass; &#125;;</span><br></pre></td></tr></table></figure>
-
-<p>这个结构体有两个成员：</p>
-<ol>
-<li>receiver：即消息的实际接收者</li>
-<li>superClass：指针当前类的父类</li>
-</ol>
-<p>当我们使用<code>super</code>来接收消息时，编译器会生成一个<code>objc_super</code>结构体。就上面的例子而言，这个结构体的<code>receiver</code>就是当前对象，与<code>self</code>相同；<code>superClass</code>指向当前类的父类。</p>
-<p>接下来，发送消息时，不是调用<code>objc_msgSend</code>函数，而是调用<code>objc_msgSendSuper</code>函数，其声明如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id objc_msgSendSuper ( struct objc_super *super, SEL op, ... );</span><br></pre></td></tr></table></figure>
-
-<p>该函数第一个参数即为前面生成的<code>objc_super</code>结构体，第二个参数是方法的<code>selector</code>。该函数实际的操作是：从<code>objc_super</code>结构体指向的<code>superClass</code>的方法列表开始查找<code>viewDidLoad</code> 的<code>selector</code>，找到后以<code>objc-&gt;receiver</code>去调用这个<code>selector</code>，而此时的操作流程就是如下方式了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objc_msgSend(objc_super-&gt;receiver, @selector(viewDidLoad))</span><br></pre></td></tr></table></figure>
-
-<p>由于<code>objc_super-&gt;receiver</code>就是<code>self</code>本身，所以该方法实际与下面这个调用是相同的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objc_msgSend(self, @selector(viewDidLoad))</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="库相关操作"><a href="#库相关操作" class="headerlink" title="库相关操作"></a>库相关操作</h3><p>库相关的操作主要是用于获取由系统提供的库相关的信息，主要包含以下函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取所有加载的Objective-C框架和动态库的名称</span><br><span class="line">const char ** objc_copyImageNames ( unsigned int *outCount );</span><br><span class="line">&#x2F;&#x2F; 获取指定类所在动态库</span><br><span class="line">const char * class_getImageName ( Class cls );</span><br><span class="line">&#x2F;&#x2F; 获取指定库或框架中所有类的类名</span><br><span class="line">const char ** objc_copyClassNamesForImage ( const char *image, unsigned int *outCount )</span><br></pre></td></tr></table></figure>
-
-<p>通过这几个函数，我们可以了解到某个类所有的库，以及某个库中包含哪些类。</p>
-<h3 id="块操作"><a href="#块操作" class="headerlink" title="块操作"></a>块操作</h3><p>我们都知道block给我们带到极大的方便，苹果也不断提供一些使用block的新的API。同时，苹果在runtime中也提供了一些函数来支持针对block的操作，这些函数包括：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建一个指针函数的指针，该函数调用时会调用特定的block</span><br><span class="line">IMP imp_implementationWithBlock ( id block );</span><br><span class="line">&#x2F;&#x2F; 返回与IMP(使用imp_implementationWithBlock创建的)相关的block</span><br><span class="line">id imp_getBlock ( IMP anImp );</span><br><span class="line">&#x2F;&#x2F; 解除block与IMP(使用imp_implementationWithBlock创建的)的关联关系，并释放block的拷贝</span><br><span class="line">BOOL imp_removeBlock ( IMP anImp );</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>imp_implementationWithBlock</code>函数：参数block的签名必须是<code>method_return_type ^(id self, method_args …)</code>形式的。该方法能让我们使用block作为<code>IMP</code>。</li>
-</ul>
-<h3 id="弱引用操作"><a href="#弱引用操作" class="headerlink" title="弱引用操作"></a>弱引用操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 加载弱引用指针引用的对象并返回</span><br><span class="line">id objc_loadWeak ( id *location );</span><br><span class="line">&#x2F;&#x2F; 存储__weak变量的新值</span><br><span class="line">id objc_storeWeak ( id *location, id obj );</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><code>objc_loadWeak</code>函数：该函数加载一个弱指针引用的对象，并在对其做<code>retain</code>和<code>autoreleasing</code>操作后返回它。这样，对象就可以在调用者使用它时保持足够长的生命周期。该函数典型的用法是在任何有使用<code>__weak</code>变量的表达式中使用。</p>
-<p>●  <code>objc_storeWeak</code>函数：该函数的典型用法是用于<code>__weak</code>变量做为赋值对象时。</p>
-</li>
-</ul>
-<h3 id="宏定义"><a href="#宏定义" class="headerlink" title="宏定义"></a>宏定义</h3><p>在<code>Runtime</code> 中，还定义了一些宏定义供我们使用，有些值我们会经常用到，如表示BOOL值的YES/NO；而有些值不常用，如<code>OBJC_ROOT_CLASS</code>。在此我们做一个简单的介绍。</p>
-<h4 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#define YES  (BOOL)1</span><br><span class="line">#define NO   (BOOL)0</span><br></pre></td></tr></table></figure>
-
-<p>这两个宏定义定义了表示布尔值的常量，需要注意的是<code>YES</code>的值是1，而不是非0值。</p>
-<h4 id="空值"><a href="#空值" class="headerlink" title="空值"></a>空值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#define nil  __DARWIN_NULL</span><br><span class="line">#define Nil  __DARWIN_NULL</span><br></pre></td></tr></table></figure>
-
-<p>其中<code>nil</code>用于空的实例对象，而<code>Nil</code>用于空类对象。</p>
-<h4 id="分发函数原型"><a href="#分发函数原型" class="headerlink" title="分发函数原型"></a>分发函数原型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define OBJC_OLD_DISPATCH_PROTOTYPES  1</span><br></pre></td></tr></table></figure>
-
-<p>该宏指明分发函数是否必须转换为合适的函数指针类型。当值为0时，必须进行转换</p>
-<h4 id="Objective-C根类"><a href="#Objective-C根类" class="headerlink" title="Objective-C根类"></a>Objective-C根类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define OBJC_ROOT_CLASS</span><br></pre></td></tr></table></figure>
-
-<p>如果我们定义了一个<code>Objective-C</code>根类，则编译器会报错，指明我们定义的类没有指定一个基类。这种情况下，我们就可以使用这个宏定义来避过这个编译错误。该宏在iOS 7.0后可用。</p>
-<p>其实在NSObject的声明中，我们就可以看到这个宏的身影，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">__OSX_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0)</span><br><span class="line"></span><br><span class="line">OBJC_ROOT_CLASS</span><br><span class="line">OBJC_EXPORT</span><br><span class="line"></span><br><span class="line">@interface NSObject &lt;NSObject&gt; &#123;</span><br><span class="line">    Class isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以参考这种方式来定义我们自己的根类。</p>
-<h4 id="局部变量存储时长"><a href="#局部变量存储时长" class="headerlink" title="局部变量存储时长"></a>局部变量存储时长</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define NS_VALID_UNTIL_END_OF_SCOPE</span><br></pre></td></tr></table></figure>
-
-<p>该宏表明存储在某些局部变量中的值在优化时不应该被编译器强制释放。</p>
-<p>我们将局部变量标记为<code>id</code>类型或者是指向<code>ObjC</code>对象类型的指针，以便存储在这些局部变量中的值在优化时不会被编译器强制释放。相反，这些值会在变量再次被赋值之前或者局部变量的作用域结束之前都会被保存。</p>
-<h4 id="关联对象行为"><a href="#关联对象行为" class="headerlink" title="关联对象行为"></a>关联对象行为</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">enum &#123;</span><br><span class="line">   OBJC_ASSOCIATION_ASSIGN  &#x3D; 0,</span><br><span class="line">   OBJC_ASSOCIATION_RETAIN_NONATOMIC  &#x3D; 1,</span><br><span class="line">   OBJC_ASSOCIATION_COPY_NONATOMIC  &#x3D; 3,</span><br><span class="line">   OBJC_ASSOCIATION_RETAIN  &#x3D; 01401,</span><br><span class="line">   OBJC_ASSOCIATION_COPY  &#x3D; 01403</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Objective-C-Runtime-实际应用"><a href="#Objective-C-Runtime-实际应用" class="headerlink" title="Objective-C Runtime 实际应用"></a>Objective-C Runtime 实际应用</h2><h3 id="动态交换两个方法的实现"><a href="#动态交换两个方法的实现" class="headerlink" title="动态交换两个方法的实现"></a>动态交换两个方法的实现</h3><p>当第三方框架或系统原生方法功能不能满足我们的需求的时候，可以通过交换方法实现在保持原有方法功能的基础上，添加额外的功能。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+ (void)load &#123;</span><br><span class="line">  Method originalMethod	&#x3D; class_getClassMethod(self, @selector(originalMethodName));</span><br><span class="line">  Method targetMethod	&#x3D; class_getClassMethod(self, @selector(targetMethodName));</span><br><span class="line">  method_exchangeImplementations(originalMethod, targetMethod);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="动态添加属性"><a href="#动态添加属性" class="headerlink" title="动态添加属性"></a>动态添加属性</h3><p>属性赋值的本质就是让属性与一个对象产生关联。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@interface NSObject (AssociatedProperty)</span><br><span class="line">  </span><br><span class="line">@property NSString *propertyName;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line">  </span><br><span class="line">@implementation NSObject (AssociatedProperty)</span><br><span class="line">  </span><br><span class="line">- (void)setPropertyName:(NSString *)stringValue &#123;</span><br><span class="line">	objc_setAssociatedObject(self, @&quot;propertyName&quot;, stringValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSString *)propertyName &#123;</span><br><span class="line">	return objc_getAssociatedObject(self, @&quot;propertyName&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="实现字典转模型的动态转换"><a href="#实现字典转模型的动态转换" class="headerlink" title="实现字典转模型的动态转换"></a>实现字典转模型的动态转换</h3><p>利用 <code>Runtime</code> 遍历模型中所有属性，根据模型的属性名，去字典中查找 key，去除对应的值，给模型的属性赋值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 最简单实现，不考虑字典中含有数组或对象的情况</span><br><span class="line">+ (instancetype)modelWithDict:(NSDictionary *)dict &#123;</span><br><span class="line">  id objc				&#x3D;	[[self alloc] init];</span><br><span class="line">  unsigned int count	&#x3D;	0;</span><br><span class="line">  Ivar *ivarList		&#x3D;	class_copyIvarList(self, &amp;count);</span><br><span class="line">  for (int index &#x3D; 0; index &lt; count; index++) &#123;</span><br><span class="line">    Ivar ivar	&#x3D; ivarList[index];</span><br><span class="line">    NSString *ivarName	&#x3D;	[NSString stringWithUTF8String:ivar_getName(ivar)];</span><br><span class="line">    NSString *key		&#x3D;	[ivarName substringFromIndex:1];</span><br><span class="line">    id value			&#x3D;	dict[key];</span><br><span class="line">    if (value) &#123;</span><br><span class="line">      [objc setValue:value forKey:key];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return objc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="动态添加方法"><a href="#动态添加方法" class="headerlink" title="动态添加方法"></a>动态添加方法</h3><p>如果一个类的方法很多，加载类到内存的时候比较耗费资源，使用动态给类添加方法的方式可以解决。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void methodAddWhenRun(id self, SEL _cmd, id argument ···) &#123;&#125;</span><br><span class="line"></span><br><span class="line">+ (BOOL)resolveInstanceMethod:(SEL)self &#123;</span><br><span class="line">  if (sel &#x3D;&#x3D;  NSSelectorFromString(@&quot;methodAddWhenRun&quot;)) &#123;</span><br><span class="line">    class_addMethod(self, sel, (IMP)methodAddWhenRun, &quot;v@:@&quot;);</span><br><span class="line">    return YES;</span><br><span class="line">  &#125;</span><br><span class="line">  return [super resolveInstanceMethod:sel];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="动态变量控制"><a href="#动态变量控制" class="headerlink" title="动态变量控制"></a>动态变量控制</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 假设要修改 &#96;_propertyName&#96;</span><br><span class="line">unsigned int count &#x3D; 0;</span><br><span class="line">Ivar *ivarList	&#x3D;	class_copyIvarList([self class], &amp;count);</span><br><span class="line">for (int index &#x3D; 0; index &lt; count; index++) &#123;</span><br><span class="line">  Ivar ivar		&#x3D;	ivarList[index];</span><br><span class="line">  const char *varName	&#x3D;	ivar_getName(ivar);</span><br><span class="line">  NSString *name		&#x3D;	[NSString stringWithUTF8String:varName];</span><br><span class="line">  if ([name isEqualToString:@&quot;_propertyName&quot;]) &#123;</span><br><span class="line">    object_setIvar([self class], var, (id)newValue);</span><br><span class="line">    break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="实现-NSCoding-的自动归解档"><a href="#实现-NSCoding-的自动归解档" class="headerlink" title="实现 NSCoding 的自动归解档"></a>实现 NSCoding 的自动归解档</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">- (void)encodeWithCoder:(NSCoder *)encoder &#123;</span><br><span class="line">  unsigned int count &#x3D; 0;</span><br><span class="line">  Ivar *ivarList	 &#x3D; class_copyIvarList([TargetClass class], &amp;count);</span><br><span class="line">  for (int index &#x3D; 0; index &lt; count; index++) &#123;</span><br><span class="line">    Ivar ivar	&#x3D;	ivarList[index];</span><br><span class="line">    const char *name	&#x3D;	ivar_getName(ivar);</span><br><span class="line">    NSString *key		&#x3D;	[NSString stringWithUTF8String:name];</span><br><span class="line">    id value			&#x3D;	[self valueForKey:key];</span><br><span class="line">    [encoder encodObject:value forKey:key];</span><br><span class="line">  &#125;</span><br><span class="line">  free(ivarList);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (id)initWithCoder:(NSCoder *)decoder &#123;</span><br><span class="line">  if (self &#x3D; [super init]) &#123;</span><br><span class="line">    unsigned int count &#x3D; 0;</span><br><span class="line">    Ivar *ivarList	   &#x3D; class_copyIvaarList([TargetClass class], &amp;count);</span><br><span class="line">    for (int index &#x3D; 0; index &lt; count; index++) &#123;</span><br><span class="line">      Ivar ivar &#x3D; ivarList[index];</span><br><span class="line">      const char *name	&#x3D;	ivar_getName:(ivar);</span><br><span class="line">      NSString *key		&#x3D;	[NSString stringWithUTF8String:name];</span><br><span class="line">      id value			&#x3D;	[decoder decodeObjectForKey:key];</span><br><span class="line">      [self setValue:value forKey:key];</span><br><span class="line">    &#125;</span><br><span class="line">    free(ivarList);</span><br><span class="line">  &#125;</span><br><span class="line">  return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+          <hr>
+<p>iOS App 使用响应者对象( <code>Responder</code>)来接收和处理事件。一个响应者对象是 <code>UIResponder</code> 类的实例，它常见的子类包括 <code>UIView</code> 、<code>UIViewController</code> 和 <code>UIApplication</code>。响应者对象接收原始事件数据，并且必须处理该事件或将它转发给另一个响应者对象。</p>
+<p>当你的 App 接收到一个事件时，<code>UIKit</code> 自动将它发送给最适合的响应者对象，即第一响应者对象(First Responder)。未处理的事件从响应者对象被发送到正在活动的响应链中的响应者对象(响应者链是应用程序的响应者对象的动态配置,在应用程序中没有单个响应者链)。</p>
+<p><code>UIKit</code> 为事件如何从一个响应者对象传递到另一个响应者对象预定义了规则，但是你可以通过覆盖响应者对象中的属性来改变这些规则。</p>
+<br>
+
+<h3 id="响应者对象-Responder-Object"><a href="#响应者对象-Responder-Object" class="headerlink" title="响应者对象 (Responder Object)"></a>响应者对象 (Responder Object)</h3><p><code>Responder</code> 对象是 <code>UIResponder</code> 类的实例，构成了 <code>UIKit</code> 应用程序事件处理的主干。许多重要对象也是响应者，包括 <code>UIApplication</code> 对象，<code>UIViewController</code> 对象和所有 <code>UIView</code> 对象（包括 <code>UIWindow</code>）。当事件发生时，<code>UIKit</code> 将它们分派给你的应用程序的响应者对象进行处理。<br><code>UIResponder</code> 对象能处理的事件，包括触摸事件，动作事件，远程控制事件和新闻事件。</p>
+<p>为了处理特定类型的事件，响应者必须覆盖相应的方法。例如，为了处理触摸事件，响应者实现了 <code>touchesBegan:with:</code>，<code>touchesMoved:with:</code>，<code>touchesEnded:with:</code> 和 <code>touchesCancelled:with:</code>方法。在触摸事件发生时，响应者使用 <code>UIKit</code> 提供的事件信息来跟踪触摸的变化，并适当地更新应用的界面。</p>
+<p>除了处理事件之外，<code>UIKit</code>响应者还负责将未处理事件转发到应用程序的其他部分。如果给定的响应者不处理事件，则将该事件转发给响应者链中的下一个响应者对象。 <code>UIKit</code> 动态地管理响应者链，使用预定义的规则来确定接下来哪个对象应该接收事件。</p>
+<p>响应者处理 <code>UIEvent</code> 对象，但也可以通过输入视图接受自定义输入。系统的键盘是输入视图最明显的例子。当用户点击屏幕上的 <code>UITextField</code> 和  <code>UITextView</code> 对象时，视图成为第一响应者并显示其输入视图，这是系统键盘。同样，你可以创建自定义输入视图，并在其它响应者激活时显示它们。要将自定义输入视图与响应者相关联，请将该视图分配给响应者的 <code>inputView</code> 属性。</p>
 <blockquote>
-<p><strong>转载整理自 <a href="http://southpeak.github.io/categories/objectivec/" target="_blank" rel="noopener">南风子的技术博客</a></strong></p>
+<p><strong>NOTE</strong></p>
+<p>与加速度计、陀螺仪和磁力计相关的运动事件不遵循响应者链。Core Motion 会直接将这些事件发送给你指定的对象。</p>
 </blockquote>
+<br>
+
+<h3 id="第一响应者对象-The-First-Responder"><a href="#第一响应者对象-The-First-Responder" class="headerlink" title="第一响应者对象 (The First Responder)"></a>第一响应者对象 (The First Responder)</h3><p><code>UIKit</code> 为各种类型的事件指定第一响应者对象并在事件发生时首先发送到第一响应者对象。</p>
+<ul>
+<li><p>Touch events</p>
+<p> 第一响应者对象是触摸发生的视图</p>
+</li>
+<li><p>Press events</p>
+<p>  第一响应者对象是获得焦点的响应者对象</p>
+</li>
+<li><p>Shake-motion events</p>
+<p>   第一响应者对象是你或 <code>UIKit</code> 指定的对象</p>
+</li>
+<li><p>Remote-control events</p>
+<p>第一响应者对象是你或 <code>UIKit</code> 指定的对象</p>
+</li>
+<li><p>Editing menu messages</p>
+<p>第一响应者对象是你或 <code>UIKit</code> 指定的对象</p>
+</li>
+</ul>
+<p>控件使用动作消息 (Action message) 与其关联的目标对象 (Target Object) 直接进行通信。当用户与控件进行交互时，控件调用其目标对象的动作方法 (Action Method)，向目标对象(Target object)发送一个动作消息。动作消息不是一个事件，但它们仍可利用响应链。当控件的目标对象为 <code>nil</code> 时，<code>UIKit</code> 从目标对象开始，遍历响应者链，直到寻找到实现了相应方法的对象。</p>
+<p>如果视图中有添加手势，那么手势会在视图接收之前接收触摸和按下事件。如果视图中的所有手势都无法处理这个事件，则将事件传递给视图进行处理。如果视图也不能处理，则 <code>UIKit</code> 会将事件传递给响应者链。</p>
+<br>
+
+<h3 id="基于视图的点击测试-View-Based-Hit-Testing"><a href="#基于视图的点击测试-View-Based-Hit-Testing" class="headerlink" title="基于视图的点击测试 (View-Based Hit-Testing)"></a>基于视图的点击测试 (View-Based Hit-Testing)</h3><p><code>UIKit</code> 使用基于视图的点击测试来确定触摸事件到底发生在哪里。<code>UIKit</code> 将触摸位置与处在视图层级中的视图的 <code>bounds</code> 进行比较。<code>hitTest:withEvent:</code> 方法遍历视图层级，寻找包含指定触摸的层级最深的子视图。 然后这个视图就成为第一响应者对象。</p>
+<p>当用户触摸屏幕进行交互时，系统检测到手指触摸操作，并将触摸以 <code>UIEvent</code> 的方式加入 <code>UIApplication</code>  的事件队列中。<code>UIApplication</code> 从事件队列中取出最新的触摸事件进行分发传递到 <code>UIWindow</code> 进行处理。而 <code>UIWindow</code> 会通过 <code>hitTest:withEvent:</code> 方法寻找触点所在的视图，这个过程称之为 Hit-Test。</p>
+<p><code>UIKit</code> 将每个触摸永久绑定到包含它的视图对象。<code>UIKit</code> 在触摸第一次发生时创建 <code>UITouch</code> 对象，并只在触摸结束时释放它。当触摸位置或其它参数改变时，<code>UIKit</code> 使用新的信息来更新 <code>UITouch</code> 对象。唯一不改变的属性就是包含它的视图，即使触摸位置已经移出原始的视图。</p>
+<p>Hit-Test 从顶级视图开始调用 <code>pointInside:withEvevt:</code> 方法判断触摸点是否在当前视图内，如果返回为 <code>NO</code>  ，则 <code>hitTest:withEvent:</code> 方法返回 nil；如果返回 <code>YES</code> ，则向当前视图的所有子视图发送 <code>hitTest:withEvent:</code> 消息，所有子视图的遍历顺序是从最顶层视图一直到最底层视图，直到有子视图返回非空对象或者全部子视图遍历完毕。</p>
 <blockquote>
-<p>参考 <a href="https://baike.baidu.com/item/%E5%8A%A8%E6%80%81%E8%AF%AD%E8%A8%80/797407?fr=aladdin" target="_blank" rel="noopener">百度百科 动态语言</a></p>
+<p><strong>NOTE</strong></p>
+<p>如果一个触摸的位置超出了视图的边界，<code>hitTest:withEvent:</code> 方法就会忽略这个视图及其所有子视图。</p>
 </blockquote>
-<blockquote>
-<p>参考 <a href="http://www.jianshu.com/p/19f280afcb24" target="_blank" rel="noopener">白水ln的简书</a></p>
-</blockquote>
+<br>
+
+<h3 id="响应者链-（Resoponder-Chain）"><a href="#响应者链-（Resoponder-Chain）" class="headerlink" title="响应者链 （Resoponder Chain）"></a>响应者链 （Resoponder Chain）</h3><p>当系统通过 Hit-Test 找到触摸点所在的视图，但是这个视图并没有或者无法正常处理此次触摸事件，这个时候，系统便会通过响应者链寻找下一个响应者，以对此次触摸事件进行响应。</p>
+<p><img src="https://github.com/apple272487813/codeLei.github.io/blob/master/images/iOS_Responder_Chain.jpg?raw=true" alt="https://github.com/apple272487813/codeLei.github.io/blob/master/images/iOS_Responder_Chain.jpg?raw=true"></p>
+<p>如果一个 View 有一个视图控制器，它的下一个响应者就是这个视图控制器，然后才是它的父视图，如果一直到根视图都没能处理这个事件，事件会传递到 <code>UIWindow</code> ，若在 <code>UIWindow</code> 中也没有处理，则会传递给 <code>UIApplication</code> ，它是一个响应者链的终点，它的下一个响应者指向 <code>nil</code> ，以劫数整个循环。</p>
+<br>
+
+<h3 id="改变响应者链-Altering-the-Responder-Chain"><a href="#改变响应者链-Altering-the-Responder-Chain" class="headerlink" title="改变响应者链 (Altering the Responder Chain)"></a>改变响应者链 (Altering the Responder Chain)</h3><p>你可以通过覆盖你的响应者对象中的 <code>nextResponder</code> 属性来改变响应者链。当你这样做时，下一个响应者就是你返回的对象。</p>
+<p>很多 <code>UIKit</code> 类已经覆盖了这个属性 : </p>
+<ul>
+<li><code>UIView</code> 对象。如果视图是视图控制器的根视图，那它的 <code>nextResponder</code> 是视图控制器，否则是视图的父视图。</li>
+<li><code>UIViewController</code> 对象。<ul>
+<li>如果视图控制器的视图是一个窗口的根视图，<code>nextResponder</code> 是窗口对象。</li>
+<li>如果一个视图是被其它视图控制器推出的，<code>nextResponder</code> 是推出它的视图控制器。</li>
+</ul>
+</li>
+<li><code>UIWindow</code> 对象。窗口的 <code>nextResponder</code> 是 <code>UIApplication</code> 对象。</li>
+<li><code>UIApplication</code> 对象。只有在应用代理是 <code>UIResponder</code> 的实例而不是视图、视图控制器或者应用对象自身时，<code>UIApplication</code> 的 <code>nextResponder</code> 是应用程序代理。</li>
+</ul>
 
       
     </div>
@@ -711,7 +300,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/37/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><span class="page-number current">38</span><a class="page-number" href="/page/39/">39</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/39/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/37/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><span class="page-number current">38</span><a class="page-number" href="/page/39/">39</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/39/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -777,7 +366,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

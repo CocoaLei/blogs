@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2017/05/17/javascript-advanced-variable-scope/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2017/05/24/JavaScript-%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1---%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2017/05/17/javascript-advanced-variable-scope/" class="post-title-link" itemprop="url">JavaScript 高级程序设计 - 变量、作用域和内存问题</a>
+            <a href="/2017/05/24/JavaScript-%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1---%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">JavaScript 高级程序设计 - 引用类型</a>
         </h2>
 
         <div class="post-meta">
@@ -187,14 +187,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2017-05-17 00:00:00" itemprop="dateCreated datePublished" datetime="2017-05-17T00:00:00+08:00">2017-05-17</time>
+              <time title="创建时间：2017-05-24 00:00:00" itemprop="dateCreated datePublished" datetime="2017-05-24T00:00:00+08:00">2017-05-24</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-02 09:40:35" itemprop="dateModified" datetime="2020-12-02T09:40:35+08:00">2020-12-02</time>
+                <time title="修改时间：2020-12-02 09:41:00" itemprop="dateModified" datetime="2020-12-02T09:41:00+08:00">2020-12-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,62 +217,172 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="基本类型和引用类型"><a href="#基本类型和引用类型" class="headerlink" title="基本类型和引用类型"></a>基本类型和引用类型</h2><p>ECMAScript 变量可能包含两种不同数据类型的值 ：基本类型值和引用类型值。基本类型值指的是简单的数据段，而引用数据类型指那些可能由多个值构成的对象。</p>
-<p>在将一个值赋值给变量时，解析器必须确定这个值时基本数据类型还是引用类型值。基本类型的值是按值访问的，因为可以操作保存在变量中的实际的值。</p>
-<p>引用类型的值时保存在内存中的对象，JavaScript 不允许直接访问内存中的位置，即不能直接操作对象的内存空间。在操作对象时，实际上是操作对象的引用而不是实际的对象（当复制保存着对象的某个变量时，操作的是对象的引用；但在为对象添加属性时，操作的是实际的对象）。</p>
-<blockquote>
-<p>在很多其它语言中，字符串以对象的形式来表示，因此被认为是引用类型的。</p>
-</blockquote>
-<h3 id="动态的属性"><a href="#动态的属性" class="headerlink" title="动态的属性"></a>动态的属性</h3><p>对于引用类型的值，我们可以为其添加属性和方法，也可以改变和删除属性和方法 ：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aObject = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">aObject.name = <span class="string">"ObjectName"</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="复制变量值"><a href="#复制变量值" class="headerlink" title="复制变量值"></a>复制变量值</h3><p>除了保存的方式不同之外，在从一个变量向另一个变量复制基本类型值和引用类型值时，也存在不同。</p>
-<p>如果从一个变量向另一个变量复制基本类型值，会在变量对象上创建一个新值，然后把该值复制到为新变量分配的位置上。</p>
-<p>当从一个变量向另一个变量复制引用类型值时，同样也会将存储在变量对象的值复制一份放到为新变量分配的空间中。不同的是，这个值的副本实际上是一个指针，而这个指针指向存储在堆中的一个对象。复制操作结束后，两个变量实际上将引用同一个对象。</p>
-<h3 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h3><p>ECMAScript 中函数的参数都是按值传递的。基本类型值得传递如同基本类型变量的复制一样，而引用类型值得传递，则如同引用类型变量的复制一样。</p>
-<p>在向参数传递基本类型的值时，被传递的值会被复制给一个局部变量（即命名参数）。在向参数传递引用类型的值时，会把这个值在内存中的地址复制给一个局部变量，因此这个局部变量的变化会反映在函数的外部。</p>
-<h3 id="检测类型"><a href="#检测类型" class="headerlink" title="检测类型"></a>检测类型</h3><p>基本类型检测的最佳工具是 <code>typeof</code> 操作符。但在检测引用类型的值时，这个操作符的用处不大，我们并不是想知道某个值是对象，而是想知道它是什么类型的对象。</p>
-<p>使用 <code>instanceof</code> 操作符来确定实例是否是给定的引用类型 ：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = variable <span class="keyword">instanceof</span> <span class="keyword">constructor</span></span><br></pre></td></tr></table></figure>
-
-<p>所有引用类型的值都是 <code>Object</code> 的实例。因此，在检测一个引用类型值和 <code>Object</code> 构造函数时，<code>instanceof</code> 操作符始终会返回 <code>true</code> 。当然，如果使用 <code>instanceof</code> 操作符检测基本类型的值，则该操作符始终会返回 <code>false</code> , 因为基本类型不是对象。</p>
-<h2 id="执行环境及作用域"><a href="#执行环境及作用域" class="headerlink" title="执行环境及作用域"></a>执行环境及作用域</h2><p>执行环境是 JavaScript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其它数据，决定了它们各自的行为。每个执行环境都有一个与之关联的<strong>变量对象</strong>，环境中定义的所有变量和函数都保存在这个对象中。</p>
-<p>全局执行环境是最外围的一个执行环境。根据 ECMAScript 实现所在的宿主环境不同，表示执行环境的对象也不一样。在 Web 浏览器中，全局执行环境被认为是 <code>window</code> 对象。</p>
-<p>某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出时，才会被销毁）。</p>
-<p>每个函数都有自己的执行环境。当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
-<p>当代码在一个环境中执行时，会创建变量对象的一个作用域链。作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行代码所在环境的变量对象。如果这个环境是函数，则将其活动对象作为变量对象。活动对象在最开始时只包含一个变量，即 <code>arguments</code> 对象。作用域链中的下一个变量对象来自包含环境，而再下一个变量对象则来自下一个包含环境。这样，一直延续到全局执行环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。</p>
-<p>标识符解析是沿着作用域链一级一级地搜索标识符的过程。搜索过程始终从作用域链的前端开始，然后逐级地向后回溯，直到找到标识符为止（如果找不到标识符，通常会导致错误发生）。</p>
-<h4 id="延长作用域链"><a href="#延长作用域链" class="headerlink" title="延长作用域链"></a>延长作用域链</h4><p>虽然执行环境的类型总共只有两种 ：全局和局部，但是还有其它办法来延长作用域链。这是因为有些语句可以在作用域链的前端临时增加一个变量对象，该变量对象会在代码执行后被移除。</p>
-<p>在两种情况下会发生这种现象 ：</p>
+          <p>应用类型的值是应用类型的一个实例。在 ECMAScript 中，引用类型是一种数据结构，用于将数据和功能组织在一起，它也常被称为<strong>类</strong> ，但这种称呼并不妥当。尽管 ECMAScript 从技术上讲是一门面向对象的语言，但它不具备传统的面向对象语言所支持的类和接口等基本结构。引用类型有时候也被称为对象定义，因为它们描述的是一类对象所具有的属性和方法。</p>
+<h2 id="Object-类型"><a href="#Object-类型" class="headerlink" title="Object 类型"></a>Object 类型</h2><p><code>Object</code> 是 ECMAScript 中使用最多的一个类型。虽然 <code>Object</code> 的实例不具备多少功能，但对于在应用程序中存储和传输数据而言，它们确实是非常理想的选择。</p>
+<p>创建 <code>Object</code> 实例的两种方式 ：</p>
 <ul>
-<li><code>try-catch</code> 语句的 <code>catch</code> 块</li>
-<li><code>with</code> 语句</li>
-</ul>
-<p>这两个语句都会在作用域链的前端添加一个变量对象。对 <code>with</code> 语句来或，会将指定的对象添加到作用域链中。对于 <code>catch</code> 语句来说，会创建一个新的变量对象，其中包含的是被抛出的错误对象的声明。</p>
-<h4 id="没有块级作用域"><a href="#没有块级作用域" class="headerlink" title="没有块级作用域"></a>没有块级作用域</h4><p>JavaScript 没有块级作用域经常会导致理解上的困惑。在其它类 C 语言中，由花括号封闭起来的代码块都有自己的作用域，因而支持根据条件来定义变量。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> color = <span class="string">"red"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(color);	<span class="comment">// red</span></span><br></pre></td></tr></table></figure>
+<li><p>使用 <code>new</code> 操作符</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">person.name = <span class="string">"CocoaLei"</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用对象字面量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name = <span class="string">"CocoaLei"</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>上面的例子中，在 <code>if</code> 语句中定义了变量 <code>color</code> ，它被添加到当前的执行环境，所以在 <code>if</code> 语句结束后还能够被访问。</p>
-<p>在使用 <code>for</code> 语句时尤其要牢记这一差异 ：由 <code>for</code> 语句创建的循环变量即使 <code>for</code> 循环执行结束后，也依旧会存在于循环外部的执行环境中。</p>
-<h5 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h5><p>使用关键字 <code>var</code> 声明的变量会自动被添加到最接近的环境中。在函数内部，最接近的环境就是函数的局部环境；在 <code>with</code> 语句中，最接近的环境是环境函数。如果初始化变量时没有使用 <code>var</code> 声明，该变量会自动被添加到全局环境。</p>
+<p>对象字面量是对象定义的一种简写形式 ，目的在于简化创建包含大量属性的对象的过程。</p>
+<p>对象字面量也是向函数传递大量可选参数的首选方式。</p>
+</li>
+</ul>
+<p>一般来说，访问对象属性时使用的都是点语法，这也是很多面向对象语言中通用的语法。不过，在 JavaScript 中也可以使用方括号表示法来访问对象的属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name = <span class="string">"CocoaLei"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(person.name);		<span class="comment">// CocoaLei</span></span><br><span class="line"><span class="built_in">console</span>.log(person[<span class="string">"name"</span>]);	<span class="comment">// CocoaLei</span></span><br><span class="line"><span class="keyword">var</span> propertyName = <span class="string">"name"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person[propertyName]);	<span class="comment">// CocoaLei</span></span><br></pre></td></tr></table></figure>
+
+<p>通常，除非必须使用变量来访问属性，否则建议使用点语法。</p>
+<h2 id="Array-类型"><a href="#Array-类型" class="headerlink" title="Array 类型"></a>Array 类型</h2><p>Array 类型是出了 <code>Object</code> 之外 ECMAScript 中最常用的类型了。而且，ECMAScript 中的数组与其它语言中的数组有着相当大的区别。虽然 ECMAScript 数组与其它语言中的数组都是数据的有序列表，但与其它语言不通的是， ECMAScript 中的数组的每一项可以保存任何类型的数据。并且，ECMAScript 数组的大小是可以动态调整的，即可以随着数据的添加自动增长以容纳新增数据。</p>
+<p>创建数组的两种方式 ：</p>
+<ul>
+<li><p><code>Array</code> 构造函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br></pre></td></tr></table></figure>
+
+<p>如果预先知道数组要保存的项目数量，也可以给构造函数传递该数量，而改数量会自动编程 <code>length</code> 的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">255</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用数组字面量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">"red"</span>, <span class="string">"yellow"</span>, <span class="string">"blue"</span>];</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>在读取和设置数组的值时，要使用方括号并提供相应值的基于 0 的数字索引。</p>
 <blockquote>
-<p>在编写 JavaScript 代码的过程中，不声明而直接初始化变量是一个常见的错误做法。</p>
+<p>数组最多可以包含 4294967295 个项，这几乎已经能够满足任何编程需求了。如果想添加的项数超过这个上限值，就会发生异常。而创建一个初始大小与这个上限值接近的数组，则可能会导致运行时间超长的脚本错误。</p>
 </blockquote>
-<h5 id="查询标识符"><a href="#查询标识符" class="headerlink" title="查询标识符"></a>查询标识符</h5><p>当在某个环境中为了读取或写入而引用一个标识符时，必须通过搜索来确定该标识符实际代表什么。搜索过程从作用域链的前端开始，向上逐级查询与给定名字匹配的标识符。如果在局部环境中找到了该标识符，搜索过程停止，变量就绪。如果在局部环境中没有找到该变量名，则继续沿作用域链向上搜索。搜索过程将一直追溯到全局环境的变量对象。如果在全局环境中也咩有找到这个标识符，则意味着该变量尚未声明。</p>
+<h3 id="检测数组"><a href="#检测数组" class="headerlink" title="检测数组"></a>检测数组</h3><p>如果假定只有一个全局执行环境，使用 <code>instanceof</code> 操作符就能检测值是不是数组。但是，实际上存在的全局环境不止一个，那么 <code>Array</code> 构造函数也不止一个。</p>
+<p>为了解决这个问题，ECMAScript 5 新增了 <code>Array.isArray()</code> 方法。这个方法的母的是最终确定某个值到底是不是数组，而不管它在哪个全局执行环境中创建的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.isArray(value);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h3><p>所有对象都具有 <code>toLocalString()</code> 、<code>toString()</code> 、 <code>valueOf()</code> 方法。调用数组的 <code>toString()</code> 方法会返回数组中每个值得字符串形式拼接而成的一个以逗号分隔的字符串。调用 <code>valueOf()</code> 方法返回的还是数组。</p>
+<p>数组继承的 <code>toLocalString()</code> 、<code>toString()</code> 、<code>valueOf()</code> 方法，在默认情况下都会以逗号分隔的字符串的形式返回数组项。而如果使用 <code>join()</code> 方法，则可以使用不同的分隔符来构建这个字符串。<code>join()</code> 方法只接受一个参数，即用作分隔符的字符串，然后返回包含所有数组项的字符串。</p>
 <blockquote>
-<p>变量查询也不是没有代价的。很明显，访问局部变量要比访问全局变量更快。</p>
+<p>如果数组中的某一项的值是 <code>null</code> 或 <code>undefined</code> , 那么该值在 <code>toLocalString()</code> 、<code>toString()</code> 、<code>valueOf()</code> 方法返回的结果中以空字符串表示。</p>
 </blockquote>
-<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><p>JavaScript 具有自动垃圾收集机制，也就是说，执行环境会负责管理代码执行过程中使用的内存。在 JavaScript 中，所需内存的分配和无用内存的回收完全实现了自动管理 ：找出那些不再继续使用的变量，然后释放其占用的内存。为此，垃圾收集器会按照固定的时间间隔，周期性的执行这一操作。</p>
-<p>局部变量只在函数执行的过程中存在。在这个过程中，会为局部变量在栈或堆上分配相应的空间，以便存储它们的值。然后在函数中使用这些变量，直到函数执行结束。此时，局部变量就没有存在的必要了，因此可以释放它们的内存以供将来使用。在这种情况下，很容易判断变量是否还有存在的必要；但并非所有情况下都能这么容易得出结论。垃圾收集器必须跟踪哪个变量有用哪个变量没用，对于不再有用的变量打上标记，以备将来回收其占用的内存。</p>
-<h3 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h3><p>JavaScript 中最常用的垃圾收集方式是<strong>标记清除</strong>。当变量进入环境时，就将这个变量标记为 “进入环境” 。从逻辑上讲，永远不能释放进入环境的变量所占用的内存，因为只要执行流进入相应的环境，就可能会用到它们。而当变量离开环境时，则将其标记为 “离开环境” 。</p>
-<p>标记变量的方式很多，它并不重要，关键在于才去什么策略。</p>
-<p>垃圾收集器在运行的时候回给存储在内存中的所有变量都加上标记。然后，它会去掉环境中的变量以及被环境中的变量引用的变量的标记。而在此之后再被加上标记的变量被视为准备删除的变量，原因是环境中的变量已经无法访问到这些变量了。最后，垃圾收集器完成内存清除工作，销毁那些带标记的值并回收它们所占用的内存空间。</p>
-<h4 id="性能问题"><a href="#性能问题" class="headerlink" title="性能问题"></a>性能问题</h4><p>垃圾收集器是周期性运行的，而且如果为变量分配的内存数量很可观，那么回收工作量也是相当大的。这种情况下，确定垃圾收集的时间间隔是一个非常重要的问题。</p>
-<h4 id="管理内存"><a href="#管理内存" class="headerlink" title="管理内存"></a>管理内存</h4><p>使用具备垃圾收集机制的语言编写程序，开发人员一般不必操心内存管理问题。但是，JavaScript 在进行内存管理及垃圾收集时面临的最主要问题是分配给 Web 浏览器的可用内存数量通常比分配桌面应用程序的少。这样做的目的是防止运行 JavaScript 的网页耗尽全部系统内存而导致系统崩溃。内存限制不仅会影响给变量分配内存，同时还会影响调用栈以及在一个线程中能够同时执行的语句数量。</p>
-<p>因此，确保占用最少的内存可以让页面获得更好的性能。而优化内存占用的最佳方式，就是为执行中的代码只保存必要的数据。一旦数据不再有用，最好通过将其设置为 <code>null</code> 来释放其引用。这一做法适用于大多数全局变量和全局对象的属性。</p>
-<p>解除一个值的应用的真正作用是让值脱离执行环境，以便垃圾收集器下次运行时将其回收。</p>
+<h3 id="栈方法"><a href="#栈方法" class="headerlink" title="栈方法"></a>栈方法</h3><p>ECMAScript 数组也提供了一种让数组的行为类似于其它数组结构的方法。具体来说，数组可以表现的像栈一样。</p>
+<p>ECMAScript 专门为数组提供了<code>push()</code> 和 <code>pop()</code> 方法，以便实现类似栈的行为。</p>
+<p><code>push()</code> 方法可以接收任意数量的参数，把它们逐个添加到数组末尾，并返回修改后数组的长度。而 <code>pop()</code> 方法则从数组末尾移除最后一项，减少数组的 <code>length</code> 值，然后返回移除的项。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sampleArr = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="keyword">var</span> arrLength = sampleArr.push(<span class="string">"A"</span>,<span class="string">"B"</span>); <span class="comment">// arrLength is 2 and sampleArr is ["A", "B"]</span></span><br><span class="line"><span class="keyword">var</span> removedItem = sampleArr.pop();	<span class="comment">// removedItem is "B"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="队列方法"><a href="#队列方法" class="headerlink" title="队列方法"></a>队列方法</h3><p>栈数据结构的访问规则是后进先出，而队列数据结构的访问规则是先进先出。队列在列表的末端添加项，从列表的前端移除项。由于 <code>push()</code> 是向数组末端添加项的方法，因此要模拟队列只需一个从数组前端取得项的方法。实现这一操作的数组方法就是 <code>shift()</code> ，它能够移除数组中的第一个项并返回该项，同时将数组长度减 1 。结合使用 <code>shift()</code> 、<code>push()</code> 方法，就可以像使用队列一样使用数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sampleArr = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">sampleArr.push(<span class="string">"A"</span>, <span class="string">"B"</span>);</span><br><span class="line"><span class="keyword">var</span> firstItem = sampleArr.shift();	<span class="comment">// firstItem is "A"</span></span><br></pre></td></tr></table></figure>
+
+<p>ECMAScript 还未数组提供了一个 <code>unshift()</code> 方法，它能在数组前端添加任意个项并返回新数组的长度。</p>
+<h4 id="重排序方法"><a href="#重排序方法" class="headerlink" title="重排序方法"></a>重排序方法</h4><p>数组中已经存在两个可以直接用来重排序的方法 ：<code>reverse()</code> 和  <code>sort()</code> 。</p>
+<p>数组的 <code>reverse()</code> 方法会反转数组的顺序 ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> originalArr = [<span class="number">3</span>, <span class="number">7</span>, <span class="number">1</span>, <span class="number">-1</span>, <span class="number">22</span>];</span><br><span class="line">originalArr.reverse();	<span class="comment">// 22, -1, 1, 7, 3</span></span><br></pre></td></tr></table></figure>
+
+<p>在默认情况下，<code>sort()</code> 方法按升序排列数组。为了实现排序，<code>sort()</code> 方法会调用数组中每项的 <code>toString()</code> 方法，然后比较得到的字符串，以确定如何排序。这种排序方式在很多情况下都不是最佳方案。不过，<code>sort()</code> 方法可以接收一个比较函数作为参数，以便我们指定哪个值位于哪个值的前面。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 升序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span> (<span class="params">value_1, value_2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (value_1 &lt; value_2) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value_1 &gt; value_2) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>reverse()</code> 和 <code>sort()</code> 方法的返回值是经过排序后的数组。</p>
+</blockquote>
+<p>对于数值类型或者其 <code>valueOf()</code> 方法会返回数值类型的对象类型，可以使用一个更简单的比较函数。这个函数只要用第二个值减第一个值即可。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span> (<span class="params">value_1, value_2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value_2 - value_1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于比较函数通过返回一个小于零、等于零或大于零的结果来影响排序，因此减法操作就可以适当地处理所有这些情况。</p>
+<h4 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h4><p>ECMAScript 为操作已经包含在数组中的项提供了很多方法。</p>
+<h5 id="contact"><a href="#contact" class="headerlink" title="contact()"></a><code>contact()</code></h5><p><code>contact()</code> 方法可以基于当前数组的所有项创建一个新数组。具体来说，这个方法会先创建当前数组的一个副本，然后将接收到的参数添加到这个副本的末尾，最后返回新构建的数组。在没有给 <code>contact()</code> 方法传递参数的情况下，它只是复制当前数组并返回副本。如果传递给 <code>contact()</code> 方法的是一或多个数组，则该方法会将这些数组中的每一项都添加到结果数组中。如果传递的不是数组，这些值就会被简单地添加到结果数组的末尾。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sampleArr = nes <span class="built_in">Array</span>();</span><br><span class="line">sampleArr.push(<span class="string">"A"</span>, <span class="string">"B"</span>);</span><br><span class="line"><span class="keyword">var</span> copyArr = sampleArr.contact(<span class="string">"C"</span>); <span class="comment">// now sampleArr is ["A", "B", "C"]</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="slice"><a href="#slice" class="headerlink" title="slice()"></a><code>slice()</code></h5><p><code>slice()</code> 方法能够基于当前数组中的一个或多个项创建一个新数组。<code>slice()</code> 方法可以接受一个或两个参数，即要返回项的起始和结束位置。在只有一个参数的情况下，<code>slice()</code> 方法返回从该参数指定位置开始到当前数组末尾的所有项。如果有两个参数，该方法返回起始和结束位置之间的项（不包括结束位置）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sampleArr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line"><span class="keyword">var</span> resultArr = sampleArr.slice(<span class="number">3</span>); <span class="comment">// resultArr is [4, 5, 6, 7]</span></span><br><span class="line">resultArr = sampleArr.slice(<span class="number">3</span>,<span class="number">5</span>); 	<span class="comment">// resultArr is [4, 5]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果 <code>slice()</code> 方法中有一个负数，则用数组长度加上该数来确定相应的位置。如果结束位置小于起始位置，则返回空数组。</p>
+</blockquote>
+<h5 id="splice"><a href="#splice" class="headerlink" title="splice()"></a><code>splice()</code></h5><p><code>splice()</code> 方法主要用途是向数组的中部插入项，但使用这种方法的方式则有如下三种 ：</p>
+<ul>
+<li><p>删除 ：可以删除任意数量的项，只需指定要删除的第一项的位置和要删除的项数两个参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sampleArr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line">sampleArr.splice(<span class="number">5</span>, <span class="number">1</span>);	<span class="comment">// sampleArr is [1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>插入 ：可以向指定位置插入任意数量的项，只需提供起始位置、要删除的项数 (设为0) 和要插入的项</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sampleArr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">sampleArr.splice(<span class="number">1</span>, <span class="number">0</span>, <span class="number">2.1</span>, <span class="number">2.2</span>); 	<span class="comment">// sampleArr is [1, 2, 2.1, 2.2, 3]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>替换 ：可以向指定位置插入任意数量的项，同时删除任意数量的项</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sampleArr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">sampleArr.splice(<span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>);	<span class="comment">// sampleArr is [1, 2, 4]</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><code>splice()</code> 方法始终都会返回一个数组，该数组包含从原始数组中删除的项 (如果没有删除任何项，则返回一个空数组) 。</p>
+<h4 id="位置方法"><a href="#位置方法" class="headerlink" title="位置方法"></a>位置方法</h4><p>ECMAScript 5 为数组实例添加了两个位置方法 ：<code>indexOf()</code> 和 <code>lastIndexOf()</code> 。这两个方法都接收两个参数 ：要查找的项和表示查找七点位置的索引。其中，<code>indexOf()</code> 从数组的开头开始向后查找，<code>lastIndexOf()</code> 则是从数组的末尾开始向前查找。</p>
+<p>这两个方法都返回要查找的项在数组中的位置，或者在没有找到的情况下返回 -1 。在比较第一个参数与数组中的每一项时，会使用全等操作符。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sampleArr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>];</span><br><span class="line">sampleArr.indexOf(<span class="number">4</span>);		<span class="comment">// 3</span></span><br><span class="line">sampleArr.lastIndexOf(<span class="number">4</span>); 	<span class="comment">//	7</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h4><p>ECMAScript 5 为数组定义了 5 个迭代方法，每个方法都接收两个参数 ：要在每一项上运行的函数和运行该函数的作用域对象。传入这些方法中的函数会接收三个参数 ：数组项的值，该项在数组中的位置和数组对象的本身。</p>
+<ul>
+<li><code>every()</code> : 对数组中的每一项运行给定函数，如果该函数对每一项都返回 <code>true</code> ，则返回 <code>true</code></li>
+<li><code>filter()</code>  ：对数组中的每一项运行给定函数，返回该函数会返回 <code>true</code> 的项组成的数组</li>
+<li><code>forEach()</code> ：对数组中的每一项运行给定函数，这个方法没有返回值</li>
+<li><code>map()</code> ：对数组中的每一项运行给定函数，返回每次函数调用的结果组成的数组</li>
+<li><code>some()</code> ：对数组中的每一项运行给定函数，如果该函数对任一项返回 <code>true</code> ，则返回 <code>true</code></li>
+</ul>
+<p>以上这些方法都不会修改数组中包含的值。</p>
+<h4 id="归并方法"><a href="#归并方法" class="headerlink" title="归并方法"></a>归并方法</h4><p>ECMAScript 5 增加了两个归并数组的方法 ：<code>reduce()</code> 和 <code>reduceRight()</code> 。这两个方法都会迭代数组所有的项，然后构建一个最终返回的值。其中，<code>reduce()</code> 方法从数组的第一项开始，逐个遍历到最后。而 <code>reduceRight()</code> 则从数组的最后一项开始，向前遍历到第一项。</p>
+<p>这两个方法都接收两个参数 ：一个在每一项上调用的函数和作为归并基础的初始值。传给 <code>reduce()</code> 和 <code>reduceRight()</code> 的函数接收 4 个参数 ：前一个值、当前值、项的索引和数组对象。这个函数返回的任何值都会作为第一个参数自动传给下一项。第一次迭代发生在数组的第二项上，因此第一个参数是数组的第一项，第二个参数是数组的第二项。</p>
+<p>求数组中所有值之和 ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sampleArr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> sum = sampleArr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev, cur, index, array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> prev + cur;</span><br><span class="line">&#125;);	<span class="comment">// sum is 15</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Date-类型"><a href="#Date-类型" class="headerlink" title="Date 类型"></a>Date 类型</h2><p>ECMAScript 中的 Date 类型是在早期 Java 中的 <code>java.util.Date</code> 类基础上构建的。为此，Date 类型使用 UTC 1970 年 1 月 1 日午夜开始经过的毫秒数来保存日期。这使用这种数据存储格式的条件下，Date 类型保存的日期能够精确到 1970 年 1 月 1 日之前或之后的 285616 年。</p>
+<p>在调用 Date 构造函数而不传递参数的情况下，新创建的对象自动获得当前的日期和时间。如果想根据特定的日期和时间创建日期对象，必须传入表示该日期的毫秒数。为了简化这一计算过程，ECMAScript 提供了两个方法 ： <code>Date.parse()</code> 和 <code>Date.UTC()</code> 。</p>
+<p>其中，<code>Date.parse()</code> 方法接收一个表示日期的字符串参数，然后尝试根据这个字符串返回相应日期的毫秒数。ECMA 没有定义 <code>Date.parse()</code> 应该支持哪种日期格式，因此这个方法的行为因实现而异。</p>
+<p><code>Date.UTC()</code> 方法同样也返回表示日期的毫秒数，但它与 <code>Date.parse()</code> 在构建值时使用不同的信息。<code>Date.UTC()</code> 的参数分别是年份、基于 0 的月份、月中的哪一天、小时数、分钟、秒以及毫秒数。在这些参数中，只有前两个参数是必需的。</p>
+<p><code>Date.now()</code> 方法会返回表示调用这个方法时的日期和时间的毫秒数。</p>
+<h4 id="继承的方法"><a href="#继承的方法" class="headerlink" title="继承的方法"></a>继承的方法</h4><p>与其它引用类型一样，<code>Date</code> 类型也重写了 <code>toLocalString()</code> 、<code>toString()</code> 和 <code>valueOf()</code> 方法 。<code>Date</code> 类型的 <code>toLocalString()</code> 方法会按照与浏览器设置的地区相适应的格式返回日期和时间。而 <code>toString()</code> 方法则通常返回带有时区信息的日期和时间。<code>Date</code> 类型的 <code>valueOf()</code> 方法，则根本不返回字符串，而是返回日期的毫秒表示，常用来比较日期值的大小。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> date_pre = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2017</span>, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> date_next = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2017</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">if</span> (date_pre &lt; date_next) &#123;</span><br><span class="line">    consolo.log(<span class="string">""</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="日期格式化方法"><a href="#日期格式化方法" class="headerlink" title="日期格式化方法"></a>日期格式化方法</h4><p><code>Date</code> 类型用于将日期格式化为字符串的方法 ：</p>
+<ul>
+<li><code>toDateString()</code> ：以特定于实现的格式显示星期几、月、日和年</li>
+<li><code>toTimeString()</code> ：以特定于实现的格式显示时、分、秒和时区</li>
+<li><code>toLocalDateString()</code> ：以特定于地区的格式显示星期几、月、日和年</li>
+<li><code>toLocalTimeString()</code> ：以特定于实现的格式显示时、分、秒</li>
+<li><code>toUTCString()</code> ：以特定于实现的格式显示完整的 UTC 日期</li>
+</ul>
+<h3 id="RegExp-类型"><a href="#RegExp-类型" class="headerlink" title="RegExp 类型"></a>RegExp 类型</h3><p>ECMAScript 通过 <code>RegExp</code> 类型来支持正则表达式 ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> expression = <span class="regexp">/pattern/</span>flags;</span><br></pre></td></tr></table></figure>
+
+<p>其中的模式部分可以是任何简单或复杂的正则表达式，可以包含字符类、限定符、分组、向前查找以及反向引用。每个正则表达式都可以带有一或多个标志，用以表明正则表达式的行为。</p>
+<p>正则表达式的匹配模式下支持下列 3 个标志 ：</p>
+<ul>
+<li><code>g</code> ：全局模式，即模式将被应用于所有字符串，而非在发现第一个匹配项时立即停止</li>
+<li><code>i</code> ：不区分大小写模式，即在确定匹配项时忽略模式与字符串的大小写</li>
+<li><code>m</code> ：多行模式，即在到达一行文本末尾时还会继续查找下一行中是否在与模式匹配的项</li>
+</ul>
+<p>模式中使用的所有元字符都必须转义。正则表达式中的元字符包括 ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">( [ &#123; \ ^ $ | ) ? * + . ] &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这些元字符在正则表达式中都有一或多种特殊用途，因此如果想要匹配字符串中包含的这些字符，就必须对它们进行转义。</p>
+<p>使用 <code>RegExp</code> 构造函数构造正则表达式时，需要注意 ：传递的两个参数都是字符串。由于 <code>RegExp</code> 的构造函数的模式参数是字符串，所以在某些情况下要对字符进行双重转义。所有元字符都必须双重转义，那些已经转义过的字符也是如此。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">字面量模式			等价的字符串</span><br><span class="line">/\[bc\]at/			“\\[bc\\]at”</span><br><span class="line">/\w\\hello\\<span class="number">123</span>/	<span class="string">"\\w\\\\heollo\\\\123"</span></span><br></pre></td></tr></table></figure>
+
+<p>使用正则表达式字面量和使用 <code>RegExp</code> 构造函数创建的正则表达式不一样。在 ECMAScript 3 中，正则表达式字面量始终会共享同一个 <code>RegExp</code> 实例，而使用构造函数创建的每一个新 <code>RegExp</code> 实例都是新实例。</p>
+<p>ECMAScript 5 明确规定，使用正则表达式字面量必须像直接调用 <code>RegExp</code> 构造函数一样，每次赌创建新的 <code>RegExp</code> 实例。</p>
+<h4 id="RegExp-实例属性"><a href="#RegExp-实例属性" class="headerlink" title="RegExp 实例属性"></a><code>RegExp</code> 实例属性</h4><p><code>RegExp</code> 的每个实例都具有下列属性 ：</p>
+<ul>
+<li><code>global</code> ：布尔值，表示是否设置了 <code>g</code> 标志</li>
+<li><code>ignoreCase</code> ：布尔值，表示是否设置了 <code>i</code> 标志</li>
+<li><code>lastIndex</code> ：整数，表示开始搜索下一个匹配项的字符位置，从 0 算起</li>
+<li><code>multiline</code> ：布尔值，表示是否设置了 <code>m</code> 标志</li>
+<li><code>source</code> ：正则表达式的字符串表示，按照字面量模式而非传入构造函数中的字符串模式返回</li>
+</ul>
+<h4 id="RegExp-实例方法"><a href="#RegExp-实例方法" class="headerlink" title="RegExp 实例方法"></a><code>RegExp</code> 实例方法</h4><p><code>RegExp</code> 对象的主要方法是 <code>exec()</code> ，该方法是专门为捕获组而设计的。 <code>exec()</code> 接受一个参数，即要应用模式的字符串，然后返回包含第一个匹配项信息的数组或者在没有匹配项的情况下返回 <code>null</code> 。返回的数组虽然是 <code>Array</code> 的实例，但包含两个额外的属性 ：<code>index</code> 和 <code>input</code> 。其中 <code>index</code> 表示匹配项在字符串的位置，而 <code>input</code> 表示应用正则表达式的字符串。在数组中，第一项是与整个模式匹配的字符串，其它项是与模式中单的捕获组匹配的字符串。</p>
+<p>对于 <code>exec()</code> 方法而言，即使在模式中设置了全局标志，它每次也只会返回一个匹配项。在不设置全局标志的情况下，在同一个字符串上多次调用 <code>exec()</code> 将始终返回第一个匹配项的信息。而在设置全局标志的情况下，每次调用 <code>exec()</code> 则都会在字符串中继续查找新匹配项。</p>
+<p>正则表达式的第二个方法是 <code>test()</code> ，它接受一个字符串参数。在模式与该参数匹配的情况下返回 <code>true</code> ；否则返回 <code>false</code> 。在只想知道目标字符串与某个模式是否匹配，但不需要知道其文本内容的情况下，使用这个方法</p>
 
       
     </div>
@@ -291,7 +401,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/27/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/29/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/27/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><span class="page-number current">28</span><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/29/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -357,7 +467,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
