@@ -153,7 +153,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2019/06/06/JavaScript%20%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2019/06/13/JavaScript%20%E5%8E%9F%E5%9E%8B%E4%B8%8E%E7%BB%A7%E6%89%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -167,7 +167,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/06/06/JavaScript%20%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" class="post-title-link" itemprop="url">JavaScript 中的事件循环</a>
+            <a href="/2019/06/13/JavaScript%20%E5%8E%9F%E5%9E%8B%E4%B8%8E%E7%BB%A7%E6%89%BF/" class="post-title-link" itemprop="url">JavaScript 原型和继承</a>
         </h2>
 
         <div class="post-meta">
@@ -177,14 +177,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-06T00:00:00+08:00">2019-06-06</time>
+              <time title="创建时间：2019-06-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-13T00:00:00+08:00">2019-06-13</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-10 09:40:50" itemprop="dateModified" datetime="2020-12-10T09:40:50+08:00">2020-12-10</time>
+                <time title="修改时间：2021-03-15 16:45:30" itemprop="dateModified" datetime="2021-03-15T16:45:30+08:00">2021-03-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -207,82 +207,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><code>JavaScript</code> 有一个基于事件循环的并发模型，它负责执行代码、收集和处理事件以及执行队列中子任务，它被称为<strong>事件循环</strong>(Event Loop)。了解事件循环的工作方式和原理对于进行优化非常重要。</p>
-<h2 id="运行时概念"><a href="#运行时概念" class="headerlink" title="运行时概念"></a>运行时概念</h2><p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201130135627.svg" alt="Stack,Heap,Queue"></p>
-<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>函数调用形成了一个有若干帧组成的栈。</p>
-<blockquote>
-<p>栈是一种仅限在表为进行添加和删除的线性数据结构。</p>
-</blockquote>
-<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>对象被分配在堆中。堆是一个用来表示一块非结构化内存区域的计算机术语。</p>
-<blockquote>
-<p>堆是一种利用完全二叉树维护的线性数据结构。</p>
-</blockquote>
-<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>一个 <code>JavaScript</code> 运行时包含了一个待处理消息的消息队列。每一个消息都关联着一个用来处理这个消息的回调函数。</p>
-<p>在事件循环的合适时刻，<code>JavaScript</code> 运行时会从最早进入消息队列的消息开始处理消息。被处理的消息会被移出消息队列，并以自身为参数调用与之关联的函数。</p>
-<p>函数的处理会一直到执行栈再次为空为止，然后事件循环会处理下一个消息。</p>
-<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>事件循环的概念非常简单，一个无限的循环：<code>JavaScript</code> 引擎等待任务、执行任务，然后进入休眠状态，等待更多任务。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (queue.waitForMessage()) &#123;</span><br><span class="line">  queue.processNextMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <p>很多面向对象语言都支持两种继承实现方式：接口继承和实现继承 - 接口继承继承方法签名，实现继承则继承方法的实现。但由于 <code>JavaScript</code> 中没有方法签名，因此只支持实现继承者一种方式，而<strong>原型链</strong>正是实现它的方式。</p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p><code>JavaScript</code> 中每个对象都有一个被称为<strong>原型</strong>的持有其它对象引用的私有属性，而原型对象也有其自己的原型，以此类推，这种链条持续到某个原型对象的原型为 <code>null</code> 。根据定义，<code>null</code> 是没有对象的，被作为原型链的最后一环。</p>
+<p>当试图访问一个对象的属性时，不仅会搜索对象本身 - 如果对象本身未找到对应的属性，则会沿着对象的原型链层层向上搜索，直到找到匹配的属性或达到原型链的末尾。</p>
+<p>每个构造函数都有一个原型对象 ，原型有一个属性指回构造函数，而实例有一个内部指针指向原型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.x = x;</span><br><span class="line">  <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Point.__proto__ === <span class="built_in">Function</span>.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(Point === Point.prototype.constructor); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> somePoint = <span class="keyword">new</span> Point(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(somePoint.__proto__ === Point.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<p><code>queue.waitForMessage()</code> 会同步地等待消息到达。</p>
-<p>消息队列中的消息只有在当前消息完全的执行完成后，接下来的消息才会被执行。这个特性会带来一些优秀的特性，包括：当一个函数执行时，它不会被抢占，只有在它运行完毕之后才会去运行任何其他的代码，才能修改这个函数操作的数据。</p>
-<p>这个模型的一个缺点在于当一个消息需要太长时间才能处理完毕时，Web应用程序就无法处理与用户的交互。一个良好的习惯是缩短单个消息处理时间，并在可能的情况下将一个消息裁剪成多个消息。</p>
-<h3 id="零延迟"><a href="#零延迟" class="headerlink" title="零延迟"></a>零延迟</h3><p>零延迟并不意味着回调会立即执行。以 0 为第二参数调用 <code>setTimeout</code> 并不表示在 0 毫秒后就立即调用回调函数，其等待的时间取决于队列里待处理的消息数量。延迟参数是运行时处理请求所需的最小等待时间，但并不保证是准确的等待时间。</p>
-<h3 id="运行时通信"><a href="#运行时通信" class="headerlink" title="运行时通信"></a>运行时通信</h3><p>一个 web worker 或者一个跨域的 <code>iframe</code> 都有自己的栈、堆和消息队列。两个不同的运行时只能通过 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage" target="_blank" rel="noopener"><code>postMessage</code></a> 方法进行通信。如果另一个运行时侦听 <code>message</code> 事件，则此方法会向该运行时添加消息。</p>
-<h2 id="浏览器下的事件循环实现"><a href="#浏览器下的事件循环实现" class="headerlink" title="浏览器下的事件循环实现"></a>浏览器下的事件循环实现</h2><p>浏览器中所有任务都会被放到调用栈中等待主线程执行。</p>
-<h3 id="调用栈"><a href="#调用栈" class="headerlink" title="调用栈"></a>调用栈</h3><p>调用栈是解释器（比如浏览器中的 <code>JavaScript</code> 解释器）追踪函数执行流的一种机制。当执行环境中调用了多个函数时，通过这种机制，我们能够追踪到哪个函数正在执行，执行的函数体中又调用了哪个函数。</p>
-<h3 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h3><p>在每一个宏任务执行完成后，浏览器会立即执行所有来自微任务队列的微任务，这是比执行任何其它宏任务或者渲染更具有优先级的操作。</p>
-<p>只有当微任务队列中的所有微任务都执行完之后，才会执行其它宏任务，这保证了在微任务执行时应用程序的环境不会改变。</p>
-<p>如果想要在渲染或处理新的事件之前运行一个异步函数，可以通过 <code>queueMicrotsk</code> 方法来达成。</p>
-<ul>
-<li>宏任务 - <code>scripts</code>/<code>setTimeOut</code>/<code>setInterval</code>/<code>I/O</code>/<code>UI Rendering</code></li>
-</ul>
-<img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110149.png" alt="image-20201201110148857" style="zoom: 67%;" />
+<p>如果原型是另一个类型的实例呢？那就意味着这个原型本身有一个内部指针指向另一个原型，相应地另一个原型也有一个指针指向另一个构造函 数。这样就在实例和原型之间构造了一条原型链。这就是原型链的基本构想。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.superName = <span class="string">'Super Type'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SuperType.prototype.getSuperTypeName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.superName; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.subName = <span class="string">'Sub Type'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line">SubType.prototype.getSubTypeName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.subName; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> aType = <span class="keyword">new</span> SubType();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(aType.__proto__ === SubType.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(SubType.prototype.__proto__ === SuperType.prototype); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(SuperType.prototype.constructor === SuperType); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>微任务 - <code>Promise.then catch finally</code>/<code>MutationObserver</code></li>
-</ul>
-<img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110211.png" alt="image-20201201110210529" style="zoom:67%;" />
+<p>下图展示了子类的实例与两个构造函数及其对应的原型之间的关系：</p>
+<img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201202145301.png" alt="image-20201202145300965" style="zoom:50%;" />
 
-
-
-<h3 id="同步任务和异步任务"><a href="#同步任务和异步任务" class="headerlink" title="同步任务和异步任务"></a>同步任务和异步任务</h3><p><code>Javascript</code> 单线程任务被分为<strong>同步任务</strong>和<strong>异步任务</strong>，同步任务会在调用栈中按照顺序等待主线程依次执行，异步任务会在异步任务有了结果后，将注册的回调函数放入任务队列中等待主线程空闲的时候（调用栈被清空），被读取到栈内等待主线程的执行。</p>
-<h3 id="任务执行逻辑"><a href="#任务执行逻辑" class="headerlink" title="任务执行逻辑"></a>任务执行逻辑</h3><ul>
-<li><p>-&gt; 选择当前要执行的任务队列，选择任务队列中最先进入的任务，如果任务队列为空即<code>null</code>，则执行跳转到微任务（<code>MicroTask</code>）的执行步骤。</p>
-<p>-&gt; 将事件循环中的任务设置为已选择任务。</p>
-<p>-&gt; 执行任务。</p>
-<p>-&gt; 将事件循环中当前运行任务设置为 <code>null</code>。</p>
-<p>-&gt; 将已经运行完成的任务从任务队列中删除。</p>
-<p>-&gt; microtasks 步骤：进入microtask检查点。</p>
-<p>-&gt; 更新界面渲染。</p>
-<p>-&gt; 返回第一步。</p>
-</li>
-<li><p>-&gt; 设置 <code>microtask</code> 检查点标志为 <code>true</code>。</p>
-<p>-&gt; 当事件循环 <code>microtask</code> 执行不为空时：选择一个最先进入的 <code>microtask</code> 队列的 <code>microtask</code>，将事件循环的 <code>microtask</code> 设置为已选择的 <code>microtask</code>，运行 <code>microtask</code>，将已经执行完成的 <code>microtask</code> 为 <code>null</code>，移出 <code>microtask</code> 中的 <code>microtask</code>。</p>
-<p>-&gt; 清理 <code>IndexDB</code> 事务</p>
-<p>-&gt; 设置进入 <code>microtask</code> 检查点的标志为 <code>false</code>。</p>
-</li>
-</ul>
-<img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110436" alt="img" style="zoom:67%;" />
-
-
-
-<img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201201110501" alt="img" style="zoom:67%;" />
-
-
-
-<h2 id="事件循环的一些应用"><a href="#事件循环的一些应用" class="headerlink" title="事件循环的一些应用"></a>事件循环的一些应用</h2><h3 id="分割占用-CPU-较多的任务"><a href="#分割占用-CPU-较多的任务" class="headerlink" title="分割占用 CPU 较多的任务"></a>分割占用 CPU 较多的任务</h3><p>假设我们有一个需要占用非常多 CPU 的任务，当浏览器在处理这个任务时，它就不能做其它 DOM 相关的操作，处理用户事件等，这将导致浏览器变的卡顿甚至崩溃，显然这是不可接受的。但我们可以通过将大任务分割成较小任务的方法来避免这个问题。</p>
-<p>比如下面的代码，在执行时会导致浏览器挂起一段不短的时间，这期间用户事件都不会得到处理。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> start = <span class="built_in">Date</span>.now();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 大任务</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">1e9</span>; j++) &#123;</span><br><span class="line">    j++;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Done in "</span> + (<span class="built_in">Date</span>.now() - start) + <span class="string">"ms"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">count();</span><br></pre></td></tr></table></figure>
-
-<p>如果用 <code>setTimeout</code> 将其分割成较小的任务，如果在小任务执行时有其它任务要执行，会被放入任务队列，当目前的分割小任务完成后立即执行这个任务。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> start = <span class="built_in">Date</span>.now();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">do</span> &#123;</span><br><span class="line">    i++;</span><br><span class="line">  &#125; <span class="keyword">while</span>(i % <span class="number">1e6</span> !== <span class="number">0</span>)</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (i === <span class="number">1e9</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Done in "</span> + (<span class="built_in">Date</span>.now() - start) + <span class="string">"ms"</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    setTimeout(count);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">count();</span><br></pre></td></tr></table></figure>
+<p>实际上，原型链中还有一环。默认情况下，所有引用类型都继承自 <code>Object</code>，这也是通过原型链实现的。 任何函数的默认原型都是一个 <code>Object</code> 的实例， 这意味着这个实例有一个内部指针指向 <code>Object.prototype</code>。这也是为什么自定义类型能够继承包括 <code>toString()</code>、<code>valueOf()</code> 在内的所有默认方法的原因。因此前面的例子还有额外一层继承关系：</p>
+<img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201202145813.png" alt="image-20201202145812496" style="zoom: 50%;" />
 
 
 
 
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>原型链虽然是实现继承的强大工具，但它也有问题。主要问题出现在原型中包含引用值的时候。前面在谈到原型的问题时也提到过，原型中包含的引用值会在所有实例间共享，这也是为什么属性通常会在构造函数中定义而不会定义在原型上的原因。在使用原型实现继承时，原型实际上变成了另一个类型的实例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.colors = [<span class="string">"red"</span>, <span class="string">"blue"</span>, <span class="string">"green"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 继承 SuperType SubType.prototype = new SuperType();</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> instance1 = <span class="keyword">new</span> SubType(); </span><br><span class="line">instance1.colors.push(<span class="string">"black"</span>); </span><br><span class="line"><span class="built_in">console</span>.log(instance1.colors); <span class="comment">// "red,blue,green,black"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> instance2 = <span class="keyword">new</span> SubType();</span><br><span class="line"><span class="built_in">console</span>.log(instance2.colors); <span class="comment">// "red,blue,green,black"</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="永不阻塞"><a href="#永不阻塞" class="headerlink" title="永不阻塞"></a>永不阻塞</h2><p><code>JavaScript</code> 的事件循环模型与许多其他语言不同的一个非常有趣的特性是，它永不阻塞。 处理 I/O 通常通过事件和回调来执行，所以当一个应用正等待一个 <code>IndexedDB</code> 查询返回或者一个 <code>XHR</code> 请求返回时，它仍然可以处理其它事情，比如用户输入。</p>
-<h2 id="Node-中的事件循环、定时器和-process-nextTick"><a href="#Node-中的事件循环、定时器和-process-nextTick" class="headerlink" title="Node 中的事件循环、定时器和 process.nextTick()"></a>Node 中的事件循环、定时器和 <code>process.nextTick()</code></h2>
+<p>原型链的第二个问题是，子类型在实例化时不能给父类型的构造函数传参。事实上，我们无法在不影响所有对象实例的情况下把参数传进父类的构造函数。再加上之前提到的原型中包含引用值的问题，就导致原型链基本不会被单独使用。</p>
+<p>在子类构造函数中调用父类构造函数，因为毕竟函数就是在特定上下文中执行代码的简单对象，所以可以使用 <code>apply()</code> 和 <code>call()</code> 方法以新创建的对象为上下文执行构造函数，这种实现继承的方法被称为<strong>盗用构造函数继承</strong>。</p>
+<p>这种方法的问题是必须在构造函数中定义方法，因此函数不能重用，而且子类也不能访问父类原型上定义的方法，因此所有类型只能使用构造函数模式。</p>
+<p>使用原型链继承原型上的属性和方法，通过盗用构造函数继承实例属性。这样既可以把方法定义在原型上以实现重用，又可以让每个实例都有自己的属性，这种实现继承的方法被称为<strong>组合继承</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params">name</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">	<span class="keyword">this</span>.colors = [<span class="string">"red"</span>, <span class="string">"blue"</span>, <span class="string">"green"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SuperType.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="keyword">this</span>.name); &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params">name, age</span>)</span>&#123;</span><br><span class="line">	<span class="comment">// 继承属性 </span></span><br><span class="line">  SuperType.call(<span class="keyword">this</span>, name);</span><br><span class="line">	<span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 继承方法 </span></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line">SubType.prototype.sayAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="keyword">this</span>.age); &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> instance1 = <span class="keyword">new</span> SubType(<span class="string">"Nicholas"</span>, <span class="number">29</span>); </span><br><span class="line">instance1.colors.push(<span class="string">"black"</span>); </span><br><span class="line"><span class="built_in">console</span>.log(instance1.colors); <span class="comment">// "red,blue,green,black" </span></span><br><span class="line">instance1.sayName(); <span class="comment">// "Nicholas"; </span></span><br><span class="line">instance1.sayAge(); <span class="comment">// 29</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> instance2 = <span class="keyword">new</span> SubType(<span class="string">"Greg"</span>, <span class="number">27</span>);</span><br><span class="line"><span class="built_in">console</span>.log(instance2.colors); <span class="comment">// "red,blue,green" </span></span><br><span class="line">instance2.sayName(); <span class="comment">// "Greg"; </span></span><br><span class="line">instance2.sayAge(); <span class="comment">// 27</span></span><br></pre></td></tr></table></figure>
+
+<p>组合继承弥补了原型链和盗用构造函数的不足，是 <code>JavaScript</code> 中使用最多的继承模式。而且组合继承也保留了 <code>instanceof</code> 操作符和 <code>isPrototypeOf()</code> 方法识别合成对象的能力。</p>
+<h2 id="其它补充"><a href="#其它补充" class="headerlink" title="其它补充"></a>其它补充</h2><h4 id="函数的-prototype"><a href="#函数的-prototype" class="headerlink" title="函数的 prototype"></a>函数的 <code>prototype</code></h4><p>每个函数都有 <code>prototype</code> 属性，它默认包含了一个只有 <code>constructor</code> 属性的对象，这个 <code>constructor</code> 属性指向函数自身。</p>
+<img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201202160041.png" alt="image-20201202160040769" style="zoom: 67%;" />
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Foo.prototype.constructor === Foo); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>在使用 <code>new</code> 操作符创建对象时，构造函数的 <code>prototype</code>  被赋值给被创建的对象实例的 <code>[[prototype]]</code> 属性。</p>
+<img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201202160158.png" alt="image-20201202160157525" style="zoom:50%;" />
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(foo.constructor === Foo); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(foo.__proto__ === Foo.prototype); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> anotherFoo = <span class="keyword">new</span> foo.constructor();</span><br></pre></td></tr></table></figure>
+
+<p>我们可以使用 <code>constructor</code> 属性来创建一个新对象，该对象使用与现有对象相同的构造器。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> foo = <span class="keyword">new</span> Foo();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> anotherFoo = <span class="keyword">new</span> foo.constructor();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(anotherFoo.constructor === Foo); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+
       
     </div>
 
@@ -300,7 +266,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -366,7 +332,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

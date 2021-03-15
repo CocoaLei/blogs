@@ -153,7 +153,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2020/06/18/JavaScript%20%E5%8F%8D%E5%B0%84%E4%B8%8E%20Reflect/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2020/12/15/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -167,7 +167,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/18/JavaScript%20%E5%8F%8D%E5%B0%84%E4%B8%8E%20Reflect/" class="post-title-link" itemprop="url">JavaScript 中的反射与 Proxy 与 Reflect</a>
+            <a href="/2020/12/15/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">前端学习</a>
         </h2>
 
         <div class="post-meta">
@@ -176,24 +176,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-06-18 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-18T00:00:00+08:00">2020-06-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-10 14:41:23" itemprop="dateModified" datetime="2021-03-10T14:41:23+08:00">2021-03-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
+              <time title="创建时间：2020-12-15 09:55:27 / 修改时间：10:20:28" itemprop="dateCreated datePublished" datetime="2020-12-15T09:55:27+08:00">2020-12-15</time>
             </span>
 
           
@@ -207,101 +192,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="JavaScript-中的反射与-Proxy-与-Reflect"><a href="#JavaScript-中的反射与-Proxy-与-Reflect" class="headerlink" title="JavaScript 中的反射与 Proxy 与 Reflect"></a>JavaScript 中的反射与 Proxy 与 Reflect</h1><p><strong>反射</strong>（Reflect）是指程序运行时访问、检测和修改本身状态和行为的<strong>能力</strong>。在 ES6 中引入 <code>Reflect</code> 之前，常用 <code>for...in</code> 实现反射，而在引入 <code>Reflect</code> 之后，反射机制在 <code>JavaScript</code> 中得到了更大的延伸与应用。</p>
-<h2 id="Reflect"><a href="#Reflect" class="headerlink" title="Reflect"></a><code>Reflect</code></h2><p><code>Reflect</code> 是一个全局对象，但与其它全局对象不同，它并不是一个构造函数，所以不能通过 <code>new</code> 来对其进行调用。</p>
-<p>而且它所有的属性和方法都是静态的（类似的还有 <code>Math</code>）。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ** 检测一个对象是否有特定的属性</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">A</span>: <span class="string">'1'</span>, <span class="attr">B</span>: <span class="string">'2'</span> &#125;;</span><br><span class="line"><span class="built_in">Reflect</span>.has(obj, <span class="string">'A'</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Reflect</span>.has(obj. <span class="string">'C'</span>); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ** 返回对象自身的键 has 与 in 运算符作用相同</span></span><br><span class="line"><span class="built_in">Reflect</span>.ownKeys(obj); <span class="comment">// ['A', 'B']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ** 为对象添加新的属性</span></span><br><span class="line"><span class="built_in">Reflect</span>.set(obj, <span class="string">'C'</span>, <span class="string">'3'</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a><code>Proxy</code></h2><p><code>Proxy</code> 基于目标对象创建一个代理对象，可以通过代理对象实现对于基本操作的拦截和自定义。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// target 要代理的对象，可以是任何对象，包括函数</span></span><br><span class="line"><span class="comment">// handler 代理配置，带有扑捉器的对象</span></span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(targe, handler);</span><br></pre></td></tr></table></figure>
-
-<p>对 proxy 对象进行操作，如果 handler 中包含了对应的捕捉器，则扑捉器会拦截这个操作，并对其进行处理。如果没有相应的捕捉器，则操作会被转发到被代理的对象。</p>
-<p>对被代理对象的操作和相应的捕捉器名称如下：</p>
-<table>
-<thead>
-<tr>
-<th>被代理对象的操作</th>
-<th>捕捉器</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>Object.getPrototypeOf()</code></td>
-<td><code>handler.getPrototypeOf()</code></td>
-</tr>
-<tr>
-<td><code>Object.setPrototypeOf()</code></td>
-<td><code>handler.setPrototypeOf()</code></td>
-</tr>
-<tr>
-<td><code>Object.isExtensible()</code></td>
-<td><code>handler.isExtensible()</code></td>
-</tr>
-<tr>
-<td><code>Object.preventExtensions()</code></td>
-<td><code>handler.preventExtensions()</code></td>
-</tr>
-<tr>
-<td><code>Object.getOwnPropertyDescriptor()</code></td>
-<td><code>handler.getOwnPropertyDescriptor()</code></td>
-</tr>
-<tr>
-<td><code>Object.defineProperty()</code></td>
-<td><code>handler.defineProperty()</code></td>
-</tr>
-<tr>
-<td><code>in</code></td>
-<td><code>handler.has()</code></td>
-</tr>
-<tr>
-<td>属性读取</td>
-<td><code>handler.get()</code></td>
-</tr>
-<tr>
-<td>属性赋值</td>
-<td><code>handler.set()</code></td>
-</tr>
-<tr>
-<td><code>delete</code></td>
-<td><code>handler.deleteProperty()</code></td>
-</tr>
-<tr>
-<td><code>Object.getOwnPropertyNames()</code> 和 <code>Object.getOwnPropertySymbols()</code></td>
-<td><code>handler.ownKeys()</code></td>
-</tr>
-<tr>
-<td>函数调用</td>
-<td><code>handler.apply()</code></td>
-</tr>
-<tr>
-<td><code>new</code></td>
-<td><code>handler.construct()</code></td>
-</tr>
-</tbody></table>
-<h3 id="不变量"><a href="#不变量" class="headerlink" title="不变量"></a>不变量</h3><p>为了确保语言功能和行为的一致性，代理对象的捕捉器的返回是有一定限制的，被称为不变量。</p>
-<ul>
-<li><p><code>set()</code> ，如果设置属性值成功，需要返回 <code>true</code>，否则返回 <code>false</code></p>
-</li>
-<li><p><code>deleteProperty()</code>，如果属性删除成功，需要返回 <code>true</code>，否则返回 <code>false</code></p>
-</li>
-<li><p><code>getPrototypeOf()</code> 必须返回被代理对象的原型</p>
-</li>
-<li><p>…</p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> origin = &#123;</span><br><span class="line">  name: <span class="string">'Mike'</span>,</span><br><span class="line">  age: <span class="number">29</span>,</span><br><span class="line">  _isMarried: <span class="literal">false</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">origin = <span class="keyword">new</span> <span class="built_in">Proxy</span>(origin, &#123;</span><br><span class="line">  isExtensible: <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.isExtensible(obj);</span><br><span class="line">  &#125;,</span><br><span class="line">  has: <span class="function"><span class="keyword">function</span>(<span class="params">obj, prop</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.has(obj, prop);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">get</span>: function <span class="keyword">get</span>(obj, prop, receiver) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Reflect</span>.has(obj, prop)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (prop.startsWith(<span class="string">'_'</span>)) <span class="keyword">return</span> <span class="string">'Access denied'</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(obj, prop, receiver);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"No "</span>.concat(prop, <span class="string">" find in target"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">set</span>: function <span class="keyword">set</span>(obj, prop, value, receiver) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Reflect</span>.has(obj, prop)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (prop.startsWith(<span class="string">'_'</span>)) <span class="keyword">return</span> <span class="string">'Access denied'</span>;</span><br><span class="line">      <span class="built_in">Reflect</span>.set(obj, prop, value, receiver);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(origin._isMarried); <span class="comment">// Access denied</span></span><br><span class="line"><span class="built_in">console</span>.log(origin._isMarried = <span class="string">'1'</span>); <span class="comment">// Access denied</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">constructPoint</span>(<span class="params">numX, numY</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [numX, numY];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> funcProxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(constructPoint, &#123;</span><br><span class="line">  apply: <span class="function"><span class="keyword">function</span>(<span class="params">obj, thisArg, argumentsList</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> argumentsList.join(<span class="string">'-'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(funcProxy(<span class="number">1</span>, <span class="number">2</span>)); <span class="comment">// 1-2</span></span><br></pre></td></tr></table></figure>
-
-<p>对于每个可被 <code>Proxy</code> 捕获的内部方法，在 <code>Reflect</code> 中都有一个对应的方法，其名称和参数与 <code>Proxy</code> 捕捉器相同。</p>
-<p>所以，我们可以使用 <code>Reflect</code> 来将操作转发给原始对象。</p>
-<h3 id="Proxy-的局限"><a href="#Proxy-的局限" class="headerlink" title="Proxy 的局限"></a><code>Proxy</code> 的局限</h3><p>许多内建对象，例如 <code>Map</code>，<code>Set</code>，<code>Date</code>，<code>Promise</code> 等，都使用了所谓的“内部插槽”。</p>
-<p>它们类似于属性，但仅限于内部使用，仅用于规范目的。例如，<code>Map</code> 将项目（item）存储在 <code>[[MapData]]</code> 中。内建方法可以直接访问它们，而不通过 <code>[[Get]]/[[Set]]</code> 内部方法。所以 <code>Proxy</code> 无法拦截它们。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(map, &#123;</span><br><span class="line">  <span class="keyword">get</span>(target, prop, receiver) &#123;</span><br><span class="line">    <span class="keyword">let</span> value = <span class="built_in">Reflect</span>.get(...arguments);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> value == <span class="string">'function'</span> ? value.bind(target) : value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">proxy.set(<span class="string">'test'</span>, <span class="number">1</span>);</span><br><span class="line">alert(proxy.get(<span class="string">'test'</span>)); <span class="comment">// 1（工作了！）</span></span><br></pre></td></tr></table></figure>
-
-<p>类似的，类的私有属性也是通过内部插槽而不是 <code>get</code> 和 <code>set</code> 方法，采用上面的方法依旧有效</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  #name = "Guest";</span><br><span class="line"></span><br><span class="line">  getName() &#123;</span><br><span class="line">    return this.#name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> user = <span class="keyword">new</span> User();</span><br><span class="line"></span><br><span class="line">user = <span class="keyword">new</span> <span class="built_in">Proxy</span>(user, &#123;</span><br><span class="line">  <span class="keyword">get</span>(target, prop, receiver) &#123;</span><br><span class="line">    <span class="keyword">let</span> value = <span class="built_in">Reflect</span>.get(...arguments);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> value == <span class="string">'function'</span> ? value.bind(target) : value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert(user.getName()); <span class="comment">// Guest</span></span><br></pre></td></tr></table></figure>
-
-
+          <p>关于前端工程师成长，需要两个视角。一是立足标准，系统性总结和整理前端知识，建立自己的认知和方法论；二是放眼团队，从业务和工程角度思考前端团队的价值和发展需要。只有这样做，才能够持续发展，在高速发展的技术和工程浪潮中稳稳立足。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="建立知识架构"><a href="#建立知识架构" class="headerlink" title="建立知识架构"></a>建立知识架构</h3><p>建立具有逻辑性和完备性的知识目录。</p>
+<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20201215101724.jpg" alt="img"></p>
+<h3 id="追本溯源"><a href="#追本溯源" class="headerlink" title="追本溯源"></a>追本溯源</h3>
       
     </div>
 
@@ -319,7 +213,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -385,7 +279,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

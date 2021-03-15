@@ -153,7 +153,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2018/04/02/ReflowAndRedraw/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2018/05/19/JavaScript%20%E6%B7%B1%E6%8B%B7%E8%B4%9D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -167,7 +167,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2018/04/02/ReflowAndRedraw/" class="post-title-link" itemprop="url">Reflow and Redraw</a>
+            <a href="/2018/05/19/JavaScript%20%E6%B7%B1%E6%8B%B7%E8%B4%9D/" class="post-title-link" itemprop="url">JavaScript 中的深拷贝和浅拷贝</a>
         </h2>
 
         <div class="post-meta">
@@ -177,14 +177,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2018-04-02 00:00:00" itemprop="dateCreated datePublished" datetime="2018-04-02T00:00:00+08:00">2018-04-02</time>
+              <time title="创建时间：2018-05-19 00:00:00" itemprop="dateCreated datePublished" datetime="2018-05-19T00:00:00+08:00">2018-05-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-17 13:18:47" itemprop="dateModified" datetime="2019-09-17T13:18:47+08:00">2019-09-17</time>
+                <time title="修改时间：2020-12-22 10:41:37" itemprop="dateModified" datetime="2020-12-22T10:41:37+08:00">2020-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -192,7 +192,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
                 </span>
             </span>
 
@@ -207,89 +207,113 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="回流和重绘以及性能的优化"><a href="#回流和重绘以及性能的优化" class="headerlink" title="回流和重绘以及性能的优化"></a>回流和重绘以及性能的优化</h2><p>在解释回流和重绘的概念之前，我们首先需要知道两个概念：DOM 和 CSSOM。</p>
+          <p>关于深拷贝和浅拷贝的定义：</p>
 <ul>
-<li><p>DOM (Document Object Model) 文档对象模型</p>
-<p>DOM 是 HTML 和 XML 文档的编程接口，它提供了对文档的结构化表述，并使得开发人员能够从程序中访问它，改变文档的结构、样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。</p>
+<li>浅拷贝 - 创建一个新对象，这个对象有着原始对象属性值的一份精确拷贝。如果属性是基本类型，拷贝的就是基本类型的值，如果属性是引用类型，拷贝的就是内存地址 ，所以如果其中一个对象改变了这个地址，就会影响到另一个对象。</li>
+<li>深拷贝 - 将一个对象从内存中完整的拷贝一份出来,从堆内存中开辟一个新的区域存放新对象,且修改新对象不会影响原对象。</li>
+</ul>
+<h2 id="使用-JSON-parse-JSON-stringify-来实现深拷贝"><a href="#使用-JSON-parse-JSON-stringify-来实现深拷贝" class="headerlink" title="使用 JSON.parse(JSON.stringify()) 来实现深拷贝"></a>使用 <code>JSON.parse(JSON.stringify())</code> 来实现深拷贝</h2><p>可以使用 <code>JSON.parse(JSON.stringify(obj))</code> 来实现对目标对象的深拷贝，但是这种方法有很多缺陷：</p>
+<ul>
+<li><p>如果 <code>undefined</code>、<code>Symbol</code> 和 函数是对象的属性值或以<code>Symbo</code>值为键的属性值，拷贝的对象会丢失这些属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> originObj = &#123;</span><br><span class="line">  name: <span class="string">'Trump'</span>,</span><br><span class="line">  age: <span class="number">94</span>,</span><br><span class="line">  phone: <span class="literal">undefined</span>,</span><br><span class="line">  idNo: <span class="built_in">Symbol</span>(<span class="string">'1900'</span>),</span><br><span class="line">  speak: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'I am Trump'</span>),</span><br><span class="line">  [<span class="built_in">Symbol</span>.for(<span class="string">'weight'</span>)]: <span class="number">120</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> copyObj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(originObj));</span><br><span class="line"><span class="built_in">console</span>.log(copyObj); <span class="comment">// &#123; name: 'Trump', age: 94 &#125;</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>CSSOM (CSS Object Model) CSS对象模型</p>
-<p>CSSOM 是一组允许 JavaScript 操作 CSS 的 API，非常类似于 DOM，它允许用户动态的修改 CSS 样式。</p>
+<li><p>无法处理循环引用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> team = &#123;</span><br><span class="line">  teamName: <span class="string">'MAGA'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> originObj = &#123;</span><br><span class="line">  name: <span class="string">'Trump'</span>,</span><br><span class="line">  age: <span class="number">94</span>,</span><br><span class="line">  phone: <span class="literal">undefined</span>,</span><br><span class="line">  idNo: <span class="built_in">Symbol</span>(<span class="string">'1900'</span>),</span><br><span class="line">  speak: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'I am Trump'</span>),</span><br><span class="line">  [<span class="built_in">Symbol</span>.for(<span class="string">'weight'</span>)]: <span class="number">120</span>,</span><br><span class="line">  team,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">team.leader = originObj;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> copyObj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(originObj));</span><br><span class="line"><span class="built_in">console</span>.log(copyObj); <span class="comment">// TypeError: Converting circular structure to JSON</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
 </li>
 </ul>
-<h3 id="DOM-和-CSSOM-构建"><a href="#DOM-和-CSSOM-构建" class="headerlink" title="DOM 和 CSSOM 构建"></a>DOM 和 CSSOM 构建</h3><p>浏览器渲染页面时会构建 DOM 和 CSSOM 树，这个过程可简化如下：</p>
-<ol>
-<li>转换 - 浏览器从磁盘或网络读取 HTML 的原始字节，并按照其指定的编码方式将其解析为字符</li>
-<li>符号化(令牌化) -  浏览器将字符串转换为 HTML 标准规定的各种具有特殊含义和规则的令牌</li>
-<li>词法分析- 将令牌转换为定义了其规则和属性的对象</li>
-<li>DOM构建 - HTML 标记定义了不同的标记之间的关系，根据标签创建的对象在结构树中根据由原始标记定义的父子关系相互连接。</li>
-</ol>
-<p>整个过程最后形成一个文档对象结构模型，即 DOM。CSSOM 的构建与 DOM 的构建非常类似，不再重复。</p>
-<h3 id="渲染树的构建"><a href="#渲染树的构建" class="headerlink" title="渲染树的构建"></a>渲染树的构建</h3><p>最后 CSSOM 和 DOM 会结合形成渲染树。渲染树用来计算每个可见元素的布局，并在绘制到屏幕的过程中作为输出，简化后的过程如下：</p>
-<ol>
-<li>从 DOM 树的根节点开始，遍历每个可见的节点<ul>
-<li>有些节点是不可见的（比如 <code>&lt;script&gt;</code> 标签、<code>&lt;meta&gt;</code> 标签 等），这些节点会被忽略， 因为它们并不影响渲染的输出</li>
-<li>一些节点通过 CSS 被隐藏了，它们也会被忽略</li>
-</ul>
-</li>
-<li>为每一个可见的节点找到匹配的 CSSOM 规则并在节点上应用这些规则</li>
-<li>将节点连同内容和计算好的样式发送出去</li>
-</ol>
-<p>渲染树构建完成后，即进入 “布局” 阶段。</p>
-<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><p>在渲染树中我们已经计算好了哪个节点应该被显示和它们的计算样式，但是对于它们在设备的视口中的精确位置和大小还没有进行计算，对其进行计算就是 ”布局“，也被称为 <strong>回流</strong>。</p>
-<p>为了计算页面中每个对象的精确位置和大小，浏览器从渲染树的根节点开始遍历。</p>
-<p>布局过程的输出是一个“盒子模型”，它精确地捕获视口中每个元素的确切位置和大小：所有相对测量值都转换为屏幕上的绝对像素。</p>
-<h3 id="绘制"><a href="#绘制" class="headerlink" title="绘制"></a>绘制</h3><p>布局完成后，我们已经知道了节点的可见性、计算样式和几何结构，浏览器将会把渲染树中的每个节点转换为屏幕上的实际像素。这个步骤通常被称为 ”绘制“ 或 ”栅格化“；</p>
-<p>由于浏览器需要进行大量的工作进行绘制，这个阶段可能会花费一些时间。</p>
-<h3 id="回流"><a href="#回流" class="headerlink" title="回流"></a>回流</h3><p>当渲染树中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程称为回流。</p>
-<p>可能会引起回流的操作如下</p>
-<ul>
-<li>页面首次渲染</li>
-<li>浏览器窗口大小发生改变</li>
-<li>元素尺寸或位置发生改变</li>
-<li>元素内容发生改变</li>
-<li>元素字体大小发生变化</li>
-<li>添加或删除可见的 DOM 元素</li>
-<li>激活 CSS 伪类</li>
-<li>查询某些属性或调用某些方法</li>
-</ul>
-<p>常用且可能导致回流的属性和方法</p>
-<ul>
-<li><code>clientWidth</code> , <code>clientHeight</code>, <code>clientTop</code>, <code>clientLeft</code></li>
-<li><code>offsetWidth</code>, <code>offsetHeight</code>, <code>offsetTop</code>, <code>offsetLeft</code></li>
-<li><code>scrollWidth</code>, <code>scrollHeight</code>, <code>scrollTop</code>, <code>scrollLeft</code></li>
-<li><code>scrollIntoView()</code>, <code>scrollIntoViewIfNeeded()</code></li>
-<li><code>getComputedStyle()</code></li>
-<li><code>getBoundingClientReact()</code></li>
-<li><code>scrollTo()</code></li>
-</ul>
-<h3 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h3><p>当页面中元素样式的改变并不影响它在文档流中的位置时（例如：<code>color</code>、<code>background-color</code>、<code>visibility</code>等），浏览器会将新样式赋予给元素并重新绘制它，这个过程称为重绘。</p>
-<h3 id="性能影响"><a href="#性能影响" class="headerlink" title="性能影响"></a>性能影响</h3><p>回流比重绘的代价要高的多。有时候仅仅回流一个单一的元素，它的父元素及任何与它相关的元素都会产生回流。</p>
-<p>浏览器会对频繁的回流或重绘操作进行优化：</p>
-<p>浏览器会维护一个队列，把所有引起回流和重绘的操作放入队列中，如果队列中的任务数量或者时间间隔达到一个阈值的时候，浏览器就会将队列清空，进行一次批处理，这样可以把多次回流和重绘变成一次。</p>
-<p>当你访问下列属性是，浏览器会立刻清空队列：</p>
-<ul>
-<li><code>clientWidth</code> , <code>clientHeight</code>, <code>clientTop</code>, <code>clientLeft</code></li>
-<li><code>offsetWidth</code>, <code>offsetHeight</code>, <code>offsetTop</code>, <code>offsetLeft</code></li>
-<li><code>scrollWidth</code>, <code>scrollHeight</code>, <code>scrollTop</code>, <code>scrollLeft</code></li>
-<li><code>width</code>, <code>height</code></li>
-<li><code>getComputedStyle()</code></li>
-<li><code>getBoundingClientRect()</code></li>
-</ul>
-<p>因为队列中可能会有影响到这些属性或方法返回值的操作，即使你希望获取的信息与队列中操作引发的改变无关，浏览器也会强行清空队列，确保你拿到的值是最精确的。</p>
-<h3 id="如何避免回流"><a href="#如何避免回流" class="headerlink" title="如何避免回流"></a>如何避免回流</h3><h4 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h4><ul>
-<li>避免使用<code>table</code>布局。</li>
-<li>尽可能在<code>DOM</code>树的最末端改变<code>class</code>。</li>
-<li>避免设置多层内联样式。</li>
-<li>将动画效果应用到<code>position</code>属性为<code>absolute</code>或<code>fixed</code>的元素上。</li>
-<li>避免使用<code>CSS</code>表达式（例如：<code>calc()</code>）。</li>
-</ul>
-<h4 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h4><ul>
-<li>避免频繁操作样式，最好一次性重写<code>style</code>属性，或者将样式列表定义为<code>class</code>并一次性更改<code>class</code>属性。</li>
-<li>避免频繁操作<code>DOM</code>，创建一个<code>documentFragment</code>，在它上面应用所有<code>DOM操作</code>，最后再把它添加到文档中。</li>
-<li>也可以先为元素设置<code>display: none</code>，操作结束后再把它显示出来。因为在<code>display</code>属性为<code>none</code>的元素上进行的<code>DOM</code>操作不会引发回流和重绘。</li>
-<li>避免频繁读取会引发回流/重绘的属性，如果确实需要多次使用，就用一个变量缓存起来。</li>
-<li>对具有复杂动画的元素使用绝对定位，使它脱离文档流，否则会引起父元素及后续元素频繁回流。</li>
-</ul>
+<h2 id="一个比较全面的深拷贝实现"><a href="#一个比较全面的深拷贝实现" class="headerlink" title="一个比较全面的深拷贝实现"></a>一个比较全面的深拷贝实现</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> TYPE_OBJECT = <span class="string">'[object Object]'</span>;</span><br><span class="line"><span class="keyword">const</span> TYPE_MAP = <span class="string">'[object Map]'</span>;</span><br><span class="line"><span class="keyword">const</span> TYPE_SET = <span class="string">'[object Set]'</span>;</span><br><span class="line"><span class="keyword">const</span> TYPE_ARRAY = <span class="string">'[object Array]'</span>;</span><br><span class="line"><span class="keyword">const</span> TYPE_ARGUMENTS = <span class="string">'[object Arguments]'</span>;</span><br><span class="line"><span class="keyword">const</span> TYPE_BOOLEAN = <span class="string">'[object Boolean]'</span>;</span><br><span class="line"><span class="keyword">const</span> TYPE_DATE = <span class="string">'[object Date]'</span>;</span><br><span class="line"><span class="keyword">const</span> TYPE_NUMBER = <span class="string">'[object Number]'</span>;</span><br><span class="line"><span class="keyword">const</span> TYPE_STRING = <span class="string">'[object String]'</span>;</span><br><span class="line"><span class="keyword">const</span> TYPE_SYMBOL = <span class="string">'[object Symbol]'</span>;</span><br><span class="line"><span class="keyword">const</span> TYPE_ERROR = <span class="string">'[object Error]'</span>;</span><br><span class="line"><span class="keyword">const</span> TYPE_REGEXP = <span class="string">'[object RegExp]'</span>;</span><br><span class="line"><span class="keyword">const</span> TYPE_FUNCTION = <span class="string">'[object Function]'</span>;</span><br><span class="line"><span class="keyword">const</span> TYPE_UNDEFINED = <span class="string">'[object Undefined]'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> forEach = <span class="function">(<span class="params">array, iterator</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> index = <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">let</span> length = array.length;</span><br><span class="line">  <span class="keyword">while</span>(++index &lt; length) &#123;</span><br><span class="line">    iterator(array[index], index);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isObj = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> type = <span class="keyword">typeof</span> value;</span><br><span class="line">  <span class="keyword">return</span> value !== <span class="literal">null</span> &amp;&amp; (type === <span class="string">'object'</span> || type === <span class="string">'function'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getType = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> canCopyTags = [TYPE_OBJECT, TYPE_ARRAY, TYPE_MAP, TYPE_SET, TYPE_ARGUMENTS];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getInit = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> ctor = value.constructor;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> ctor();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> copyReg = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> regFlags = <span class="regexp">/\w*$/</span>;</span><br><span class="line">  <span class="keyword">const</span> newReg = <span class="keyword">new</span> value.constructor(value.source, regFlags.exec(value));</span><br><span class="line">  newReg.lastIndex = value.lastIndex;</span><br><span class="line">  <span class="keyword">return</span> newReg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> copySymbol = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>(<span class="built_in">Symbol</span>.prototype.valueOf.call(value));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> copyFunction = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> bodyReg = <span class="regexp">/(?&lt;=&#123;)(.|\n)+(?=&#125;)/m</span>;</span><br><span class="line">  <span class="keyword">const</span> paramReg = <span class="regexp">/(?&lt;=\().+(?=\)\s+&#123;)/</span>;</span><br><span class="line">  <span class="keyword">if</span> (value.prototype) &#123;</span><br><span class="line">    <span class="keyword">const</span> body = bodyReg.exec(value.toString());</span><br><span class="line">    <span class="keyword">const</span> param = paramReg.exec(value.toString());</span><br><span class="line">    <span class="keyword">if</span> (body) &#123;</span><br><span class="line">      <span class="keyword">if</span> (param) &#123;</span><br><span class="line">        <span class="keyword">const</span> paramArr = param[<span class="number">0</span>].split(<span class="string">','</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Function</span>(...paramArr, body[<span class="number">0</span>]);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Function</span>(body[<span class="number">0</span>]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">eval</span>(value.toString());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> copyOther = <span class="function">(<span class="params">value, type</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> ctor = value.constructor;</span><br><span class="line">  <span class="keyword">switch</span>(type) &#123;</span><br><span class="line">    <span class="keyword">case</span> TYPE_BOOLEAN:</span><br><span class="line">    <span class="keyword">case</span> TYPE_NUMBER:</span><br><span class="line">    <span class="keyword">case</span> TYPE_STRING:</span><br><span class="line">    <span class="keyword">case</span> TYPE_ERROR:</span><br><span class="line">    <span class="keyword">case</span> TYPE_DATE:</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> ctor(value);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> TYPE_REGEXP:</span><br><span class="line">      <span class="keyword">return</span> copyReg(value);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> TYPE_SYMBOL:</span><br><span class="line">      <span class="keyword">return</span> copySymbol(value);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> TYPE_FUNCTION:</span><br><span class="line">      <span class="keyword">return</span> copyFunction(value);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> copy = <span class="function">(<span class="params">origin, relationMap = <span class="keyword">new</span> <span class="built_in">WeakMap</span>(</span>)) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!isObj(origin)) <span class="keyword">return</span> origin;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> type = getType(origin);</span><br><span class="line">  <span class="keyword">let</span> target;</span><br><span class="line">  <span class="keyword">if</span> (canCopyTags.includes(type)) &#123;</span><br><span class="line">    target = getInit(origin);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> copyOther(origin, type);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (relationMap.get(origin)) <span class="keyword">return</span> relationMap.get(origin);</span><br><span class="line">  relationMap.set(origin, target);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (type === TYPE_SET) &#123;</span><br><span class="line">    origin.forEach(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">      target.add(copy(value));</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> target;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (type === TYPE_MAP) &#123;</span><br><span class="line">    origin.forEach(<span class="function">(<span class="params">value, key</span>) =&gt;</span> &#123;</span><br><span class="line">      target.set(key, copy(value));</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> target;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> keys = type === TYPE_ARRAY ? <span class="literal">undefined</span> : <span class="built_in">Object</span>.keys(origin);</span><br><span class="line">  forEach(keys || origin, (value, key) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (keys) &#123;</span><br><span class="line">      key = value;</span><br><span class="line">    &#125;</span><br><span class="line">    target[key] = copy(origin[key], relationMap);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> target;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> originObj = &#123;</span><br><span class="line">  name: <span class="string">'Trump'</span>,</span><br><span class="line">  age: <span class="number">94</span>,</span><br><span class="line">  phone: <span class="literal">undefined</span>,</span><br><span class="line">  idNo: <span class="built_in">Symbol</span>(<span class="string">'1900'</span>),</span><br><span class="line">  speak: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'I am Trump'</span>),</span><br><span class="line">  [<span class="built_in">Symbol</span>.for(<span class="string">'weight'</span>)]: <span class="number">120</span>,</span><br><span class="line">  team: &#123;</span><br><span class="line">    leader: <span class="string">'Ywank'</span>,</span><br><span class="line">    office: &#123;</span><br><span class="line">      address: <span class="string">'white house'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  employee: [</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'pense'</span>, &#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'fox'</span>, &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">originObj.president = originObj;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(copy(<span class="number">1</span>)); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(copy(<span class="literal">undefined</span>)); <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(copy(<span class="regexp">/\d/</span>)); <span class="comment">// /\d/</span></span><br><span class="line"><span class="built_in">console</span>.log(copy(<span class="keyword">new</span> <span class="built_in">Date</span>())); <span class="comment">// 2018-05-16T08:06:45.361Z</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> someFun = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(num1 + num2);</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> copyFun = copy(someFun);</span><br><span class="line"><span class="built_in">console</span>.log(copyFun(<span class="number">1</span>, <span class="number">3</span>)); <span class="comment">// 4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> someSet = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line">someSet.add(<span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(copy(someSet)); <span class="comment">// Set(1) &#123; 1 &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> copyObj = copy(originObj);</span><br><span class="line"><span class="built_in">console</span>.log(originObj);</span><br><span class="line"><span class="built_in">console</span>.log(copyObj);</span><br><span class="line">copyObj.speak(); <span class="comment">// I am Trump</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="为什么使用-while-实现遍历"><a href="#为什么使用-while-实现遍历" class="headerlink" title="为什么使用 while 实现遍历"></a>为什么使用 <code>while</code> 实现遍历</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ARRAY_SIZE = <span class="number">10000000</span>;</span><br><span class="line"><span class="keyword">const</span> LARGE_ARRY = <span class="keyword">new</span> <span class="built_in">Array</span>(ARRAY_SIZE).fill(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// for...in</span></span><br><span class="line"><span class="keyword">let</span> forInCopy = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">'FOR_IN'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> LARGE_ARRY) &#123;</span><br><span class="line">  forInCopy += LARGE_ARRY[key];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'FOR_IN'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// for</span></span><br><span class="line"><span class="keyword">let</span> forCopy = <span class="number">0</span></span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">'FOR'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index = <span class="number">0</span>; index &lt; LARGE_ARRY.length; index += <span class="number">1</span>) &#123;</span><br><span class="line">  forCopy += LARGE_ARRY[index];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'FOR'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// while</span></span><br><span class="line"><span class="keyword">let</span> whileCopy = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">'WHILE'</span>);</span><br><span class="line"><span class="keyword">while</span>(index &lt; ARRAY_SIZE) &#123;</span><br><span class="line">  whileCopy += LARGE_ARRY[index];</span><br><span class="line">  index += <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'WHILE'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// forEach</span></span><br><span class="line"><span class="keyword">let</span> forEachCopy = <span class="number">0</span></span><br><span class="line"><span class="built_in">console</span>.time(<span class="string">'FOR_EACH'</span>);</span><br><span class="line">LARGE_ARRY.forEach(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">  forEachCopy += value;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'FOR_EACH'</span>);</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>遍历方式</th>
+<th><code>for...in</code></th>
+<th><code>for</code></th>
+<th><code>forEach</code></th>
+<th><code>while</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100</td>
+<td>0.103ms</td>
+<td>0.012ms</td>
+<td>0.027ms</td>
+<td>0.007ms</td>
+</tr>
+<tr>
+<td>10</td>
+<td>0.088ms</td>
+<td>0.005ms</td>
+<td>0.022ms</td>
+<td>0.003ms</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>0.313ms</td>
+<td>0.036ms</td>
+<td>0.052ms</td>
+<td>0.028ms</td>
+</tr>
+<tr>
+<td>10000</td>
+<td>1.332ms</td>
+<td>0.299ms</td>
+<td>0.316ms</td>
+<td>0.252ms</td>
+</tr>
+<tr>
+<td>100000</td>
+<td>14.167ms</td>
+<td>1.691ms</td>
+<td>1.977ms</td>
+<td>1.428ms</td>
+</tr>
+<tr>
+<td>1000000</td>
+<td>140.967ms</td>
+<td>2.928ms</td>
+<td>14.94ms</td>
+<td>3.012ms</td>
+</tr>
+<tr>
+<td>10000000</td>
+<td>2.748s</td>
+<td>13.197ms</td>
+<td>141.273ms</td>
+<td>15.944ms</td>
+</tr>
+<tr>
+<td>20000000</td>
+<td>7.824s</td>
+<td>22.389ms</td>
+<td>254.557ms</td>
+<td>28.07ms</td>
+</tr>
+<tr>
+<td>30000000</td>
+<td>17.107s</td>
+<td>33.414ms</td>
+<td>375.766ms</td>
+<td>44.301ms</td>
+</tr>
+</tbody></table>
+<p>综合来看，在百万量级的数据下，使用 <code>while</code> 进行遍历所耗费的时间最少。</p>
+<h3 id="判断引用类型"><a href="#判断引用类型" class="headerlink" title="判断引用类型"></a>判断引用类型</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isObj = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> type = <span class="keyword">typeof</span> value;</span><br><span class="line">  <span class="keyword">return</span> value !== <span class="literal">null</span> &amp;&amp; (type === <span class="string">'object'</span> || type === <span class="string">'function'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="获取数据类型"><a href="#获取数据类型" class="headerlink" title="获取数据类型"></a>获取数据类型</h3><p>每一个引用类型都有<code>toString</code>方法，默认情况下，<code>toString()</code>方法被每个<code>Object</code>对象继承。如果此方法在自定义对象中未被覆盖，t<code>oString()</code> 返回 <code>&quot;[object type]&quot;</code>，其中type是对象的类型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getType = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -308,7 +332,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -374,7 +398,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
