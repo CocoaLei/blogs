@@ -153,7 +153,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/04/10/html-css-summary-advanced/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2017/05/17/javascript-advanced-variable-scope/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -167,7 +167,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2016/04/10/html-css-summary-advanced/" class="post-title-link" itemprop="url">HTML5 概览进阶篇</a>
+            <a href="/2017/05/17/javascript-advanced-variable-scope/" class="post-title-link" itemprop="url">JavaScript 高级程序设计 - 变量、作用域和内存问题</a>
         </h2>
 
         <div class="post-meta">
@@ -177,14 +177,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-04-10 00:00:00" itemprop="dateCreated datePublished" datetime="2016-04-10T00:00:00+08:00">2016-04-10</time>
+              <time title="创建时间：2017-05-17 00:00:00" itemprop="dateCreated datePublished" datetime="2017-05-17T00:00:00+08:00">2017-05-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-23 14:58:20" itemprop="dateModified" datetime="2020-11-23T14:58:20+08:00">2020-11-23</time>
+                <time title="修改时间：2020-12-02 09:40:35" itemprop="dateModified" datetime="2020-12-02T09:40:35+08:00">2020-12-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -192,7 +192,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
                 </span>
             </span>
 
@@ -207,105 +207,62 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="构建响应式网站"><a href="#构建响应式网站" class="headerlink" title="构建响应式网站"></a>构建响应式网站</h1><p>响应式网站设计(Responsive Web design)的理念是：页面的设计与开发应当根据用户行为以及设备环境(系统平台、屏幕尺寸、屏幕定向等)进行相应的响应和调整。具体的实践方式由多方面组成，包括弹性网格和布局、图片、CSS media query 的使用等。无论用户正在使用笔记本还是iPad，我们的页面都应该能够自动切换分辨率、图片尺寸及相关脚本功能等，以适应不同设备；换句话说，页面应该有能力去自动响应用户的设备环境。响应式网页设计就是一个网站能够兼容多个终端——而不是为每个终端做一个特定的版本。这样，我们就可以不必为不断到来的新设备做专门的版本设计和开发了。</p>
-<h2 id="可伸缩的图像"><a href="#可伸缩的图像" class="headerlink" title="可伸缩的图像"></a>可伸缩的图像</h2><p>默认情况下， 图像显示的尺寸是 HTML 中指定的 width 和 height 属性值。如果不指定这些属性值，图像就会自动按照其原始尺寸显示。此外，你还可以通过 CSS 以像素为单位设置 width 和 height。 </p>
-<p>显然，当屏幕宽度有限的时候，按原始尺寸显示图像就不一定合适了。使用可伸缩图像技术就可以让图像在可用空间内缩放，但不会超过其本来的宽度。可用空间是由包含图像的元素决定的，它们根据包含它们的元素的尺寸按比例缩放。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.photo-full</span> &#123;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="基本类型和引用类型"><a href="#基本类型和引用类型" class="headerlink" title="基本类型和引用类型"></a>基本类型和引用类型</h2><p>ECMAScript 变量可能包含两种不同数据类型的值 ：基本类型值和引用类型值。基本类型值指的是简单的数据段，而引用数据类型指那些可能由多个值构成的对象。</p>
+<p>在将一个值赋值给变量时，解析器必须确定这个值时基本数据类型还是引用类型值。基本类型的值是按值访问的，因为可以操作保存在变量中的实际的值。</p>
+<p>引用类型的值时保存在内存中的对象，JavaScript 不允许直接访问内存中的位置，即不能直接操作对象的内存空间。在操作对象时，实际上是操作对象的引用而不是实际的对象（当复制保存着对象的某个变量时，操作的是对象的引用；但在为对象添加属性时，操作的是实际的对象）。</p>
+<blockquote>
+<p>在很多其它语言中，字符串以对象的形式来表示，因此被认为是引用类型的。</p>
+</blockquote>
+<h3 id="动态的属性"><a href="#动态的属性" class="headerlink" title="动态的属性"></a>动态的属性</h3><p>对于引用类型的值，我们可以为其添加属性和方法，也可以改变和删除属性和方法 ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aObject = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">aObject.name = <span class="string">"ObjectName"</span>;</span><br></pre></td></tr></table></figure>
 
-<p>图像缩放的可用空间是由其父元素建立的内容区域。如果父元素有水平方向上的内边距，可用空间就会相应减小。 </p>
-<p>可以使用 background-size 属性对背景图像进行缩放(对 IE8 无效)。 </p>
-<h2 id="弹性布局"><a href="#弹性布局" class="headerlink" title="弹性布局"></a>弹性布局</h2><p>拥有定宽容器的网页对响应式页面来说并不合适，我们希望页面能进行缩放，并正好适应浏览器视觉区域大小，流式布局就可以做到这一点。</p>
-<p>创建弹性布局需要使用百分数宽度，并将它们应用于页面里的主要区域。</p>
-<p>元素的百分数宽度基于其父元素提供的可用空间。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.div-flex</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">60%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>还可以对元素设置基于百分数的 margin 和 padding 值。 </p>
-<h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><p>媒体查询增强了媒体类型方法，允许根据特定的设备特性定位样式。 要调整网站的呈现样式，让其适应不同的屏幕尺寸，采用媒体查询特别方便。下面列出了可以包含在媒体查询里的媒体特性 ：</p>
+
+<h3 id="复制变量值"><a href="#复制变量值" class="headerlink" title="复制变量值"></a>复制变量值</h3><p>除了保存的方式不同之外，在从一个变量向另一个变量复制基本类型值和引用类型值时，也存在不同。</p>
+<p>如果从一个变量向另一个变量复制基本类型值，会在变量对象上创建一个新值，然后把该值复制到为新变量分配的位置上。</p>
+<p>当从一个变量向另一个变量复制引用类型值时，同样也会将存储在变量对象的值复制一份放到为新变量分配的空间中。不同的是，这个值的副本实际上是一个指针，而这个指针指向存储在堆中的一个对象。复制操作结束后，两个变量实际上将引用同一个对象。</p>
+<h3 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h3><p>ECMAScript 中函数的参数都是按值传递的。基本类型值得传递如同基本类型变量的复制一样，而引用类型值得传递，则如同引用类型变量的复制一样。</p>
+<p>在向参数传递基本类型的值时，被传递的值会被复制给一个局部变量（即命名参数）。在向参数传递引用类型的值时，会把这个值在内存中的地址复制给一个局部变量，因此这个局部变量的变化会反映在函数的外部。</p>
+<h3 id="检测类型"><a href="#检测类型" class="headerlink" title="检测类型"></a>检测类型</h3><p>基本类型检测的最佳工具是 <code>typeof</code> 操作符。但在检测引用类型的值时，这个操作符的用处不大，我们并不是想知道某个值是对象，而是想知道它是什么类型的对象。</p>
+<p>使用 <code>instanceof</code> 操作符来确定实例是否是给定的引用类型 ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = variable <span class="keyword">instanceof</span> <span class="keyword">constructor</span></span><br></pre></td></tr></table></figure>
+
+<p>所有引用类型的值都是 <code>Object</code> 的实例。因此，在检测一个引用类型值和 <code>Object</code> 构造函数时，<code>instanceof</code> 操作符始终会返回 <code>true</code> 。当然，如果使用 <code>instanceof</code> 操作符检测基本类型的值，则该操作符始终会返回 <code>false</code> , 因为基本类型不是对象。</p>
+<h2 id="执行环境及作用域"><a href="#执行环境及作用域" class="headerlink" title="执行环境及作用域"></a>执行环境及作用域</h2><p>执行环境是 JavaScript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其它数据，决定了它们各自的行为。每个执行环境都有一个与之关联的<strong>变量对象</strong>，环境中定义的所有变量和函数都保存在这个对象中。</p>
+<p>全局执行环境是最外围的一个执行环境。根据 ECMAScript 实现所在的宿主环境不同，表示执行环境的对象也不一样。在 Web 浏览器中，全局执行环境被认为是 <code>window</code> 对象。</p>
+<p>某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出时，才会被销毁）。</p>
+<p>每个函数都有自己的执行环境。当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
+<p>当代码在一个环境中执行时，会创建变量对象的一个作用域链。作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行代码所在环境的变量对象。如果这个环境是函数，则将其活动对象作为变量对象。活动对象在最开始时只包含一个变量，即 <code>arguments</code> 对象。作用域链中的下一个变量对象来自包含环境，而再下一个变量对象则来自下一个包含环境。这样，一直延续到全局执行环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。</p>
+<p>标识符解析是沿着作用域链一级一级地搜索标识符的过程。搜索过程始终从作用域链的前端开始，然后逐级地向后回溯，直到找到标识符为止（如果找不到标识符，通常会导致错误发生）。</p>
+<h4 id="延长作用域链"><a href="#延长作用域链" class="headerlink" title="延长作用域链"></a>延长作用域链</h4><p>虽然执行环境的类型总共只有两种 ：全局和局部，但是还有其它办法来延长作用域链。这是因为有些语句可以在作用域链的前端临时增加一个变量对象，该变量对象会在代码执行后被移除。</p>
+<p>在两种情况下会发生这种现象 ：</p>
 <ul>
-<li>width/height/device-width/device-height</li>
-<li>orientation/aspect-ratio/device-aspect-ratio</li>
-<li>color/color-index/monochrome</li>
-<li>resolution/scan/grid</li>
-<li>-wbkit-device-pixel-ration/-moz-device-pixel-ration</li>
+<li><code>try-catch</code> 语句的 <code>catch</code> 块</li>
+<li><code>with</code> 语句</li>
 </ul>
-<p>除了 orientation/scan/grid 以外，上述属性均可添加 min- 和 max- 前缀。</p>
-<ul>
-<li><p>指向外部样式表的链接</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"logic type and (feature: value)"</span> <span class="attr">href</span>=<span class="string">"stylesheet.css"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>关于样式表中的媒体查询</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// logic 取值为 only 或 not 或 and</span><br><span class="line">// type 媒体类型</span><br><span class="line">// feature 预定义的媒体特性</span><br><span class="line"><span class="keyword">@media</span> logic type (<span class="attribute">feature:</span> value) &#123;</span><br><span class="line">    <span class="comment">/* 目标 CSS 样式规则写在这里 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这两个语句都会在作用域链的前端添加一个变量对象。对 <code>with</code> 语句来或，会将指定的对象添加到作用域链中。对于 <code>catch</code> 语句来说，会创建一个新的变量对象，其中包含的是被抛出的错误对象的声明。</p>
+<h4 id="没有块级作用域"><a href="#没有块级作用域" class="headerlink" title="没有块级作用域"></a>没有块级作用域</h4><p>JavaScript 没有块级作用域经常会导致理解上的困惑。在其它类 C 语言中，由花括号封闭起来的代码块都有自己的作用域，因而支持根据条件来定义变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> color = <span class="string">"red"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(color);	<span class="comment">// red</span></span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<p>下面是一个例子</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 仅当媒体类型为 screen 且视觉区域最小宽度为 480px 时加载并使用</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"only screen and (min-width: 480px)"</span> <span class="attr">href</span>=<span class="string">"style-480.css"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以使用 and 将多个特性和值的组合串接起来，还可以创建一系列媒体查询（使用逗号分隔每个媒体查询）。在用逗号分隔的媒体查询列表中，如果有一个媒体查询为真，则整个媒体查询列表为真。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"only screen and (min-width: 480px) and (max-width: 767px)"</span> <span class="attr">href</span>=<span class="string">"style.css"</span> /&gt;</span></span><br><span class="line">//</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"only print and (color)"</span> <span class="attr">href</span>=<span class="string">"color-page.css"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>通过媒体查询，可以根据设备的媒体属性应用不同的样式。尽管媒体查询包含了很多功能，但其中 min-width 和 max-width 是创建响应式网页时用的最多的。 </p>
-<p>有时你可能希望为高像素密度设备设定样式。一种常见的用例是为这样的显示屏准备双倍尺寸(2x)的 sprite，从而让图像显得更锋利。</p>
-<p>假设你的 sprite 的原始尺寸是 200 像素 ×150 像素，其中每个图像都用 1 像素分隔。创建一个双倍大小的版本(400 像素 ×300 像素)，每个图像之间就有 2 像素的间隔。同时， sprite 中的每个图像都是原始尺寸的 2 倍。针对高像素密度设备，可以使用下面的媒体查询:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">-o-min-device-pixel-ratio:</span> <span class="number">5</span>/<span class="number">4</span>),</span><br><span class="line">    (<span class="attribute">-webkit-min-device-pixel-ratio:</span><span class="number">1.25</span>),</span><br><span class="line">    (<span class="attribute">min-resolution:</span> <span class="number">120dpi</span>) &#123;</span><br><span class="line">        <span class="selector-class">.class</span> &#123;</span><br><span class="line">            ···</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要注意， 就是 Internet Explorer 8 及以下的版本不支持媒体查询。这意味着这些浏览器只会呈现媒体查询以外的样式，即基准样式。 </p>
-<h1 id="使用-CSS3-进行增强"><a href="#使用-CSS3-进行增强" class="headerlink" title="使用 CSS3 进行增强"></a>使用 CSS3 进行增强</h1><p>网站制作者多年来面临的挑战之一就是，使用 CSS 建立丰富布局的选择是有限的。在大多数情况下，要建立丰富的布局，就需要使用额外的 HTML、CSS 及大量图像。这样做的结果就是，页面变得更为复杂，可访问性降低，浏览器需要花费更长的时间下载和显示页面，同时，页面变得更为脆弱，更难维护。</p>
-<p>近年来，浏览器快速吸纳了很多新的 CSS3 属性，让上述情况有了改观。如今，仅使用 CSS 创建圆角、渐变和阴影以及调整透 明度等已经变成现实。结果是网页可以使用更少的标记和图像，这样加载的速度也会变快。 </p>
-<h2 id="渐进增强和-polyfill"><a href="#渐进增强和-polyfill" class="headerlink" title="渐进增强和 polyfill"></a>渐进增强和 polyfill</h2><p><strong>渐进增强</strong>强调创建所有用户都能访问的基本层面内容和功能，同时为更强大的浏览器提供增强的体验。总结来说，就是网站在不同 Web 浏览器中的外观和行为不一样是完全可以接受的，只要内容是可访问的。</p>
-<p>如果你想弥合较弱的浏览器和较强的浏览器之间的差距，可以使用 <strong>polyfill</strong> 。polyfill 通常使用 JavaScript 来实现，它可以为较弱的浏览器提供一定程度的对 HTML5 和 CSS3 的 API 和属性的支持。同时，当浏览器本身就具有相应的能力时，会不动声色地退而使用官方的支持。需要注意的是这样所通常会对性能产生一定的影响，因为较弱的浏览器运行 JavaScript 的速度要慢很多。</p>
-<h2 id="理解厂商前缀"><a href="#理解厂商前缀" class="headerlink" title="理解厂商前缀"></a>理解厂商前缀</h2><p>CSS3 规范要达到 W3C 的推荐标准(即定稿)状态要经过数年。浏览器则通常在 W3C 开发标准的过程中就会提前实现这些特性。这样，标准在最终敲定之前就能知道哪些地方还能进一步改进。</p>
-<p>在包含某个特性的初始阶段，浏览器通常会使用厂商前缀实现这类特性。这样，每个浏览器都可以引入自己的 CSS 属性支持方式，从而可以获取反馈， 而且一旦标准发生改变也不会造成影响。</p>
-<p>每个出浏览器都有自己的前缀：-webkit- (WebKit/Safari/及版本的 Chrome)、-moz- (Firefox)、-ms- (Internet Explorer)、-o-(Opera)。应该将前缀放在 CSS 属性名的前面。</p>
-<p>如今大多数情况下，一般只需要 -webkit 前缀，而且并非所有的 CSS3 属性都需要使用为浏览器准备的前缀。</p>
-<h2 id="为元素创建圆角"><a href="#为元素创建圆角" class="headerlink" title="为元素创建圆角"></a>为元素创建圆角</h2><p>使用 CSS3，可以在不引入额外的标记或图像的情况下，为大多数元素(包括表单元素、 图像，甚至段落文本)创建圆角 。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.all-corners</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-border-radius</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.left-corner</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-border-top-left-radius</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">border-top-left-radius</span>: <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>同 border、margin 和 padding 属性一样，border-radius 属性也有简写方式 ：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.corner</span> &#123;</span><br><span class="line">    border-radius: 10px 20px;	// 左上方、右下方设置为 10px，右上方、左下方设置为 20px</span><br><span class="line">    border-radius: 20px 0 0 	// 左上方设置为 20px ，其它为 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>创建四个相同的圆角</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// r 为圆角半径</span><br><span class="line"><span class="selector-class">.corner</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-border-radius</span>: r;</span><br><span class="line">    <span class="attribute">border-radius</span>: r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>创建一个圆角</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// r 为圆角半径</span><br><span class="line"><span class="selector-class">.corner-top-left</span> &#123;</span><br><span class="line">    <span class="attribute">border-top-left-radius</span>: r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.corner-top-right</span> &#123;</span><br><span class="line">    <span class="attribute">border-top-right-radius</span>: r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.corner-bottom-left</span> &#123;</span><br><span class="line">    <span class="attribute">border-bottom-left-radius</span>: r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.corner-bottom-right</span> &#123;</span><br><span class="line">    <span class="attribute">border-bottom-right-radius</span>: r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>创建椭圆圆角</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// x 为水平方向上的半径大小，y 为垂直方向上的半径大小</span><br><span class="line"><span class="selector-class">.corner-ellipse</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: x/y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>不支持 border-radius 的旧的浏览器仅会以方角呈现元素。</p>
-<h2 id="添加阴影"><a href="#添加阴影" class="headerlink" title="添加阴影"></a>添加阴影</h2><p>使用 text-shadow 为段落、标题等元素中的文本添加动态的阴影效果。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">text-shadow</span>: <span class="selector-tag">x-offset</span> <span class="selector-tag">y-offset</span> <span class="selector-tag">blur-radius</span> <span class="selector-tag">color</span>;</span><br></pre></td></tr></table></figure>
-
-<p>将 text-shadow 改回默认值</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">text-shadow</span>: <span class="selector-tag">none</span>;</span><br></pre></td></tr></table></figure>
-
-<p>使用 box-shadow 属性则可以为元素本身添加阴影 ，同时还允许使用两个可选的属性 inset 和 spread。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">box-shadow</span>: <span class="selector-tag">x-offset</span> <span class="selector-tag">y-offset</span> <span class="selector-tag">blur-radius</span> <span class="selector-tag">inset</span> <span class="selector-tag">spread</span> <span class="selector-tag">color</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="多重背景"><a href="#多重背景" class="headerlink" title="多重背景"></a>多重背景</h2><p>为单个 HTML 元素指定多个背景是 CSS3 引入的一个特性。 通过减少对某些元素的需求并制定多重背景便可简化 HTML 代码，并让它容易理解和维护。而且多重背景几乎可以用于任何元素。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.weather</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#FFF</span>;</span><br><span class="line">    <span class="attribute">background-image</span>:</span><br><span class="line">        <span class="built_in">url</span>(fine.png),<span class="built_in">url</span>(rain.png),</span><br><span class="line">        <span class="built_in">url</span>(cloud.png),<span class="built_in">url</span>(fog.png);</span><br><span class="line">    <span class="attribute">background-positin</span>:</span><br><span class="line">        <span class="number">50%</span> <span class="number">102%</span>,<span class="number">100%</span> -<span class="number">150px</span>,</span><br><span class="line">        <span class="number">0</span> -<span class="number">150px</span>,<span class="number">50%</span> <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background-repeat</span>:</span><br><span class="line">        no-repeat,no-repeat,</span><br><span class="line">        no-repeat,repeat-x;</span><br><span class="line">&#125;</span><br><span class="line">// 或</span><br><span class="line"><span class="selector-class">.weather</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#FFF</span>;</span><br><span class="line">    <span class="attribute">background</span>:</span><br><span class="line">		<span class="built_in">url</span>(fine.png) no-repeat <span class="number">50%</span> <span class="number">102%</span>,</span><br><span class="line">        <span class="built_in">url</span>(rain.png) no-repeat <span class="number">100%</span> -<span class="number">150px</span>,</span><br><span class="line">        <span class="built_in">url</span>(cloud.png) no-repeat <span class="number">0</span> -<span class="number">150px</span>,</span><br><span class="line">        <span class="built_in">url</span>(fog.png) repeat-x <span class="number">50%</span> <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="渐变背景"><a href="#渐变背景" class="headerlink" title="渐变背景"></a>渐变背景</h2><p>渐变背景也是 CSS3 中的新特性，通过它可以在不使用图像的情况下创建从一种颜色到另一种颜色的过渡。</p>
-<p>CSS 渐变是一个背景图像，因此，属性既可以是 background 简记法，也可以是 background-image。应该始终包含一个为旧浏览器准备的基准 background 定义，并放置在渐变背景的定义之前。默认情况下，线性渐变是从上往下渐变的，因此在属性值中不需要指定to bottom。如果要使用相反的方向，则使用to top。 </p>
-<p>使用CSS创建渐变有两种主要的方式:线性渐变和径向渐变，每种方式都有不同的必选参数和可选参数。除非指定一种颜色向另一种颜色过渡的位置，否则浏览器会自行决定不同颜色之间的过渡。</p>
-<p>使用关键字创建对角线方向的渐变：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">linear-gradient</span>(<span class="selector-tag">to</span> <span class="selector-tag">bottom</span> <span class="selector-tag">right</span>,<span class="selector-tag">color</span>,<span class="selector-tag">color</span>);</span><br><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">linear-gradient</span>(<span class="selector-tag">to</span> <span class="selector-tag">bottom</span> <span class="selector-tag">left</span>,<span class="selector-tag">color</span>,<span class="selector-tag">color</span>);</span><br><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">linear-gradient</span>(<span class="selector-tag">to</span> <span class="selector-tag">top</span> <span class="selector-tag">right</span>,<span class="selector-tag">color</span>,<span class="selector-tag">color</span>);</span><br><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">linear-gradient</span>(<span class="selector-tag">to</span> <span class="selector-tag">top</span> <span class="selector-tag">left</span>,<span class="selector-tag">color</span>,<span class="selector-tag">color</span>);</span><br></pre></td></tr></table></figure>
-
-<p>指定渐变角度数</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background</span>: <span class="selector-tag">linear-gradient</span>(90<span class="selector-tag">deg</span>,<span class="selector-tag">color</span>,<span class="selector-tag">color</span>);</span><br></pre></td></tr></table></figure>
-
-<p>数值代表的是圆周上的点的位置:0 代表最顶端的点，90 代表最左边的点，180 代表最底端的点，270 代表最右边的点。 </p>
-<p>根据渐进增强的原则，最好为不支持背景渐变属性的浏览器提供一个备用选项。在 CSS 中，它可以位于背景渐变规则的前面。</p>
-<h2 id="设置不透明度"><a href="#设置不透明度" class="headerlink" title="设置不透明度"></a>设置不透明度</h2><p>使用 opacity 属性可以修改元素(包括图像)的透明度。其默认值为 1，可以使用 0.00 至 1.00 之间的两位小数。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">opacity</span>: <span class="selector-tag">o</span>;</span><br></pre></td></tr></table></figure>
-
-
-
+<p>上面的例子中，在 <code>if</code> 语句中定义了变量 <code>color</code> ，它被添加到当前的执行环境，所以在 <code>if</code> 语句结束后还能够被访问。</p>
+<p>在使用 <code>for</code> 语句时尤其要牢记这一差异 ：由 <code>for</code> 语句创建的循环变量即使 <code>for</code> 循环执行结束后，也依旧会存在于循环外部的执行环境中。</p>
+<h5 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h5><p>使用关键字 <code>var</code> 声明的变量会自动被添加到最接近的环境中。在函数内部，最接近的环境就是函数的局部环境；在 <code>with</code> 语句中，最接近的环境是环境函数。如果初始化变量时没有使用 <code>var</code> 声明，该变量会自动被添加到全局环境。</p>
+<blockquote>
+<p>在编写 JavaScript 代码的过程中，不声明而直接初始化变量是一个常见的错误做法。</p>
+</blockquote>
+<h5 id="查询标识符"><a href="#查询标识符" class="headerlink" title="查询标识符"></a>查询标识符</h5><p>当在某个环境中为了读取或写入而引用一个标识符时，必须通过搜索来确定该标识符实际代表什么。搜索过程从作用域链的前端开始，向上逐级查询与给定名字匹配的标识符。如果在局部环境中找到了该标识符，搜索过程停止，变量就绪。如果在局部环境中没有找到该变量名，则继续沿作用域链向上搜索。搜索过程将一直追溯到全局环境的变量对象。如果在全局环境中也咩有找到这个标识符，则意味着该变量尚未声明。</p>
+<blockquote>
+<p>变量查询也不是没有代价的。很明显，访问局部变量要比访问全局变量更快。</p>
+</blockquote>
+<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><p>JavaScript 具有自动垃圾收集机制，也就是说，执行环境会负责管理代码执行过程中使用的内存。在 JavaScript 中，所需内存的分配和无用内存的回收完全实现了自动管理 ：找出那些不再继续使用的变量，然后释放其占用的内存。为此，垃圾收集器会按照固定的时间间隔，周期性的执行这一操作。</p>
+<p>局部变量只在函数执行的过程中存在。在这个过程中，会为局部变量在栈或堆上分配相应的空间，以便存储它们的值。然后在函数中使用这些变量，直到函数执行结束。此时，局部变量就没有存在的必要了，因此可以释放它们的内存以供将来使用。在这种情况下，很容易判断变量是否还有存在的必要；但并非所有情况下都能这么容易得出结论。垃圾收集器必须跟踪哪个变量有用哪个变量没用，对于不再有用的变量打上标记，以备将来回收其占用的内存。</p>
+<h3 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h3><p>JavaScript 中最常用的垃圾收集方式是<strong>标记清除</strong>。当变量进入环境时，就将这个变量标记为 “进入环境” 。从逻辑上讲，永远不能释放进入环境的变量所占用的内存，因为只要执行流进入相应的环境，就可能会用到它们。而当变量离开环境时，则将其标记为 “离开环境” 。</p>
+<p>标记变量的方式很多，它并不重要，关键在于才去什么策略。</p>
+<p>垃圾收集器在运行的时候回给存储在内存中的所有变量都加上标记。然后，它会去掉环境中的变量以及被环境中的变量引用的变量的标记。而在此之后再被加上标记的变量被视为准备删除的变量，原因是环境中的变量已经无法访问到这些变量了。最后，垃圾收集器完成内存清除工作，销毁那些带标记的值并回收它们所占用的内存空间。</p>
+<h4 id="性能问题"><a href="#性能问题" class="headerlink" title="性能问题"></a>性能问题</h4><p>垃圾收集器是周期性运行的，而且如果为变量分配的内存数量很可观，那么回收工作量也是相当大的。这种情况下，确定垃圾收集的时间间隔是一个非常重要的问题。</p>
+<h4 id="管理内存"><a href="#管理内存" class="headerlink" title="管理内存"></a>管理内存</h4><p>使用具备垃圾收集机制的语言编写程序，开发人员一般不必操心内存管理问题。但是，JavaScript 在进行内存管理及垃圾收集时面临的最主要问题是分配给 Web 浏览器的可用内存数量通常比分配桌面应用程序的少。这样做的目的是防止运行 JavaScript 的网页耗尽全部系统内存而导致系统崩溃。内存限制不仅会影响给变量分配内存，同时还会影响调用栈以及在一个线程中能够同时执行的语句数量。</p>
+<p>因此，确保占用最少的内存可以让页面获得更好的性能。而优化内存占用的最佳方式，就是为执行中的代码只保存必要的数据。一旦数据不再有用，最好通过将其设置为 <code>null</code> 来释放其引用。这一做法适用于大多数全局变量和全局对象的属性。</p>
+<p>解除一个值的应用的真正作用是让值脱离执行环境，以便垃圾收集器下次运行时将其回收。</p>
 
       
     </div>
@@ -324,7 +281,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/34/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><a class="extend next" rel="next" href="/page/36/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -390,13 +347,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

@@ -153,7 +153,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2021/03/12/Postgres%20Select/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2021/08/02/VueRouter%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -167,7 +167,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/03/12/Postgres%20Select/" class="post-title-link" itemprop="url">Postgres Select</a>
+            <a href="/2021/08/02/VueRouter%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">VueRouter 源码解析</a>
         </h2>
 
         <div class="post-meta">
@@ -176,16 +176,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-03-12 13:10:49" itemprop="dateCreated datePublished" datetime="2021-03-12T13:10:49+08:00">2021-03-12</time>
+              <time title="创建时间：2021-08-02 15:23:37 / 修改时间：15:43:54" itemprop="dateCreated datePublished" datetime="2021-08-02T15:23:37+08:00">2021-08-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-15 09:57:51" itemprop="dateModified" datetime="2021-03-15T09:57:51+08:00">2021-03-15</time>
-              </span>
 
           
 
@@ -198,8 +192,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h1><p><code>select</code>/<code>with</code>/<code>table</code> 从一个视图或表检索行。</p>
-<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><h3 id="WITH-子句-公共表达式"><a href="#WITH-子句-公共表达式" class="headerlink" title="WITH 子句(公共表达式)"></a><code>WITH</code> 子句(公共表达式)</h3>
+          <p>在阅读 Vue Router 的源码之前，首先应该了解一下 Web Api 中的 <code>Location</code> 接口。</p>
+<p><code>hash</code> 和 <code>history</code> 模式</p>
+<p><code>hash</code> 模式通过 <code>hashchange</code> 方法监听 <code>location.hash</code> 的改变来实现路由，而 <code>history</code> 模式则通过 <code>popstate</code> 方法监测页面 <code>url</code> 的改变。</p>
+<p>不过需要注意的是 <code>popstate</code> 只能监听由浏览器做出的动作。</p>
+
       
     </div>
 
@@ -217,7 +214,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -283,13 +280,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

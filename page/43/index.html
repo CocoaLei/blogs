@@ -153,7 +153,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/01/04/TCP&IP/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/02/05/iOS-Design-Pattern/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -167,7 +167,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2016/01/04/TCP&IP/" class="post-title-link" itemprop="url">TCP/IP 协议族</a>
+            <a href="/2016/02/05/iOS-Design-Pattern/" class="post-title-link" itemprop="url">iOS 与设计模式</a>
         </h2>
 
         <div class="post-meta">
@@ -177,14 +177,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-01-04 00:00:00" itemprop="dateCreated datePublished" datetime="2016-01-04T00:00:00+08:00">2016-01-04</time>
+              <time title="创建时间：2016-02-05 00:00:00" itemprop="dateCreated datePublished" datetime="2016-02-05T00:00:00+08:00">2016-02-05</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-14 22:21:56" itemprop="dateModified" datetime="2020-07-14T22:21:56+08:00">2020-07-14</time>
+                <time title="修改时间：2019-01-17 11:36:35" itemprop="dateModified" datetime="2019-01-17T11:36:35+08:00">2019-01-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -192,7 +192,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
                 </span>
             </span>
 
@@ -207,102 +207,115 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="TCP-IP-协议族"><a href="#TCP-IP-协议族" class="headerlink" title="TCP/IP 协议族"></a>TCP/IP 协议族</h1><p><code>TCP/IP</code> 协议不是 <code>TCP</code> 和 <code>IP</code> 这两个协议的合称，而是指因特网整个 <code>TCP/IP</code> 协议族。</p>
-<h2 id="参考模型"><a href="#参考模型" class="headerlink" title="参考模型"></a>参考模型</h2><h3 id="TCP-IP-参考模型"><a href="#TCP-IP-参考模型" class="headerlink" title="TCP/IP 参考模型"></a>TCP/IP 参考模型</h3><p><code>TCP/IP</code> 参考模型是首先由 ARPANET 所使用的网络体系结构。这个体系结构在它的两个主要协议出现以后被称为 <code>TCP/IP</code> 参考模型。这一网络协议一般分为四层：</p>
+          <h1 id="iOS-与-设计模式"><a href="#iOS-与-设计模式" class="headerlink" title="iOS 与 设计模式"></a>iOS 与 设计模式</h1><p>设计模式 (Design Pattern) 是一套被反复使用、多数人知晓、经过分类的、代码设计经验的总结。</p>
+<p>我们使用设计模式的目的是为了提高代码可重用性、让代码更容易被理解、保证代码可靠性，使人们可以更加简单方便地复用成功的设计和体系结构。</p>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><h3 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h3><p>开闭原则就是说模块应该对扩展开放，而对修改关闭，即模块应该在尽量不修改原来代码的情况下进行扩展。</p>
+<p>任何软件都需要面临一个很重要的问题，就是需求会随着时间的推移而发生变化。当软件系统需要面对新的需求时，应该尽量保证系统的设计框架是稳定的。如果一个软件符合开闭原则，那么就可以非常方便的对系统进行扩展并无需修改现有代码，使得系统在拥有适应性和灵活性的同时具备较好的稳定性和延续性。</p>
+<p>为了满足开闭原则，需要对系统进行抽象化设计，抽象化是开闭原则的关键。为系统定义一个相对稳定的抽象层，而将不同的实现行为移至具体的实现层中完成。在很多面向对象语言中都提供了接口、抽象类等机制，可以通过它们定义系统的抽象层，再通过具体类来进行扩展。如果要修改系统的行为，无须对抽象层进行任何改动，只需要增加新的具体类来实现新的业务功能即可，这就实现了在不修改已有代码的基础上扩展系统的功能，达到开闭原则的要求。</p>
+<h3 id="里氏代换原则"><a href="#里氏代换原则" class="headerlink" title="里氏代换原则"></a>里氏代换原则</h3><p>里氏代换原则严格表述是这样的 ：如果每一个类型为 S 的对象 o1，都有类型为 T 的对象 o2，使得以 T 定义的所有程序 P 在所有的对象 o1 代换 o2 时，程序的 P 的行为没有变化，那么类型 S 就是 类型 T 的子类型。即所有引用父类的地方必须能透明地使用其子类的对象。</p>
+<p>里氏代换原则是实现开闭原则的重要方式之一，由于使用父类对象的地方都可以使用子类对象，因此在程序中尽量使用父类类型来对对象进行定义，而在运行时再确定其子类类型，用子类对象来替换父类对象。</p>
+<p>里氏代换原则需要注意的问题 ：</p>
 <ul>
-<li><p>网络访问层/链路层，用来处理连接网络的硬件部分。</p>
-</li>
-<li><p>互联网层/网络层用来处理在网络上流动的数据包，是整个体系结构的关键部分，其功能是使主机可以把分组发往任何网络，并使分组独立地传向目标。这些分组可能经过不同的网络，到达的顺序和发送的顺序也可能不同。高层如果需要顺序收发，那就必须自行处理对分组的排序。互联网层使用因特网协议(<code>IP</code>)。</p>
-</li>
-<li><p>传输层为处于网络连接中的计算机之间的通信提供数据传输服务。在这一层定义了两个端到端的协议：传输控制协议(<code>TCP</code>)和用户数据报协议(<code>UDP</code>)。</p>
+<li>子类的所有方法必须在父类中声明，或子类必须实现父类中声明的所有方法。为了保证系统的可扩展性，在程序中通常使用父类来进行定义，如果一个方法只存在子类中，在父类中不提供相应的声明，则无法在以父类定义的对象中使用该方法。</li>
+<li>应该尽量把父类设计成抽象类或接口，让子类继承父类或实现接口，并实现在父类中声明的方法，运行时，子类实例替换父类实例。</li>
+</ul>
+<p>在依照里氏代换原则实现的软件中将一个父类对象替换成它的子类对象，程序将不会产生任何错误和异常，反之则不成立。</p>
+<h3 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h3><p>依赖倒置原则，即抽象应该不依赖于细节，细节应该依赖于抽象，换言之，要针对接口编程，而不是针对实现编程。</p>
+<p>依赖倒置原则要求我们在程序代码中传递参数时或在关联关系中，尽量引用层次高的抽象层类，即使用接口和抽象类进行变量类型声明、参数类型声明、方法返回类型声明，以及数据类型的转换等，而不要用具体类去做这些事情。为了确保该原则的应用，一个具体类应该只实现接口或抽象类中声明过的方法，而不要给出多余的方法。</p>
+<p>在实现依赖倒置原则时，我们需要针对抽象层进行编程，而将具体类的对象通过依赖注入的方法注入到其它对象中，依赖注入是指当一个对象要与其他对象发生依赖关系时，通过抽象来注入所依赖的对象。常用的注入方式包括 ：构造注入、设值注入和接口注入。构造注入是通过构造函数来传入具体类的对象，设值注入是通过 <code>setter</code> 方法来传入具体类的对象，而接口注入是指通过在接口中声明的业务方法来传入具体类的对象。</p>
+<p>在大多数情况下，以上三种设计原则一同出现，开闭原则是目标，里氏代换原则是基础，依赖倒转原则时手段。</p>
+<h3 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h3><p>接口隔离原则，使用多个专门的接口，而不是使用单一的接口，即客户端不应该依赖那些它不需要的接口。每一个接口应该承担相对独立的角色，不干不该干的事情，该干的事情都要干。</p>
+<p>这里的接口往往有两种不同的含义，一种是指一个类型所具有的方特征的集合，仅仅是一种逻辑上的抽象；另外一种是指某种语言的具体的接口定义，有严格的定义和结构。</p>
 <ul>
-<li><p><code>TCP</code> 是面向连接的协议，它提供可靠的报文传输和对上层应用的连接服务。为此，除了基本的数据传输外，它还有可靠性保证、流量控制、多路复用、优先权和安全性控制等功能。</p>
-</li>
-<li><p><code>UDP</code> 是面向无连接的不可靠传输协议，主要用于不需要 <code>TCP</code> 的排序和流量控制等功能的应用程序。</p>
-</li>
+<li>当把接口理解成一个类型所提供的所有方法特征的集合的时候，这就是一种逻辑上的概念，接口的划分将直接带来类型的划分。可以把接口理解成角色，一个接口只能代表一个角色，每个角色都有它特定的一个接口，此时，这个原则可称为角色隔离原则。</li>
+<li>如果把接口理解成狭义的特定语言的接口，那么接口隔离原则是指接口仅仅提供客户端需要的行为，客户端不需要的行为则隐藏，应该为客户端提供尽可能小的单独的接口。在面向对象编程语言中，实现一个接口就需要实现该接口中定义的所有方法，因此大的总接口使用起来不一定很方便，为了使接口的指责单一，需要将大接口中的方法根据其指责不同分别放在不同的小接口中，确保每个接口使用起来都较为方便。接口应该尽量细化，同时接口中的方法应该尽量少。</li>
+</ul>
+<h3 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h3><p>单一职责原则是最简单的面向对象设计原则，它用于控制类的粒度大小，即一个类只负责一个功能领域中的相应职责，或者说 ：就一个类而言，应该只有一个引起它变化的原因。</p>
+<p>单一职责原则是实现高内聚、低耦合的知道方针，它是最简单但又最难运用的原则。</p>
+<h3 id="最少知识法则"><a href="#最少知识法则" class="headerlink" title="最少知识法则"></a>最少知识法则</h3><p>也叫迪米特法则，即一个软件实体应当尽可能少地与其它实体发生相互作用。</p>
+<p>迪米特法则要求我们在设计系统时，应该尽量减少对象之间的交互，如果两个对象之间不必彼此直接通信，那么这两个对象就不应该发生任何直接的相互作用，如果其中的一个对象需要调用另一个对象的某一个方法的话，可以通过第三者转发这个调用。</p>
+<h2 id="iOS-中的设计模式"><a href="#iOS-中的设计模式" class="headerlink" title="iOS 中的设计模式"></a>iOS 中的设计模式</h2><h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p>单例模式是一种常见的设计模式。在它的核心结构中只包含一个被称为单例的特殊类。通过单例模式可以保证系统中，应用该模式的类一个类只有一个实例。</p>
+<p>我们为什么需要单例模式呢？这是因为，对于系统中的某些类来说，只有一个实例很重要。比如如果不使用机制对窗口对象唯一化，将弹出多个窗口，如果这些窗口现实的内容完全一致，则是重复对象，浪费资源。如果这些窗口现实的内容不一致，则意味着某一瞬间系统有多个状态，与实际不符。</p>
+<p>如何保证一个类只有一个实例且这个实例易于被访问呢？一般的解决方法是让类自身负责保存它的唯一实例。这个类可以保证没有其它实例被创建，并且它可以提供一个访问该实例的方法。</p>
+<h4 id="单例模式的优点"><a href="#单例模式的优点" class="headerlink" title="单例模式的优点"></a>单例模式的优点</h4><ul>
+<li>单例模式会阻止其它对象实例化其自己的单例对象的副本，从而确保所有对象都访问唯一实例。</li>
+<li>因为类控制了实例化过程，所以类可以灵活更改实例化过程。</li>
+</ul>
+<h4 id="单例模式的缺点"><a href="#单例模式的缺点" class="headerlink" title="单例模式的缺点"></a>单例模式的缺点</h4><ul>
+<li>虽然数量很少，但是每次对象请求引用时都要检查是否存在类的实例，将仍然需要一些开销。</li>
+<li>可能的开发混淆。</li>
+<li>不能解决删除单个对象的问题。</li>
+</ul>
+<h4 id="单例模式的代码实现"><a href="#单例模式的代码实现" class="headerlink" title="单例模式的代码实现"></a>单例模式的代码实现</h4><p>Objective-C :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+ (Singleton *)sharedInstance &#123;</span><br><span class="line">	static dispatch_once_t onceToken;</span><br><span class="line">    static Singleton *sharedInstance &#x3D; nil;</span><br><span class="line">  	dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">    	sharedInstance	&#x3D;	[[self alloc] init];</span><br><span class="line">  &#125;);</span><br><span class="line">  	return sharedInstance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Swift :</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">let</span> sharedInstance	=	<span class="type">Singleton</span>()</span><br><span class="line">  	<span class="keyword">private</span> <span class="keyword">init</span>()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><p>代理模式也是一种常见的设计模式，为其它对象提供一种代理以控制对这个对象的访问。</p>
+<h5 id="代理模式的优点-："><a href="#代理模式的优点-：" class="headerlink" title="代理模式的优点 ："></a>代理模式的优点 ：</h5><ul>
+<li>真实的角色就是实现实际的业务逻辑，不用关心其它非本职责的事物，通过后期的代理完成一件事物，附带的结果就是编程简洁清晰。</li>
+<li>代理对象在客户端和目标对象之间起到中介作用</li>
+<li>高扩展性</li>
+</ul>
+<p>iOS 中的代理模式通过 <code>@protocol</code> 方式实现，用来传递事件或值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@protocol ObjectDelegate</span><br><span class="line">@required</span><br><span class="line">- (void)requiredImplementDelegateMethod;</span><br><span class="line">@optional</span><br><span class="line">- (void)optionalImplementDelegateMethod;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>一般使用 <code>weak</code> 关键字来修饰代理属性，这是为了便面形成循环引用。</p>
+<h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><p>观察者模式也是 iOS 中常见的设计模式，观察者模式定义了一种一对多的依赖关系，一个或多个观察者对象同时监听某一个对象，当被观察者对象状态发生变化时，会通知所有观察者对象，至于观察者对象如何响应这个通知，则要看具体的实现。</p>
+<p>在 iOS 中，观察者模式的实现具体表现为 ：通知机制 (Notification) 和 KVO 机制 (Kev-Value Observing)</p>
+<h4 id="通知机制"><a href="#通知机制" class="headerlink" title="通知机制"></a>通知机制</h4><p>被观察者达到某些触发条件后，发送通知给它的观察者对象。</p>
+<p>注册通知接收者 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[[NSNotificationCenter defaultCenter] addObserver:self									</span><br><span class="line">										 selector:@selector(respondNotificationMethod)</span><br><span class="line">											 name:@&quot;NotificationName&quot;</span><br><span class="line">										   object:nil];</span><br></pre></td></tr></table></figure>
+
+<p>发布通知  ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[NSNotificationCenter defaultCenter] postNotificationName:@&quot;NotificationName&quot;</span><br><span class="line">													object:nil</span><br><span class="line">												  userInfo:@&#123;&#125;];</span><br></pre></td></tr></table></figure>
+
+<p>在 iOS 9 之后，你不需要在观察者的销毁方法中注销观察者，但是在之前的 iOS 版本中，你必须在销毁方法中注销观察者。</p>
+<h4 id="KVO-机制"><a href="#KVO-机制" class="headerlink" title="KVO 机制"></a>KVO 机制</h4><p>被观察的对象的属性变化时，发送通知给它的观察者对象。</p>
+<p>KVO 机制的观察者对象观察的是对象的属性的变化，只有遵循 KVO 变更属性值的方式才会执行 KVO 的回调部分。</p>
+<p>添加监听者 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[self.aProperty addObserver:self</span><br><span class="line">			     forKeyPath:@&quot;propertyName&quot;,</span><br><span class="line">					options:NSKeyValueObservingOptionNew | NSKeyValueObservingOld</span><br><span class="line">					context:nil];</span><br></pre></td></tr></table></figure>
+
+<p>接收到属性变化通知时的回调 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath</span><br><span class="line">					  ofObject:(id)object</span><br><span class="line">						change:(NSDictionary *)change</span><br><span class="line">					   context:(void *)context &#123;</span><br><span class="line">	&#x2F;&#x2F; execute code					   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>iOS 通过 <code>Runtime</code> 实现 KVO 机制 ：</p>
+<p>假设我们要观察对象 <code>Computer</code> 的 <code>name</code> 属性的变化，运行时 KVO 机制会动态的创建一个名为 <code>NSKVONotifying_Computer</code> 的新类，该类继承自 <code>Computer</code> 对象的本类，且 KVO 机制会重写 <code>NSKVONotifying_Computer</code> 的 <code>name</code> 属性的 <code>setter</code> 方法。这个重写的 <code>setter</code> 方法负责在调用 <code>Computer</code> 的 <code>setter</code> 方法的之前和之后，通知所有观察者 <code>name</code> 属性的更改情况。</p>
+<p>在这个过程中，<code>Computer</code> 的 <code>isa</code> 指针被 KVO 机制修改为指向 <code>NSKVONotifying_Computer</code> 类，来实现当前类属性值改变的监听。</p>
+<p>KVO 机制的键值观察通知依赖于 <code>NSObject</code> 的 <code>willChangeValueForKey:</code> 和 <code>didChangeValueForKey:</code> 两个方法。</p>
+<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><p>工厂模式是常用的实例化对象模式，是用工厂方式代替 <code>new</code> 操作的一种模式。</p>
+<h4 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h4><p>简单工厂模式，又称静态工厂方法模式，是一种创建型模式，是由一个工厂对象决定创建出哪一种产品类的实例。</p>
+<h5 id="简单工厂的优缺点"><a href="#简单工厂的优缺点" class="headerlink" title="简单工厂的优缺点"></a>简单工厂的优缺点</h5><ul>
+<li>优点 ：简单工厂模式能够根据外界给定的信息，决定究竟应该创建哪个具体类的对象。明确区分了各自的指责和权利，有利于整个软件体系结构的优化。</li>
+<li>缺点 ：工厂类集中了所有实例的创建逻辑，包含了过度的判断条件，维护起来不方便。</li>
+</ul>
+<h5 id="简单工厂的实现"><a href="#简单工厂的实现" class="headerlink" title="简单工厂的实现"></a>简单工厂的实现</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSInteger, InstanceType) &#123;</span><br><span class="line">	InstanceType_001	&#x3D;	0,</span><br><span class="line">  	InstanceType_002	&#x3D;	1,</span><br><span class="line">  	...					&#x3D;	...</span><br><span class="line">  	InstanceType_n		&#x3D;	n-1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (id)getInstanceWithParameter:(InstanceType)someType &#123;</span><br><span class="line">	Switch (someType) &#123;</span><br><span class="line">      case : InstanceType_001</span><br><span class="line">        reture [self initInstance_001];</span><br><span class="line">      break;</span><br><span class="line">      ...</span><br><span class="line">      case : InstanceType_n</span><br><span class="line">        reture [self initInstance_n];</span><br><span class="line">      break;</span><br><span class="line">      default :</span><br><span class="line">      break;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (id)initInstance_001 &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">  </span><br><span class="line">- (id)initInstance_n &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h4><p>工厂方法模式，又称多态性工厂模式。在工厂方法模式中，核心的工厂类不再负责所有的产品的创建，而是将具体创建的工作交给子类去做。该核心类成为一个抽象工厂的角色，仅负责给出工厂子类必须实现的接口，而不负责哪一个产品类应当被实例化这种细节。</p>
+<p>工厂方法模式就是简单工厂模式的衍生，解决了许多简单工厂模式的问题。它在基类中建立一个抽象方法，子类可以通过改写这个方法来改变创建对象的具体过程。工厂方法模式让子类来决定如何创建对象，来达到封装的目的。</p>
+<h5 id="工厂方法的优点"><a href="#工厂方法的优点" class="headerlink" title="工厂方法的优点"></a>工厂方法的优点</h5><ul>
+<li>优点 ：<ul>
+<li>子类提供挂钩。基类为工厂方法提供缺省实现，子类可以重写新的实现，也可以集成父类的实现，增加了灵活性。</li>
+<li>屏蔽产品类。产品类的实现如何变化，调用者都不需要关心，只需要关心产品的接口，只要接口保持不变，系统中的上层模块就不会发生变化。</li>
+<li>典型的解耦框架。高层模块只需要知道产品的抽象类，其它的实现类都不需要关心。</li>
+<li>多态性，客户代码可以做到与特定应用无关，适用于任何实体类。</li>
 </ul>
 </li>
-<li><p>应用层包含所有的高层协议，包括：虚拟终端协议(TELNET)、文件传输协议(FPT)、电子邮件传输协议(SMTP)、域名服务(DNS,)、网上新闻传输协议(NNTP)和超文本传输协议(HTTP)，这些协议为应用提供对应的通信服务。</p>
-<ul>
-<li><code>TELNET</code> 是远程登录服务的标准协议和主要方式，为用户提供了在本地计算机上完成远程主机工作的能力。<ul>
-<li><code>FTP</code> 是用于在网络上进行文件传输的一套标准协议。</li>
+</ul>
+<h4 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h4><p>抽象工厂模式提供一个接口，用于创建一个对象家族，而无需指定具体类。工厂方法只涉及到创建一个对象的情况，有时候我们需要一族对象。</p>
+<p>抽象工厂模式是所有形态的工厂模式中最为抽象和最具一般性的一种形态。抽象工厂模式是指当有多个抽象角色时，使用的一种工厂模式。抽象工厂模式可以向客户端提供一个接口，使客户端在不必指定产品的具体的情况下，创建多个产品族中的产品对象。根据里氏替换原则，任何接受父类型的地方，都应当能够接受子类型。因此，实际上系统所需要的，仅仅是类型与这些抽象产品角色相同的一些实例，而不是这些抽象产品的实例。换言之，也就是这些抽象产品的具体子类的实例。工厂类负责创建抽象产品的具体子类的实例。</p>
+<h5 id="抽象工厂的优点-缺点"><a href="#抽象工厂的优点-缺点" class="headerlink" title="抽象工厂的优点/缺点"></a>抽象工厂的优点/缺点</h5><ul>
+<li>优点：<ul>
+<li>抽象工厂模式隔离了具体类的生产，使得客户并不需要知道什么被创建。</li>
+<li>当一个产品族中的多个对象被设计成一起工作时，它能保证客户端始终只使用同一个产品族中的对象。</li>
+<li>增加新的具体工厂和产品族很方便，无须修改已有系统，符合“开闭原则”。</li>
 </ul>
 </li>
-<li><code>SMTP</code> 是一个提供可靠且有效的电子邮件传输的协议，它建立在 <code>FTP</code> 服务之上，主要用于完成系统之间的邮件信息传递，并提供有关来信的通知。<ul>
-<li><code>DNS</code> 主要用于域名和 IP 之间的相互转换，是一种分布式网络目录服务。</li>
+<li>缺点：增加新的产品等级结构很复杂，需要修改抽象工厂和所有的具体工厂类，对“开闭原则”的支持呈现倾斜性。</li>
 </ul>
-</li>
-<li><code>NNTP</code> 用于新闻的发布、检索和获取。<ul>
-<li><code>HTTP</code> 是一个基于 <code>TCP</code> 协议的用于客户端和服务端通信的 <code>请求-响应</code> 协议。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20200714091921.png" alt="image-20200714091919812"></p>
-<h3 id="OSI-参考模型"><a href="#OSI-参考模型" class="headerlink" title="OSI 参考模型"></a>OSI 参考模型</h3><p>OSI 参考模型是国际标准化组织指定的一个用于计算机或通信系统之间互联的标准体系。</p>
-<ul>
-<li><p>物理层 - 通过物理媒体传输原始字节流</p>
-</li>
-<li><p>链路层 - 定义网络上数据的格式</p>
-</li>
-<li><p>网络层 - 决定数据通过哪条物理路径进行传输</p>
-</li>
-<li><p>传输层 - 通过传输协议传输数据</p>
-</li>
-<li><p>会话层 - 维护链接并负责控制端口和会话</p>
-</li>
-<li><p>展示层 - 保证数据的格式时可用并加密的</p>
-</li>
-<li><p>应用层 - 计算机交互层，在这里应用可以访问网络服务</p>
-</li>
-</ul>
-<h2 id="TCP-IP-特点"><a href="#TCP-IP-特点" class="headerlink" title="TCP/IP 特点"></a>TCP/IP 特点</h2><ul>
-<li>TCP/IP 协议不依赖于任何特定的计算机硬件或操作系统，提供开放的协议标准。</li>
-<li>TCP/IP 并不依赖于特定的网络传输硬件，所以 TCP/IP 协议能够集成各种各样的网络。</li>
-<li>统一的网络地址分配方案，使整个 TCP/IP 设备在网中都有唯一的地址。</li>
-<li>标准化的高层协议，可以提供多种可靠的服务。</li>
-</ul>
-<h2 id="TCP-IP-通信传输流"><a href="#TCP-IP-通信传输流" class="headerlink" title="TCP/IP 通信传输流"></a>TCP/IP 通信传输流</h2><p>利用 TCP/IP 协议族进行网络通信时， 会通过分层顺序与对方进行通信。发送端从应用层往下走，接收端则往应用层往上走。</p>
-<p>发送端在层与层之间传输数据时，每经过一层时必定会被打上一个 该层所属的首部信息。反之，接收端在层与层传输数据时，每经过一层 时会把对应的首部消去。</p>
-<p>这种把数据信息包装起来的做法称为封装。</p>
-<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20200714103749.png" alt="image-20200714103627565"></p>
-<h2 id="IP-协议"><a href="#IP-协议" class="headerlink" title="IP 协议"></a>IP 协议</h2><p><code>IP</code> 协议位于 <code>TCP/IP</code> 参考模型中的网络层，是整个 <code>TCP/IP</code> 协议族的核心，也是构成互联网的基础。它的主要内容包括：</p>
-<ul>
-<li>IP 编址方案</li>
-<li>分组封装格式</li>
-<li>分组转发规则</li>
-</ul>
-<h2 id="TCP-协议"><a href="#TCP-协议" class="headerlink" title="TCP 协议"></a>TCP 协议</h2><p><code>TCP</code> 协议位于参考模型中的传输层，是一种面向连接的、可靠的、基于字节流的传输层通信协议。当应用层向传输层发送用于网间传输的、用8位字节表示的数据流，<code>TCP</code> 则把数据流分割成适当长度的报文段( segment )，最大传输段大小通常受该计算机连接的网络的数据链路层的最大传送单元( MTU )限制。之后TCP把数据包传给IP层，由它来通过网络将包传送给接收端实体的TCP层。 </p>
-<p>为了准确无误地将数据送达目标处，<code>TCP</code> 协议采用了三次握手策略来建立连接：</p>
-<ol>
-<li><p>发送端首先向接收端发送一个带有 <code>SYN</code> 标志的数据包</p>
-</li>
-<li><p>接收端接收到带有 <code>SYN</code> 标志的数据包后，返回带有 <code>ACK/SYN</code> 标志的数据包</p>
-</li>
-<li><p>发送端在接收到接收端回传的带有 <code>ACK/SYN</code> 标志的数据包后，发送带有 <code>ACK</code> 标志的数据包表示握手结束</p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20200714140408.png" alt="三次握手"></p>
-<p>连接建立后，就可以开始传输数据了。</p>
-<p><code>TCP</code> 连接其实是接收端和客户端保存的一份关于对方的信息，如果 <code>IP</code> 地址、端口号等。</p>
-<p>同样的，在断开连接时，<code>TCP</code> 会采用四次挥手策略来保证接数据发送安全和完整：</p>
-<ol>
-<li><p>当发送端的数据都传输完成后，发送端会向接收端发送连接释放报文 <code>FIN</code>。需要注意的是发送端发送 <code>FIN</code> 报文后，只是不能发送数据了，但是能正常接收数据的。</p>
-</li>
-<li><p>接收端收到发送端的 <code>FIN</code> 报文后，回复包含 <code>ACK</code> 标志的确认报文，此时接收端处于等待关闭状态，而不是马上给发送端发送 <code>FIN</code> 报文，因为可能还有数据没有发送完成。</p>
-</li>
-<li><p>接收端的数据发送完成后，发送带有 <code>ACK</code> 和 <code>FIN</code> 标志的连接释放报文给发送端。</p>
-</li>
-<li><p>发送端收到接收端的 <code>FIN</code> 报文后，向接收端发送 <code>ACK</code> 报文。此时接收端并不是立刻释放 <code>TCP</code> 连接，而是等待 2MSL( 最大报文段寿命的两倍时长 )后才释放连接。但是接收端一旦收到发送端的 <code>ACK</code> 报文后就会立马释放连接。</p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/CocoaLei/images/master/img/20200714144614.png" alt="四次挥手"></p>
-<h2 id="TCP-和-UDP"><a href="#TCP-和-UDP" class="headerlink" title="TCP 和 UDP"></a>TCP 和 UDP</h2><p><code>TCP</code> 是面向连接的传输控制协议，而 <code>UDP</code> 提供了无连接的数据报服务；</p>
-<p><code>TCP</code> 具有高可靠性，确保传输数据的正确性，不出现丢失或乱序；<code>UDP</code> 在传输数据前不建立连接，不对数据报进行检查与修改，无须等待对方的应答，所以会出现分组丢失、重复、乱序，应用程序需要负责传输可靠性方面的所有工作；</p>
-<p><code>UDP</code> 具有较好的实时性，工作效率较 <code>TCP</code> 协议高；</p>
-<p><code>UDP</code> 段结构比 <code>TCP</code> 的段结构简单，因此网络开销也小。</p>
-<p><code>TCP</code> 协议可以保证接收端毫无差错地接收到发送端发出的字节流，为应用程序提供可靠的通信服务。对可靠性要求高的通信系统往往使用 <code>TCP</code> 传输数据。比如 <code>HTTP</code> 运用 <code>TCP</code> 进行数据的传输。</p>
 
       
     </div>
@@ -321,7 +334,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/42/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><span class="page-number current">43</span><a class="page-number" href="/page/44/">44</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/44/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/42/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><span class="page-number current">43</span><a class="page-number" href="/page/44/">44</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><a class="extend next" rel="next" href="/page/44/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -387,13 +400,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

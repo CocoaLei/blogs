@@ -153,7 +153,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2015/11/01/iOS-Multi-Thread/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/01/02/HTTP%E6%A6%82%E8%A7%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -167,7 +167,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2015/11/01/iOS-Multi-Thread/" class="post-title-link" itemprop="url">多线程编程基础</a>
+            <a href="/2016/01/02/HTTP%E6%A6%82%E8%A7%88/" class="post-title-link" itemprop="url">HTTP 概览</a>
         </h2>
 
         <div class="post-meta">
@@ -177,14 +177,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2015-11-01 00:00:00" itemprop="dateCreated datePublished" datetime="2015-11-01T00:00:00+08:00">2015-11-01</time>
+              <time title="创建时间：2016-01-02 00:00:00" itemprop="dateCreated datePublished" datetime="2016-01-02T00:00:00+08:00">2016-01-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-01-17 11:35:49" itemprop="dateModified" datetime="2019-01-17T11:35:49+08:00">2019-01-17</time>
+                <time title="修改时间：2020-07-14 22:20:51" itemprop="dateModified" datetime="2020-07-14T22:20:51+08:00">2020-07-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -192,7 +192,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                  <a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a>
                 </span>
             </span>
 
@@ -207,142 +207,242 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="iOS-多线程"><a href="#iOS-多线程" class="headerlink" title="iOS 多线程"></a>iOS 多线程</h1><h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>进程(Process)是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础，是正在运行的程序的实例(An instance of a computer program that is being executed)。</p>
-<p>进程的概念主要有两点：</p>
+          <h2 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h2><p>开发中，我们经常需要向服务器端发送数据或从服务器端请求特定数据，为了完成数据在客户端和服务器端的传输，我们在传输数据时必须用到 HTTP 协议。</p>
+<h3 id="什么是-HTTP-协议？"><a href="#什么是-HTTP-协议？" class="headerlink" title="什么是 HTTP 协议？"></a>什么是 HTTP 协议？</h3><p><code>HTTP</code> 协议，即 HyperText Transmission Protocol，超文本传输协议，定义了客户端与服务器端的数据传输规则，让客户端和服务器能够有效地进行数据沟通。</p>
+<h3 id="HTTP-的基本性质"><a href="#HTTP-的基本性质" class="headerlink" title="HTTP 的基本性质"></a>HTTP 的基本性质</h3><ul>
+<li>HTTP 是简单的</li>
+<li>HTTP 是可扩展的 - 通过 HTTP headers 可以轻松对协议进行扩展</li>
+<li>HTTP 是无状态，有会话的 - 在同一个连接中，两个执行成功的请求之间是没有关系的</li>
+</ul>
+<h3 id="HTTP-请求与响应"><a href="#HTTP-请求与响应" class="headerlink" title="HTTP 请求与响应"></a>HTTP 请求与响应</h3><h4 id="HTTP-请求"><a href="#HTTP-请求" class="headerlink" title="HTTP 请求"></a>HTTP 请求</h4><p>HTTP 协议规定，一个完整的 HTTP 请求应包含如下内容</p>
 <ul>
-<li>进程是一个实体。每一个进程都有它自己的地址空间，一般情况下，包括文本区域(Text Region)、数据区域(Data Region)和堆栈(Stack Region)。文本区域存储处理器执行的代码；数据区域存储变量和进程执行期间使用的动态分配的内存；堆栈区存储着活动过程调用的指令和本地变量。</li>
-<li>进程是一个执行中的程序。</li>
+<li><p>请求行 ：包含请求方法、请求统一资源标示符和 HTTP 版本号。</p>
+</li>
+<li><p>请求头 ：请求头包含客户端传送给服务器端的附加信息。</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Host</td>
+<td>目标服务器的网络地址</td>
+</tr>
+<tr>
+<td>Accept</td>
+<td>告知服务器端客户端能够接收的数据类型，如 ‘text/html’等</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>请求体中的数据类型，如 ‘Application/Json; charset=UTF-8’等</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td>客户端的语言环境，如 ‘zh-cn’ 等</td>
+</tr>
+<tr>
+<td>Accept_Encoding</td>
+<td>客户端支持的数据压缩格式，如 ‘gzip’ 等</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>客户端的软件环境</td>
+</tr>
+<tr>
+<td>Connection : keep-alive</td>
+<td>告知服务器这是一个持久连接</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>请求体的长度</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>记录着用户保存在本地的用户数据</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>请求体 ：发送给服务器端的数据</p>
+<p>在使用 POST-Multipart 上传请求中请求体就是上传文件的二进制数据。</p>
+<p>在使用 GET 请求时，请求体为空。</p>
+<p>在普通的 POST 请求中，请求体就是表单数据。</p>
+</li>
+<li><p>响应状态行 ： 服务器返回给客户端的状态信息，一般包含 HTTP 版本号、状态码和状态码对应的英文名称。</p>
+<p>一个典型的状态行如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 200 OK</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
-<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>线程是程序执行流的最小单元。一个标准的线程由线程ID、当前指令指针、寄存器集合和堆栈组成。另外，线程是进程中的一个实体，是被系统独立调度和分配的基本单位，线程自己不拥有系统资源，只拥有一点在运行中必不可少的资源，但它可以与同属一个进程的其它线程共享进程所拥有的全部资源。</p>
-<h3 id="进程与线程的关系与区别"><a href="#进程与线程的关系与区别" class="headerlink" title="进程与线程的关系与区别"></a>进程与线程的关系与区别</h3><p>进程是资源分配的基本单位。所有与该进程有关的资源，都被记录在进程控制块PCB中，以表示该进程拥有这些资源或正在使用它们。另外，进程也是抢占处理机的基本单位，它拥有一个完整的虚拟地址空间。当进程发生调度时，不同的进程拥有不同的虚拟地址空间，而同一进程内的不同线程共享同一地址空间。</p>
-<p>与进程相对应，线程与资源分配无关，它属于某一个进程，并与进程内的其它线程一起共享进程的资源。线程只由相关堆栈、寄存器和线程控制表TCB组成。寄存器可被用来存储线程内的局部变量，但不能存储其它线程的相关变量。</p>
-<p>通常在一个进程中可以包含多个线程，它们可以利用进程所拥有的资源。在引入线程的操作系统中，通常都是把进程作为分配资源的基本单位，而把线程作为独立运行和独立调度的基本单位。由于线程比进程更小，基本上不拥有系统资源，故对它的调度所付出的开销就会小得多，能更叫高效的提高系统内多个程序之间并发执行的程度。</p>
-<p>线程和进程区别：</p>
+<h4 id="HTTP-响应"><a href="#HTTP-响应" class="headerlink" title="HTTP 响应"></a>HTTP 响应</h4><p>基本与 HTTP 请求相同。</p>
+<h3 id="HTTP-的版本"><a href="#HTTP-的版本" class="headerlink" title="HTTP 的版本"></a>HTTP 的版本</h3><p>HTTP 的主要版本如下</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Feature</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt; HTTP 1.1</td>
+<td>不支持持久连接；无请求头和响应头；客户端的前后请求是同步的。</td>
+</tr>
+<tr>
+<td>HTTP 1.1</td>
+<td>增加请求头和响应头；支持持久连接；客户端的不同请求之间是异步的。</td>
+</tr>
+<tr>
+<td>HTTP 2.0</td>
+<td>向下兼容 HTTP 1.1，但只用于 https 网址。</td>
+</tr>
+</tbody></table>
+<h3 id="HTTP-缓存"><a href="#HTTP-缓存" class="headerlink" title="HTTP 缓存"></a>HTTP 缓存</h3><p>缓存是一种保存资源副本并在下次请求时直接使用该副本的技术。当 web 缓存发现请求的资源已经被存储，它会拦截请求，返回该资源的拷贝，而不会去源服务器重新下载。这样带来的好处有：缓解服务器端压力，提升性能(获取资源的耗时更短了)。对于网站来说，缓存是达到高性能的重要组成部分。缓存需要合理配置，因为并不是所有资源都是永久不变的：重要的是对一个资源的缓存应截止到其下一次发生改变（即不能缓存过期的资源）。</p>
+<h4 id="缓存操作的目标"><a href="#缓存操作的目标" class="headerlink" title="缓存操作的目标"></a>缓存操作的目标</h4><p>虽然 HTTP 缓存不是必须的，但重用缓存的资源通常是必要的。然而常见的 HTTP 缓存智能存储 GET 响应。</p>
+<h4 id="缓存控制"><a href="#缓存控制" class="headerlink" title="缓存控制"></a>缓存控制</h4><h5 id="Cache-control-头"><a href="#Cache-control-头" class="headerlink" title="Cache-control 头"></a><code>Cache-control</code> 头</h5><p>HTTP/1.1 定义的 <code>Cache-Control</code> 头用来区分对缓存机制的支持情况，请求头和响应头都支持这个属性，你可以通过它提供的不同的值来定义缓存策略。</p>
 <ul>
-<li>地址空间和其它资源：进程之间相互独立，同一进程的各线程间共享。某进程内的线程在其它进程不可见。</li>
-<li>通信：进程间通信主要方式有管道、系统IPC(消息队列、信号、共享存储)、套接字(Socket)。而线程间可以直接读写进程数据段来进行通信(需要进程同步和互斥手段的辅助，以保证数据的异质性)</li>
-<li>调度和切换：线程上下文切换比进程快的多。</li>
-<li>在多线程OS中，进程不是一个可执行的实体</li>
+<li><p>禁止进行缓存</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Canche-Control: no-store,</span><br><span class="line">Canche-Control: no-cache, no-store</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>强制确认缓存</p>
+<p>每次有请求发出时，缓存会将次请求发送到服务器，服务器端会验证请求中所描述的缓存是否过期，若未过期，则缓存才使用本地缓存副本</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: must-revalidate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>私有缓存和公共缓存</p>
+<p><code>public</code> 指令表示该响应可以被任何中间人缓存。若指定了 <code>public</code> ，则一些通常不被中间人缓存的页面，将被缓存。</p>
+<p><code>private</code> 则表示该响应是专用于某单个用户的，中间人不能缓存此响应。</p>
+</li>
+<li><p>缓存过期机制</p>
+<p><code>max-age=&lt;seconds&gt;</code> 指令表示资源能够被缓存的最大时间，这个时间是距离请求发起的时间的秒数。一般用来缓存应用中不会改变的文件，通过手动设置一定的时长以保证缓存有效。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: max-age=10000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>缓存验证确认</p>
+<p>当使用了 <code>must-revalidate</code> 指令，那就意味着缓存在考虑使用一个资源时，必须先验证它的状态，已过期的缓存将不被使用</p>
+</li>
 </ul>
-<h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><p>线程安全就是多线程访问时，采用了加锁机制，当一个线程访问该类的某个数据时，进行保护，其它线程不能进行访问直到该线程读取完，其它线程才可以使用。</p>
-<h2 id="iOS中的多线程"><a href="#iOS中的多线程" class="headerlink" title="iOS中的多线程"></a>iOS中的多线程</h2><p>目前在iOS中有四种多线程解决方案：</p>
+<h5 id="Pargma-头"><a href="#Pargma-头" class="headerlink" title="Pargma 头"></a><code>Pargma</code> 头</h5><p><code>Pargma</code> 是 HTTP/1.1 标准中定义的一个 header 属性，请求中包含 <code>Pargma</code> 的效果跟在头信息中定义 <code>Cache-Control: no-cache</code> 相同，但是 HTTP 的响应头不支持这个属性，所以它不能完全替代 <code>Cache-Control</code> 头。</p>
+<h4 id="新鲜度"><a href="#新鲜度" class="headerlink" title="新鲜度"></a>新鲜度</h4><p>在过期时间之前，缓存资源是新鲜的，否则是陈旧的。一个陈旧的资源是不会被直接清除的，当客户端发起一个请求时，检索到已经有一个对应的缓存副本，则会在此次请求上附加一个 <code>If-None-Match</code> 头，然后再发送给服务器，以此来检查此资源是否依然是新鲜的，若返回 <code>304 (Not Modified)</code> ，则表示该副本是新鲜的，否则返回新的资源。</p>
+<h4 id="缓存验证"><a href="#缓存验证" class="headerlink" title="缓存验证"></a>缓存验证</h4><p>用户点击刷新按钮时会开始缓存验证。如果缓存的响应头信息里含有 <code>Cache-control: must-revalidate</code> 的定义，在浏览的过程中也会触发缓存验证。另外，在浏览器偏好设置里设置 <code>Advanced-&gt;Cache</code> 为强制验证缓存也能达到相同的效果。</p>
+<p>当缓存的文档过期后，需要进行缓存验证或者重新获取资源。只有在服务器返回强校验器或者弱校验器时才会进行验证。</p>
+<h5 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a><code>ETag</code></h5><p>作为缓存的一种强校验器，<code>ETag</code> 响应头是一个对用户代理不透明的值。对于像浏览器这样的 HTTP UA，不知道 <code>ETag</code> 代表什么，不能预测它的值是多少。如果资源请求的响应头里含有 <code>ETag</code>， 客户端可以在后续的请求的头中带上 <code>If-None-Match</code> 头来验证缓存。</p>
+<p><code>Last-Modified</code> 响应头可以作为一种弱校验器。说它弱是因为它只能精确到一秒。如果响应头里含有这个信息，客户端可以在后续的请求中带上 <code>If-Modified-Since</code> 来验证缓存。</p>
+<p>当向服务端发起缓存校验的请求时，服务端会返回 <code>200 ok</code> 表示返回正常的结果或者 <code>304 Not Modified</code>表示浏览器可以使用本地缓存文件。<code>304</code> 的响应头也可以同时更新缓存文档的过期时间。</p>
+<p>需要注意的是 <code>If-None-Match</code> 的优先级高于 <code>If-Modified-Since</code>，两者同时存在的话，按照前者进行校验。</p>
+<h4 id="带-Vary-头的响应"><a href="#带-Vary-头的响应" class="headerlink" title="带 Vary 头的响应"></a>带 <code>Vary</code> 头的响应</h4><p><code>Vary</code> HTTP 响应头决定了对于后续的请求头，如何判断是请求一个新的资源还会使用缓存的文件。</p>
+<p>当缓存服务器收到一个请求，只有当前的请求和原始（缓存）的请求头跟缓存的响应头里的Vary都匹配，才能使用缓存的响应。</p>
+<h3 id="HTTP-Cookies"><a href="#HTTP-Cookies" class="headerlink" title="HTTP Cookies"></a>HTTP Cookies</h3><p>HTTP Cookie（也叫Web Cookie或浏览器Cookie）是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。通常，它用于告知服务端两个请求是否来自同一浏览器，如保持用户的登录状态。Cookie 使基于无状态的 HTTP 协议记录稳定的状态信息成为了可能。</p>
+<h4 id="创建-Cookie"><a href="#创建-Cookie" class="headerlink" title="创建 Cookie"></a>创建 Cookie</h4><p>服务器通过在响应头里面添加一个 <code>Set-Cookie</code> 选项，来使浏览器保存下 Cookie，之后对该服务器的每一次请求中都通过 Cookie 请求头部将 Cookie 信息发送给服务器。</p>
 <ul>
-<li>Pthreads</li>
-<li>NSThread</li>
-<li>GCD</li>
-<li>NSOperation &amp; NSOperationQueue</li>
-</ul>
-<h3 id="Pthreads"><a href="#Pthreads" class="headerlink" title="Pthreads"></a>Pthreads</h3><p>POSIX线程，简称Pthreads，是线程的POSIX标准。该标准定义了创建和操作线程的一整套API。在类Unix操作系统中，都使用Pthreads作为操作系统的线程。</p>
-<h3 id="NSThread"><a href="#NSThread" class="headerlink" title="NSThread"></a>NSThread</h3><p>NSThread是经常Apple封装的完全面向对象的。你可以直观方便的操控线程对象，但是生命周期需要手动管理。</p>
-<h3 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h3><p>GCD是Apple为多核的并行运算提出的的解决方案，能够自动合理地利用更多的CPU内核，并自动管理线程的声明周期。GCD使用C进行编写，并使用了Block。</p>
-<p>####任务</p>
-<p>即代码所要完成的操作。</p>
-<p>任务的执行方式有两种：同步执行和异步执行。</p>
-<p>同步执行操作，它会阻塞当前线程并等待任务执行完毕，然后当前线程才会继续往下运行。</p>
-<p>异步执行操作，则不会阻塞当前线程，当前线程会直接往下执行。</p>
-<h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><p>用于存放要执行的任务。</p>
-<p>串行队列中的任务，GCD会遵循FIFO原则来执行，串行队列的同步执行任务，会在当前线程一个一个执行，而异步执行任务，则会在它线程中一个一个执行。</p>
-<p>并行队列中的任务执行顺序则要复杂一点，任务会根据同步或异步有不同的执行方式。并行队列中的同步执行任务会在当前线程中一个一个执行，而异步执行则会开很多线程一起执行。</p>
-<h5 id="如何创建队列？"><a href="#如何创建队列？" class="headerlink" title="如何创建队列？"></a><strong>如何创建队列？</strong></h5><ul>
-<li>主队列：特殊的串行队列，主要用于刷新UI，任何需要刷新UI的工作都必须在主队列中执行。</li>
-</ul>
-<figure class="highlight plain"><figcaption><span>mainQueue </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+ 自己创建的队列：</span><br><span class="line"></span><br><span class="line">  创建串行队列</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;dispatch_queue_t serialQueue &#x3D; dispatch_queue_create(&quot;CustomSerialQueue&quot;,DISPATCH_QUEUE_SERIAL);</span><br></pre></td></tr></table></figure>
+<li><p><code>Set-Cookie</code> 响应头部和 <code>Cookie</code> 请求头部</p>
+<p>服务器使用 <code>Set-Cookie</code> 响应头部向用户代理发送 Cookie 信息</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: <span class="tag">&lt;<span class="name">name</span>&gt;</span>=<span class="tag">&lt;<span class="name">value</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>​    创建并行队列</p>
-<figure class="highlight plain"><figcaption><span>concurrentQueue </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+ 全局队列：这是一个并行队列，并行任务一般都加入到这个队列。</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;dispatch_queue_t globalQueue &#x3D; dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)</span><br></pre></td></tr></table></figure>
+<p>保存 Cookie 信息后，对该服务器发起的每一次新请求，浏览器都会将保存的 Cookie 信息通过 Cookeie 请求头再发送给服务器。</p>
+</li>
+<li><p>会话期 Cookie</p>
+<p>会话期 Cookie 是最简单的 Cookie：浏览器关闭后它会被自动删除，即它仅在会话期内有效。</p>
+<p>会话期 Cookie 不需要指定过期时间或者有效期</p>
+</li>
+<li><p>持久性 Cookie</p>
+<p>持久性 Cookie 指定了特定的过期时间或有效期，不会随着浏览器的关闭而被删除。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Set-Cookie</span>: id=asfwa; </span><br><span class="line">Expires=Wed, 21 Oct 2015 07:28:00 GMT;</span><br></pre></td></tr></table></figure>
 
-<p><strong>如何创建任务？</strong></p>
+<p>设定的过期时间只和客户端有关，而不是服务端。</p>
+</li>
+<li><p>Cookie 的 <code>Secure</code> 和 <code>HttpOnly</code> 标记</p>
+<p>标记为 <code>Secure</code> 的 Cookie 只应通过被 HTTPS 协议加密过的请求发送给服务器，但由于 Cookie 固有的不安全性，敏感信息不应该通过 Cookie 传输。</p>
+<p>为避免跨域脚本攻击，通过 JavaScript 的 <code>Document.cookie</code> API 无法访问带有 <code>HttpOnly</code> 标记的 Cookie，它们只应发送给服务器。</p>
+</li>
+<li><p>Cookie 的作用域</p>
+<p>通过 <code>Domain</code> 和 <code>Path</code> 标识可以定义 Cookie 的作用域：即 Cookie 应该发送给哪些 URL。</p>
+<p><code>Domain</code> 指定哪些主机可以接受 Cookie，如果不指定，则默认为当前文档的主机，且不包含子域名。如果指定了，则会包含子域名。</p>
+<p><code>Path</code> 指定主机下的哪些路径可以接受 Cookie，以字符 <code>%x2F</code> (即 <code>/</code>) 作为路径分隔符，子路径也会被匹配。</p>
+</li>
+<li><p><code>SameSite</code> Cookies</p>
+<p><code>SameSite</code> Cookie 允许服务器要求某个 Cookie 在跨站请求时不会被发送，从而可以组织跨站请求伪造攻击。</p>
+</li>
+<li><p>JavaScript 通过 <code>document.cookies</code> 访问 Cookie</p>
+<p>通过 <code>Document.cookie</code> 属性可创建新的 Cookie，也可以通过该属性访问非 <code>HttpOnly</code> 标记的 Cookie。</p>
+</li>
+</ul>
+<h4 id="Cookie-安全"><a href="#Cookie-安全" class="headerlink" title="Cookie 安全"></a>Cookie 安全</h4><p>当机器处于不安全环境时，切记不能通过 Cookie 存储传输敏感信息。</p>
 <ul>
-<li><p>创建同步任务</p>
-<figure class="highlight plain"><figcaption><span>execute code));```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+ 创建异步任务</span><br><span class="line"></span><br><span class="line">  &#96;&#96;&#96;dispatch_async(,^&#123;&#x2F;&#x2F; execute code&#125;);</span><br></pre></td></tr></table></figure>
-
+<li><p>会话劫持和 XSS</p>
+<p>在 Web 应用中， Cookie 常用来标记用户或授权会话。因此，如果 Web 应用的 Cookie 被窃取，可能导致授权用户的会话受到攻击。</p>
+<p><code>HttpOnly</code> 类型的 Cookie 由于阻止了 JavaScript 对其的访问性能而在一定程度上缓解了此类攻击。</p>
 </li>
-</ul>
-<h5 id="队列组"><a href="#队列组" class="headerlink" title="队列组"></a>队列组</h5><p>队列组可以将很多队列添加到一个组里，当组中的所有任务都执行完了，队列组将会通知给用户。</p>
-<p><code>dispatch_group_enter</code> 和 <code>dispatch_group_leave</code> 分别表示一个任务追加到队列组和一个任务执行完毕离开了队列组。</p>
-<p>只有当group中未执行完毕的任务数量为0时，才会使 <code>dispatch_group_wait</code> 解除阻塞，以及执行追加到 <code>dispatch_group_notify</code> 的任务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">dispatch_group_t group &#x3D; dispatch_group_create();</span><br><span class="line">dispatch_queue_t queue &#x3D; dispatch_get_global_queue(DISPATCH_QUEUE_PRIOITY_DEFAULT,0);</span><br><span class="line">dispatch_group_async(group, queue, ^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 向group中添加在主队列中执行的任务</span><br><span class="line">dispatch_group_async(group, dispatch_get_main_queue(),^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;);</span><br><span class="line">&#x2F;&#x2F; 向group中追加任务</span><br><span class="line">dispatch_group_enter(group);</span><br><span class="line">dispatch_async(queue，^&#123;</span><br><span class="line">    &#x2F;&#x2F; execute code</span><br><span class="line">    dispatch_group_leave(group);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 直到前面加入到group中的所有任务都执行完毕后，才会执行</span><br><span class="line">dispatch_group_notify(group,dispatch_get_main_queue(),^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;);</span><br><span class="line">OR</span><br><span class="line">&#x2F;&#x2F; 直到前面加入到group中的所有任务都执行完成后，才会继续往下执行</span><br><span class="line">dispatch_group_wait(group, DISPATCH_TIME_FOREVER);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="GCD的信号量机制"><a href="#GCD的信号量机制" class="headerlink" title="GCD的信号量机制"></a>GCD的信号量机制</h4><p>并发队列可以分配多个线程，同时处理不同的任务，虽然提升了效率，但是多线程的并发是通过时间片轮转的方法实现的，线程的创建、销毁、上下文切换等会消耗资源。适当的并发可以提高效率，但是无节制的并发，则会抢占CPU资源，造成性能下降。此外，提交给并发队列的任务中，有些任务内部会有全局的锁，会导致线程休眠、阻塞，一旦这类任务过多，并发队列还需要创建新的线程来执行其它任务，会造成线程数量的增加。</p>
-<p>因此控制并发队列中的线程数量就成了不能忽视的问题。</p>
-<h5 id="GCD并发线程数量控制"><a href="#GCD并发线程数量控制" class="headerlink" title="GCD并发线程数量控制"></a>GCD并发线程数量控制</h5><p>GCD中的信号量（dispatch_semaphore）是一个整形值，有初始计数值，可以接收通知信号和等待信号。当信号量收到通知信号时，计数+1；当信号量收到等待信号时，计数-1。如果信号量为0，线程会被阻塞，直到信号量大于0，才会继续执行。</p>
-<p>使用信号量机制可以实现线程的同步，也可以控制最大并发数。</p>
-<h5 id="使用GCD信号量机制实现并发线程数量控制"><a href="#使用GCD信号量机制实现并发线程数量控制" class="headerlink" title="使用GCD信号量机制实现并发线程数量控制"></a>使用GCD信号量机制实现并发线程数量控制</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t	workConcurrentQueue	&#x3D;	dispatch_queue_create(@&quot;WORK_CONCURRENT_QUEUE&quot;,DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">dispatch_queue_t	workSerialQueue	&#x3D;	dispatch_queue_create(@&quot;WORK_SERIAL_QUEUE&quot;,DISPATCH_QUEUE_SERIAL);</span><br><span class="line">int	maxConcurrent	&#x3D;	10;</span><br><span class="line">dispatch_semaphore_t	semaphore	&#x3D;	dispatch_semaphore_create(maxConcurrent);</span><br><span class="line">for (NSInteger i &#x3D; 0; i &lt; 10; i++) &#123;</span><br><span class="line">  dispatch_async(workSerialQueue, ^&#123;</span><br><span class="line">      &#x2F;&#x2F; 使信号量-1，当信号量为0时就一直等待，即阻塞所在线程</span><br><span class="line">      &#x2F;&#x2F; 这里使信号量 maxConcurrent-1，表示最大并发数量已被占用一个位置</span><br><span class="line">      dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">      dispatch_async(workConcurrentQueue, ^&#123;</span><br><span class="line">          &#x2F;&#x2F; 发送一个信号，让信号量+1</span><br><span class="line">          &#x2F;&#x2F; 这里使信号量 maxConcurrent+1，表示任务被执行，释放了最大并发数量中的一个位置</span><br><span class="line">          dispatch_semaphore_signal(semaphore);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="使用GCD信号量机制实现线程同步"><a href="#使用GCD信号量机制实现线程同步" class="headerlink" title="使用GCD信号量机制实现线程同步"></a>使用GCD信号量机制实现线程同步</h5><p>有时候我们会遇到需要异步执行一些耗时任务，并在这些任务完成后进行一些额外的操作，相当于将异步执行任务转化为同步执行任务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue &#x3D; dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">dispatch_semaphore_t semaphore &#x3D; dispatch_semaphore_create(0);</span><br><span class="line">     </span><br><span class="line">dispatch_async(queue, ^&#123;</span><br><span class="line">    	&#x2F;&#x2F; 执行耗时任务</span><br><span class="line">    	···</span><br><span class="line">        &#x2F;&#x2F; 任务完成后使信号量+1，被阻塞的线程继续执行</span><br><span class="line">        dispatch_semaphore_signal(semaphore);</span><br><span class="line">    &#125;);</span><br><span class="line">&#x2F;&#x2F; 如果信号量为0，则会阻塞当前线程，直到信号量</span><br><span class="line">dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br></pre></td></tr></table></figure>
-
-<h5 id="使用GCD信号量机制实现线程安全"><a href="#使用GCD信号量机制实现线程安全" class="headerlink" title="使用GCD信号量机制实现线程安全"></a>使用GCD信号量机制实现线程安全</h5><p>如果你的代码所在的进程中有多个线程在同时运行，而这些线程可能会同时运行这段代码。如果每次运行结果和单线程运行的结果是一样的，而且其它变量的值也和预期的是一样的，就是线程安全的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dispatch_semaphore_t semaphoreLock	&#x3D;	dispatch_semaphore_create(1);</span><br><span class="line">&#x2F;&#x2F; 相当于加锁</span><br><span class="line">dispatch_semaphore_wait(semaphoreLock, DISPATCH_TIME_FOREVER);</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; 需要保证安全的执行代码</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 相当于解锁</span><br><span class="line">dispatch_semaphore_singal(semaphoreLock);</span><br></pre></td></tr></table></figure>
-
-<h4 id="GCD的一些使用场景"><a href="#GCD的一些使用场景" class="headerlink" title="GCD的一些使用场景"></a>GCD的一些使用场景</h4><h5 id="使用GCD实现延迟执行"><a href="#使用GCD实现延迟执行" class="headerlink" title="使用GCD实现延迟执行"></a>使用GCD实现延迟执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue	&#x3D;	dispatch_ger_gloabl_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">double delay			&#x3D;	3;</span><br><span class="line">dispatch_after(dispatch_time(DISPATCH_TIME_NOW), (int64_t)(delay*NSEC_PER_SEC)), queue, ^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h5 id="使用GCD实现单例模式"><a href="#使用GCD实现单例模式" class="headerlink" title="使用GCD实现单例模式"></a>使用GCD实现单例模式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">static id _instance;</span><br><span class="line">+ (instancetype)sharedInstance &#123;</span><br><span class="line">  static dispatch_once_t onceToken;</span><br><span class="line">  dispatch_once(&amp;onceToken, ^&#123;</span><br><span class="line">    &#x2F;&#x2F; initial code</span><br><span class="line">  &#125;);</span><br><span class="line">  retur _instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="任务同步"><a href="#任务同步" class="headerlink" title="任务同步"></a>任务同步</h5><p>我们有时需要异步执行两组操作，而且第一组操作执行完之后，才能开始执行第二组操作。这样我们就需要一个相当于 栅栏 一样的一个方法将两组异步执行的操作组给分割起来，当然这里的操作组里可以包含一个或多个任务。这就需要用到dispatch_barrier_async方法在两个操作组间形成栅栏。</p>
-<p><code>dispatch_barrier_async</code> 函数会等待前边追加到并发队列中的任务全部执行完毕之后，再将指定的任务追加到该异步队列中。然后在 <code>dispatch_barrier_async</code> 函数追加的任务执行完毕之后，异步队列才恢复为一般动作，接着追加任务到该异步队列并开始执行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue &#x3D; dispatch_queue_create(&quot;com.codelei.queue&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">     </span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">  		&#x2F;&#x2F; Task 1</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        &#x2F;&#x2F; Task 2</span><br><span class="line">    &#125;);</span><br><span class="line">     </span><br><span class="line">    dispatch_barrier_async(queue, ^&#123;</span><br><span class="line">        &#x2F;&#x2F; 追加的任务 Task 3</span><br><span class="line">    &#125;);</span><br><span class="line">     </span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        &#x2F;&#x2F; 追加的任务 Task 4</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    dispatch_async(queue, ^&#123;</span><br><span class="line">        &#x2F;&#x2F; 追加的任务 Task 5</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>直到 Task 1 和 Task 2 执行完成后，才会执行使用 <code>dispatch_barrier_asynce</code> 追加的任务 Task 3，然后在 Task 3 执行完成后，并行队列会正常执行。</p>
-<h3 id="NSOperation-amp-NSOperationQueue"><a href="#NSOperation-amp-NSOperationQueue" class="headerlink" title="NSOperation &amp; NSOperationQueue"></a>NSOperation &amp; NSOperationQueue</h3><p>NSOperation是Apple对GCD的封装，完全面向对象。NSOperation和NSOperationQueue分别对应GCD的任务和队列。</p>
-<h4 id="添加任务"><a href="#添加任务" class="headerlink" title="添加任务"></a>添加任务</h4><p>NSOperation只是一个抽象类，并不能直接封装任务。它有两个子类NSInvocationOperation和NSBlockOperation用来完成封装任务的操作。创建一个Operation后，需要调用<code>start</code>方法来启动任务，它默认在当前队列同步执行。如果需要在执行途中取消执行一个任务，调用<code>cancel</code>方法即可。</p>
+<li><p>跨站请求伪造</p>
+<p>通过以下方式可以一定程度上阻止宽展请求伪造：</p>
 <ul>
-<li><p>NSInvocationOperation</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSInvocationOperation *invocationOperation &#x3D; [[NSInvocation alloc] initWithTarget:self selector:@selector(executeMethod)];</span><br><span class="line">invocationOperation start];</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>NSBlockOperation</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSBlockOperation *blockOperation &#x3D; [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;];</span><br><span class="line">[blockOperation start];</span><br></pre></td></tr></table></figure>
-<p>上面提到，NSInvocationOperation和NSBlockOperation创建的任务默认在当前线程执行，但是NSBlockOperation可以通过<code>addExecutionBlock:</code>方法向Operation中添加多个可执行的Block。这样的Operation中的任务会并发执行，它会在主线程和其它多个线程执行这些任务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NSBlockOperation *blockOperation &#x3D; [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;];</span><br><span class="line">[blockOpertation addExecutionBlock:^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;];</span><br><span class="line">[blockOperation start];</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>NOTE</strong>:<code>addExecutionBlock:</code>方法必须在<code>start</code>方法之前执行，否则会报错。</p>
-</blockquote>
-</li>
-<li><p>自定义的Operation</p>
-<p>自定义Operation类需要继承Operation类，并实现其<code>main()</code>方法，因为在调用<code>start()</code>方法的时候，内部会调用<code>main()</code>方法完成相关逻辑。</p>
+<li>对用户输入进行过滤来阻止 XSS</li>
+<li>任何敏感操作都需要确认</li>
+<li>用于敏感信息的 Cookie 只能拥有较短的生命周期</li>
+</ul>
 </li>
 </ul>
-<h4 id="创建队列"><a href="#创建队列" class="headerlink" title="创建队列"></a>创建队列</h4><p>通过调用一个NSOperation类的<code>start()</code>方法来启动的任务，默认在当前线程同步执行。如果要避免占用当前线程，就需要使用到队列NSOperationQueue。只要将Operation添加到队列，就会自动调用任务的<code>start()</code>方法。</p>
+<h4 id="追踪和隐私"><a href="#追踪和隐私" class="headerlink" title="追踪和隐私"></a>追踪和隐私</h4><ul>
+<li><p>第三方 Cookie</p>
+<p>每个 Cookie 都会有与之关联的域（Domain），如果 Cookie 的域和页面的域相同，那么我们称这个 Cookie 为第一方 Cookie ，如果 Cookie 的域和页面的域不同，则称之为第三方Cookie。一个页面包含图片或存放在其他域上的资源（如图片广告）时，第一方的 Cookie 也只会发送给设置它们的服务器。通过第三方组件发送的第三方 Cookie 主要用于广告和网络追踪。</p>
+</li>
+<li><p>禁止追踪 Do-Not-Track</p>
+<p>虽然并没有法律或者技术手段强制要求使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/DNT" target="_blank" rel="noopener"><code>DNT</code></a>，但是通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/DNT" target="_blank" rel="noopener"><code>DNT</code></a>可以告诉Web程序不要对用户行为进行追踪或者跨站追踪。</p>
+</li>
+<li><p>欧盟 Cookie 指令</p>
+</li>
+<li><p>僵尸 Cookie 和删不掉的 Cookie</p>
+</li>
+</ul>
+<h3 id="HTTP-访问控制"><a href="#HTTP-访问控制" class="headerlink" title="HTTP 访问控制"></a>HTTP 访问控制</h3><p>跨域资源共享（CORS）是一种使用额外的 HTTP 头来使运行在一个 origin 上的 web 应用被准许访问来自不同源服务器上的指定的资源的机制，即当一个资源从与该资源本身所在的服务器不同的域、协议或端口请求一个资源时，就会发起一个跨域 HTTP请求。</p>
+<p>跨域资源共享标准新增了一组 HTTP 首部字段，允许服务器声明哪些源站通过浏览器有权限访问哪些资源。对那些可能对服务器数据产生副作用的 HTTP 请求方法，浏览器必须首先使用 <code>OPTIONS</code> 方法发起一个预检请求（Preflight Request），从而获知服务端是否允许该跨域请求。服务端确认允许后，才发起实际的 HTTP 请求。</p>
+<h3 id="HTTP-消息"><a href="#HTTP-消息" class="headerlink" title="HTTP 消息"></a>HTTP 消息</h3><p>HTTP 消息是客户端和服务器之间交换数据的方式。它们分为两种类型：由客户端发送的用来在服务器上触发动作的消息和从服务器得到的回应。</p>
+<p>HTTP 消息由跨越多行的用 ASCII 编码的文本信息组成。在 HTTP/1.1 和更早期的版本的协议中，消息通过连接明文发送。在 HTTP/2 中，为了优化和性能提升，人类可读的消息被分割成 HTTP 帧。</p>
+<h4 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请求头的名称是大小写不敏感的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Start line</span></span><br><span class="line"><span class="comment">// [HTTP Method] [Request Target] [HTTP Version]</span></span><br><span class="line">GET /img/me.png HTTP/<span class="number">1.1</span></span><br><span class="line">GET http:<span class="comment">//developer.mozilla.org/en-US/docs/Web/HTTP/Messages HTTP/1.1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Headers</span></span><br><span class="line"><span class="comment">// Request Headers : 对请求的设置</span></span><br><span class="line">User-Agent</span><br><span class="line">Accept</span><br><span class="line">Accept-Language</span><br><span class="line">Accept-Encoding</span><br><span class="line"></span><br><span class="line"><span class="comment">// General Headers : 作用于消息整体</span></span><br><span class="line">Connection</span><br><span class="line"></span><br><span class="line"><span class="comment">// Entity Headers : 作用与请求的 body 部分，如果 body 部分没有数据，则没有这部分头</span></span><br><span class="line">Content-Type</span><br><span class="line">Content-Length</span><br><span class="line"></span><br><span class="line"><span class="comment">// Body</span></span><br><span class="line"><span class="comment">// 大体上分为两类 : 单一资源 body 和多资源 body</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="HTTP-Response"><a href="#HTTP-Response" class="headerlink" title="HTTP Response"></a>HTTP Response</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Status line</span></span><br><span class="line"><span class="comment">// [HTTP Version] [Status Code] [Status Text]</span></span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">404</span> Not Found</span><br><span class="line"></span><br><span class="line"><span class="comment">// Headers</span></span><br><span class="line"><span class="comment">// 与 HTTP Request 结构相似</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Body</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="HTTP-2-帧"><a href="#HTTP-2-帧" class="headerlink" title="HTTP/2 帧"></a>HTTP/2 帧</h4><p>HTTP/1.1 的消息在性能上有着一系列的缺点：</p>
 <ul>
-<li><p>主队列</p>
-<p>添加到主队列中的任务时串行执行的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSOperationQueue *mainQueue &#x3D; [NSOperationQueue mainQueue];</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>其它队列</p>
-<p>其它队列中的任务会在其它线程并行执行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSOperationQueue *queue &#x3D; [NSOperatin alloc] init];</span><br><span class="line">NSBlockOperatin	 *blockOperation &#x3D; [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">  &#x2F;&#x2F; execute code</span><br><span class="line">&#125;]</span><br><span class="line">[queue addOperation:blockOperation];</span><br></pre></td></tr></table></figure>
-
-<p>如果需要任务在队列中串行执行，可以通过设置NSOperationQueue的<code>maxConcurrentOperationCount</code>来实现。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSOperationQueue *queue &#x3D; [NSOperatin alloc] init];</span><br><span class="line">[queue setMaxConcurrentOperationCount:1];</span><br></pre></td></tr></table></figure>
-
-<p>你还可以通过<code>addOperationWithBlock:</code>方法来向队列中添加新任务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSOperationQueue *queue &#x3D; [NSOperatin alloc] init];</span><br><span class="line">[queue addOperationWithBlock:^&#123;</span><br><span class="line">  &#x2F;&#x2F; cxecute code</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>Header 不像 body，它不会被压缩</li>
+<li>两个报文之间的 header 通常非常相似，但它们仍然在连接中重复传输</li>
+<li>无法复用。当在同一个服务器打开几个连接时：TCP 热连接比冷连接更加有效</li>
 </ul>
-<h4 id="添加任务依赖"><a href="#添加任务依赖" class="headerlink" title="添加任务依赖"></a>添加任务依赖</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">NSBlockOperation	*blockOperationFirst  &#x3D; [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">	&#x2F;&#x2F; execute code</span><br><span class="line">&#125;];</span><br><span class="line">NSBlockOperation	*blockOperationSecond &#x3D; [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">	&#x2F;&#x2F; execute code</span><br><span class="line">&#125;];</span><br><span class="line">NSBlockOperation	*blockOperationThird  &#x3D; [NSBlockOperation blockOperationWithBlock:^&#123;</span><br><span class="line">	&#x2F;&#x2F; execute code</span><br><span class="line">&#125;];</span><br><span class="line">[blockOperationSecond addDependency:blockOperationFirst];</span><br><span class="line">[blockOperationThird addDependency:blockOperationSecond];</span><br><span class="line">NSOperationQueue *queue &#x3D; [NSOperatin alloc] init];</span><br><span class="line">[queue addOperations:@[blockOperationFirst,blockOperationSecond,blockOperationThird]];</span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p><strong>NOTE</strong>:</p>
+<p>所以在 HTTP/2 中，消息被分割成嵌入到流中的帧。Headers 和 Body 的帧是分开的，这使得 Headers 帧也可以被压缩。多个流可以被组合在一起，这是一种称为多路复用的技术，它使得 TCP 连接下的传输更有效率。</p>
+<h3 id="HTTP-会话"><a href="#HTTP-会话" class="headerlink" title="HTTP 会话"></a>HTTP 会话</h3><p>在类似 HTTP 的客户端-服务器协议中，会话由三个部分组成：</p>
 <ul>
-<li>添加相互依赖会造成死锁。</li>
-<li>使用<code>removeDependency</code>方法来移除依赖关系</li>
+<li>客户端建立一个 TCP 连接</li>
+<li>客户端发送请求，等待回应</li>
+<li>服务器处理请求，做出回应</li>
 </ul>
-</blockquote>
-<h4 id="其它方法"><a href="#其它方法" class="headerlink" title="其它方法"></a>其它方法</h4><ul>
-<li><p>NSOperation类的一些其它方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 判断任务是否正在执行</span><br><span class="line">BOOL exccuting;</span><br><span class="line">&#x2F;&#x2F; 判断任务是否完成</span><br><span class="line">BOOL finished；</span><br><span class="line">&#x2F;&#x2F; 设置任务完成后的后续操作</span><br><span class="line">void (^completionBlock) (void);</span><br><span class="line">&#x2F;&#x2F; 取消任务</span><br><span class="line">- (void)cancle;</span><br><span class="line">&#x2F;&#x2F; 阻塞当前线程直到此任务执行完毕</span><br><span class="line">- (void)waitUntilFinished;</span><br></pre></td></tr></table></figure>
+<p>从 HTTP/1.1 起，连接在完成第三部后不再被关闭，客户端被允许发起新的请求，这意味着第二和第三部可以重复进行多次。</p>
+<p>客户端-服务器协议中，在 HTTP 中打开一个连接，意味着在底层传输层初始化连接。使用 TCP 时，HTTP 服务器默认的端口号是 80。</p>
+<h3 id="HTTP-、Scoket-和-TCP-的区别"><a href="#HTTP-、Scoket-和-TCP-的区别" class="headerlink" title="HTTP 、Scoket 和 TCP 的区别"></a>HTTP 、Scoket 和 TCP 的区别</h3><p>HTTP 是应用层的协议，TCP 是传输层的协议，而 Socket 是从传输层抽象的一个抽象层，本质是接口。</p>
+<ol>
+<li><p>TCP 连接与 HTTP 连接的区别</p>
+<p>HTTP 是基于 TCP的，客户端向服务器端发送一个 HTTP 请求时，第一步就是要建立与服务端的 TCP 连接。</p>
 </li>
-<li><p>NSOperationQueue</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 获取队列的任务数量</span><br><span class="line">NSUInteger operationCount;</span><br><span class="line">&#x2F;&#x2F; 取消队列中的所有任务</span><br><span class="line">- (void)cancelAllOperations;</span><br><span class="line">&#x2F;&#x2F; 阻塞当前线程直到此队列中的所有任务执行完毕</span><br><span class="line">- (void)waitUntilAllOperationsAreFinished;</span><br><span class="line">&#x2F;&#x2F; 暂停或继续队列</span><br><span class="line">BOOL suspended;</span><br></pre></td></tr></table></figure>
-
-<p>​</p>
+<li><p>TCP 连接与 Socket 连接的区别</p>
+<p>Socket 层只是在 TCP/UDP 传输层上做的一个抽象接口层。</p>
+<p>基于 TCP 协议的 Socket 连接同样需要通过三次握手建立连接，是可靠的。</p>
+<p>基于 UDP 协议的 Socket 连接不需要建立连接的过程，不管对方能不能收到都会发送过去，是不可靠的。</p>
+</li>
+<li><p>HTTP 连接与 Socket 连接的区别</p>
+<ul>
+<li><p>HTTP 是短连接，基于 TCP 协议的 Socket 连接是长连接。尽管 HTTP 1.1 开始支持持久连接，但仍无法保证始终连接。</p>
+<p>而基于 TCP 协议的 Socket 连接一旦建立成功，除非一方主动断开，否则连接状态一直保持。</p>
+</li>
+<li><p>HTTP 连接，服务器无法主动发送消息，而 Socket 连接，双发请求的发送没有先后限制。</p>
+<p>HTTP 采用 ‘请求-响应’ 机制，在客户端没有发送请求给服务端时，服务端无法推送消息给客服端。</p>
+<p>Socket 连接双方类似于 P2P 的关系，可以随时互相发送消息。</p>
 </li>
 </ul>
+</li>
+</ol>
 
       
     </div>
@@ -361,7 +461,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/47/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><span class="page-number current">48</span><a class="page-number" href="/page/49/">49</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/49/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/47/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><span class="page-number current">48</span><a class="page-number" href="/page/49/">49</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><a class="extend next" rel="next" href="/page/49/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -427,13 +527,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

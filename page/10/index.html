@@ -153,7 +153,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2019/06/16/JavaScript%20delete/">
+    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2019/06/26/JavaScript%20%E6%93%8D%E4%BD%9C%E7%AC%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -167,7 +167,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/06/16/JavaScript%20delete/" class="post-title-link" itemprop="url">JavaScript delete 操作符</a>
+            <a href="/2019/06/26/JavaScript%20%E6%93%8D%E4%BD%9C%E7%AC%A6/" class="post-title-link" itemprop="url">JavaScript 操作符</a>
         </h2>
 
         <div class="post-meta">
@@ -177,14 +177,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-06-16 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-16T00:00:00+08:00">2019-06-16</time>
+              <time title="创建时间：2019-06-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-06-26T00:00:00+08:00">2019-06-26</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-15 16:45:28" itemprop="dateModified" datetime="2021-03-15T16:45:28+08:00">2021-03-15</time>
+                <time title="修改时间：2020-12-25 15:01:28" itemprop="dateModified" datetime="2020-12-25T15:01:28+08:00">2020-12-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -207,36 +207,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><code>delete</code> 操作符用于删除对象的某个属性，如果没有指向这个属性的引用，它最终将会被释放。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> obj[<span class="string">'property'</span>];</span><br></pre></td></tr></table></figure>
-
-<p>对于所有结果都返回 <code>true</code>，除非属性是一个不可配置属性，这种情况，在非严格模式下返回 <code>false</code>，在严格模式下则抛出 <code>TypeError</code>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> originO = &#123;</span><br><span class="line">  name: <span class="string">'Mike'</span>,</span><br><span class="line">  age: <span class="number">29</span>,</span><br><span class="line">  speak() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`I am <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(originO, <span class="string">'sex'</span>, &#123;</span><br><span class="line">  value: <span class="string">'女'</span>，</span><br><span class="line">  configurable: <span class="literal">false</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">delete</span> originO.sex); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="meta">'use strict'</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">delete</span> originO.sex); <span class="comment">// TypeError: Cannot delete property 'sex' of #&lt;Object&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><p>如果要删除的属性不存在，<code>delete</code> 不会有任何作用，但仍返回 <code>true</code></p>
+          <h2 id="位操作符"><a href="#位操作符" class="headerlink" title="位操作符"></a>位操作符</h2><p>ECMAScript 中的所有数值都以 IEEE 754 64 位格式存储，但位操作并不直接应用到 64 位表示，而是先把值转换为 32 位整数，再进行位操作，之后再把结果转换为 64 位。对开发者而言，就好像只有 32 位整数一样，因 为 64 位整数存储格式是不可见的。这让二进制操作变得与其他语言中类似。但这个转换也导致了一个奇特的副作用，即特殊值 <code>NaN</code> 和 <code>Infinity</code> 在位操作中都会被当成 0 处理。</p>
+<p>有符号整数使用 32 位的前 31 位表示整数值。第 32 位表示数值的符号，如 0 表示正，1 表示负。这 一位称为符号位（sign bit），它的值决定了数值其余部分的格式。正值以真正的二进制格式存储，即 31 位中的每一位都代表 2 的幂。第一位（称为第 0 位）表示 20 ，第二位表示 21 ，依此类推。如果一个位是空的，则以 0填充，相当于忽略不计。</p>
+<p>负值以一种称为二补数（或补码）的二进制编码存储。一个数值的二补数通过如下 3 个步骤计算 得到：</p>
+<ol>
+<li><p>确定绝对值的二进制表示</p>
 </li>
-<li><p><code>delete</code> 只能删除对象本身上的属性，不会删除原型链上的同名属性（如果有的话）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">originO</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = <span class="string">'originO'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">originO.prototype.name = <span class="string">'name in prototype'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = <span class="keyword">new</span> originO();</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> obj.name;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj.name); <span class="comment">// name in prototype</span></span><br></pre></td></tr></table></figure>
+<li><p>找到数值的一补数（或反码），换句话说，就是每个 0 都变成 1，每个 1 都变成 0</p>
 </li>
-<li><p>任何使用 <code>var</code> 声明的属性不能从全局作用域或函数的作用域中删除</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> globalVar = <span class="string">'XYZ'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> descriptor = <span class="built_in">Object</span>.getOwnPropertyDescriptor(<span class="built_in">window</span>, <span class="string">'globalVar'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(descriptor); <span class="comment">// &#123; ..., configurable: false, ... &#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以看到 <code>var</code> 声明的属性不可配置</p>
+<li><p>给结果加 1</p>
 </li>
-<li><p>任何使用 <code>let</code> 或 <code>const</code> 声明的属性不能从它声明的作用域中被删除</p>
-</li>
-<li><p><code>delete</code> 删除数组元素</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> ];</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> arr[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// [ 1, 2, 3, &lt;1 empty item&gt; ]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.length); <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(arr[<span class="number">3</span>]); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+</ol>
+<p>默认情况下，ECMAScript 中的所有整数都表示为有符号数。不过，确实存在无符号整数。对无符号整数来说，第 32 位不表示符号，因为只有正值。无符号整数比有符号整数的范围更大，因为符号位被用来表示数值了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> &lt;&lt; <span class="number">10</span>); <span class="comment">// 1024</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">-1</span> &lt;&lt; <span class="number">10</span>); <span class="comment">// -1024</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1024</span> &gt;&gt; <span class="number">10</span>); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">-1024</span> &gt;&gt; <span class="number">10</span>); <span class="comment">// -1</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1024</span> &gt;&gt;&gt; <span class="number">10</span>); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">-1024</span> &gt;&gt;&gt; <span class="number">10</span>); <span class="comment">// 4194303</span></span><br></pre></td></tr></table></figure>
 
 
 
-
-
-</li>
-</ul>
+<h2 id="相等操作符"><a href="#相等操作符" class="headerlink" title="相等操作符"></a>相等操作符</h2><p>全等和不全等操作符与相等和不相等操作符类似，只不过它们在比较相等时不转换操作数。全等操 作符由 3 个等于号（===）表示，只有两个操作数在不转换的前提下相等才返回 <code>true</code>。</p>
 
       
     </div>
@@ -255,7 +242,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -321,13 +308,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
