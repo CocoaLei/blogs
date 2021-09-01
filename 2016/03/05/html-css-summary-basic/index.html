@@ -1,212 +1,5 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cocoalei.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="学习HTML 5 与 CSS 过程中的的基础知识的概要总结。 网页的构造块尽管网页变得越来越复杂，但是构成它的低层结构依旧十分简单，归纳起来，一个网页主要包括三个部分：  文本内容 - 页面内容纯文字 对其它文件的引用 - 如对文件、音视频文件、样式表和 JavaScript 文件的应用 标记 - 描述文本并确保引用正确工作  以上内容都仅由文本构成，因此网页可以保存为纯文本格式。以下是一个基本的">
-<meta property="og:type" content="article">
-<meta property="og:title" content="HTML5 概览">
-<meta property="og:url" content="https://cocoalei.github.io/blogs/2016/03/05/html-css-summary-basic/index.html">
-<meta property="og:site_name" content="关于代码的碎碎念">
-<meta property="og:description" content="学习HTML 5 与 CSS 过程中的的基础知识的概要总结。 网页的构造块尽管网页变得越来越复杂，但是构成它的低层结构依旧十分简单，归纳起来，一个网页主要包括三个部分：  文本内容 - 页面内容纯文字 对其它文件的引用 - 如对文件、音视频文件、样式表和 JavaScript 文件的应用 标记 - 描述文本并确保引用正确工作  以上内容都仅由文本构成，因此网页可以保存为纯文本格式。以下是一个基本的">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2016-03-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-11-23T06:57:56.278Z">
-<meta property="article:author" content="Y2hlbmdsZWk&#x3D;">
-<meta property="article:tag" content="Web">
-<meta property="article:tag" content=" HTML5">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://cocoalei.github.io/blogs/2016/03/05/html-css-summary-basic/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>HTML5 概览 | 关于代码的碎碎念</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">关于代码的碎碎念</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">Y29jb2FsaS5naXRodWIuaW8=</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/03/05/html-css-summary-basic/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Y2hlbmdsZWk=">
-      <meta itemprop="description" content="ODQ4NjUwMTI5QHFxLmNvbQ==">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="关于代码的碎碎念">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          HTML5 概览
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-03-05 00:00:00" itemprop="dateCreated datePublished" datetime="2016-03-05T00:00:00+08:00">2016-03-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-23 14:57:56" itemprop="dateModified" datetime="2020-11-23T14:57:56+08:00">2020-11-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <p>学习HTML 5 与 CSS 过程中的的基础知识的概要总结。</p>
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>HTML5 概览 - 关于代码的碎碎念</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="LeiTech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LeiTech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="学习HTML 5 与 CSS 过程中的的基础知识的概要总结。 网页的构造块尽管网页变得越来越复杂，但是构成它的低层结构依旧十分简单，归纳起来，一个网页主要包括三个部分：  文本内容 - 页面内容纯文字 对其它文件的引用 - 如对文件、音视频文件、样式表和 JavaScript 文件的应用 标记 - 描述文本并确保引用正确工作  以上内容都仅由文本构成，因此网页可以保存为纯文本格式。以下是一个基本的"><meta property="og:type" content="blog"><meta property="og:title" content="HTML5 概览"><meta property="og:url" content="https://cocoalei.github.io/blogs/2016/03/05/html-css-summary-basic/"><meta property="og:site_name" content="关于代码的碎碎念"><meta property="og:description" content="学习HTML 5 与 CSS 过程中的的基础知识的概要总结。 网页的构造块尽管网页变得越来越复杂，但是构成它的低层结构依旧十分简单，归纳起来，一个网页主要包括三个部分：  文本内容 - 页面内容纯文字 对其它文件的引用 - 如对文件、音视频文件、样式表和 JavaScript 文件的应用 标记 - 描述文本并确保引用正确工作  以上内容都仅由文本构成，因此网页可以保存为纯文本格式。以下是一个基本的"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://cocoalei.github.io/img/og_image.png"><meta property="article:published_time" content="2016-03-04T16:00:00.000Z"><meta property="article:modified_time" content="2020-11-23T06:57:56.278Z"><meta property="article:author" content="Y2hlbmdsZWk="><meta property="article:tag" content="Web, HTML5"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://cocoalei.github.io/blogs/2016/03/05/html-css-summary-basic/"},"headline":"HTML5 概览","image":["https://cocoalei.github.io/img/og_image.png"],"datePublished":"2016-03-04T16:00:00.000Z","dateModified":"2020-11-23T06:57:56.278Z","author":{"@type":"Person","name":"Y2hlbmdsZWk="},"publisher":{"@type":"Organization","name":"关于代码的碎碎念","logo":{"@type":"ImageObject","url":"https://cocoalei.github.io/img/logo.svg"}},"description":"学习HTML 5 与 CSS 过程中的的基础知识的概要总结。 网页的构造块尽管网页变得越来越复杂，但是构成它的低层结构依旧十分简单，归纳起来，一个网页主要包括三个部分：  文本内容 - 页面内容纯文字 对其它文件的引用 - 如对文件、音视频文件、样式表和 JavaScript 文件的应用 标记 - 描述文本并确保引用正确工作  以上内容都仅由文本构成，因此网页可以保存为纯文本格式。以下是一个基本的"}</script><link rel="canonical" href="https://cocoalei.github.io/blogs/2016/03/05/html-css-summary-basic/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="关于代码的碎碎念" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2016-03-04T16:00:00.000Z" title="2016/3/5 上午12:00:00">2016-03-05</time>发表</span><span class="level-item"><a class="link-muted" href="/categories/Web/">Web</a></span><span class="level-item">1 小时读完 (大约8756个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">HTML5 概览</h1><div class="content"><p>学习HTML 5 与 CSS 过程中的的基础知识的概要总结。</p>
 <h1 id="网页的构造块"><a href="#网页的构造块" class="headerlink" title="网页的构造块"></a>网页的构造块</h1><p>尽管网页变得越来越复杂，但是构成它的低层结构依旧十分简单，归纳起来，一个网页主要包括三个部分：</p>
 <ul>
 <li>文本内容 - 页面内容纯文字</li>
@@ -214,19 +7,19 @@
 <li>标记 - 描述文本并确保引用正确工作</li>
 </ul>
 <p>以上内容都仅由文本构成，因此网页可以保存为纯文本格式。以下是一个基本的 HTML 页面 ：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span> This is a simle html page <span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span> This is a simle html page <span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>​       </p>
 <h2 id="标签-：元素、属性、值及其它"><a href="#标签-：元素、属性、值及其它" class="headerlink" title="标签 ：元素、属性、值及其它"></a>标签 ：元素、属性、值及其它</h2><ul>
 <li><p>元素 ：大多数元素既包含文本，也包含其它元素</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 习惯上，标签采用小写字母</span><br><span class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>content<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line">// 空元素既不包含文本也不包含其它元素，比如 img</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"img.jpg"</span> <span class="attr">width</span>=<span class="string">"300"</span> <span class="attr">height</span>=<span class="string">"300"</span> <span class="attr">alt</span>=<span class="string">"img"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 习惯上，标签采用小写字母</span><br><span class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>content<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line">// 空元素既不包含文本也不包含其它元素，比如 img</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;img.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;300&quot;</span> <span class="attr">height</span>=<span class="string">&quot;300&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;img&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>属性和值 ：属性包含了元素的额外信息（尽量使用小写字母来编写属性的名称），有的属性可以接受任何值，但是最常见的还是仅接受预定义值的属性</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">em</span> <span class="attr">property-name</span>=<span class="string">property-value</span> ··· &gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>元素可以有多个属性，每个属性都有自己的值，属性的排列顺序并不重要，它们之间用空格隔开。</p>
 <p>布尔属性的值时可选的，因为只要这种属性只要出现就表示其值为真</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">name</span>=<span class="string">"emailaddr"</span> <span class="attr">required</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;email&quot;</span> <span class="attr">name</span>=<span class="string">&quot;emailaddr&quot;</span> <span class="attr">required</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>父元素和子元素 ：如果一个元素包含另一个元素，它就是被包含元素的父元素。</p>
 </li>
@@ -245,7 +38,7 @@
 <p>​       </p>
 <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p>URL即 Uniform Resource Locator，统一资源定位符，它包含了关于文件存储位置和浏览器应该如何处理它的信息。</p>
 <p>互联网上的每个文件都有唯一的URL。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 第一部分称为模式，浏览器如何处理需要打开的文件，最常见的模式是HTTP、ftp、mailto</span><br><span class="line">// 第二部分是文件所在的主机名称</span><br><span class="line">// 第三部分是路径，路径包含了到达这个文件的文件夹以及文件自身的名称</span><br><span class="line">"http://www.site.com/home/index.html"</span><br><span class="line">"ftp://ftp.site.com/pub/proposal.pdf"</span><br><span class="line">"mailto:somename@somedomain.com"</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 第一部分称为模式，浏览器如何处理需要打开的文件，最常见的模式是HTTP、ftp、mailto</span><br><span class="line">// 第二部分是文件所在的主机名称</span><br><span class="line">// 第三部分是路径，路径包含了到达这个文件的文件夹以及文件自身的名称</span><br><span class="line">&quot;http://www.site.com/home/index.html&quot;</span><br><span class="line">&quot;ftp://ftp.site.com/pub/proposal.pdf&quot;</span><br><span class="line">&quot;mailto:somename@somedomain.com&quot;</span><br></pre></td></tr></table></figure>
 
 <p>有时，URL路径不以文件名结尾，而以一个目录结尾，在这种情况下，URL值得是路径中最后一个目录中的默认文件，通常为index.html。</p>
 <p>URL可以使绝对的，也可以是相对的。绝对URL包含了指向目录或文件的完整信息，包括模式、主机名和路径。而相对URL则以自身的位置为参考点，描述文件的位置。</p>
@@ -263,39 +56,39 @@
 </ul>
 <p>​       </p>
 <h1 id="基本HTML结构"><a href="#基本HTML结构" class="headerlink" title="基本HTML结构"></a>基本HTML结构</h1><p>每个HTML文档都应该包含以下基本成分</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span>		// 声明页面为HTML5文档</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span>	// lang="en" 指定页面内容的默认语言</span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span>	// charset="utf-8" 声明文档的字符编码</span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span>				// 页面的标题</span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span>		// 声明页面为HTML5文档</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span>	// lang=&quot;en&quot; 指定页面内容的默认语言</span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span>	// charset=&quot;utf-8&quot; 声明文档的字符编码</span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span>				// 页面的标题</span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>在文档的head部分，通常要致命页面标题，提供为搜索引擎准备的关于页面本身的信息，加载样式表，以及加载 JavaScript 文件（通常处于性能考虑，大多数时候在页面底部 <code>&lt;/body&gt;</code> 结束后才加载 JavaScript）。</p>
 <p>​       </p>
 <h2 id="页面标题"><a href="#页面标题" class="headerlink" title="页面标题"></a>页面标题</h2><p>每一个HTML页面都必须有一个<code>title</code> 元素，标题应该是简短的、描述性的，而且是唯一的。页面标题通常是搜索引擎的搜索结果中链接的文字，它是判断搜索结果这种页面相关度的重要因素。</p>
 <p>值得注意的是，标题中不能包含任何格式、HTML、图像或指向其它页面的链接。</p>
 <h3 id="分级标题"><a href="#分级标题" class="headerlink" title="分级标题"></a>分级标题</h3><p>HTML中有六级标题用于创建页面信息的层级关系，使用好h1、h2 ··· h6 来表示。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span>		</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span>	</span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span>	</span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>分级标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span>			</span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">h1</span>&gt;</span> 第一级标题 <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">lang</span>=<span class="string">"es"</span>&gt;</span> 第二级标题 <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span>		</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span>	</span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span>	</span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>分级标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span>			</span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">h1</span>&gt;</span> 第一级标题 <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">lang</span>=<span class="string">&quot;es&quot;</span>&gt;</span> 第二级标题 <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>对于任何页面来说，分级标题都可以说是最重要的HTML元素，由于标题通常传达的是页面的主题，如果这些标题与搜索词匹配，就会被搜索引擎赋予很高的权重。</p>
 <p>创建分级标题时，要避免跳过某些级别，尽管这样做是可以的。</p>
 <p>​       </p>
 <h2 id="创建页眉"><a href="#创建页眉" class="headerlink" title="创建页眉"></a>创建页眉</h2><p>一个页面可以有任意数量的header元素，它们的含义可以根据其上下文而有所不同，处于页面顶端的或接近这个位置的header是整个页面的页眉。通常，页眉包裹网站标志、主导航和其它全站链接。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">"banner"</span>&gt;</span>	// 可选的 role=“banner” 显式的指出该页眉为页面级别的页眉</span><br><span class="line">    	<span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">&quot;banner&quot;</span>&gt;</span>	// 可选的 role=“banner” 显式的指出该页眉为页面级别的页眉</span><br><span class="line">    	<span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>header 也很适合对页面深处的一组介绍性或导航型内容进行标记，但是，你需要只在必要的时候才使用header，大多数情况下使用 h1 ~ h6 就能满足要求。而且需要注意的是，header 与 h1 ~ h6 元素中的标题是不能互换的，它们都有各自的语意目的。</p>
 <p>不能在 header 里嵌套 footer 元素或另一个 header，也不能在 footer 或 address 元素里嵌套 header。</p>
 <p>​       </p>
 <h2 id="标记导航"><a href="#标记导航" class="headerlink" title="标记导航"></a>标记导航</h2><p>HTML的早期版本中没有元素明确表示主导航链接的区域，在HTML5中引入了 nav 元素来表示。nav 中的链接可以指向页面中的内容。但应仅对文档中重要的链接群使用 nav。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">"banner"</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">"navigation"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">&quot;banner&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">&quot;navigation&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>需要注意的是，nav 元素不会对其内容添加任何默认样式。</p>
 <p>HTML5 规范不推荐对辅助性的页脚链接使用 nav，而且也不允许 nav 嵌套在 address 元素中。</p>
 <p>​       </p>
 <h2 id="标记页面的主要区域"><a href="#标记页面的主要区域" class="headerlink" title="标记页面的主要区域"></a>标记页面的主要区域</h2><p>大多数网页都有一些不同的区域，如页眉、页脚、包含额外信息的附注栏、指向其它网站的链接等等，不过一个页面只有一个部分代表其主要内容，可以将这样的内容放在 main 元素中，该元素在一个页面中仅使用一次。main 元素是HTML5中新添加的元素。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">        // 页面的主要内容</span><br><span class="line">	<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">        // 页面的主要内容</span><br><span class="line">	<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>与 p、header、footer 等元素一样，main 元素的内容显示在新的一行，除此之外不会影响页面的任何样式。</p>
 <p>如果创建的是 Web 应用，则应使用 main 包围其主要的功能。</p>
 <p>不能将 main 放置在 article、aside、footer、header 或 nav 元素中。</p>
 <p>​       </p>
 <h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><p>HTML5 的另一个新元素 article ：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">"banner"</span>&gt;</span></span><br><span class="line">            // 包含多个链接的导航</span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">article</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">p</span></span></span><br><span class="line"><span class="tag">                ···</span></span><br><span class="line">        &lt;/article&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">&quot;banner&quot;</span>&gt;</span></span><br><span class="line">            // 包含多个链接的导航</span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">article</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span> ··· &lt;/p</span><br><span class="line">                ···</span><br><span class="line">        <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>在HTML5 中，article 并不仅仅用于包含像报纸文章一样的内容，钙元素的严格定义如下</p>
 <p>​    <strong>articile 元素表示文档、页面、应用或网站中一个独立容器，原则上是可独立分配或可再用的，就像聚合内容中的各部分。</strong></p>
@@ -316,7 +109,7 @@
 <p>不能在 footer 里嵌套 header 或另一个 footer，同时，也不能将 footer 嵌套在 header 或 address 元素里。</p>
 <p>​       </p>
 <h2 id="创建通用容器"><a href="#创建通用容器" class="headerlink" title="创建通用容器"></a>创建通用容器</h2><p>有时候需要在一段内容外围包一个容器，从而可以为其应用 CSS 样式或 JavaScript 效果，div 是一个完全没有任何语义含义的容器，是一个通用容器。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">... </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">"banner"</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">"navigation"</span>&gt;</span></span><br><span class="line">			... [包含多个链接的无序列表] ... </span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">	<span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">"main"</span>&gt;</span> <span class="tag">&lt;<span class="name">article</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"gaudi"</span>&gt;</span>Barcelona's ➝ Architect<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		... [文章的其余内容] ...</span><br><span class="line">		<span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"sagrada-familia"</span> <span class="attr">lang</span>=<span class="string">"es"</span>&gt;</span> ➝La Sagrada Família<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">		... [图像和段落] ...</span><br><span class="line">		<span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"park-guell"</span>&gt;</span>Park Guell<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">		... [另一个图像和段落] ... <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aside</span> <span class="attr">role</span>=<span class="string">"complementary"</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Architectural Wonders of ➝ Barcelona<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		... [aside的其余内容] ...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">	<span class="tag">&lt;<span class="name">footer</span> <span class="attr">role</span>=<span class="string">"contentinfo"</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">small</span>&gt;</span><span class="symbol">&amp;copy;</span> Copyright All About ➝ Gaudí<span class="tag">&lt;/<span class="name">small</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">... </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">&quot;banner&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">&quot;navigation&quot;</span>&gt;</span></span><br><span class="line">			... [包含多个链接的无序列表] ... </span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">	<span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">&quot;main&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">article</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;gaudi&quot;</span>&gt;</span>Barcelona&#x27;s ➝ Architect<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		... [文章的其余内容] ...</span><br><span class="line">		<span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;sagrada-familia&quot;</span> <span class="attr">lang</span>=<span class="string">&quot;es&quot;</span>&gt;</span> ➝La Sagrada Família<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">		... [图像和段落] ...</span><br><span class="line">		<span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;park-guell&quot;</span>&gt;</span>Park Guell<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">		... [另一个图像和段落] ... <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aside</span> <span class="attr">role</span>=<span class="string">&quot;complementary&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Architectural Wonders of ➝ Barcelona<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		... [aside的其余内容] ...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">	<span class="tag">&lt;<span class="name">footer</span> <span class="attr">role</span>=<span class="string">&quot;contentinfo&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">small</span>&gt;</span><span class="symbol">&amp;copy;</span> Copyright All About ➝ Gaudí<span class="tag">&lt;/<span class="name">small</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>值得注意的是，div 元素自身没有任何默认样式，知识器其包含的内容从新的一行开始，不过我们可以对 div 添加样式实现自己的设计。div 对使用 JavaScript 实现一些特定的交互行为或效果也是有帮助的。</p>
 <p>尽管始终强调 HTML 用于对内容的含义进行描述，但 div 并不是唯一没有语义价值的元素。span 是与 div 对应的一个元素: div 是块级内容的无语义容器，而 span (写作 <span> 这里是内容 </span>)则是短语内容的无语义容器，例如它可以放在段落元素 p 之内。</p>
@@ -355,19 +148,19 @@
 <p>即便不适用 ARIA 地标角色，页面看起来也没有任何差别，但是使用它们可以提升使用辅助设备的用户的体验。</p>
 <p>​       </p>
 <h2 id="为元素指定类别或-ID-名称"><a href="#为元素指定类别或-ID-名称" class="headerlink" title="为元素指定类别或 ID 名称"></a>为元素指定类别或 ID 名称</h2><p>可以给 HTML 元素分配唯一的标识符，或指定其属于某个类别，或同时使用标识符和类别。添加 ID 和类别后，就可以对具有给定 ID 或 class 名称的元素添加样式、创建指向具有特定 id 的元素的链接或使用 JavaScript 获取 id 和 class 属性从而对元素添加特定的行为。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span>		// 如果要制定多个类别，用空格将不通过的分类名称分开即可</span><br><span class="line">        <span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">"banner"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">"navigation"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">"architect gaudi"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"gaudi"</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span>	// id 几乎可以使任何字符，只要不以数字开头且不包含空格。</span><br><span class="line">                <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"sagrada-familia"</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span>		// 如果要制定多个类别，用空格将不通过的分类名称分开即可</span><br><span class="line">        <span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">&quot;banner&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">&quot;navigation&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;architect gaudi&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;gaudi&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span>	// id 几乎可以使任何字符，只要不以数字开头且不包含空格。</span><br><span class="line">                <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;sagrada-familia&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>为一个或多个元素添加 class 属性，就可以对所有这类元素统一进行格式化。</p>
 <p>HTML 文档中的每个 id 都必须是唯一的，并且每个元素都只能有一个 id。与此相反的是，一个 class 名称可以分配给页面中任意数量的元素，并且一个元素可以有一个以上的 class。</p>
 <p>建议你无论打算如何使用 id 和 class，都应该为它们选择有意义的名称。</p>
 <p>​       </p>
 <h2 id="为元素添加-title-属性"><a href="#为元素添加-title-属性" class="headerlink" title="为元素添加 title 属性"></a>为元素添加 title 属性</h2><p>可以使用 title 属性为网站上任何部分加上提示标签，不过用的最多的是链接。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">title</span>=<span class="string">"table of contents"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">title</span>=<span class="string">&quot;table of contents&quot;</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>添加了 title 属性的元素，在用户将访问者将鼠标移到该元素上时，会提示该 title。</p>
 <p>​       </p>
 <h2 id="添加注释"><a href="#添加注释" class="headerlink" title="添加注释"></a>添加注释</h2><p>可以在 HTML 文档中添加注释，表明区块开始和结束的位置，提示某段代码的意图，或者阻止内容显示等。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">&lt;!-- ==== 开始主体内容 ==== --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">"architect"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"gaudi"</span>&gt;</span>Barcelona's Architect<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	    <span class="comment">&lt;!-- 这一段不会显示出来，因为它被注释掉了</span></span><br><span class="line"><span class="comment">		&lt;p&gt;Antoni Gaudí's incredible buildings bring millions of tourists to Barcelona each year. &lt;/p&gt;</span></span><br><span class="line"><span class="comment">		--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>Gaudí's non-conformity, already visible in his teenage years</span><br><span class="line">            ...</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">article</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 结束主体内容 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ==== 开始附注栏 ==== --&gt;</span> </span><br><span class="line">... [附注栏内容] ...</span><br><span class="line"><span class="comment">&lt;!-- 结束附注栏 --&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">&lt;!-- ==== 开始主体内容 ==== --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;architect&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;gaudi&quot;</span>&gt;</span>Barcelona&#x27;s Architect<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	    <span class="comment">&lt;!-- 这一段不会显示出来，因为它被注释掉了</span></span><br><span class="line"><span class="comment">		&lt;p&gt;Antoni Gaudí&#x27;s incredible buildings bring millions of tourists to Barcelona each year. &lt;/p&gt;</span></span><br><span class="line"><span class="comment">		--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>Gaudí&#x27;s non-conformity, already visible in his teenage years</span><br><span class="line">            ...</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">article</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 结束主体内容 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ==== 开始附注栏 ==== --&gt;</span> </span><br><span class="line">... [附注栏内容] ...</span><br><span class="line"><span class="comment">&lt;!-- 结束附注栏 --&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
 <p>注释是不可见的，如果将一些内容注释掉，它们将不会显示出来。</p>
 <p>在主要区块的开头和结尾添加注释是一种常见的做法，可以让你或和你一起合作开发的人员将来修改代码变的更加容易。</p>
@@ -396,29 +189,29 @@
 <p>HTML 5 将 i 重新定义为表示一块不同于其它文字的文字，具有不同的语态和语气，或其它不同于常规之处，用于如分类名称、技术术语、外语里的惯用语等。</p>
 <p>​       </p>
 <h2 id="创建图"><a href="#创建图" class="headerlink" title="创建图"></a>创建图</h2><p>在 HTML 5 之前，并没有专门实现图的元素，开发人员通常会使用不那么理想的 div 元素来实现。通过引入 figure 和 figcaption，HTML 5 改变了这种情况。图可以是图表、照片、图形、插图、代码片段以及其它类似的独立内容。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span> ···<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">figcaption</span>&gt;</span><span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span> // figcaption 是 figure 的标题，可选，出现在 figure 内容的开头或结尾</span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"chart-revenue.png"</span> <span class="attr">width</span>=<span class="string">"180"</span> <span class="attr">height</span>=<span class="string">"180"</span> <span class="attr">alt</span>=<span class="string">"Revenue chart: Clothing 42%, Toys 36%, Food 22%"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span> ···<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">figcaption</span>&gt;</span><span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span> // figcaption 是 figure 的标题，可选，出现在 figure 内容的开头或结尾</span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;chart-revenue.png&quot;</span> <span class="attr">width</span>=<span class="string">&quot;180&quot;</span> <span class="attr">height</span>=<span class="string">&quot;180&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Revenue chart: Clothing 42%, Toys 36%, Food 22%&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>需要注意的是，figcaption 元素并不是必需的，但如果包含它，它就必须是 figure 元素内嵌的第一个或最后一个元素。figure 通常情况下包含在 article 中。</p>
 <p>​       </p>
 <h2 id="指明引用或参考"><a href="#指明引用或参考" class="headerlink" title="指明引用或参考"></a>指明引用或参考</h2><p>使用 cite 元素可以指明对某内容源的引用或参考。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">city</span> <span class="attr">lang</span>=<span class="string">"it"</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">city</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">city</span> <span class="attr">lang</span>=<span class="string">&quot;it&quot;</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">city</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>对于要从引用来源中引述内容的情况，使用 blockquote 或 q 元素标记因数的文本。cite 只是用于参考源本身，而不是从中引述的内容。</p>
 <p>HTML 5 中，不应使用 cite 作为对人名的引用，但在 HTML 以前的版本中允许这样做。</p>
 <p>​       </p>
 <h2 id="引述文本"><a href="#引述文本" class="headerlink" title="引述文本"></a>引述文本</h2><p>有两个特殊的元素用以标记引述的文本。blockquote 元素表示单独存在的引述，通常更长，但也可能不是，它默认显示在新的一行。而 q 则用于短的引述，如句子里面的引述。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">cite</span>=<span class="string">"引用源"</span>&gt;</span></span><br><span class="line">        content</span><br><span class="line">	<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">cite</span>=<span class="string">&quot;引用源&quot;</span>&gt;</span></span><br><span class="line">        content</span><br><span class="line">	<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>浏览器默认对 blockquote 文本进行缩进，cite 属性值则并不会显示出来。</p>
 <p>如果 blockquote 中仅包含一个单独的段落或短语，可以不必将其包在 p 中再放入 blockquote。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">q</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">q</span> <span class="attr">lang</span>=<span class="string">"fr"</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">q</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">q</span> <span class="attr">lang</span>=<span class="string">&quot;fr&quot;</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>如果引述文本的语言与页面默认语言不同，就在 q 元素中添加 lang 属性。</p>
 <p>浏览器应对 q 元素中的文本自动加上特定语言的引号，不同的浏览器效果不同。</p>
 <p>注意，q 元素引用的内容不能跨越不同的段落，在这种情况下应该使用 blockquote。</p>
 <p>​       </p>
 <h2 id="指定时间"><a href="#指定时间" class="headerlink" title="指定时间"></a>指定时间</h2><p>HTML 5 中使用 time 元素标记时间、日期或时间段，time 是HTML 5 新增的元素。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">time</span>&gt;</span>08:45<span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">time</span> <span class="attr">datetime</span>=<span class="string">"2018-05-24T10:00:00"</span>&gt;</span><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">time</span> <span class="attr">datetime</span>=<span class="string">"03-29"</span>&gt;</span><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">time</span> <span class="attr">datetime</span>=<span class="string">"2h 30m"</span>&gt;</span><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">time</span>&gt;</span>08:45<span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">time</span> <span class="attr">datetime</span>=<span class="string">&quot;2018-05-24T10:00:00&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">time</span> <span class="attr">datetime</span>=<span class="string">&quot;03-29&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">time</span> <span class="attr">datetime</span>=<span class="string">&quot;2h 30m&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>元素 time 中包含的文本内容会出现在屏幕上，对用户可见，而可选的 datetime 属性则是为机器准备的。该属性需要遵循特定的格式。</p>
 <p>如果忽略了 datetime 属性，文本内容就必须是合法的日期或时间格式。datetime 属性不会单独产生任何效果，但它可以用于 Web 应用之间同步日期和时间。</p>
@@ -432,7 +225,7 @@
 <p><em>1985-11-02T17:19:00-02:30</em> </p>
 <p>​       </p>
 <h2 id="解释缩写词"><a href="#解释缩写词" class="headerlink" title="解释缩写词"></a>解释缩写词</h2><p>使用 abbr 元素标记缩写词并解释其含义，但是不必对每个缩写词都使用 addr，只在需要帮助访问者了解改词含义的时候使用。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">"National Football League"</span>&gt;</span>NFL<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">"light amplicfication by stimulated emission of radiation"</span>&gt;</span>laser<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">&quot;National Football League&quot;</span>&gt;</span>NFL<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">&quot;light amplicfication by stimulated emission of radiation&quot;</span>&gt;</span>laser<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>使用可选的 title 属性提供缩写词的全程。灵位，也可以将全称放在缩写词后面的括号里。</p>
 <p>通常，仅在缩写词第一次出现在屏幕上时给出其全称。</p>
@@ -450,7 +243,7 @@
 <p>​       </p>
 <h2 id="添加作者联系信息"><a href="#添加作者联系信息" class="headerlink" title="添加作者联系信息"></a>添加作者联系信息</h2><p>实际上，address 元素是用以定义与 HTML 页面或页面的一部分有关的作者、相关人士或组织的联系信息，通常位于页面底部或相关部分内。至于 address 具体表示的是哪一种信息，取决于该元素出现的位置。</p>
 <p>如果要为一个 article 提供作者联系信息，就将光标放在该元素内。如果要提供整个页面的作者联系信息，就将光标放在 body 中(更常 见的做法是放在页面级的 footer 里) 。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">role</span>=<span class="string">"contentinfo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span><span class="symbol">&amp;copy;</span>2014 The MrSilent Inc<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">address</span>&gt;</span></span><br><span class="line">        Have a question or comment about the site? <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"feedback.html"</span>&gt;</span>Contact us<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">role</span>=<span class="string">&quot;contentinfo&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span><span class="symbol">&amp;copy;</span>2014 The MrSilent Inc<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">address</span>&gt;</span></span><br><span class="line">        Have a question or comment about the site? <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;feedback.html&quot;</span>&gt;</span>Contact us<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>​       </p>
 <h2 id="标注编辑和不再准确的文本"><a href="#标注编辑和不再准确的文本" class="headerlink" title="标注编辑和不再准确的文本"></a>标注编辑和不再准确的文本</h2><p>有时可能需要将在前一个版本之后对页面内容的编辑标出来，或者对不再准确、不再相关的文本进行标记。有两种用于标注编辑的元素:代表添加内容的 ins 元素和标 记已删除内容的 del 元素。这两个元素既可以单独使用，也 可以一起使用。</p>
@@ -494,12 +287,12 @@
 <p>JPEG/PNG-24/PNG-32 均支持超过1600万众的颜色，而 GIF 和 PNG-8 只支持 256 中颜色，所以标识和其它颜色较少的图像通常保存为 PNG-8 格式，而照片和颜色复杂的插图等则应选择支持颜色较多的格式。</p>
 <p>​    </p>
 <h2 id="在页面中插入图像"><a href="#在页面中插入图像" class="headerlink" title="在页面中插入图像"></a>在页面中插入图像</h2><p>可以在网页中放置各种各样的图像，从标志到照片都可以。当访问者浏览网页时，浏览器会自动加载像在 HTML 文档中描述的图像。不过， 图像加载时间跟访问者的网络连接强度、图像尺寸，以及页面中包含的图像个数相关。 </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"corner-market.jpg"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;corner-market.jpg&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>在实践中，为了保持良好的文件组织结构，通常将图像保存在单独的文件夹中。</p>
 <p>​    </p>
 <h2 id="提供替代文本"><a href="#提供替代文本" class="headerlink" title="提供替代文本"></a>提供替代文本</h2><p>使用 alt 属性，可以为图像添加一段描述性文本，当图像因为某种原因不显示的时候，就将这段文字显示出来。HTML5 规范推荐将 alt 文本理解为图像的替代性描述 : “一般来说，替代文本是考虑图像未能正常加载的情况下需要呈现 文字。”通常，这意味着 alt 文本可以插入到图像两侧的文本流中，在大多数情况下， 它不应是对图像的描述。 </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"market.jpg"</span> <span class="attr">alt</span>=<span class="string">"somen description text"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;market.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;somen description text&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>如果图像对内容的价值较小，则可以提供空的替代文 本，即 alt=””。</p>
 <p>如果图像与邻近的文本表达的信息相似，也可以将 alt 属性留空。 </p>
@@ -507,227 +300,78 @@
 <p>​    </p>
 <h2 id="指定图像尺寸"><a href="#指定图像尺寸" class="headerlink" title="指定图像尺寸"></a>指定图像尺寸</h2><p>通常我们会在 HTML 中明确指定图像的高度和宽度，这样浏览器就不必花时间来判断图像的尺寸，从而更快地将图像显示出来。 而且指定图像的尺寸，浏览器就可以预留空间，在图像加载的同时让文本显示在周围，保持布局的稳定。</p>
 <p>可以通过浏览器或图像编辑软件获取图像的精确尺寸。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"market.jpg"</span> <span class="attr">width</span>=<span class="string">"300"</span> <span class="attr">height</span>=<span class="string">"300"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;market.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;300&quot;</span> <span class="attr">height</span>=<span class="string">&quot;300&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>​    </p>
 <h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><p>链接有两个主要的部分:目标和标签。 </p>
 <p>使用目标(destination)可以指定访问者点击链接时会发生什么。可以创建链接进入另一个页面、在页面内跳转、显示图像、下载文件、 呼叫电话等等。不过，最常见的是连接到其他网页的链接，其次是连接到其他网页特定位置(称为锚，anchor)的链接。目标是通过编写 URL 定义的，通常只能在(桌面)浏览器的状态栏中看到。</p>
 <p>链接的第二个部分是标签(label)，即访问者在浏览器中看到或在屏幕阅读器中听到的部分。激活标签就可以到达链接的目标。 例如，航空公司网站上可能有这样的链接标 签:预订航班。标签可以是文本、图像或二者兼有。浏览器通常会将标签文本默认显示为带下划线的蓝色文字。</p>
-<h2 id="指向网页的链接"><a href="#指向网页的链接" class="headerlink" title="指向网页的链接"></a>指向网页的链接</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://www.google.com"</span> <span class="attr">rel</span>=<span class="string">"external"</span>&gt;</span>Search with Google<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="指向网页的链接"><a href="#指向网页的链接" class="headerlink" title="指向网页的链接"></a>指向网页的链接</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://www.google.com&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;external&quot;</span>&gt;</span>Search with Google<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>当要连接的页面与当前页面在同一目录下时，只需文件名即可进行访问。</p>
 <p>rel 属性是可选的，它用来描述包含链接的页面和链接指向的页面之间的关系。</p>
 <h3 id="HTML-块级链接"><a href="#HTML-块级链接" class="headerlink" title="HTML 块级链接"></a>HTML 块级链接</h3><p>HTML 5 几乎允许在链接内包含任何类型的元素或元素组。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"giraffe-escapes.html"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        ···</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Read more<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;giraffe-escapes.html&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        ···</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Read more<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>​    </p>
 <h2 id="创建锚并链接到锚"><a href="#创建锚并链接到锚" class="headerlink" title="创建锚并链接到锚"></a>创建锚并链接到锚</h2><p>通常，激活一个链接会将用户带到对应网页的顶端。如果要想用户跳至网页的特定区域，可以创建一个锚，并在链接中引用该锚 。</p>
 <p>首先你需要在目标网页中创建一个锚</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://www.site.com/home.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"anchro-name"</span>&gt;</span></span><br><span class="line"> 	···   </span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://www.site.com/home.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;anchro-name&quot;</span>&gt;</span></span><br><span class="line"> 	···   </span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>创建链接到特定锚的链接</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://www.site.com/home.html#anchor-name"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://www.site.com/home.html#anchor-name&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>如果锚位于页面的底部，且它下面的内容的高度小于浏览器的可视区域的高度， 那么它可能不会显示在窗口的顶部，而是显 示在中间。 </p>
 <p>​    </p>
 <h2 id="其它类型的链接"><a href="#其它类型的链接" class="headerlink" title="其它类型的链接"></a>其它类型的链接</h2><p>并非只能创建指向其他网页的链接，其实可以创建指向任何 URL 的链接——RSS 源、 图像、希望访问者可以下载的文件、电子邮 件地址、电话号码等 。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"img/market.jpg"</span>&gt;</span> 链接到图片 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"media/song.mp3"</span>&gt;</span> 链接到音频 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"media/movie.mp4"</span>&gt;</span> 链接到视频 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"mailto:someone@somedomain.com"</span>&gt;</span> 链接到邮箱地址 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"tel:+18002134567"</span>&gt;</span> 链接到电话 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;img/market.jpg&quot;</span>&gt;</span> 链接到图片 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;media/song.mp3&quot;</span>&gt;</span> 链接到音频 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;media/movie.mp4&quot;</span>&gt;</span> 链接到视频 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;mailto:someone@somedomain.com&quot;</span>&gt;</span> 链接到邮箱地址 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;tel:+18002134567&quot;</span>&gt;</span> 链接到电话 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>对于指向万维网上任何文件(包括图像、 ZIP 文件、程序、PDF 及其他等)的链接，输 入 <a href="http://www.site.com/dir/file.ext，" target="_blank" rel="noopener">http://www.site.com/dir/file.ext，</a> 其 中 <a href="http://www.site.com" target="_blank" rel="noopener">www.site.com</a> 是主机名称，dir/file.ext 是目标文件的路径。后者包括了文件目录和文件名(以及扩展名)。</p>
+<p>对于指向万维网上任何文件(包括图像、 ZIP 文件、程序、PDF 及其他等)的链接，输 入 <a target="_blank" rel="noopener" href="http://www.site.com/dir/file.ext，">http://www.site.com/dir/file.ext，</a> 其 中 <a target="_blank" rel="noopener" href="http://www.site.com">www.site.com</a> 是主机名称，dir/file.ext 是目标文件的路径。后者包括了文件目录和文件名(以及扩展名)。</p>
 <p>对于电子邮件地址，输入 mailto:<a href="mailto:name@domain.com">name@domain.com</a>(不以 http:// 开头)，其中 <a href="mailto:name@domain.com">name@domain.com</a> 是电子邮件地址。</p>
 <p>对于电话号码，输入 tel:+(不以 http:// 开头)并紧跟着国家代码和电话号码(所有的号码中都不必包含短横线)。</p>
 <p>如果链接指向的文件是浏览器不知道如何处理的类型(例如 Excel 文件)，浏览器将试着打开一个辅助程序来查看这个文件，或试着将它下载到访问者的磁盘上。 </p>
-
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2016/02/25/css-summary/" rel="prev" title="CSS 基础概览">
-      <i class="fa fa-chevron-left"></i> CSS 基础概览
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2016/04/10/html-css-summary-advanced/" rel="next" title="HTML5 概览进阶篇">
-      HTML5 概览进阶篇 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网页的构造块"><span class="nav-number">1.</span> <span class="nav-text">网页的构造块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标签-：元素、属性、值及其它"><span class="nav-number">1.1.</span> <span class="nav-text">标签 ：元素、属性、值及其它</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网页的文本内容"><span class="nav-number">1.2.</span> <span class="nav-text">网页的文本内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接、图像和其它非文本内容"><span class="nav-number">1.3.</span> <span class="nav-text">链接、图像和其它非文本内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件名和文件夹名"><span class="nav-number">1.4.</span> <span class="nav-text">文件名和文件夹名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URL"><span class="nav-number">1.5.</span> <span class="nav-text">URL</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本HTML结构"><span class="nav-number">2.</span> <span class="nav-text">基本HTML结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#页面标题"><span class="nav-number">2.1.</span> <span class="nav-text">页面标题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分级标题"><span class="nav-number">2.1.1.</span> <span class="nav-text">分级标题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建页眉"><span class="nav-number">2.2.</span> <span class="nav-text">创建页眉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标记导航"><span class="nav-number">2.3.</span> <span class="nav-text">标记导航</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标记页面的主要区域"><span class="nav-number">2.4.</span> <span class="nav-text">标记页面的主要区域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建文章"><span class="nav-number">2.5.</span> <span class="nav-text">创建文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义区块"><span class="nav-number">2.6.</span> <span class="nav-text">定义区块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定附注栏"><span class="nav-number">2.7.</span> <span class="nav-text">指定附注栏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建页脚"><span class="nav-number">2.8.</span> <span class="nav-text">创建页脚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建通用容器"><span class="nav-number">2.9.</span> <span class="nav-text">创建通用容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ARIA改善可访问性"><span class="nav-number">2.10.</span> <span class="nav-text">使用ARIA改善可访问性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#地标角色"><span class="nav-number">2.10.1.</span> <span class="nav-text">地标角色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为元素指定类别或-ID-名称"><span class="nav-number">2.11.</span> <span class="nav-text">为元素指定类别或 ID 名称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为元素添加-title-属性"><span class="nav-number">2.12.</span> <span class="nav-text">为元素添加 title 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加注释"><span class="nav-number">2.13.</span> <span class="nav-text">添加注释</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文本"><span class="nav-number">3.</span> <span class="nav-text">文本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加段落"><span class="nav-number">3.1.</span> <span class="nav-text">添加段落</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定细则"><span class="nav-number">3.2.</span> <span class="nav-text">指定细则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标记主要和强调的文本"><span class="nav-number">3.3.</span> <span class="nav-text">标记主要和强调的文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建图"><span class="nav-number">3.4.</span> <span class="nav-text">创建图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指明引用或参考"><span class="nav-number">3.5.</span> <span class="nav-text">指明引用或参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引述文本"><span class="nav-number">3.6.</span> <span class="nav-text">引述文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定时间"><span class="nav-number">3.7.</span> <span class="nav-text">指定时间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#理解有效的时间格式"><span class="nav-number">3.7.1.</span> <span class="nav-text">理解有效的时间格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全球日期和时间及时间差"><span class="nav-number">3.7.2.</span> <span class="nav-text">全球日期和时间及时间差</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释缩写词"><span class="nav-number">3.8.</span> <span class="nav-text">解释缩写词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义术语"><span class="nav-number">3.9.</span> <span class="nav-text">定义术语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建上标和下标"><span class="nav-number">3.10.</span> <span class="nav-text">创建上标和下标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加作者联系信息"><span class="nav-number">3.11.</span> <span class="nav-text">添加作者联系信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标注编辑和不再准确的文本"><span class="nav-number">3.12.</span> <span class="nav-text">标注编辑和不再准确的文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标记代码"><span class="nav-number">3.13.</span> <span class="nav-text">标记代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用预格式化的文本"><span class="nav-number">3.14.</span> <span class="nav-text">使用预格式化的文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#突出显示文本"><span class="nav-number">3.15.</span> <span class="nav-text">突出显示文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建换行"><span class="nav-number">3.16.</span> <span class="nav-text">创建换行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-span"><span class="nav-number">3.17.</span> <span class="nav-text">创建 span</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图像"><span class="nav-number">4.</span> <span class="nav-text">图像</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在页面中插入图像"><span class="nav-number">4.1.</span> <span class="nav-text">在页面中插入图像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供替代文本"><span class="nav-number">4.2.</span> <span class="nav-text">提供替代文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定图像尺寸"><span class="nav-number">4.3.</span> <span class="nav-text">指定图像尺寸</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#链接"><span class="nav-number">5.</span> <span class="nav-text">链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#指向网页的链接"><span class="nav-number">5.1.</span> <span class="nav-text">指向网页的链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-块级链接"><span class="nav-number">5.1.1.</span> <span class="nav-text">HTML 块级链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建锚并链接到锚"><span class="nav-number">5.2.</span> <span class="nav-text">创建锚并链接到锚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它类型的链接"><span class="nav-number">5.3.</span> <span class="nav-text">其它类型的链接</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Y2hlbmdsZWk=</p>
-  <div class="site-description" itemprop="description">ODQ4NjUwMTI5QHFxLmNvbQ==</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">55</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Y2hlbmdsZWk=</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-</body>
-</html>
+</div><div class="article-licensing box"><div class="licensing-title"><p>HTML5 概览</p><p><a href="https://cocoalei.github.io/blogs/2016/03/05/html-css-summary-basic/">https://cocoalei.github.io/blogs/2016/03/05/html-css-summary-basic/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Y2hlbmdsZWk=</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2016-03-05</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2020-11-23</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2016/04/10/html-css-summary-advanced/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">HTML5 概览进阶篇</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2016/02/25/css-summary/"><span class="level-item">CSS 基础概览</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="LeiTech"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">LeiTech</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">55</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="/"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/CS/"><span class="level-start"><span class="level-item">CS</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/Git/"><span class="level-start"><span class="level-item">Git</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/JavaScript/"><span class="level-start"><span class="level-item">JavaScript</span></span><span class="level-end"><span class="level-item tag">19</span></span></a></li><li><a class="level is-mobile" href="/categories/Mac/"><span class="level-start"><span class="level-item">Mac</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/TypeScript/"><span class="level-start"><span class="level-item">TypeScript</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Vue/"><span class="level-start"><span class="level-item">Vue</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Web/"><span class="level-start"><span class="level-item">Web</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/iOS/"><span class="level-start"><span class="level-item">iOS</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/"><span class="level-start"><span class="level-item">大前端</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/06/"><span class="level-start"><span class="level-item">六月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">九月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">四月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/03/"><span class="level-start"><span class="level-item">三月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">十二月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">九月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/07/"><span class="level-start"><span class="level-item">七月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">六月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/05/"><span class="level-start"><span class="level-item">五月 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/04/"><span class="level-start"><span class="level-item">四月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/03/"><span class="level-start"><span class="level-item">三月 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/02/"><span class="level-start"><span class="level-item">二月 2018</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">一月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/05/"><span class="level-start"><span class="level-item">五月 2017</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/04/"><span class="level-start"><span class="level-item">四月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/06/"><span class="level-start"><span class="level-item">六月 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/04/"><span class="level-start"><span class="level-item">四月 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/03/"><span class="level-start"><span class="level-item">三月 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/02/"><span class="level-start"><span class="level-item">二月 2016</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/01/"><span class="level-start"><span class="level-item">一月 2016</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/12/"><span class="level-start"><span class="level-item">十二月 2015</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/11/"><span class="level-start"><span class="level-item">十一月 2015</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/10/"><span class="level-start"><span class="level-item">十月 2015</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/09/"><span class="level-start"><span class="level-item">九月 2015</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Git/"><span class="tag">Git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Web/"><span class="tag">Web</span><span class="tag">3</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><!--!--></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="关于代码的碎碎念" height="28"></a><p class="is-size-7"><span>&copy; 2021 Y2hlbmdsZWk=</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

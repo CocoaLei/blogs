@@ -1,232 +1,23 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cocoalei.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="JSON.stringify(value[, replacer [, space]]) 方法将一个 JavaScript 对象或值转换为 JSON 字符串，如果指定了一个 replacer 函数，则可以选择性地替换值，或者指定的 replacer 是数组，则可选择性地仅包含数组指定的属性。 Note 1在 JSON.stringify 方法对对象进行序列化时，如果对象的属性是 undefined&#x2F;">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JSON.stringify 的解析">
-<meta property="og:url" content="https://cocoalei.github.io/blogs/2018/05/12/json-stringify/index.html">
-<meta property="og:site_name" content="关于代码的碎碎念">
-<meta property="og:description" content="JSON.stringify(value[, replacer [, space]]) 方法将一个 JavaScript 对象或值转换为 JSON 字符串，如果指定了一个 replacer 函数，则可以选择性地替换值，或者指定的 replacer 是数组，则可选择性地仅包含数组指定的属性。 Note 1在 JSON.stringify 方法对对象进行序列化时，如果对象的属性是 undefined&#x2F;">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-05-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-11-16T03:17:02.070Z">
-<meta property="article:author" content="Y2hlbmdsZWk&#x3D;">
-<meta property="article:tag" content="JavaScript">
-<meta property="article:tag" content=" JS">
-<meta property="article:tag" content=" JSON">
-<meta property="article:tag" content=" JSON.stringify">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://cocoalei.github.io/blogs/2018/05/12/json-stringify/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>JSON.stringify 的解析 | 关于代码的碎碎念</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">关于代码的碎碎念</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">Y29jb2FsaS5naXRodWIuaW8=</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2018/05/12/json-stringify/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Y2hlbmdsZWk=">
-      <meta itemprop="description" content="ODQ4NjUwMTI5QHFxLmNvbQ==">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="关于代码的碎碎念">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          JSON.stringify 的解析
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-05-12 00:00:00" itemprop="dateCreated datePublished" datetime="2018-05-12T00:00:00+08:00">2018-05-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-16 11:17:02" itemprop="dateModified" datetime="2020-11-16T11:17:02+08:00">2020-11-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <p><code>JSON.stringify(value[, replacer [, space]])</code> 方法将一个 <code>JavaScript</code> 对象或值转换为 JSON 字符串，如果指定了一个 replacer 函数，则可以选择性地替换值，或者指定的 replacer 是数组，则可选择性地仅包含数组指定的属性。</p>
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>JSON.stringify 的解析 - 关于代码的碎碎念</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="LeiTech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LeiTech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="JSON.stringify(value[, replacer [, space]]) 方法将一个 JavaScript 对象或值转换为 JSON 字符串，如果指定了一个 replacer 函数，则可以选择性地替换值，或者指定的 replacer 是数组，则可选择性地仅包含数组指定的属性。 Note 1在 JSON.stringify 方法对对象进行序列化时，如果对象的属性是 undefined&amp;#x2F;"><meta property="og:type" content="blog"><meta property="og:title" content="JSON.stringify 的解析"><meta property="og:url" content="https://cocoalei.github.io/blogs/2018/05/12/json-stringify/"><meta property="og:site_name" content="关于代码的碎碎念"><meta property="og:description" content="JSON.stringify(value[, replacer [, space]]) 方法将一个 JavaScript 对象或值转换为 JSON 字符串，如果指定了一个 replacer 函数，则可以选择性地替换值，或者指定的 replacer 是数组，则可选择性地仅包含数组指定的属性。 Note 1在 JSON.stringify 方法对对象进行序列化时，如果对象的属性是 undefined&amp;#x2F;"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://cocoalei.github.io/img/og_image.png"><meta property="article:published_time" content="2018-05-11T16:00:00.000Z"><meta property="article:modified_time" content="2020-11-16T03:17:02.070Z"><meta property="article:author" content="Y2hlbmdsZWk="><meta property="article:tag" content="JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://cocoalei.github.io/blogs/2018/05/12/json-stringify/"},"headline":"JSON.stringify 的解析","image":["https://cocoalei.github.io/img/og_image.png"],"datePublished":"2018-05-11T16:00:00.000Z","dateModified":"2020-11-16T03:17:02.070Z","author":{"@type":"Person","name":"Y2hlbmdsZWk="},"publisher":{"@type":"Organization","name":"关于代码的碎碎念","logo":{"@type":"ImageObject","url":"https://cocoalei.github.io/img/logo.svg"}},"description":"JSON.stringify(value[, replacer [, space]]) 方法将一个 JavaScript 对象或值转换为 JSON 字符串，如果指定了一个 replacer 函数，则可以选择性地替换值，或者指定的 replacer 是数组，则可选择性地仅包含数组指定的属性。 Note 1在 JSON.stringify 方法对对象进行序列化时，如果对象的属性是 undefined&#x2F;"}</script><link rel="canonical" href="https://cocoalei.github.io/blogs/2018/05/12/json-stringify/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="关于代码的碎碎念" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-05-11T16:00:00.000Z" title="2018/5/12 上午12:00:00">2018-05-12</time>发表</span><span class="level-item"><a class="link-muted" href="/categories/JavaScript/">JavaScript</a></span><span class="level-item">8 分钟读完 (大约1195个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">JSON.stringify 的解析</h1><div class="content"><p><code>JSON.stringify(value[, replacer [, space]])</code> 方法将一个 <code>JavaScript</code> 对象或值转换为 JSON 字符串，如果指定了一个 replacer 函数，则可以选择性地替换值，或者指定的 replacer 是数组，则可选择性地仅包含数组指定的属性。</p>
 <h2 id="Note-1"><a href="#Note-1" class="headerlink" title="Note 1"></a>Note 1</h2><p>在 <code>JSON.stringify</code> 方法对对象进行序列化时，如果对象的属性是 <code>undefined</code>/<code>Symbol</code> 值或任意函数时，不会对其进行处理。</p>
 <p>这会导致被序列化的对象中的属性并不会按照原定的顺序被输出。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> someObj = &#123;</span><br><span class="line">  _id: <span class="string">'id'</span>,</span><br><span class="line">  productCode: <span class="string">'P28120068'</span>,</span><br><span class="line">  productDetail: &#123;</span><br><span class="line">    name: <span class="string">'Star Insure'</span>,</span><br><span class="line">    price: <span class="number">1200</span>,</span><br><span class="line">    amount: <span class="number">1000000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  created_at: <span class="string">'Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)'</span>,</span><br><span class="line">  updated_at: <span class="string">'Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)'</span>,</span><br><span class="line">  nullValue: <span class="literal">null</span>,</span><br><span class="line">  undefinedValue: <span class="literal">undefined</span>, <span class="comment">// JSON.stringify 不会序列化 undefined</span></span><br><span class="line">  symbolValue: <span class="built_in">Symbol</span>(<span class="string">'TypeScript'</span>), <span class="comment">// JSON.stringify 不会序列化 Symbol</span></span><br><span class="line">  arrowLog: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>), <span class="comment">// JSON.stringify 不会序列化 箭头函数</span></span><br><span class="line">  funLog: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="keyword">this</span>) &#125;, <span class="comment">// JSON.stringify 不会序列化 函数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Note 1 : undefined、Symbol、任何函数作为对象的属性值时，JSON.stringify 不对其(忽略)进行序列化</span></span><br><span class="line"><span class="comment"> * &#123;  </span></span><br><span class="line"><span class="comment"> *  "_id":"id",</span></span><br><span class="line"><span class="comment"> *  "productCode":"P28120068",</span></span><br><span class="line"><span class="comment"> *  "productDetail":&#123;"</span></span><br><span class="line"><span class="comment"> *    name":"Star Insure",</span></span><br><span class="line"><span class="comment"> *    "price":1200,</span></span><br><span class="line"><span class="comment"> *    "amount":1000000</span></span><br><span class="line"><span class="comment"> *   &#125;,</span></span><br><span class="line"><span class="comment"> *  "created_at":"Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)",</span></span><br><span class="line"><span class="comment"> *  "updated_at":"Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)",</span></span><br><span class="line"><span class="comment"> *  "nullValue":null</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(someObj));</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> someObj = &#123;</span><br><span class="line">  <span class="attr">_id</span>: <span class="string">&#x27;id&#x27;</span>,</span><br><span class="line">  <span class="attr">productCode</span>: <span class="string">&#x27;P28120068&#x27;</span>,</span><br><span class="line">  <span class="attr">productDetail</span>: &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Star Insure&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">1200</span>,</span><br><span class="line">    <span class="attr">amount</span>: <span class="number">1000000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">created_at</span>: <span class="string">&#x27;Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)&#x27;</span>,</span><br><span class="line">  <span class="attr">updated_at</span>: <span class="string">&#x27;Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)&#x27;</span>,</span><br><span class="line">  <span class="attr">nullValue</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">undefinedValue</span>: <span class="literal">undefined</span>, <span class="comment">// JSON.stringify 不会序列化 undefined</span></span><br><span class="line">  <span class="attr">symbolValue</span>: <span class="built_in">Symbol</span>(<span class="string">&#x27;TypeScript&#x27;</span>), <span class="comment">// JSON.stringify 不会序列化 Symbol</span></span><br><span class="line">  <span class="attr">arrowLog</span>: <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="built_in">this</span>), <span class="comment">// JSON.stringify 不会序列化 箭头函数</span></span><br><span class="line">  <span class="attr">funLog</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="built_in">this</span>) &#125;, <span class="comment">// JSON.stringify 不会序列化 函数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Note 1 : undefined、Symbol、任何函数作为对象的属性值时，JSON.stringify 不对其(忽略)进行序列化</span></span><br><span class="line"><span class="comment"> * &#123;  </span></span><br><span class="line"><span class="comment"> *  &quot;_id&quot;:&quot;id&quot;,</span></span><br><span class="line"><span class="comment"> *  &quot;productCode&quot;:&quot;P28120068&quot;,</span></span><br><span class="line"><span class="comment"> *  &quot;productDetail&quot;:&#123;&quot;</span></span><br><span class="line"><span class="comment"> *    name&quot;:&quot;Star Insure&quot;,</span></span><br><span class="line"><span class="comment"> *    &quot;price&quot;:1200,</span></span><br><span class="line"><span class="comment"> *    &quot;amount&quot;:1000000</span></span><br><span class="line"><span class="comment"> *   &#125;,</span></span><br><span class="line"><span class="comment"> *  &quot;created_at&quot;:&quot;Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)&quot;,</span></span><br><span class="line"><span class="comment"> *  &quot;updated_at&quot;:&quot;Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)&quot;,</span></span><br><span class="line"><span class="comment"> *  &quot;nullValue&quot;:null</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(someObj));</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="Note-2"><a href="#Note-2" class="headerlink" title="Note 2"></a>Note 2</h2><p>在 <code>JSON.stringify</code> 方法对数组进行序列化时，如果数组元素的值是 <code>undefined</code>、<code>Symbol</code> 值或任意函数时，会被序列化为 <code>null</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> someArr = [</span><br><span class="line">  <span class="literal">null</span>, </span><br><span class="line">  <span class="literal">undefined</span>, <span class="comment">// JSON.stringify 将数组中的 undefined 序列化为 null</span></span><br><span class="line">  <span class="built_in">Symbol</span>(<span class="string">'TypeScript'</span>), <span class="comment">// JSON.stringify 将数组中的 Symbol 序列化为 null</span></span><br><span class="line">  () =&gt; <span class="built_in">console</span>.log(<span class="keyword">this</span>),  <span class="comment">// JSON.stringify 将数组中的 箭头函数 序列化为 null</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="keyword">this</span>) &#125; <span class="comment">// JSON.stringify 将数组中的 函数 序列化为 null</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Note 2 : undefined, Symbol, 任意函数作为数组的元素时，JSON.stringify 将其序列化为 null</span></span><br><span class="line"><span class="comment"> * [null,null,null,null,null]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">console</span>.table(<span class="built_in">JSON</span>.stringify(someArr));</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> someArr = [</span><br><span class="line">  <span class="literal">null</span>, </span><br><span class="line">  <span class="literal">undefined</span>, <span class="comment">// JSON.stringify 将数组中的 undefined 序列化为 null</span></span><br><span class="line">  <span class="built_in">Symbol</span>(<span class="string">&#x27;TypeScript&#x27;</span>), <span class="comment">// JSON.stringify 将数组中的 Symbol 序列化为 null</span></span><br><span class="line">  <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="built_in">this</span>),  <span class="comment">// JSON.stringify 将数组中的 箭头函数 序列化为 null</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="built_in">this</span>) &#125; <span class="comment">// JSON.stringify 将数组中的 函数 序列化为 null</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Note 2 : undefined, Symbol, 任意函数作为数组的元素时，JSON.stringify 将其序列化为 null</span></span><br><span class="line"><span class="comment"> * [null,null,null,null,null]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">console</span>.table(<span class="built_in">JSON</span>.stringify(someArr));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="Note-3"><a href="#Note-3" class="headerlink" title="Note 3"></a>Note 3</h2><p>如果  <code>undefined</code>、<code>Symbol</code> 值或任意函数作为单独的值被 <code>JSON.stringify</code> 序列化为 <code>undefined</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Note 3 : undefined, Symbol, 任意函数作为单独的值时，JSON.stringify 序列化会返回 undefined</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(<span class="literal">undefined</span>)); <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(<span class="built_in">Symbol</span>(<span class="string">'TypeScript'</span>))); <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>))); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Note 3 : undefined, Symbol, 任意函数作为单独的值时，JSON.stringify 序列化会返回 undefined</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(<span class="literal">undefined</span>)); <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(<span class="built_in">Symbol</span>(<span class="string">&#x27;TypeScript&#x27;</span>))); <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="built_in">this</span>))); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="Note-4"><a href="#Note-4" class="headerlink" title="Note 4"></a>Note 4</h2><p>如果目标值有 <code>toJSON</code> 方法，则 <code>toJSON</code> 来决定 <code>JSON.stringify</code> 返回的值。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">  name: <span class="string">'Jimmy'</span>,</span><br><span class="line">  age: <span class="number">20</span>,</span><br><span class="line">  toJSON: <span class="function"><span class="params">()</span> =&gt;</span> <span class="string">'this is a toJSON function'</span>,</span><br><span class="line">&#125;)); <span class="comment">// this is a toJSON function</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Jimmy&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">20</span>,</span><br><span class="line">  <span class="attr">toJSON</span>: <span class="function">() =&gt;</span> <span class="string">&#x27;this is a toJSON function&#x27;</span>,</span><br><span class="line">&#125;)); <span class="comment">// this is a toJSON function</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -236,226 +27,74 @@
 
 
 <h2 id="Note-6"><a href="#Note-6" class="headerlink" title="Note 6"></a>Note 6</h2><p>数字、字符串和布尔值的包装值在被 <code>JSON.stringify</code> 序列化时会解包成对应的基础值。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> packArr = [ <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">1</span>), <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'TypeScript'</span>), <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>)];</span><br><span class="line"><span class="built_in">console</span>.log(packArr); <span class="comment">// [ [Number: 1], [String: 'TypeScript'], [Boolean: false] ]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(packArr)); <span class="comment">// [1,"TypeScript",false]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> packArr = [ <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">1</span>), <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&#x27;TypeScript&#x27;</span>), <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>)];</span><br><span class="line"><span class="built_in">console</span>.log(packArr); <span class="comment">// [ [Number: 1], [String: &#x27;TypeScript&#x27;], [Boolean: false] ]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(packArr)); <span class="comment">// [1,&quot;TypeScript&quot;,false]</span></span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="Note-7"><a href="#Note-7" class="headerlink" title="Note 7"></a>Note 7</h2><p><code>JSON.stringify</code> 在序列化对象时，仅会序列化可枚举的属。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> enumerableObj = <span class="built_in">Object</span>.create(<span class="literal">null</span>, &#123;</span><br><span class="line">  name: &#123; <span class="attr">value</span>: <span class="string">'jack'</span>, <span class="attr">enumerable</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  age: &#123; <span class="attr">value</span>: <span class="number">20</span>, <span class="attr">enumerable</span>: <span class="literal">false</span> &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(enumerableObj)); <span class="comment">// &#123; name: 'jack' &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> enumerableObj = <span class="built_in">Object</span>.create(<span class="literal">null</span>, &#123;</span><br><span class="line">  <span class="attr">name</span>: &#123; <span class="attr">value</span>: <span class="string">&#x27;jack&#x27;</span>, <span class="attr">enumerable</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  <span class="attr">age</span>: &#123; <span class="attr">value</span>: <span class="number">20</span>, <span class="attr">enumerable</span>: <span class="literal">false</span> &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(enumerableObj)); <span class="comment">// &#123; name: &#x27;jack&#x27; &#125;</span></span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="Note-8"><a href="#Note-8" class="headerlink" title="Note 8"></a>Note 8</h2><p>如果 <code>JSON.stringify</code> 的目标对象发生循环引用时，会报错。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 对于相互引用的对象，会报错</span></span><br><span class="line"><span class="comment"> * TypeError: Converting circular structure to JSON</span></span><br><span class="line"><span class="comment">    --&gt; starting at object with constructor 'Object'</span></span><br><span class="line"><span class="comment">    |     property 'refA' -&gt; object with constructor 'Object'</span></span><br><span class="line"><span class="comment">    --- property 'refB' closes the circle</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> objA = &#123;</span><br><span class="line">  name: <span class="string">'Object A'</span>,</span><br><span class="line">  refB: <span class="literal">null</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objB = &#123;</span><br><span class="line">  name: <span class="string">'Object B'</span>,</span><br><span class="line">  refA: objA,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">objA.refB = objB;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 对于相互引用的对象，会报错</span></span><br><span class="line"><span class="comment"> * TypeError: Converting circular structure to JSON</span></span><br><span class="line"><span class="comment">    --&gt; starting at object with constructor &#x27;Object&#x27;</span></span><br><span class="line"><span class="comment">    |     property &#x27;refA&#x27; -&gt; object with constructor &#x27;Object&#x27;</span></span><br><span class="line"><span class="comment">    --- property &#x27;refB&#x27; closes the circle</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> objA = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Object A&#x27;</span>,</span><br><span class="line">  <span class="attr">refB</span>: <span class="literal">null</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objB = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Object B&#x27;</span>,</span><br><span class="line">  <span class="attr">refA</span>: objA,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">objA.refB = objB;</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="Note-9"><a href="#Note-9" class="headerlink" title="Note 9"></a>Note 9</h2><p>以 <code>Symbol</code> 值为键的属性值，在被 <code>JSON.stringify</code> 序列化时会被忽略。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 以 Symbol 值为键的属性值，在被 JSON.stringify 序列化时会被忽略</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> symbolObj = &#123;</span><br><span class="line">  name: <span class="string">'Symbol'</span>,</span><br><span class="line">  [<span class="built_in">Symbol</span>.for(<span class="string">'Age'</span>)]: <span class="number">20</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(symbolObj); <span class="comment">// &#123; name: 'Symbol', [Symbol(Age)]: 20 &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(symbolObj)); <span class="comment">// &#123;"name":"Symbol"&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 以 Symbol 值为键的属性值，在被 JSON.stringify 序列化时会被忽略</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> symbolObj = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Symbol&#x27;</span>,</span><br><span class="line">  [<span class="built_in">Symbol</span>.for(<span class="string">&#x27;Age&#x27;</span>)]: <span class="number">20</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(symbolObj); <span class="comment">// &#123; name: &#x27;Symbol&#x27;, [Symbol(Age)]: 20 &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(symbolObj)); <span class="comment">// &#123;&quot;name&quot;:&quot;Symbol&quot;&#125;</span></span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="Note-10"><a href="#Note-10" class="headerlink" title="Note 10"></a>Note 10</h2><p>当 <code>JSON.stringify</code> 的第二个参数是函数时, 可单独对某个值进行处理。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> someObj = &#123;</span><br><span class="line">  _id: <span class="string">'id'</span>,</span><br><span class="line">  productCode: <span class="string">'P28120068'</span>,</span><br><span class="line">  productDetail: &#123;</span><br><span class="line">    name: <span class="string">'Star Insure'</span>,</span><br><span class="line">    price: <span class="number">1200</span>,</span><br><span class="line">    amount: <span class="number">1000000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  created_at: <span class="string">'Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)'</span>,</span><br><span class="line">  updated_at: <span class="string">'Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)'</span>,</span><br><span class="line">  nullValue: <span class="literal">null</span>,</span><br><span class="line">  undefinedValue: <span class="literal">undefined</span>, <span class="comment">// JSON.stringify 不会序列化 undefined</span></span><br><span class="line">  symbolValue: <span class="built_in">Symbol</span>(<span class="string">'TypeScript'</span>), <span class="comment">// JSON.stringify 不会序列化 Symbol</span></span><br><span class="line">  arrowLog: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>), <span class="comment">// JSON.stringify 不会序列化 箭头函数</span></span><br><span class="line">  funLog: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="keyword">this</span>) &#125;, <span class="comment">// JSON.stringify 不会序列化 函数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 当 JSON.stringify 的第二个参数是函数时, 可单独对某个值进行处理</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(someObj, (k, v) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(v)</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> v === <span class="string">'undefined'</span>) <span class="keyword">return</span> <span class="string">'undefined'</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">JSON</span>.stringify(v);</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> someObj = &#123;</span><br><span class="line">  <span class="attr">_id</span>: <span class="string">&#x27;id&#x27;</span>,</span><br><span class="line">  <span class="attr">productCode</span>: <span class="string">&#x27;P28120068&#x27;</span>,</span><br><span class="line">  <span class="attr">productDetail</span>: &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Star Insure&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">1200</span>,</span><br><span class="line">    <span class="attr">amount</span>: <span class="number">1000000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">created_at</span>: <span class="string">&#x27;Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)&#x27;</span>,</span><br><span class="line">  <span class="attr">updated_at</span>: <span class="string">&#x27;Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)&#x27;</span>,</span><br><span class="line">  <span class="attr">nullValue</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">undefinedValue</span>: <span class="literal">undefined</span>, <span class="comment">// JSON.stringify 不会序列化 undefined</span></span><br><span class="line">  <span class="attr">symbolValue</span>: <span class="built_in">Symbol</span>(<span class="string">&#x27;TypeScript&#x27;</span>), <span class="comment">// JSON.stringify 不会序列化 Symbol</span></span><br><span class="line">  <span class="attr">arrowLog</span>: <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="built_in">this</span>), <span class="comment">// JSON.stringify 不会序列化 箭头函数</span></span><br><span class="line">  <span class="attr">funLog</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="built_in">this</span>) &#125;, <span class="comment">// JSON.stringify 不会序列化 函数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 当 JSON.stringify 的第二个参数是函数时, 可单独对某个值进行处理</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(someObj, <span class="function">(<span class="params">k, v</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(v)</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> v === <span class="string">&#x27;undefined&#x27;</span>) <span class="keyword">return</span> <span class="string">&#x27;undefined&#x27;</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">JSON</span>.stringify(v);</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
 
 <p>当 <code>JSON.stringify</code> 的第二个参数是数组时，可在数组中加入属性名，来规定返回哪些属性的序列化值。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> someObj = &#123;</span><br><span class="line">  _id: <span class="string">'id'</span>,</span><br><span class="line">  productCode: <span class="string">'P28120068'</span>,</span><br><span class="line">  productDetail: &#123;</span><br><span class="line">    name: <span class="string">'Star Insure'</span>,</span><br><span class="line">    price: <span class="number">1200</span>,</span><br><span class="line">    amount: <span class="number">1000000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  created_at: <span class="string">'Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)'</span>,</span><br><span class="line">  updated_at: <span class="string">'Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)'</span>,</span><br><span class="line">  nullValue: <span class="literal">null</span>,</span><br><span class="line">  undefinedValue: <span class="literal">undefined</span>, <span class="comment">// JSON.stringify 不会序列化 undefined</span></span><br><span class="line">  symbolValue: <span class="built_in">Symbol</span>(<span class="string">'TypeScript'</span>), <span class="comment">// JSON.stringify 不会序列化 Symbol</span></span><br><span class="line">  arrowLog: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>), <span class="comment">// JSON.stringify 不会序列化 箭头函数</span></span><br><span class="line">  funLog: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="keyword">this</span>) &#125;, <span class="comment">// JSON.stringify 不会序列化 函数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 当 JSON.stringify 的第二个参数是数组时，可在数组中加入属性名，来规定返回哪些属性的序列化值</span></span><br><span class="line"><span class="comment"> * 但当值是 undefined、Symbol、任何函数时无效</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(someObj, [<span class="string">'productCode'</span>, <span class="string">'arrowLog'</span>])); <span class="comment">// &#123; productCode: 'P28120068' &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> someObj = &#123;</span><br><span class="line">  <span class="attr">_id</span>: <span class="string">&#x27;id&#x27;</span>,</span><br><span class="line">  <span class="attr">productCode</span>: <span class="string">&#x27;P28120068&#x27;</span>,</span><br><span class="line">  <span class="attr">productDetail</span>: &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Star Insure&#x27;</span>,</span><br><span class="line">    <span class="attr">price</span>: <span class="number">1200</span>,</span><br><span class="line">    <span class="attr">amount</span>: <span class="number">1000000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">created_at</span>: <span class="string">&#x27;Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)&#x27;</span>,</span><br><span class="line">  <span class="attr">updated_at</span>: <span class="string">&#x27;Fri Nov 13 2020 09:25:31 GMT+0800 (China Standard Time)&#x27;</span>,</span><br><span class="line">  <span class="attr">nullValue</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">undefinedValue</span>: <span class="literal">undefined</span>, <span class="comment">// JSON.stringify 不会序列化 undefined</span></span><br><span class="line">  <span class="attr">symbolValue</span>: <span class="built_in">Symbol</span>(<span class="string">&#x27;TypeScript&#x27;</span>), <span class="comment">// JSON.stringify 不会序列化 Symbol</span></span><br><span class="line">  <span class="attr">arrowLog</span>: <span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="built_in">this</span>), <span class="comment">// JSON.stringify 不会序列化 箭头函数</span></span><br><span class="line">  <span class="attr">funLog</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="built_in">this</span>) &#125;, <span class="comment">// JSON.stringify 不会序列化 函数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 当 JSON.stringify 的第二个参数是数组时，可在数组中加入属性名，来规定返回哪些属性的序列化值</span></span><br><span class="line"><span class="comment"> * 但当值是 undefined、Symbol、任何函数时无效</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(someObj, [<span class="string">&#x27;productCode&#x27;</span>, <span class="string">&#x27;arrowLog&#x27;</span>])); <span class="comment">// &#123; productCode: &#x27;P28120068&#x27; &#125;</span></span><br></pre></td></tr></table></figure>
 
 
-
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2018/04/02/ReflowAndRedraw/" rel="prev" title="Reflow and Redraw">
-      <i class="fa fa-chevron-left"></i> Reflow and Redraw
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2018/05/19/JavaScript%20%E6%B7%B1%E6%8B%B7%E8%B4%9D/" rel="next" title="JavaScript 中的深拷贝和浅拷贝">
-      JavaScript 中的深拷贝和浅拷贝 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Note-1"><span class="nav-number">1.</span> <span class="nav-text">Note 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Note-2"><span class="nav-number">2.</span> <span class="nav-text">Note 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Note-3"><span class="nav-number">3.</span> <span class="nav-text">Note 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Note-4"><span class="nav-number">4.</span> <span class="nav-text">Note 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Note-5"><span class="nav-number">5.</span> <span class="nav-text">Note 5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Note-6"><span class="nav-number">6.</span> <span class="nav-text">Note 6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Note-7"><span class="nav-number">7.</span> <span class="nav-text">Note 7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Note-8"><span class="nav-number">8.</span> <span class="nav-text">Note 8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Note-9"><span class="nav-number">9.</span> <span class="nav-text">Note 9</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Note-10"><span class="nav-number">10.</span> <span class="nav-text">Note 10</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Y2hlbmdsZWk=</p>
-  <div class="site-description" itemprop="description">ODQ4NjUwMTI5QHFxLmNvbQ==</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">55</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Y2hlbmdsZWk=</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-</body>
-</html>
+</div><div class="article-licensing box"><div class="licensing-title"><p>JSON.stringify 的解析</p><p><a href="https://cocoalei.github.io/blogs/2018/05/12/json-stringify/">https://cocoalei.github.io/blogs/2018/05/12/json-stringify/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Y2hlbmdsZWk=</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2018-05-12</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2020-11-16</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/JavaScript/">JavaScript</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/05/19/JavaScript%20%E6%B7%B1%E6%8B%B7%E8%B4%9D/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">JavaScript 中的深拷贝和浅拷贝</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/04/02/ReflowAndRedraw/"><span class="level-item">Reflow and Redraw</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="LeiTech"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">LeiTech</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">55</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="/"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/CS/"><span class="level-start"><span class="level-item">CS</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/Git/"><span class="level-start"><span class="level-item">Git</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/JavaScript/"><span class="level-start"><span class="level-item">JavaScript</span></span><span class="level-end"><span class="level-item tag">19</span></span></a></li><li><a class="level is-mobile" href="/categories/Mac/"><span class="level-start"><span class="level-item">Mac</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/TypeScript/"><span class="level-start"><span class="level-item">TypeScript</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Vue/"><span class="level-start"><span class="level-item">Vue</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Web/"><span class="level-start"><span class="level-item">Web</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/iOS/"><span class="level-start"><span class="level-item">iOS</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/"><span class="level-start"><span class="level-item">大前端</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/06/"><span class="level-start"><span class="level-item">六月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">九月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">四月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/03/"><span class="level-start"><span class="level-item">三月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">十二月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">九月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/07/"><span class="level-start"><span class="level-item">七月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">六月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/05/"><span class="level-start"><span class="level-item">五月 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/04/"><span class="level-start"><span class="level-item">四月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/03/"><span class="level-start"><span class="level-item">三月 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/02/"><span class="level-start"><span class="level-item">二月 2018</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">一月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/05/"><span class="level-start"><span class="level-item">五月 2017</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/04/"><span class="level-start"><span class="level-item">四月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/06/"><span class="level-start"><span class="level-item">六月 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/04/"><span class="level-start"><span class="level-item">四月 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/03/"><span class="level-start"><span class="level-item">三月 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/02/"><span class="level-start"><span class="level-item">二月 2016</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/01/"><span class="level-start"><span class="level-item">一月 2016</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/12/"><span class="level-start"><span class="level-item">十二月 2015</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/11/"><span class="level-start"><span class="level-item">十一月 2015</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/10/"><span class="level-start"><span class="level-item">十月 2015</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/09/"><span class="level-start"><span class="level-item">九月 2015</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Git/"><span class="tag">Git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Web/"><span class="tag">Web</span><span class="tag">3</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><!--!--></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="关于代码的碎碎念" height="28"></a><p class="is-size-7"><span>&copy; 2021 Y2hlbmdsZWk=</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

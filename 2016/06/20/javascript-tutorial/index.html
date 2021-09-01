@@ -1,212 +1,5 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cocoalei.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="JavaScript Where ToScript can be placed in the  , or in the  section of an HTML page , or in both. But placing scripts at the bottom of the  element improves the display speed , because script complat">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript Tutorial">
-<meta property="og:url" content="https://cocoalei.github.io/blogs/2016/06/20/javascript-tutorial/index.html">
-<meta property="og:site_name" content="关于代码的碎碎念">
-<meta property="og:description" content="JavaScript Where ToScript can be placed in the  , or in the  section of an HTML page , or in both. But placing scripts at the bottom of the  element improves the display speed , because script complat">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2016-06-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-02T01:40:47.710Z">
-<meta property="article:author" content="Y2hlbmdsZWk&#x3D;">
-<meta property="article:tag" content="JavaScript">
-<meta property="article:tag" content=" Web">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://cocoalei.github.io/blogs/2016/06/20/javascript-tutorial/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>JavaScript Tutorial | 关于代码的碎碎念</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">关于代码的碎碎念</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">Y29jb2FsaS5naXRodWIuaW8=</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://cocoalei.github.io/blogs/2016/06/20/javascript-tutorial/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Y2hlbmdsZWk=">
-      <meta itemprop="description" content="ODQ4NjUwMTI5QHFxLmNvbQ==">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="关于代码的碎碎念">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          JavaScript Tutorial
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-06-20 00:00:00" itemprop="dateCreated datePublished" datetime="2016-06-20T00:00:00+08:00">2016-06-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-02 09:40:47" itemprop="dateModified" datetime="2020-12-02T09:40:47+08:00">2020-12-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <h2 id="JavaScript-Where-To"><a href="#JavaScript-Where-To" class="headerlink" title="JavaScript Where To"></a>JavaScript Where To</h2><p>Script can be placed in the <body> , or in the <head> section of an HTML page , or in both. But placing scripts at the bottom of the <body> element improves the display speed , because script complation slow down the display. </p>
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>JavaScript Tutorial - 关于代码的碎碎念</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="LeiTech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LeiTech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="JavaScript Where ToScript can be placed in the  , or in the  section of an HTML page , or in both. But placing scripts at the bottom of the  element improves the display speed , because script complat"><meta property="og:type" content="blog"><meta property="og:title" content="JavaScript Tutorial"><meta property="og:url" content="https://cocoalei.github.io/blogs/2016/06/20/javascript-tutorial/"><meta property="og:site_name" content="关于代码的碎碎念"><meta property="og:description" content="JavaScript Where ToScript can be placed in the  , or in the  section of an HTML page , or in both. But placing scripts at the bottom of the  element improves the display speed , because script complat"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2016-06-19T16:00:00.000Z"><meta property="article:modified_time" content="2020-12-02T01:40:47.710Z"><meta property="article:author" content="Y2hlbmdsZWk="><meta property="article:tag" content="JavaScript, Web"><meta property="twitter:card" content="summary"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://cocoalei.github.io/blogs/2016/06/20/javascript-tutorial/"},"headline":"JavaScript Tutorial","image":[],"datePublished":"2016-06-19T16:00:00.000Z","dateModified":"2020-12-02T01:40:47.710Z","author":{"@type":"Person","name":"Y2hlbmdsZWk="},"publisher":{"@type":"Organization","name":"关于代码的碎碎念","logo":{"@type":"ImageObject","url":"https://cocoalei.github.io/img/logo.svg"}},"description":"JavaScript Where ToScript can be placed in the  , or in the  section of an HTML page , or in both. But placing scripts at the bottom of the  element improves the display speed , because script complat"}</script><link rel="canonical" href="https://cocoalei.github.io/blogs/2016/06/20/javascript-tutorial/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="关于代码的碎碎念" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2016-06-19T16:00:00.000Z" title="2016/6/20 上午12:00:00">2016-06-20</time>发表</span><span class="level-item"><a class="link-muted" href="/categories/JavaScript/">JavaScript</a></span><span class="level-item">1 小时读完 (大约12953个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">JavaScript Tutorial</h1><div class="content"><h2 id="JavaScript-Where-To"><a href="#JavaScript-Where-To" class="headerlink" title="JavaScript Where To"></a>JavaScript Where To</h2><p>Script can be placed in the <body> , or in the <head> section of an HTML page , or in both. But placing scripts at the bottom of the <body> element improves the display speed , because script complation slow down the display. </p>
 <p>Scripts can also be placed in external files and it is a practical method to solve the problem the same code is used in many different web pages . It’s important to note that you can’t contain <scrip> tags in external scripts . Placing scripts in external files has some advantages as below :</p>
 <ul>
 <li>It separates HTML and code</li>
@@ -217,22 +10,22 @@
 <h2 id="JavaScript-Output"><a href="#JavaScript-Output" class="headerlink" title="JavaScript Output"></a>JavaScript Output</h2><p>JavaScript can display data use innerHTML/document.write()/window.alert()/console.log() .</p>
 <ul>
 <li><p>Using innerHTML</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById().innHTML = <span class="string">'content'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById().innHTML = <span class="string">&#x27;content&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>Changing the innerHTML property of an HTML element is a common way to display data in HTML.</p>
 </li>
 <li><p>Using document.write()</p>
 <p>For testing purposes , it is convenient to use document.write() .</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.write(<span class="string">'content'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.write(<span class="string">&#x27;content&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>Noted: Using document.write() after an HTML document is fully loaded , will delete all existing HTML .</p>
 </li>
 <li><p>Using window.alert()</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.alert(<span class="string">'content'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.alert(<span class="string">&#x27;content&#x27;</span>);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Using console.log()</p>
 <p>For debugging purpose, you can use the console.log() method to display data.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'content'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;content&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 
 
@@ -305,14 +98,14 @@
 </ul>
 <p><strong>Return</strong></p>
 <p>When JavaScript reaches a return statement, the function will stop executing. If the function was invoked from a statement, JavaScript will return to execute the code after the invoking statement. Function often compute a return value. The return value is “returned” back to the caller.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define a function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">convertStringToLowerCase</span> (<span class="params">text</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> text.toLocaleLowerCase();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// invoke a function </span></span><br><span class="line"><span class="keyword">var</span> lowerCaseStr = convertStringToLowerCase(<span class="string">"Hello JavaScript !"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define a function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">convertStringToLowerCase</span> (<span class="params">text</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> text.toLocaleLowerCase();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// invoke a function </span></span><br><span class="line"><span class="keyword">var</span> lowerCaseStr = convertStringToLowerCase(<span class="string">&quot;Hello JavaScript !&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>Accessing a function without () will return the function definition instead of the function result.</p>
 <p><strong>Why Functions?</strong></p>
 <p>You can reuse code by using function. As it is : Define the code once, and use it many times.</p>
 <p><strong>Functions used as variable values</strong></p>
 <p>Functions can be used the same way as you use variables, in all types of formulas, assignments, and calculations.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"text"</span>.toLocalLowerCase());</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;text&quot;</span>.toLocalLowerCase());</span><br></pre></td></tr></table></figure>
 
 
 
@@ -329,7 +122,7 @@
 </ul>
 <p><strong>Object Methods</strong></p>
 <p>Objects can also have methods - actions that can be performed on objects. Methods are stored in properties as function definitions. A method is a function stored as a property.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> objct = &#123;</span><br><span class="line">    key: value,</span><br><span class="line">    key: value,</span><br><span class="line">    ...</span><br><span class="line">    methodName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> objct = &#123;</span><br><span class="line">    <span class="attr">key</span>: value,</span><br><span class="line">    <span class="attr">key</span>: value,</span><br><span class="line">    ...</span><br><span class="line">    <span class="attr">methodName</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p><strong>The <code>this</code> keyword</strong></p>
 <p>In a function definition, this refers to the “owner” of the function.</p>
@@ -371,37 +164,37 @@
 <p><strong>HTML Events</strong></p>
 <p>An HTML event can be something the browser dose, or somthing a user does.</p>
 <p>JavaScript lets you execute code whtn events are detected. HTML allows event handler attributes, with JavaScript code, to be added to HTML elements.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">element</span> <span class="attr">event</span>=<span class="string">"some JavaScript"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">element</span> <span class="attr">event</span>=<span class="string">&quot;some JavaScript&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>JavaScript code is often several lines long. It is more common to see event attributes calling functions.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">element</span> <span class="attr">event</span>=<span class="string">"functoinName"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">element</span> <span class="attr">event</span>=<span class="string">&quot;functoinName&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>What can JavaScript Do ?</strong></p>
 <p>Event handlers can be used to handle, and verify, user input, user actions, and browser actions.</p>
 <h2 id="JavaScript-Strings"><a href="#JavaScript-Strings" class="headerlink" title="JavaScript Strings"></a>JavaScript Strings</h2><p>JavaScript strings are used for storing and manipulating text.</p>
 <p><strong>String Length</strong></p>
 <p>The length of a string is found in the built in property length.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> txt = <span class="string">"AaBbCcDdEeFfGg"</span>;</span><br><span class="line"><span class="keyword">var</span> length = txt.length;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> txt = <span class="string">&quot;AaBbCcDdEeFfGg&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> length = txt.length;</span><br></pre></td></tr></table></figure>
 
 <p><strong>Special Characters</strong></p>
 <p>Because strings must be written within quotes, JavaScript will misunderstand this string and the solution to avoid this problem, is to use the backslash escape character.</p>
 <p><strong>Breaking Long Code  Lines</strong></p>
 <p>For best readability, programmers often like to avoid code lines longer than 80 characters. If a JavaScript statements does not fit on one line, the best place to break it is after an operator.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"element-id"</span>).innerHTML =</span><br><span class="line"><span class="string">"content"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;element-id&quot;</span>).innerHTML =</span><br><span class="line"><span class="string">&quot;content&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>You can also break up a code line within a text string with a single backslash.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="string">"Line - 1 \</span></span><br><span class="line"><span class="string">Line - 2</span></span><br><span class="line"><span class="string">"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="string">&quot;Line - 1 \</span></span><br><span class="line"><span class="string">Line - 2</span></span><br><span class="line"><span class="string">&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p><strong>Strings Can be Objects</strong></p>
 <p>Normally, JavaScript strings are primitive values, created from literals, but strings can also be defined as objects with the keyword new.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> literalStr = <span class="string">"literal string"</span>;</span><br><span class="line"><span class="keyword">var</span> objectStr = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"object string"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> literalStr = <span class="string">&quot;literal string&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> objectStr = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&quot;object string&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 
 
 <p><strong>JavaScript String  Methods</strong></p>
 <p>Primitive values cannot have propertiess or methods, because they are not objects.</p>
 <p>But with JavaScript, methods and properties are also available to primitive values, because JavaScript treats primitive values as objects when executing methods and properties.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> orignalStr = <span class="string">"AaBbCcDdAaBbCcDd"</span>;</span><br><span class="line"><span class="keyword">var</span> subStr = <span class="string">"aB"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// the length property returns the length of a string</span></span><br><span class="line"><span class="comment">// strLength is 8</span></span><br><span class="line"><span class="keyword">var</span> strLength = orignalStr.length; </span><br><span class="line"></span><br><span class="line"><span class="comment">// the indexOf() method returns the index of the first occurrence of a specified text in a string</span></span><br><span class="line"><span class="comment">// subStrIndex is 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// the lastIndexOf() method returns the index of the last occurrence of a specified text in a string</span></span><br><span class="line"><span class="comment">// lastIndexOfSubStr is 9</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Both indexOf() and lastIndexOf() return -1 if the text is not found</span></span><br><span class="line"><span class="comment">// Both indexOf() and lastIndexOf() accept a second parameter as the starting position for search.</span></span><br><span class="line"><span class="keyword">var</span> subStrIndex = orignalStr.indexOf(subStr);</span><br><span class="line"><span class="keyword">var</span> lastIndexOfSubStr = orignalStr.lastIndexOf(subStr);</span><br><span class="line"></span><br><span class="line"><span class="comment">// the search() method search a string for a specified value and return the position of the match</span></span><br><span class="line"><span class="comment">// search() method cannot accept second parameter and can take regular expressions as search values</span></span><br><span class="line"><span class="comment">// subStrIndex is 1</span></span><br><span class="line"><span class="keyword">var</span> subStrIndex = orignalStr.search(subStr);</span><br><span class="line"></span><br><span class="line"><span class="comment">// slice(start, end),substring(start, end), and substr(start, length) for extracting a part of a string.</span></span><br><span class="line"><span class="comment">// slice() extracts a part of a string and returns the extracted part in a new string</span></span><br><span class="line"><span class="comment">// substring() is similar to slice(), the difference is that substring() cannot accept negative indexes</span></span><br><span class="line"><span class="comment">// substr() is similar to slice(), the difference is that the second parameter specifies the length of the extracted part.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// now resultStr1, resultStr2, resultStr3 is AaBb</span></span><br><span class="line"><span class="keyword">var</span> resultStr1 = orignalStr.slice(<span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line"><span class="keyword">var</span> resultStr2 = orignalStr.substring(<span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line"><span class="keyword">var</span> resultStr3 = orignalStr.substr(<span class="number">0</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// the replace() method replaces a specified value with anthor value in a string</span></span><br><span class="line"><span class="comment">// resultStr now is Hello JavaScript</span></span><br><span class="line"><span class="comment">// the replace() method does not change the string it is called on, it returns a new string.</span></span><br><span class="line"><span class="comment">// By default, the replace() function replaces only the first match</span></span><br><span class="line"><span class="comment">// To replace all matches, use a regular expression with a /g flag</span></span><br><span class="line">orignalStr = <span class="string">"Hello Lee Code"</span>;</span><br><span class="line">resultStr = orignalStr.replace(<span class="string">"Lee Code"</span>, <span class="string">"JavaScript"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// A string is converted to upper case with toUpperCase()</span></span><br><span class="line"><span class="comment">// now resultStr is ABCDEFG</span></span><br><span class="line">orignalStr = <span class="string">"abcdefg"</span>;</span><br><span class="line">resultStr = orignalStr.toUpperCase();</span><br><span class="line"><span class="comment">// A string is converted to lower case with toLowerCase()</span></span><br><span class="line">resultStr = resultStr.toLowerCase();</span><br><span class="line"></span><br><span class="line"><span class="comment">// contact() joins two or more strings</span></span><br><span class="line"><span class="keyword">var</span> contactStr = <span class="string">"A"</span>.contact(<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// trim() method remove whitespace from both sides of a string</span></span><br><span class="line"><span class="comment">// now resultStr is ABC</span></span><br><span class="line">orignalStr = <span class="string">"A B C"</span>;</span><br><span class="line">resultStr = orignalStr.trim();</span><br><span class="line"></span><br><span class="line"><span class="comment">// the charAt() method returns the character at a specified index in a string</span></span><br><span class="line"><span class="comment">// now resultStr is A </span></span><br><span class="line">resultStr = orignalStr.charAt(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Accessing a string as an array is unsafe</span></span><br><span class="line"><span class="comment">// You can accessing a string as an array but it is upsafe and unpredictable</span></span><br><span class="line"><span class="comment">// If you want read a string as an array, convert it to an array first</span></span><br><span class="line"><span class="comment">// split() method can convert a string to an array</span></span><br><span class="line"><span class="comment">// now charArr is [a, b, c, d, e, f, g]</span></span><br><span class="line">orignalStr = <span class="string">"a,b,c,d,e,f,g"</span>;</span><br><span class="line"><span class="keyword">var</span> charArr = orignalStr.split(<span class="string">","</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> orignalStr = <span class="string">&quot;AaBbCcDdAaBbCcDd&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> subStr = <span class="string">&quot;aB&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// the length property returns the length of a string</span></span><br><span class="line"><span class="comment">// strLength is 8</span></span><br><span class="line"><span class="keyword">var</span> strLength = orignalStr.length; </span><br><span class="line"></span><br><span class="line"><span class="comment">// the indexOf() method returns the index of the first occurrence of a specified text in a string</span></span><br><span class="line"><span class="comment">// subStrIndex is 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// the lastIndexOf() method returns the index of the last occurrence of a specified text in a string</span></span><br><span class="line"><span class="comment">// lastIndexOfSubStr is 9</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Both indexOf() and lastIndexOf() return -1 if the text is not found</span></span><br><span class="line"><span class="comment">// Both indexOf() and lastIndexOf() accept a second parameter as the starting position for search.</span></span><br><span class="line"><span class="keyword">var</span> subStrIndex = orignalStr.indexOf(subStr);</span><br><span class="line"><span class="keyword">var</span> lastIndexOfSubStr = orignalStr.lastIndexOf(subStr);</span><br><span class="line"></span><br><span class="line"><span class="comment">// the search() method search a string for a specified value and return the position of the match</span></span><br><span class="line"><span class="comment">// search() method cannot accept second parameter and can take regular expressions as search values</span></span><br><span class="line"><span class="comment">// subStrIndex is 1</span></span><br><span class="line"><span class="keyword">var</span> subStrIndex = orignalStr.search(subStr);</span><br><span class="line"></span><br><span class="line"><span class="comment">// slice(start, end),substring(start, end), and substr(start, length) for extracting a part of a string.</span></span><br><span class="line"><span class="comment">// slice() extracts a part of a string and returns the extracted part in a new string</span></span><br><span class="line"><span class="comment">// substring() is similar to slice(), the difference is that substring() cannot accept negative indexes</span></span><br><span class="line"><span class="comment">// substr() is similar to slice(), the difference is that the second parameter specifies the length of the extracted part.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// now resultStr1, resultStr2, resultStr3 is AaBb</span></span><br><span class="line"><span class="keyword">var</span> resultStr1 = orignalStr.slice(<span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line"><span class="keyword">var</span> resultStr2 = orignalStr.substring(<span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line"><span class="keyword">var</span> resultStr3 = orignalStr.substr(<span class="number">0</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// the replace() method replaces a specified value with anthor value in a string</span></span><br><span class="line"><span class="comment">// resultStr now is Hello JavaScript</span></span><br><span class="line"><span class="comment">// the replace() method does not change the string it is called on, it returns a new string.</span></span><br><span class="line"><span class="comment">// By default, the replace() function replaces only the first match</span></span><br><span class="line"><span class="comment">// To replace all matches, use a regular expression with a /g flag</span></span><br><span class="line">orignalStr = <span class="string">&quot;Hello Lee Code&quot;</span>;</span><br><span class="line">resultStr = orignalStr.replace(<span class="string">&quot;Lee Code&quot;</span>, <span class="string">&quot;JavaScript&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// A string is converted to upper case with toUpperCase()</span></span><br><span class="line"><span class="comment">// now resultStr is ABCDEFG</span></span><br><span class="line">orignalStr = <span class="string">&quot;abcdefg&quot;</span>;</span><br><span class="line">resultStr = orignalStr.toUpperCase();</span><br><span class="line"><span class="comment">// A string is converted to lower case with toLowerCase()</span></span><br><span class="line">resultStr = resultStr.toLowerCase();</span><br><span class="line"></span><br><span class="line"><span class="comment">// contact() joins two or more strings</span></span><br><span class="line"><span class="keyword">var</span> contactStr = <span class="string">&quot;A&quot;</span>.contact(<span class="string">&quot;B&quot;</span>,<span class="string">&quot;C&quot;</span>,<span class="string">&quot;D&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// trim() method remove whitespace from both sides of a string</span></span><br><span class="line"><span class="comment">// now resultStr is ABC</span></span><br><span class="line">orignalStr = <span class="string">&quot;A B C&quot;</span>;</span><br><span class="line">resultStr = orignalStr.trim();</span><br><span class="line"></span><br><span class="line"><span class="comment">// the charAt() method returns the character at a specified index in a string</span></span><br><span class="line"><span class="comment">// now resultStr is A </span></span><br><span class="line">resultStr = orignalStr.charAt(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Accessing a string as an array is unsafe</span></span><br><span class="line"><span class="comment">// You can accessing a string as an array but it is upsafe and unpredictable</span></span><br><span class="line"><span class="comment">// If you want read a string as an array, convert it to an array first</span></span><br><span class="line"><span class="comment">// split() method can convert a string to an array</span></span><br><span class="line"><span class="comment">// now charArr is [a, b, c, d, e, f, g]</span></span><br><span class="line">orignalStr = <span class="string">&quot;a,b,c,d,e,f,g&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> charArr = orignalStr.split(<span class="string">&quot;,&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>All string methods return a new string. They don’t modify the orignal string.</p>
 <p>Formally said: Strings are immutable: Strings cannot be changed, only replaced.</p>
@@ -422,21 +215,21 @@
 
 <p><strong>Adding Numbers and Strings</strong></p>
 <p>JavaScript uses the + operator for both addition and concatenation. Numbers are added. Strings are concatenated.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// strResult will be 12</span></span><br><span class="line"><span class="keyword">let</span> strX = <span class="string">"1"</span>;</span><br><span class="line"><span class="keyword">let</span> strY = <span class="string">"2"</span>;</span><br><span class="line"><span class="keyword">let</span> strResult = strX + strY;</span><br><span class="line"></span><br><span class="line"><span class="comment">// numberResult will be 3</span></span><br><span class="line"><span class="keyword">let</span> numberX = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> numberY = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">let</span> numberResult = numberX + numberY;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// strResult will be 12</span></span><br><span class="line"><span class="keyword">let</span> strX = <span class="string">&quot;1&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> strY = <span class="string">&quot;2&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> strResult = strX + strY;</span><br><span class="line"></span><br><span class="line"><span class="comment">// numberResult will be 3</span></span><br><span class="line"><span class="keyword">let</span> numberX = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> numberY = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">let</span> numberResult = numberX + numberY;</span><br></pre></td></tr></table></figure>
 
 <p>The JavaScript compiler works from left to right.</p>
 <p><strong>Numeric Strings</strong></p>
 <p>JavaScript strings can have numeric content and JavaScript will try to convert strings to numbers in all numeric operations.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// result will be 0.5</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="string">"1"</span>;</span><br><span class="line"><span class="keyword">let</span> y = <span class="string">"2"</span>;</span><br><span class="line"><span class="keyword">let</span> result = x / y;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// result will be 0.5</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="string">&quot;1&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> y = <span class="string">&quot;2&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> result = x / y;</span><br></pre></td></tr></table></figure>
 
 <p><strong>NaN - Not a Number</strong></p>
 <p>NaN is a JavaScript reserved word indicating that a number is not a legal number.</p>
 <p>Try to do arithmetic with a non-numberic string will result in NaN.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// x will be NaN</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="number">100</span> / <span class="string">"a"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// x will be NaN</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="number">100</span> / <span class="string">&quot;a&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>You can use the global JavaScript function isNaN() to find out if a value is a number.</p>
 <p>NaN is a number : typeof NaN returns number:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// returns "number"</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">NaN</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// returns &quot;number&quot;</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">NaN</span>; </span><br></pre></td></tr></table></figure>
 
 <p><strong>Infinity</strong></p>
 <p>Infinity is the value JavaScript will return if you calculate a number outside the largest possible number.</p>
@@ -484,19 +277,19 @@
 <ul>
 <li><p><code>Number()</code></p>
 <p>This method returns a number, converted from its argument.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="literal">true</span>);	<span class="comment">// 1</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">false</span>);	<span class="comment">// 0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">"10"</span>);	<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">" 10"</span>);	<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">"10 20"</span>);	<span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">"John"</span>);	<span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="literal">true</span>);	<span class="comment">// 1</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">false</span>);	<span class="comment">// 0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">&quot;10&quot;</span>);	<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">&quot; 10&quot;</span>);	<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">&quot;10 20&quot;</span>);	<span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">&quot;John&quot;</span>);	<span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
 
 <p>If the number cannot be converted, NaN is  returned.</p>
 <p><code>Number()</code> can also convert a date to a number</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"2016-06-10"</span>);	<span class="comment">// returns the number of milliseconds since 1.1.1970</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">&quot;2016-06-10&quot;</span>);	<span class="comment">// returns the number of milliseconds since 1.1.1970</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>parseFloat()</code></p>
 <p>This  method parses its argument and returns a floating point number. Space are allowed.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10"</span>);			<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10.33"</span>);		<span class="comment">// 10.33</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10 20"</span>);		<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"10 years"</span>);		<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">"years 10"</span>);		<span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>(<span class="string">&quot;10&quot;</span>);			<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">&quot;10.33&quot;</span>);		<span class="comment">// 10.33</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">&quot;10 20&quot;</span>);		<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">&quot;10 years&quot;</span>);		<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">&quot;years 10&quot;</span>);		<span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>parseInt()</code></p>
 <p>This method parsed its argument and returns an integer. Space are allowed.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10"</span>);			<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10.33"</span>);		<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10 20 30"</span>);	<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"10 years"</span>);	<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"years 10"</span>);	<span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">&quot;10&quot;</span>);			<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&quot;10.33&quot;</span>);		<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&quot;10 20 30&quot;</span>);	<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&quot;10 years&quot;</span>);	<span class="comment">// 10</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&quot;years 10&quot;</span>);	<span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -539,7 +332,7 @@
 <li><p><code>Array.isArray()</code></p>
 </li>
 <li><p>Create your own isArray() function</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.constructor.toString().indexOf(<span class="string">"Array"</span>) &gt; <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.constructor.toString().indexOf(<span class="string">&quot;Array&quot;</span>) &gt; -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>instanceof</code> operator</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrayNum = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line">arrayNum <span class="keyword">instanceof</span> <span class="built_in">Array</span>	<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
@@ -550,14 +343,14 @@
 <ul>
 <li><p><code>toString()</code></p>
 <p>The  method <code>toString()</code> converts an array to a string of array values.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrayStr = [<span class="string">"Hello "</span>, <span class="string">" World"</span>, <span class="string">" !"</span>];</span><br><span class="line"><span class="keyword">let</span> resultStr = arrayStr.toString();	<span class="comment">// result is Hello World !</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrayStr = [<span class="string">&quot;Hello &quot;</span>, <span class="string">&quot; World&quot;</span>, <span class="string">&quot; !&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> resultStr = arrayStr.toString();	<span class="comment">// result is Hello World !</span></span><br></pre></td></tr></table></figure>
 
 <p>JavaScript automatically converts an array to a comma separated string when a primitive value is expected. This is always the case when you try to output an array.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strArr = [<span class="string">"Apple"</span>, <span class="string">"Google"</span>, <span class="string">"Facebook"</span>, <span class="string">"Twitter"</span>];</span><br><span class="line"><span class="keyword">let</span> result = strArr.toString();	<span class="comment">// result is "Apple","Google","Facebook","Twitter"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strArr = [<span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Google&quot;</span>, <span class="string">&quot;Facebook&quot;</span>, <span class="string">&quot;Twitter&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> result = strArr.toString();	<span class="comment">// result is &quot;Apple&quot;,&quot;Google&quot;,&quot;Facebook&quot;,&quot;Twitter&quot;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>join()</code></p>
 <p>The method <code>join()</code> alos joins all array elements into a string. It behaves just like <code>toString()</code>, but in addition you can specify the separator.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrayNum = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">let</span> rusultStr = arrayNum.join(<span class="string">"*"</span>); <span class="comment">// resultStr is 1*2*3*4</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrayNum = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">let</span> rusultStr = arrayNum.join(<span class="string">&quot;*&quot;</span>); <span class="comment">// resultStr is 1*2*3*4</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>pop()</code></p>
 <p>The  method <code>pop()</code> removes the last element from an array</p>
@@ -590,7 +383,7 @@
 </li>
 <li><p><code>slice()</code></p>
 <p>The <code>slice()</code> method slices out a piece of an array into a new array and creates a new array. It does not remove any elements from the source array.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strArr = [<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>, <span class="string">"D"</span>];</span><br><span class="line"><span class="keyword">let</span> result = strArr.slice(<span class="number">1</span>);	<span class="comment">// result is ["B", "C", "D"]</span></span><br><span class="line">result = strArr.slice(<span class="number">1</span>, <span class="number">3</span>);	<span class="comment">// now result is ["B", "C"]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strArr = [<span class="string">&quot;A&quot;</span>, <span class="string">&quot;B&quot;</span>, <span class="string">&quot;C&quot;</span>, <span class="string">&quot;D&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> result = strArr.slice(<span class="number">1</span>);	<span class="comment">// result is [&quot;B&quot;, &quot;C&quot;, &quot;D&quot;]</span></span><br><span class="line">result = strArr.slice(<span class="number">1</span>, <span class="number">3</span>);	<span class="comment">// now result is [&quot;B&quot;, &quot;C&quot;]</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -598,18 +391,18 @@
 <ul>
 <li><p><code>sort()</code></p>
 <p>The <code>sort()</code> method sorts an array alphabetically</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strArr = [<span class="string">"b"</span>, <span class="string">"d"</span>, <span class="string">"a"</span>, <span class="string">"c"</span>];</span><br><span class="line">strArr.sort();	<span class="comment">// now strArr is ["a", "b", "c", "d"]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strArr = [<span class="string">&quot;b&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;c&quot;</span>];</span><br><span class="line">strArr.sort();	<span class="comment">// now strArr is [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</span></span><br></pre></td></tr></table></figure>
 
 <p>By default, the <code>sort()</code> function sorts values as strings. Because of this, the <code>sort()</code> method will produce incorrect result when sorting numbers. You can fix this by providing a compare function.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numArr = [<span class="number">100</span>, <span class="number">20</span>, <span class="number">50</span> <span class="number">10</span>, <span class="number">40</span>];</span><br><span class="line">numArr.sort( <span class="function"><span class="keyword">function</span> (<span class="params">numX, numY</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> numX - numY;</span><br><span class="line">&#125;);	<span class="comment">// now numArr is [10, 20, 40, 50, 100]</span></span><br><span class="line">numArr.sort( <span class="function"><span class="keyword">function</span> (<span class="params">numX, numY</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> numY - numX;</span><br><span class="line">&#125;);	<span class="comment">// now numArr is [100, 50, 40, 20, 10]</span></span><br></pre></td></tr></table></figure>
 
 <p>The purpose of the compare function is to define an alternative sort order. The compare function should return a negative, zero, or positive value, depending on the arguments.</p>
 <p>You can even sorting an array in random order.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numArr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">-1</span>];</span><br><span class="line">numArr.sort( <span class="function"><span class="keyword">function</span> (<span class="params">numX, numY</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0.5</span> - <span class="built_in">Math</span>.random();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numArr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, -<span class="number">1</span>];</span><br><span class="line">numArr.sort( <span class="function"><span class="keyword">function</span> (<span class="params">numX, numY</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0.5</span> - <span class="built_in">Math</span>.random();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>reverse()</code></p>
 <p>The <code>reverse()</code> method reverses the elements in an array. </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strArr = [<span class="string">"b"</span>, <span class="string">"d"</span>, <span class="string">"a"</span>, <span class="string">"c"</span>];</span><br><span class="line">strArr.sort();	<span class="comment">// now strArr is ["a", "b", "c", "d"]</span></span><br><span class="line">strArr.reverse(); <span class="comment">// now strArr is ["d", "c", "b", "a"]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strArr = [<span class="string">&quot;b&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;c&quot;</span>];</span><br><span class="line">strArr.sort();	<span class="comment">// now strArr is [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</span></span><br><span class="line">strArr.reverse(); <span class="comment">// now strArr is [&quot;d&quot;, &quot;c&quot;, &quot;b&quot;, &quot;a&quot;]</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Find the highest (or lowest) array value</p>
 <p>There are no built-in functions for finding the max or min value in an array.</p>
@@ -630,7 +423,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">minValueInArr</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> arrLen = arr.length;</span><br><span class="line">    <span class="keyword">let</span> minValue = <span class="literal">Infinity</span>;</span><br><span class="line">    <span class="keyword">while</span> (arrLen--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[arrLen] &lt; minValue) &#123;</span><br><span class="line">            minValue = arr[arrLen];</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">    retrun minValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>JavaScript arrays often contain objects. Even if objects have properties of different data types, ther short() method can be used to sort the array. The solution is to write a compare function to compare the property values.</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> objArr = [&#123;<span class="attr">name</span>:<span class="string">"a"</span>, <span class="attr">age</span>: <span class="number">19</span>&#125;, &#123;<span class="attr">name</span>:<span class="string">"b"</span>, <span class="attr">age</span>: <span class="number">9</span>&#125;, &#123;<span class="attr">name</span>:<span class="string">"ac"</span>, <span class="attr">age</span>: <span class="number">80</span>&#125;];</span><br><span class="line">objArr.sort(<span class="function"><span class="keyword">function</span> <span class="title">sortObjByAge</span> (<span class="params">objX, objY</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> ageX = objX.age;</span><br><span class="line">    <span class="keyword">let</span> ageY = objY.age;</span><br><span class="line">    <span class="keyword">if</span> (ageX &lt; ageY) &#123; <span class="keyword">return</span> <span class="number">-1</span>;&#125;</span><br><span class="line">    <span class="keyword">if</span> (ageX &gt; ageY) &#123;<span class="keyword">return</span> <span class="number">1</span>;&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> objArr = [&#123;<span class="attr">name</span>:<span class="string">&quot;a&quot;</span>, <span class="attr">age</span>: <span class="number">19</span>&#125;, &#123;<span class="attr">name</span>:<span class="string">&quot;b&quot;</span>, <span class="attr">age</span>: <span class="number">9</span>&#125;, &#123;<span class="attr">name</span>:<span class="string">&quot;ac&quot;</span>, <span class="attr">age</span>: <span class="number">80</span>&#125;];</span><br><span class="line">objArr.sort(<span class="function"><span class="keyword">function</span> <span class="title">sortObjByAge</span> (<span class="params">objX, objY</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> ageX = objX.age;</span><br><span class="line">    <span class="keyword">let</span> ageY = objY.age;</span><br><span class="line">    <span class="keyword">if</span> (ageX &lt; ageY) &#123; <span class="keyword">return</span> -<span class="number">1</span>;&#125;</span><br><span class="line">    <span class="keyword">if</span> (ageX &gt; ageY) &#123;<span class="keyword">return</span> <span class="number">1</span>;&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -639,7 +432,7 @@
 <ul>
 <li><p><code>Array.forEach()</code></p>
 <p>The <code>forEach()</code> method calls a function once fro each array element.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strArr = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>];</span><br><span class="line"><span class="keyword">let</span> result = <span class="string">""</span>;</span><br><span class="line">strArr.forEach( <span class="function"><span class="keyword">function</span> (<span class="params">value, index, arr</span>) </span>&#123;</span><br><span class="line">    result = result + value + <span class="string">"\n"</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> strArr = [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> result = <span class="string">&quot;&quot;</span>;</span><br><span class="line">strArr.forEach( <span class="function"><span class="keyword">function</span> (<span class="params">value, index, arr</span>) </span>&#123;</span><br><span class="line">    result = result + value + <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>Array.map()</code></p>
 <p>The <code>map()</code> method creates a new array by performing a function on each arry element.</p>
@@ -702,7 +495,7 @@
 <p>When setting a date, without specifying the time zone, JavaScript will use the browser’s time zone.</p>
 <p><strong>Date Input - Parsing Dates</strong></p>
 <p>If you have a valid date string, you can use the <code>Date.parse()</code> method to convert it to milliseconds. <code>Date.parse()</code> returns the number of milliseconds between the date and January 1, 1970.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> milliSeconds = <span class="built_in">Date</span>.parse(<span class="string">"Jun 10, 2016"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> milliSeconds = <span class="built_in">Date</span>.parse(<span class="string">&quot;Jun 10, 2016&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>You can the use the number of milliseconds to convert it to a date object.</p>
 <p><strong>Get Date Methods</strong></p>
@@ -811,7 +604,7 @@
 </li>
 <li><p><code>Math.abs()</code></p>
 <p><code>Math.abs(x)</code> returns the absolute values of x</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="built_in">Math</span>.abs(<span class="number">-1</span>); <span class="comment">// result is 1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="built_in">Math</span>.abs(-<span class="number">1</span>); <span class="comment">// result is 1</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>Math.ceil()</code></p>
 <p><code>Math.ceil(x)</code> returns the value of x rounded up to its nearest integer</p>
@@ -834,7 +627,7 @@
 </ul>
 <p><strong>Math Properties</strong></p>
 <p>JavaScript provides 8 mathematical constants that can be accessed with the Math object.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.E 			<span class="comment">// returns Euler's number</span></span><br><span class="line"><span class="built_in">Math</span>.PI			<span class="comment">// returns PI</span></span><br><span class="line"><span class="built_in">Math</span>.SQRT2		<span class="comment">// returns the square root of 2</span></span><br><span class="line"><span class="built_in">Math</span>.SQET1_2	<span class="comment">// returns the square root of 1/2</span></span><br><span class="line"><span class="built_in">Math</span>.LN2		<span class="comment">// returns the natural logarithm of 2</span></span><br><span class="line"><span class="built_in">Math</span>.LN10		<span class="comment">// returns the natural logarithm of 10</span></span><br><span class="line"><span class="built_in">Math</span>.LOG2E		<span class="comment">// returns the base 2 logarithm of E</span></span><br><span class="line"><span class="built_in">Math</span>.LOG10E		<span class="comment">// returns the base 10 logarithm of E</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.E 			<span class="comment">// returns Euler&#x27;s number</span></span><br><span class="line"><span class="built_in">Math</span>.PI			<span class="comment">// returns PI</span></span><br><span class="line"><span class="built_in">Math</span>.SQRT2		<span class="comment">// returns the square root of 2</span></span><br><span class="line"><span class="built_in">Math</span>.SQET1_2	<span class="comment">// returns the square root of 1/2</span></span><br><span class="line"><span class="built_in">Math</span>.LN2		<span class="comment">// returns the natural logarithm of 2</span></span><br><span class="line"><span class="built_in">Math</span>.LN10		<span class="comment">// returns the natural logarithm of 10</span></span><br><span class="line"><span class="built_in">Math</span>.LOG2E		<span class="comment">// returns the base 2 logarithm of E</span></span><br><span class="line"><span class="built_in">Math</span>.LOG10E		<span class="comment">// returns the base 10 logarithm of E</span></span><br></pre></td></tr></table></figure>
 
 <p>All methods and properties can be used without creating a Math object first.</p>
 <p><strong>Random</strong></p>
@@ -846,10 +639,10 @@
 <h2 id="Booleans"><a href="#Booleans" class="headerlink" title="Booleans"></a>Booleans</h2><p>JavaScript has a Boolean data types. It can only take the values true or false.</p>
 <p><strong>The <code>Boolean()</code> Function</strong></p>
 <p>You ca use the <code>Boolean()</code> function to find out if an expression is true</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="built_in">Boolean</span>(<span class="number">-1</span> &gt; <span class="number">0</span>);	<span class="comment">// result is false</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = <span class="built_in">Boolean</span>(-<span class="number">1</span> &gt; <span class="number">0</span>);	<span class="comment">// result is false</span></span><br></pre></td></tr></table></figure>
 
 <p>Everything with a “Value” is true. Everything without a “Value” is false.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// result is true</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="number">100</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="number">-100</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="string">"100"</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="string">"false"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// result is false</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="number">-0</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="string">""</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="literal">null</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="literal">false</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="literal">NaN</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// result is true</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="number">100</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(-<span class="number">100</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="string">&quot;100&quot;</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="string">&quot;false&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// result is false</span></span><br><span class="line"><span class="built_in">Boolean</span>(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(-<span class="number">0</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="literal">null</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="literal">false</span>);</span><br><span class="line"><span class="built_in">Boolean</span>(<span class="literal">NaN</span>);</span><br></pre></td></tr></table></figure>
 
 <p>Object can’t be compared.</p>
 <h2 id="JavaScript-Comparison-and-Logical-Operators"><a href="#JavaScript-Comparison-and-Logical-Operators" class="headerlink" title="JavaScript Comparison and Logical Operators"></a>JavaScript Comparison and Logical Operators</h2><p>Comparison and Logical operators are used to test for true or false. Comparison operators are used in logical statements to determine equality or difference between variables or values.</p>
@@ -969,7 +762,7 @@
 
 <p><strong>Using string methods</strong></p>
 <p>In  JavaScript, regular expressions are often used with the two string methods: <code>search()</code> and <code>replace()</code>. The <code>search()</code> method uses an expression to search for match, and returns the position of the match. The <code>replace()</code> method returns a modified string where the pattern is replaced.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> originStr = <span class="string">"Hello JavaScript!"</span>;</span><br><span class="line"><span class="keyword">let</span> searchResult	= originStr.search(<span class="string">"Hello"</span>);	<span class="comment">// reulst is 0</span></span><br><span class="line"><span class="keyword">let</span> replaceResult	=	originStr.replace(<span class="string">"Hi"</span>, <span class="string">"Hello"</span>);	<span class="comment">// result is Hi JavaScript!</span></span><br><span class="line">repalceResult = originStr.replace(<span class="regexp">/hi/i</span>, <span class="string">"Visit"</span>);	<span class="comment">// result is Visit JavaScript!</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> originStr = <span class="string">&quot;Hello JavaScript!&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> searchResult	= originStr.search(<span class="string">&quot;Hello&quot;</span>);	<span class="comment">// reulst is 0</span></span><br><span class="line"><span class="keyword">let</span> replaceResult	=	originStr.replace(<span class="string">&quot;Hi&quot;</span>, <span class="string">&quot;Hello&quot;</span>);	<span class="comment">// result is Hi JavaScript!</span></span><br><span class="line">repalceResult = originStr.replace(<span class="regexp">/hi/i</span>, <span class="string">&quot;Visit&quot;</span>);	<span class="comment">// result is Visit JavaScript!</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>Regular Expression Modifiers</strong></p>
 <table>
@@ -1062,16 +855,16 @@
 </tbody></table>
 <p><strong>Using <code>test()</code></strong></p>
 <p>The <code>test()</code> method is a RegExp expression method. It searches a string for a pattern, and returns true or false, depending on the result. </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pattern = <span class="regexp">/e/</span>;</span><br><span class="line">pattern.test(<span class="string">"The best things in life are free!"</span>);	<span class="comment">// return true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pattern = <span class="regexp">/e/</span>;</span><br><span class="line">pattern.test(<span class="string">&quot;The best things in life are free!&quot;</span>);	<span class="comment">// return true</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>Using <code>exec()</code></strong></p>
 <p>The <code>exec()</code> method is a RegExp expression method. It searches a string for a specified pattern, and returns the found text. If no match is found, it returns <code>null</code>.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e/.exec(<span class="string">"The best things in life are free!"</span>);	<span class="comment">// return e</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e/.exec(<span class="string">&quot;The best things in life are free!&quot;</span>);	<span class="comment">// return e</span></span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="JavaScript-Errors"><a href="#JavaScript-Errors" class="headerlink" title="JavaScript Errors"></a>JavaScript Errors</h2><p>The <code>try</code> statments lets you test a block of code for errors. The <code>catch</code> statments lets you handle the error. The <code>throw</code> statments lets you create custom errors. The <code>finally</code> statment lets you execute code, after <code>try</code> and <code>catch</code>, regardless of the result.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="comment">// Block of code to try</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="comment">// Block of code to handle errors</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">'error'</span>; <span class="comment">// you can throw a exception</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="comment">// Block of code to handle errors</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// Block of code to try</span></span><br><span class="line">&#125; <span class="keyword">catch</span> () &#123;</span><br><span class="line">    <span class="comment">// Block of code to handle errors</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// Block of code to be executed regardless of the try/catch result</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="comment">// Block of code to try</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="comment">// Block of code to handle errors</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="string">&#x27;error&#x27;</span>; <span class="comment">// you can throw a exception</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="comment">// Block of code to handle errors</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// Block of code to try</span></span><br><span class="line">&#125; <span class="keyword">catch</span> () &#123;</span><br><span class="line">    <span class="comment">// Block of code to handle errors</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// Block of code to be executed regardless of the try/catch result</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>Ther Error Object</strong></p>
 <p>JavaScript has built in error object that provides error information when an error occurs. The error object provides two useful properties: name and message.</p>
@@ -1127,13 +920,13 @@
 <h2 id="JavaScript-Debugging"><a href="#JavaScript-Debugging" class="headerlink" title="JavaScript Debugging"></a>JavaScript Debugging</h2><p>Debuggin is not easy. But fortunately, all modern browsers have a built-in JavaScript devugger. Built-in debugger can be turned on and off, forcing errors to be reported to the user.</p>
 <p><strong>The <code>console.log()</code> Method</strong></p>
 <p>If your browsers supports debugging, you can use <code>console.log()</code> to display JavaScript values in the debugger window.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="built_in">console</span>.log(value);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="built_in">console</span>.log(value);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
 <p><strong>Setting Breakpoints</strong></p>
 <p>In the debugger window, you can set breakpoints in the JavaScript code. At each breakpoint, JavaScript will stop execution, and let you examine JavaScript values. After examining values, you can resume the execution of code.</p>
 <p><strong>The debugger Keyword</strong></p>
 <p>The debugger keyword stops the execution of JavaScript, and calls (if available) the debugging function.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">debugger</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"ele_id"</span>).innerHTML = x;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">debugger</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;ele_id&quot;</span>).innerHTML = x;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -1155,10 +948,10 @@
 <p><strong>Declaring Strict Mode</strong></p>
 <p>Strict mode is decalred by adding <code>&quot;use strict&quot;;</code> to the beginning of a script or a function.</p>
 <p>Declared at beginning of a script, it has global scope.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line">	<span class="comment">// your JavaScript code</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line">	<span class="comment">// your JavaScript code</span></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
 <p>Declared inside a function, it has local scope</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">numberX = <span class="number">3.14</span>;	<span class="comment">// this will not cause an error</span></span><br><span class="line">testFunction();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testFunction</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    "use strict"</span>;</span><br><span class="line">    numberY = <span class="number">3.14</span>;	<span class="comment">// this will cause an error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">numberX = <span class="number">3.14</span>;	<span class="comment">// this will not cause an error</span></span><br><span class="line">testFunction();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testFunction</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    &quot;use strict&quot;</span>;</span><br><span class="line">    numberY = <span class="number">3.14</span>;	<span class="comment">// this will cause an error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>Why Strict Mode</strong></p>
 <p>Strict mdoe makes it easier to write “secure” JavaScript. Strict  mode changes previously accepted “bad syntax” into real errors.</p>
@@ -1253,7 +1046,7 @@
 <p>Primitive values are immutable (they are hardcoded and therefore cannot be changed)</p>
 <p><strong>Objects are Variables containing Variables</strong></p>
 <p>JavaScript variables can contain single values. Objects are variables too. But objects can contain many values. The values are written as name : pairs.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> objectVar = &#123;</span><br><span class="line">	key: value,</span><br><span class="line">    key: value,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> objectVar = &#123;</span><br><span class="line">	<span class="attr">key</span>: value,</span><br><span class="line">    <span class="attr">key</span>: value,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>A JavaScript object is a collection of named values.</p>
@@ -1268,7 +1061,7 @@
 <p>JavaScript objects are containers for named values, called properties and mthods.</p>
 </blockquote>
 <p><strong>Creating a JavaScript Object</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create an object using literal</span></span><br><span class="line"><span class="keyword">let</span> objectByLiteral = &#123;<span class="attr">keyX</span>: <span class="string">"valueX"</span>, <span class="attr">keyY</span>: <span class="string">"valueY"</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create an object using keyword new</span></span><br><span class="line"><span class="keyword">let</span> objectByNew = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">objectByNew.keyX = <span class="string">"valueX"</span>;</span><br><span class="line">objectByNew.keyY = <span class="string">"valueY"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create an object using literal</span></span><br><span class="line"><span class="keyword">let</span> objectByLiteral = &#123;<span class="attr">keyX</span>: <span class="string">&quot;valueX&quot;</span>, <span class="attr">keyY</span>: <span class="string">&quot;valueY&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create an object using keyword new</span></span><br><span class="line"><span class="keyword">let</span> objectByNew = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">objectByNew.keyX = <span class="string">&quot;valueX&quot;</span>;</span><br><span class="line">objectByNew.keyY = <span class="string">&quot;valueY&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p><strong>JavaScript Objects are Mutable</strong></p>
 <p>Objects are mutable: They are addressed by reference, not by value.</p>
@@ -1278,7 +1071,7 @@
 <h2 id="JavaScript-Object-Properties"><a href="#JavaScript-Object-Properties" class="headerlink" title="JavaScript Object Properties"></a>JavaScript Object Properties</h2><p>Properties are the most important part of any JavaScript object. Properties are the values associated with a JavaScript object. A JavaScript object is a collection of unorderd properties. Properties can usually be changed, added, and deleted, but some are read only.</p>
 <p><strong>Accessing JavaScript Properties</strong></p>
 <p>The syntax for accessing the property of an object is :</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">objectName.propertyName</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">objectName[<span class="string">"property"</span>]</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">objectName[expression]	<span class="comment">// The expression must be evaluate to a property name</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">objectName.propertyName</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">objectName[<span class="string">&quot;property&quot;</span>]</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">objectName[expression]	<span class="comment">// The expression must be evaluate to a property name</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>JavaScript for…in Loop</strong></p>
 <p>The JavaScript for…in statment loops through the properties of an object.</p>
@@ -1292,7 +1085,7 @@
 </blockquote>
 <p><strong>Deleting Properties</strong></p>
 <p>The delete keyword deletes a property from an object.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> objByLiteral = &#123;<span class="attr">keyX</span>: <span class="string">"valueX"</span>&#125;;</span><br><span class="line"><span class="keyword">delete</span> objByLiteral.keyX;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> objByLiteral = &#123;<span class="attr">keyX</span>: <span class="string">&quot;valueX&quot;</span>&#125;;</span><br><span class="line"><span class="keyword">delete</span> objByLiteral.keyX;</span><br></pre></td></tr></table></figure>
 
 <p>The delete keyword deletes both value of the property and the property itself. After deletion, the property cannot be used before it is added back again. The delete operator is designed to be used on object properties. It has no effect on variables or functions. The delete operator should not be used on predefined JavaScript object propertis. It can crash your application.</p>
 <p><strong>Property Attribute</strong></p>
@@ -1322,10 +1115,10 @@
 <p>Date objects inherit from Date.prototype. Array objects inherit from Array.prototype. The Object.prototype is on the top of the prototype inheritance chain.</p>
 <p><strong>Using the prototype Property</strong></p>
 <p>The JavaScript prototype allows you to add new properties to object constructors</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.key = value;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.keyNew = <span class="string">"valueNes"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.key = value;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.keyNew = <span class="string">&quot;valueNes&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>The JavaScript prototype proterty also allows you to add new methods to objects constructors:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.key = value;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.methodNew = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> 	code to be executed</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.key = value;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.methodNew = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"> 	code to be executed</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Only modify your own prototypes. Never modify the prototypes of standard JavaScript objects.</p>
@@ -1346,7 +1139,7 @@
 <p><strong>The Function() Constructor</strong></p>
 <p>JavaScript functions are defined with the <code>function</code> keyword.</p>
 <p>Functions can also be defined with a built-in JavaScript function consturctor called <code>Function()</code> .</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newFunction = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"parameterX"</span>, <span class="string">"parameterY"</span>, ... <span class="string">" execuated code"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newFunction = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">&quot;parameterX&quot;</span>, <span class="string">&quot;parameterY&quot;</span>, ... <span class="string">&quot; execuated code&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>You actually don’t have to use the function constructor. Most of time, you can avoid using the new keyword in JavaScript.</p>
 <p><strong>Function Hoisting</strong></p>
@@ -1398,11 +1191,11 @@
 </blockquote>
 <p><strong>Invoking a Function as a Method</strong></p>
 <p>In JavaScript you can define functions as object methods.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> aObject = &#123;</span><br><span class="line">    propertyX: <span class="string">"valueX"</span>,</span><br><span class="line">    methodY: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// some execute code</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">aObject.methodY();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> aObject = &#123;</span><br><span class="line">    <span class="attr">propertyX</span>: <span class="string">&quot;valueX&quot;</span>,</span><br><span class="line">    <span class="attr">methodY</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// some execute code</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">aObject.methodY();</span><br></pre></td></tr></table></figure>
 
 <p><strong>Invoking a Function with a Function Constructor</strong></p>
 <p>If a function invocation is preceded with the new keyword, it is constructor invocation.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This is a function constructor</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aFun</span> (<span class="params">argX, argY</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.propertyX = argX;</span><br><span class="line">    <span class="keyword">this</span>.propertyY = argY;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This create a new object</span></span><br><span class="line"><span class="keyword">let</span> result = <span class="keyword">new</span> aFun(<span class="string">"valueX"</span>, <span class="string">"valueY"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This is a function constructor</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aFun</span> (<span class="params">argX, argY</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.propertyX = argX;</span><br><span class="line">    <span class="built_in">this</span>.propertyY = argY;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This create a new object</span></span><br><span class="line"><span class="keyword">let</span> result = <span class="keyword">new</span> aFun(<span class="string">&quot;valueX&quot;</span>, <span class="string">&quot;valueY&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>A counstructor invocation creates a new object. The new object inherits the properties and methods from its constructor.</p>
 <blockquote>
@@ -1465,7 +1258,7 @@
 <p>The HTML DOM can be accessed with JavaScript. In the DOM, all HTML elements are defined as objects.</p>
 <p><strong>The <code>getElementById()</code> method</strong></p>
 <p>The most common way to access an HTML element is to use the id of the element.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"demo"</span>).innerHTML = <span class="string">"Hello DOM!"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&quot;demo&quot;</span>).innerHTML = <span class="string">&quot;Hello DOM!&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p><strong>The <code>innerHTML</code> Property</strong></p>
 <p>The easiest way to get the content of an element is by using the <code>innerHTML</code> property.</p>
@@ -1553,7 +1346,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><code>document.getElementById(id).onclick() = function () {code}</code></td>
+<td><code>document.getElementById(id).onclick() = function () &#123;code&#125;</code></td>
 <td>Add event handler code to an onclick event</td>
 </tr>
 </tbody></table>
@@ -1667,28 +1460,28 @@
 </tbody></table>
 <h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="Finding-HTML-Elements-1"><a href="#Finding-HTML-Elements-1" class="headerlink" title="Finding HTML Elements"></a>Finding HTML Elements</h3><ul>
 <li><p>The easiest way to find an HTML element in the DOM, is using the element id. </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> targetElement = <span class="built_in">document</span>.getElementById(<span class="string">"targetElementId"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> targetElement = <span class="built_in">document</span>.getElementById(<span class="string">&quot;targetElementId&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>If the element is found, the method will return the element as an object, otherwise <code>null</code> is returned.</p>
 </li>
 <li><p>You can find HTML elements by tag name</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> targetElement = <span class="built_in">document</span>.getElementByTagName(<span class="string">"targetTagName"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> targetElement = <span class="built_in">document</span>.getElementByTagName(<span class="string">&quot;targetTagName&quot;</span>)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Finding HTML elements by class name</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> targetElement = <span class="built_in">document</span>.getElementByClassName(<span class="string">"targetClassName"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> targetElement = <span class="built_in">document</span>.getElementByClassName(<span class="string">&quot;targetClassName&quot;</span>)</span><br></pre></td></tr></table></figure>
 
 <p>The <code>getElementsByClassName()</code> method will return a list of all elements with a specified class name.</p>
 </li>
 <li><p>Finding HTML elements by CSS selectors</p>
 <p>If you want to find all HTML elements that matches a specified CSS selector, use the <code>querySelectorAll()</code> method.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> targetElements = <span class="built_in">document</span>.querySelectorAll(<span class="string">"targetCSSSelector"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> targetElements = <span class="built_in">document</span>.querySelectorAll(<span class="string">&quot;targetCSSSelector&quot;</span>)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Finding HTML elements by HTML object collections</p>
 </li>
 </ul>
 <h3 id="JavaScript-HTML-DOM-Changing-HTML"><a href="#JavaScript-HTML-DOM-Changing-HTML" class="headerlink" title="JavaScript HTML DOM - Changing HTML"></a>JavaScript HTML DOM - Changing HTML</h3><p>The HTML DOM allows JavaScript to change the content of HTML elements.</p>
 <h4 id="Changing-the-HTML-Output-Stream"><a href="#Changing-the-HTML-Output-Stream" class="headerlink" title="Changing the HTML Output Stream"></a>Changing the HTML Output Stream</h4><p>In JavaScript, <code>document.write()</code> can be used to write directly to the HTML output stream.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">Date</span> ());</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="built_in">Date</span> ());</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Never use <code>document.write()</code> after the document is loaded. It will overwrite the document.</p>
@@ -1713,7 +1506,7 @@
 <p>The container element should be created with style = "position: relative".</p>
 <p>The animation element should be created with style = "position: absolute".</p>
 <p>JavaScript animations are done by programming gradual changes in an element's style. The changes are called by a timer. When the timer interval is small, the animation looks continuous.</p>
-<h4 id="Create-the-Animation-Using-JavaScript"><a href="#Create-the-Animation-Using-JavaScript" class="headerlink" title="Create the Animation Using JavaScript"></a>Create the Animation Using JavaScript</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">moveAnimation</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> animateEle = <span class="built_in">document</span>.getElementById(<span class="string">"animate"</span>);</span><br><span class="line">    <span class="keyword">let</span> pos = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> id = setInterval(frame, <span class="number">5</span>);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">frame</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pos == <span class="number">350</span>) &#123;</span><br><span class="line">            clearInterval(id);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            pos++;</span><br><span class="line">            animateEle.style.top = pos + <span class="string">'px'</span>;</span><br><span class="line">            animateEle.style.left = pos + <span class="string">'px'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Create-the-Animation-Using-JavaScript"><a href="#Create-the-Animation-Using-JavaScript" class="headerlink" title="Create the Animation Using JavaScript"></a>Create the Animation Using JavaScript</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">moveAnimation</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> animateEle = <span class="built_in">document</span>.getElementById(<span class="string">&quot;animate&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> pos = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> id = <span class="built_in">setInterval</span>(frame, <span class="number">5</span>);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">frame</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pos == <span class="number">350</span>) &#123;</span><br><span class="line">            <span class="built_in">clearInterval</span>(id);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            pos++;</span><br><span class="line">            animateEle.style.top = pos + <span class="string">&#x27;px&#x27;</span>;</span><br><span class="line">            animateEle.style.left = pos + <span class="string">&#x27;px&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -1724,10 +1517,10 @@
 
 <h4 id="The-onload-and-onunload-Events"><a href="#The-onload-and-onunload-Events" class="headerlink" title="The onload and onunload Events"></a>The onload and onunload Events</h4><p>The onload and onunload Events are triggered when the user enters or leaves the page. The onload event can be used to check the visitor's browser type and browser version, and load the proper version of the web page based on the information.</p>
 <p>The onload and onunload events can be used to deal with cookies.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">"checkCookies()"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">&quot;checkCookies()&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="The-onchange-Event"><a href="#The-onchange-Event" class="headerlink" title="The onchange Event"></a>The onchange Event</h4><p>The onchange event is often used  in combination with validation of input fields.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"frame"</span> <span class="attr">onchange</span>=<span class="string">"upperCase()"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;frame&quot;</span> <span class="attr">onchange</span>=<span class="string">&quot;upperCase()&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="The-onmouseover-and-onmouseout-Events"><a href="#The-onmouseover-and-onmouseout-Events" class="headerlink" title="The onmouseover and onmouseout Events"></a>The onmouseover and onmouseout Events</h4><p>The onmouseover and onmouseout events can be used to trigger a function when the user mouse over, or out of, an HTML element.</p>
 <h4 id="The-onmousedown-onmouseup-and-onclick-Events"><a href="#The-onmousedown-onmouseup-and-onclick-Events" class="headerlink" title="The onmousedown, onmouseup and onclick Events"></a>The onmousedown, onmouseup and onclick Events</h4><p>The onmousedown, onmouseup, and onclick events are all parts of a mouse-click. First when a mouse-button is clicked, the onmousedown event is triggered, then, when the mouse-button is released, the onmouseup event is triggered, finally, when the mouse-click is completed, the onclick event is triggered.</p>
@@ -1739,24 +1532,24 @@
 <blockquote>
 <p>Note that you don't use the "on" prefix for the event; use "click" instead of "onclick"</p>
 </blockquote>
-<h4 id="Add-an-Event-Handler-to-an-Element"><a href="#Add-an-Event-Handler-to-an-Element" class="headerlink" title="Add an Event Handler to an Element"></a>Add an Event Handler to an Element</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener("click", function () &#123;</span><br><span class="line">    executed code</span><br><span class="line">&#125;);</span><br><span class="line">//</span><br><span class="line">element.addEventListener("click", aFunction);</span><br><span class="line">function aFunction () &#123;</span><br><span class="line">    executed code</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="Add-an-Event-Handler-to-an-Element"><a href="#Add-an-Event-Handler-to-an-Element" class="headerlink" title="Add an Event Handler to an Element"></a>Add an Event Handler to an Element</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(&quot;click&quot;, function () &#123;</span><br><span class="line">    executed code</span><br><span class="line">&#125;);</span><br><span class="line">//</span><br><span class="line">element.addEventListener(&quot;click&quot;, aFunction);</span><br><span class="line">function aFunction () &#123;</span><br><span class="line">    executed code</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h4 id="Add-an-Event-Handler-to-the-Window-Object"><a href="#Add-an-Event-Handler-to-the-Window-Object" class="headerlink" title="Add an Event Handler to the Window Object"></a>Add an Event Handler to the Window Object</h4><p>The <code>addEventListener()</code> method allows you to add event listeners on any HTML DOM object as HTML elements, the HTML document, the window object, or other objects that support events.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"resize"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    executed code</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&quot;resize&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    executed code</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h4 id="Passing-Parameters"><a href="#Passing-Parameters" class="headerlink" title="Passing Parameters"></a>Passing Parameters</h4><p>When passing parameter values, use an "anonymous function" that calls the specified function with the parameter</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; aFunction(parameter)&#125;);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aFunction</span> (<span class="params">parameter</span>) </span>&#123;</span><br><span class="line">    executed code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(<span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; aFunction(parameter)&#125;);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aFunction</span> (<span class="params">parameter</span>) </span>&#123;</span><br><span class="line">    executed code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="Event-Bubbling-or-Event-Capturing"><a href="#Event-Bubbling-or-Event-Capturing" class="headerlink" title="Event Bubbling or Event Capturing"></a>Event Bubbling or Event Capturing</h4><p>There are two ways of event propagation in the HTML DOM, bubbling and capturing. Event propagation is a way of defining the element order when an event occurs.</p>
 <p> If you have a <p> element inside a <div> element, and the user clicks on the <p> element, which elements's "click" event should be handled first ?</p>
 <p>In bubbling the inner most element's event is handled first and then the outer:  the <p> element's click event is handled first, then the <div> element's click event.</p>
 <p>In capturing the outer most element's event is handled first and then the inner: the <div> element's click event will be handled first, the the <p> element's click event.</p>
 <p>With the <code>addEventListener()</code> method you can specify the propagation type by using the <code>useCapture</code> parameter.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addEventListener(event, <span class="function"><span class="keyword">function</span>, <span class="title">useCapture</span>);</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addEventListener(event, <span class="function"><span class="keyword">function</span>, <span class="title">useCapture</span>)</span>;</span><br></pre></td></tr></table></figure>
 
 <p>THe default value is false, which will use the bubbling propagation, when the value is set to true, the event uses the capturing propagation.</p>
 <h4 id="The-removeEventListener-method"><a href="#The-removeEventListener-method" class="headerlink" title="The removeEventListener() method"></a>The <code>removeEventListener()</code> method</h4><p>The <code>removeEventListener()</code> method removes event handlers that have been attached with the <code>addEventListener()</code> method.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.removeEventListener(&quot;mousemove&quot;, aFunction);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.removeEventListener(&quot;mousemove&quot;, aFunction);</span><br></pre></td></tr></table></figure>
 
 
 
@@ -1855,12 +1648,12 @@
 <h3 id="JavaScript-HTML-DOM-Elements"><a href="#JavaScript-HTML-DOM-Elements" class="headerlink" title="JavaScript HTML DOM Elements"></a>JavaScript HTML DOM Elements</h3><p>Adding and Removing Nodes.</p>
 <p><strong>Creating New HTML Elements</strong></p>
 <p>To ad a new element to HTML DOM, u must create the element first, and then append it to an existing element.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.createElement(<span class="string">"elementName"</span>);</span><br><span class="line"><span class="built_in">document</span>.createTextNode(<span class="string">"textContent"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.createElement(<span class="string">&quot;elementName&quot;</span>);</span><br><span class="line"><span class="built_in">document</span>.createTextNode(<span class="string">&quot;textContent&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <h4 id="insertBefore"><a href="#insertBefore" class="headerlink" title="insertBefore()"></a><code>insertBefore()</code></h4><p>The <code>appendChild()</code> method appended the new element as the last child of the parent. If you don't want that you can use the <code>insertBefore()</code> method.</p>
 <p><strong>Removing Existing HTML Elements</strong></p>
 <p>To remove an HTML element, you must know the parent of the element.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parentElement.removeChild(<span class="string">"childElement"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parentElement.removeChild(<span class="string">&quot;childElement&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>It would be nice to be able to remove an element without referring to the parent. But sorry, the DOM needs to know both the element you want to remove, and its parent.</p>
@@ -1873,7 +1666,7 @@
 <h3 id="JavaScript-HTML-DOM-Collections"><a href="#JavaScript-HTML-DOM-Collections" class="headerlink" title="JavaScript HTML DOM Collections"></a>JavaScript HTML DOM Collections</h3><p>The <code>getElementsByTagName()</code> method returns an <code>HTMLCollection</code> object. An <code>HTMLCollection</code> object is an array-like list of HTML elements.</p>
 <p>The elements in the collection can be accessed by an index number.</p>
 <h4 id="HTML-HTMLCollection-Length"><a href="#HTML-HTMLCollection-Length" class="headerlink" title="HTML HTMLCollection Length"></a>HTML HTMLCollection Length</h4><p>The length property defines the number of elements in an <code>HTMLCollction</code>.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pElementsCollectionLength = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"p"</span>).length;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pElementsCollectionLength = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;p&quot;</span>).length;</span><br></pre></td></tr></table></figure>
 
 <p>The length property is useful when you want to loop through the elements in a collection.</p>
 <blockquote>
@@ -1881,11 +1674,11 @@
 <p>An <code>HTMLCollection</code> may look like an array, but it is not.</p>
 </blockquote>
 <h3 id="JavaScript-HTML-DOM-Node-Lists"><a href="#JavaScript-HTML-DOM-Node-Lists" class="headerlink" title="JavaScript HTML DOM Node Lists"></a>JavaScript HTML DOM Node Lists</h3><p>A <code>NodeList</code> object is a list of nodes extracted from a document. A <code>NodeList</code> object is almost the same as an <code>HTMLCollection</code> object.  All browsers return a <code>NodeList</code> object for the property <code>childNodes</code>. Most browsers return a <code>NodeList</code> object for the method <code>querySelectorAll()</code>. </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pNodeList = <span class="built_in">document</span>.querySelectorAll(<span class="string">"p"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pNodeList = <span class="built_in">document</span>.querySelectorAll(<span class="string">&quot;p&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>The elements in the <code>NodeList</code> can be accessed by an index number.</p>
 <h4 id="HTML-DOM-Node-List-Length"><a href="#HTML-DOM-Node-List-Length" class="headerlink" title="HTML DOM Node List Length"></a>HTML DOM Node List Length</h4><p>The length property defines the number of nodes in a node list.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pNodeListLength = <span class="built_in">document</span>.querySelectorAll(<span class="string">"p"</span>).length;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pNodeListLength = <span class="built_in">document</span>.querySelectorAll(<span class="string">&quot;p&quot;</span>).length;</span><br></pre></td></tr></table></figure>
 
 <p>The length property is useful when you want to loop through the node in a node list.</p>
 <h4 id="The-Difference-Between-an-HTMLCollection-and-NodeList"><a href="#The-Difference-Between-an-HTMLCollection-and-NodeList" class="headerlink" title="The Difference Between an HTMLCollection and NodeList"></a>The Difference Between an HTMLCollection and NodeList</h4><p>An <code>HTMLCollection</code> is a collection of HTML elements. A <code>NodeList</code> is a collection of document nodes. A <code>NodeList</code> and an <code>HTMLCollection</code> is very much the same thing. Both an <code>HTMLCollection</code> object and a <code>NodeList</code> object is an array-like list of objects. Both have a length property defining the number of items in the list. Both provide an index to access each item like an array. <code>HTMLCollection</code> items can be accessed by their name, id, or index number. <code>NodeList</code> items can only be accessed by their index number. Only the <code>NodeList</code> object can contain attribute nodes and text nodes.</p>
@@ -1954,7 +1747,7 @@
 <ul>
 <li><p><code>setTimeout(function, milliseconds)</code></p>
 <p>Executes a function, after waitting a specified number of milliseconds</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>, <span class="title">milliseconds</span>);</span></span><br><span class="line"><span class="function">// <span class="title">or</span></span></span><br><span class="line"><span class="function"><span class="title">setTimeout</span>(<span class="params">function, milliseconds</span>);</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>, <span class="title">milliseconds</span>)</span>;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>, <span class="title">milliseconds</span>)</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>setInterval(function, milliseconds)</code></p>
 <p>Same as <code>setTimeout</code> , but repeats the execution of the function continously.</p>
@@ -1967,20 +1760,20 @@
 <h4 id="Cookies"><a href="#Cookies" class="headerlink" title="Cookies"></a>Cookies</h4><p>Cookies let you store user information in web pages.</p>
 <h5 id="What-are-cookies"><a href="#What-are-cookies" class="headerlink" title="What are cookies?"></a>What are cookies?</h5><p>Cookies are data, stored in small text files, on your computer. When a web server has sent a web page to a browser, the connection is shut down, and the server forgets everything about the user. Cookies were invented to solve the problem "how to remember information about the user".</p>
 <p>Cookies are saved in name-value pairs like :</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username = Mr Van</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username = Mr Van	</span><br></pre></td></tr></table></figure>
 
 <p>When a browser requests a web page from a server, cookies belonging to the page is added to the request. This way the server gets the necessary data to "remember" information about users.</p>
 <blockquote>
 <p>None of the examples below will work if your broswer has local cookies support turned off</p>
 </blockquote>
 <h5 id="Create-a-Cookie-with-JavaScript"><a href="#Create-a-Cookie-with-JavaScript" class="headerlink" title="Create a Cookie with JavaScript"></a>Create a Cookie with JavaScript</h5><p>JavaScript can create, read, and delete cookies with the <code>document.cookie</code> property.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">"username=Van"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">&quot;username=Van&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>You can also add an expiry date in UTC time. By default, the cookie is deleted when the browser is closed.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">"username=Van; expires=Wed, 25 July 2016 12:00:00 UTC"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">&quot;username=Van; expires=Wed, 25 July 2016 12:00:00 UTC&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>With a path parameter, you can tell the browser what path the cookie belongs to. By default, the cookies belongs to the current page.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">"username=Van; path=/;"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">&quot;username=Van; path=/;&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <h5 id="Read-a-Cookie-with-JavaScript"><a href="#Read-a-Cookie-with-JavaScript" class="headerlink" title="Read a Cookie with JavaScript"></a>Read a Cookie with JavaScript</h5><p>With JavaScript, cookies can be read like this :</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> cookie = <span class="built_in">document</span>.cookie;</span><br></pre></td></tr></table></figure>
@@ -1989,12 +1782,12 @@
 <p><code>document.cookie</code> will return all collkies in one string much like: cookie1=value; cookie2=value; cookie3=value;</p>
 </blockquote>
 <h5 id="Change-a-Cookie-with-JavaScript"><a href="#Change-a-Cookie-with-JavaScript" class="headerlink" title="Change a Cookie with JavaScript"></a>Change a Cookie with JavaScript</h5><p>With JavaScript, you can change a cookie the same way as you create it :</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">"username=HH; path=/;"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">&quot;username=HH; path=/;&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>The old cookies is overwritten.</p>
 <h5 id="Delete-a-cookie-with-JavaScript"><a href="#Delete-a-cookie-with-JavaScript" class="headerlink" title="Delete a cookie with JavaScript"></a>Delete a cookie with JavaScript</h5><p>Deleting a cookie is very simple. You don't have to specify a cookie value when you delete a cookie.</p>
 <p>Just set the expires parameter to a passed date :</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.cookie &#x3D; &quot;username&#x3D;; expires&#x3D;Thu, 01 Jan 1970 00:00:00 UTC; path&#x3D;&#x2F;;&quot;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.cookie = &quot;username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;&quot;;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>You should define the cookie path to ensure that you delete the right cookie.</p>
@@ -2003,197 +1796,48 @@
 <h5 id="The-Cookie-String"><a href="#The-Cookie-String" class="headerlink" title="The Cookie String"></a>The Cookie String</h5><p>The <code>document.cookie</code> property looks like a normal text string. But it is not.</p>
 <p>Even if you write a whole cookie string to <code>document.cookie</code>, when you read it out again, you can only see the name-value pair of it.</p>
 <p>If you set a new cookie, older cookies are not overwritten. The new cookie is added to <code>document.cookie</code>.</p>
-
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2016/04/10/html-css-summary-advanced/" rel="prev" title="HTML5 概览进阶篇">
-      <i class="fa fa-chevron-left"></i> HTML5 概览进阶篇
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2017/04/06/tableview-optimize/" rel="next" title="iOS 中 UITableView 的优化">
-      iOS 中 UITableView 的优化 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Where-To"><span class="nav-number">1.</span> <span class="nav-text">JavaScript Where To</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Output"><span class="nav-number">2.</span> <span class="nav-text">JavaScript Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Statements"><span class="nav-number">3.</span> <span class="nav-text">JavaScript Statements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Semicolons"><span class="nav-number">3.1.</span> <span class="nav-text">Semicolons</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-White-Space"><span class="nav-number">3.2.</span> <span class="nav-text">JavaScript White Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Line-Length-and-Line-Breaks"><span class="nav-number">3.3.</span> <span class="nav-text">JavaScript  Line Length and Line Breaks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Code-Blocks"><span class="nav-number">3.4.</span> <span class="nav-text">JavaScript Code Blocks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Keywords"><span class="nav-number">3.5.</span> <span class="nav-text">JavaScript Keywords</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Syntax"><span class="nav-number">4.</span> <span class="nav-text">JavaScript Syntax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Values"><span class="nav-number">4.1.</span> <span class="nav-text">JavaScript Values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Operators"><span class="nav-number">4.2.</span> <span class="nav-text">JavaScript Operators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Expressions"><span class="nav-number">4.3.</span> <span class="nav-text">JavaScript Expressions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-is-Case-Sensitive"><span class="nav-number">4.4.</span> <span class="nav-text">JavaScript is Case Sensitive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-and-Camel-Case"><span class="nav-number">4.5.</span> <span class="nav-text">JavaScript and Camel Case</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Character-Set"><span class="nav-number">4.6.</span> <span class="nav-text">JavaScript Character Set</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Comments"><span class="nav-number">5.</span> <span class="nav-text">JavaScript Comments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Variables"><span class="nav-number">6.</span> <span class="nav-text">JavaScript Variables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Data-Types"><span class="nav-number">7.</span> <span class="nav-text">JavaScript Data Types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Difference-Between-Undefined-and-Null"><span class="nav-number">7.1.</span> <span class="nav-text">Difference Between Undefined and Null</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Functions"><span class="nav-number">8.</span> <span class="nav-text">JavaScript Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Object"><span class="nav-number">9.</span> <span class="nav-text">JavaScript Object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Scope"><span class="nav-number">10.</span> <span class="nav-text">JavaScript Scope</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Events"><span class="nav-number">11.</span> <span class="nav-text">JavaScript Events</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Strings"><span class="nav-number">12.</span> <span class="nav-text">JavaScript Strings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Numbers"><span class="nav-number">13.</span> <span class="nav-text">JavaScript Numbers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Arrays"><span class="nav-number">14.</span> <span class="nav-text">JavaScript Arrays</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Date-Objects"><span class="nav-number">15.</span> <span class="nav-text">JavaScript Date Objects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Math-Object"><span class="nav-number">16.</span> <span class="nav-text">JavaScript Math Object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Booleans"><span class="nav-number">17.</span> <span class="nav-text">Booleans</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Comparison-and-Logical-Operators"><span class="nav-number">18.</span> <span class="nav-text">JavaScript Comparison and Logical Operators</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Bitwise-Operators"><span class="nav-number">19.</span> <span class="nav-text">JavaScript Bitwise Operators</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Regular-Expressions"><span class="nav-number">20.</span> <span class="nav-text">JavaScript Regular Expressions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Errors"><span class="nav-number">21.</span> <span class="nav-text">JavaScript Errors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Debugging"><span class="nav-number">22.</span> <span class="nav-text">JavaScript Debugging</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Hoisting"><span class="nav-number">23.</span> <span class="nav-text">JavaScript Hoisting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Use-Strict"><span class="nav-number">24.</span> <span class="nav-text">JavaScript Use Strict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-JavaScript-this-Keyword"><span class="nav-number">25.</span> <span class="nav-text">The JavaScript this Keyword</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Style-Guide-and-Coding-Conventions"><span class="nav-number">26.</span> <span class="nav-text">JavaScript Style Guide and Coding Conventions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Best-Practices"><span class="nav-number">27.</span> <span class="nav-text">JavaScript Best Practices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-JSON"><span class="nav-number">28.</span> <span class="nav-text">JavaScript JSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Objects"><span class="nav-number">29.</span> <span class="nav-text">JavaScript Objects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Object-Properties"><span class="nav-number">30.</span> <span class="nav-text">JavaScript Object Properties</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Object-Methods"><span class="nav-number">31.</span> <span class="nav-text">JavaScript Object Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Object-Constructors"><span class="nav-number">32.</span> <span class="nav-text">JavaScript Object Constructors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Prototypes"><span class="nav-number">33.</span> <span class="nav-text">JavaScript Prototypes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Function-Definitions"><span class="nav-number">34.</span> <span class="nav-text">JavaScript Function Definitions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Function-Parameters"><span class="nav-number">35.</span> <span class="nav-text">JavaScript Function Parameters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Function-Invocation"><span class="nav-number">36.</span> <span class="nav-text">JavaScript Function Invocation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Function-Call"><span class="nav-number">37.</span> <span class="nav-text">JavaScript Function Call</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Function-Apply"><span class="nav-number">37.1.</span> <span class="nav-text">JavaScript Function Apply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-Function-Closures"><span class="nav-number">37.2.</span> <span class="nav-text">JavaScript Function Closures</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-HTML-DOM"><span class="nav-number">38.</span> <span class="nav-text">JavaScript HTML DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-HTML-DOM-Methods"><span class="nav-number">38.1.</span> <span class="nav-text">JavaScript HTML DOM Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-HTML-DOM-Document"><span class="nav-number">38.2.</span> <span class="nav-text">JavaScript HTML DOM Document</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Finding-HTML-Elements"><span class="nav-number">38.2.1.</span> <span class="nav-text">Finding HTML Elements</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Changing-HTML-Elements"><span class="nav-number">38.3.</span> <span class="nav-text">Changing HTML Elements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adding-and-Deleting-Elements"><span class="nav-number">38.4.</span> <span class="nav-text">Adding and Deleting Elements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adding-Events-Handlers"><span class="nav-number">38.5.</span> <span class="nav-text">Adding Events Handlers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Finding-HTML-Objects"><span class="nav-number">38.6.</span> <span class="nav-text">Finding HTML Objects</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Y2hlbmdsZWk=</p>
-  <div class="site-description" itemprop="description">ODQ4NjUwMTI5QHFxLmNvbQ==</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">55</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Y2hlbmdsZWk=</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-</body>
-</html>
+</div><div class="article-licensing box"><div class="licensing-title"><p>JavaScript Tutorial</p><p><a href="https://cocoalei.github.io/blogs/2016/06/20/javascript-tutorial/">https://cocoalei.github.io/blogs/2016/06/20/javascript-tutorial/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Y2hlbmdsZWk=</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2016-06-20</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2020-12-02</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/04/06/tableview-optimize/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">iOS 中 UITableView 的优化</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2016/04/10/html-css-summary-advanced/"><span class="level-item">HTML5 概览进阶篇</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="LeiTech"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">LeiTech</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">55</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="/"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/CS/"><span class="level-start"><span class="level-item">CS</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/Git/"><span class="level-start"><span class="level-item">Git</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/JavaScript/"><span class="level-start"><span class="level-item">JavaScript</span></span><span class="level-end"><span class="level-item tag">19</span></span></a></li><li><a class="level is-mobile" href="/categories/Mac/"><span class="level-start"><span class="level-item">Mac</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/TypeScript/"><span class="level-start"><span class="level-item">TypeScript</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Vue/"><span class="level-start"><span class="level-item">Vue</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Web/"><span class="level-start"><span class="level-item">Web</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/iOS/"><span class="level-start"><span class="level-item">iOS</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/"><span class="level-start"><span class="level-item">大前端</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/06/"><span class="level-start"><span class="level-item">六月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">九月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">四月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/03/"><span class="level-start"><span class="level-item">三月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">十二月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">九月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/07/"><span class="level-start"><span class="level-item">七月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">六月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/05/"><span class="level-start"><span class="level-item">五月 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/04/"><span class="level-start"><span class="level-item">四月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/03/"><span class="level-start"><span class="level-item">三月 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/02/"><span class="level-start"><span class="level-item">二月 2018</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">一月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/05/"><span class="level-start"><span class="level-item">五月 2017</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/04/"><span class="level-start"><span class="level-item">四月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/06/"><span class="level-start"><span class="level-item">六月 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/04/"><span class="level-start"><span class="level-item">四月 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/03/"><span class="level-start"><span class="level-item">三月 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/02/"><span class="level-start"><span class="level-item">二月 2016</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/01/"><span class="level-start"><span class="level-item">一月 2016</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/12/"><span class="level-start"><span class="level-item">十二月 2015</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/11/"><span class="level-start"><span class="level-item">十一月 2015</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/10/"><span class="level-start"><span class="level-item">十月 2015</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/09/"><span class="level-start"><span class="level-item">九月 2015</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Git/"><span class="tag">Git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Web/"><span class="tag">Web</span><span class="tag">3</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><!--!--></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="关于代码的碎碎念" height="28"></a><p class="is-size-7"><span>&copy; 2021 Y2hlbmdsZWk=</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

@@ -1,445 +1,858 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cocoalei.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="ODQ4NjUwMTI5QHFxLmNvbQ&#x3D;&#x3D;">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于代码的碎碎念">
-<meta property="og:url" content="https://cocoalei.github.io/blogs/categories/Web/index.html">
-<meta property="og:site_name" content="关于代码的碎碎念">
-<meta property="og:description" content="ODQ4NjUwMTI5QHFxLmNvbQ&#x3D;&#x3D;">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Y2hlbmdsZWk&#x3D;">
-<meta property="article:tag" content="iOS">
-<meta property="article:tag" content="HTML">
-<meta property="article:tag" content="CSS">
-<meta property="article:tag" content="JavaScript">
-<meta property="article:tag" content="Vue.js">
-<meta name="twitter:card" content="summary">
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>分类: Web - 关于代码的碎碎念</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="LeiTech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LeiTech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="ODQ4NjUwMTI5QHFxLmNvbQ&amp;#x3D;&amp;#x3D;"><meta property="og:type" content="blog"><meta property="og:title" content="关于代码的碎碎念"><meta property="og:url" content="https://cocoalei.github.io/blogs"><meta property="og:site_name" content="关于代码的碎碎念"><meta property="og:description" content="ODQ4NjUwMTI5QHFxLmNvbQ&amp;#x3D;&amp;#x3D;"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://cocoalei.github.io/img/og_image.png"><meta property="article:author" content="Y2hlbmdsZWk="><meta property="article:tag" content="iOS,HTML,CSS,JavaScript,Vue.js"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://cocoalei.github.io/blogs"},"headline":"关于代码的碎碎念","image":["https://cocoalei.github.io/img/og_image.png"],"author":{"@type":"Person","name":"Y2hlbmdsZWk="},"publisher":{"@type":"Organization","name":"关于代码的碎碎念","logo":{"@type":"ImageObject","url":"https://cocoalei.github.io/img/logo.svg"}},"description":"ODQ4NjUwMTI5QHFxLmNvbQ&#x3D;&#x3D;"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="关于代码的碎碎念" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/categories">分类</a></li><li class="is-active"><a href="#" aria-current="page">Web</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-09-12T16:00:00.000Z" title="2019/9/13 上午12:00:00">2019-09-13</time>发表</span><span class="level-item"><a class="link-muted" href="/categories/Web/">Web</a></span><span class="level-item">39 分钟读完 (大约5790个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2019/09/13/typescript-tutorial/">TypeScript 概览</a></h1><div class="content"><h1 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h1><p>TypeScript 是 JavaScript 类型的超集，它可以编译成纯 JavaScript，可以在任何浏览器、任何计算机和任何操作系统上运行，并且是开源的。</p>
+<h2 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h2><p>TypeScript 支持与 JavaScript 几乎相同的数据类型，此外还提供了方便使用的枚举类型。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// boolean</span></span><br><span class="line"><span class="keyword">let</span> isDone: <span class="built_in">boolean</span> = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">// number</span></span><br><span class="line"><span class="comment">// JavaScript 和 TypeScript 中的数字不是浮点类型 floating point 就是大整数类型 BigInteger</span></span><br><span class="line"><span class="keyword">let</span> decLiteral: <span class="built_in">number</span> = <span class="number">6</span>;</span><br><span class="line"><span class="keyword">let</span> bigLiteral: <span class="built_in">number</span> = <span class="number">100n</span>;</span><br><span class="line"><span class="comment">// string</span></span><br><span class="line"><span class="keyword">let</span> name: <span class="built_in">string</span> = <span class="string">&#x27;bob&#x27;</span>;</span><br><span class="line"><span class="comment">// Array</span></span><br><span class="line"><span class="keyword">let</span> list: <span class="built_in">number</span>[] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> list: <span class="built_in">Array</span>&lt;<span class="built_in">number</span>&gt; = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="comment">// Tuple</span></span><br><span class="line"><span class="comment">// 元组类型要求值类型、顺序和个数一一对应</span></span><br><span class="line"><span class="keyword">let</span> tuple: [<span class="built_in">string</span>, <span class="built_in">string</span>] = [<span class="string">&#x27;string&#x27;</span>, <span class="string">&#x27;string&#x27;</span>];</span><br><span class="line"><span class="comment">// enum</span></span><br><span class="line"><span class="built_in">enum</span> Color &#123;Red = <span class="number">0</span>, Green, Blue&#125;</span><br><span class="line"><span class="keyword">let</span> c: Color = Color.Green;</span><br><span class="line"><span class="comment">// Any</span></span><br><span class="line"><span class="keyword">let</span> source: <span class="built_in">any</span> = <span class="number">4</span></span><br><span class="line"><span class="comment">// Void</span></span><br><span class="line"><span class="keyword">let</span> unusable: <span class="built_in">void</span> = <span class="literal">undefined</span>;</span><br><span class="line"><span class="comment">// Null &amp; Undefined</span></span><br><span class="line"><span class="keyword">let</span> u: <span class="literal">undefined</span> = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">let</span> n: <span class="literal">null</span> = <span class="literal">null</span>;</span><br><span class="line"><span class="comment">// Never</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">error</span>(<span class="params">message: <span class="built_in">string</span></span>): <span class="title">never</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(message);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 类型断言</span></span><br><span class="line"><span class="comment">// 明确知道值的类型时可使用类型断言</span></span><br><span class="line"><span class="keyword">let</span> strValue: <span class="built_in">any</span> = <span class="string">&#x27;str&#x27;</span>;</span><br><span class="line"><span class="keyword">let</span> length: <span class="built_in">number</span> = (&lt;<span class="built_in">string</span>&gt;strValue).length;</span><br><span class="line"><span class="keyword">let</span> length: <span class="built_in">number</span> = (strValue <span class="keyword">as</span> <span class="built_in">string</span>).length</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h2><ul>
+<li><p><code>var</code></p>
+<p>可以通过 <code>var</code> 关键字定义变量，但是 <code>var</code> 声明可以在包含它的函数、模块、命名空间或全局作用域内部任何位置被访问，包含它的代码块对此没有影响，这可能会引发一些错误，比如多次声明同一个变量并不会报错。</p>
+</li>
+<li><p><code>let</code></p>
+<p>当用 <code>let</code> 声明一个变量，它使用的是词法作用域或块作用域。不同于使用 <code>var</code> 声明的变量那样可以在包含它们的函数外访问，块作用域变量在包含它们的块之外是不能访问的。</p>
+</li>
+<li><p><code>const</code></p>
+<p><code>const</code> 拥有与 <code>let</code> 相同的作用域规则，但是声明的变量被赋值后不能再改变。</p>
+</li>
+</ul>
+<p>每次进入一个作用域时，它创建了一个变量的环境，就算作用域内代码已经执行完毕，这个环境与其捕获的变量依然存在。当 <code>let</code> 声明出现在循环体里时拥有完全不同的行为，不仅是在循环里引入了一个新的变量环境，而是针对每次迭代都会创建这样一个新作用域。</p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p><strong>TypeScript 的核心原则之一是对值所具有的结构进行类型检查</strong>。 它有时被称做 “鸭式辨型法”或”结构性子类型化”。 在 TypeScript 里，接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约。</p>
+<p>JavaScript 为开发者提供了非常大的灵活性：比如你可以为一个初始化为整数的变量赋值一个函数。但同时这种不确定性也会带来很多的麻烦，TypeScript 内置的接口就可以用来解决这个问题。 </p>
+<p><em>接口帮助我们在赋值和传递参数时进行类型检查，确保我们给变量的赋值符合变量的类型或接收参数正确(接口在某种程度上表示了变量或函数对于赋值给它的值或传递给它的参数的一种期望和要求)。</em></p>
+<h3 id="可选属性"><a href="#可选属性" class="headerlink" title="可选属性"></a>可选属性</h3><p>接口里的属性不全都是必需的，有些是只在某些条件下存在，或者根本不存在，可以为接口定义可选属性来实现这些需求。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> OptionAttribute &#123;</span><br><span class="line">    optionNum?: <span class="built_in">number</span>;</span><br><span class="line">    optionStr?: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可选属性的好处之一是可以对可能存在的属性进行预定义，好处之二是可以捕获引用了不存在的属性时的错误。 </p>
+<h3 id="只读属性"><a href="#只读属性" class="headerlink" title="只读属性"></a>只读属性</h3><p>如果希望对象的某些属性只有在刚创建的时候修改其值，可以通过在属性名前用 readonly 来指定属性为只读属性。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> ReadonlyAttribute &#123;</span><br><span class="line">    <span class="keyword">readonly</span> num: <span class="built_in">number</span>;</span><br><span class="line">    <span class="keyword">readonly</span> str: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>TypeScript</code> 具有 <code>ReadonlyArray&lt;T&gt;</code> 类型，它与 <code>Array&lt;T&gt;</code> 类似，只是把所有可变方法去掉了，因此可以保证数组创建后再也不能被修改。</p>
+<blockquote>
+<p><strong>readonly</strong> vs <strong>const</strong></p>
+<p>使用 <code>const</code> 来修饰变量，使用 <code>readonly</code> 来修饰属性</p>
+</blockquote>
+<h3 id="额外的类型检查"><a href="#额外的类型检查" class="headerlink" title="额外的类型检查"></a>额外的类型检查</h3><p>在 <code>TypeScript</code> 中，对象字面量赋值给变量或作为参数进行传递的时候，会经过 “额外属性检查”，如果一个对象字面量存在任何 “目标类型” 不包含的属性时，会发生错误。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> SquareConfig &#123; </span><br><span class="line">  <span class="attr">width</span>: <span class="built_in">number</span>;</span><br><span class="line">  color?: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createSquare</span>(<span class="params">config: SquareConfig</span>): </span>&#123; color: <span class="built_in">string</span>, <span class="attr">area</span>: <span class="built_in">number</span> &#125; &#123;</span><br><span class="line">  <span class="keyword">let</span> newSquare = &#123; <span class="attr">color</span>: <span class="string">&#x27;blue&#x27;</span>, <span class="attr">area</span>: <span class="number">0</span> &#125;;</span><br><span class="line">  <span class="keyword">if</span> (config.width) newSquare.area = config.width * config.width;</span><br><span class="line">  <span class="keyword">if</span> (config.color) newSquare.color = config.color;</span><br><span class="line">  <span class="keyword">return</span> newSquare;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// error: height not expected in type SquareConfig</span></span><br><span class="line"><span class="keyword">let</span> mySquare = createSquare(&#123; <span class="attr">color</span>: <span class="string">&#x27;green&#x27;</span>, <span class="attr">width</span>: <span class="number">10</span>, <span class="attr">height</span>: <span class="number">10</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>使用 ‘类型断言’ 可以绕开额外属性检查</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySquare = createSquare(&#123; <span class="attr">color</span>: <span class="string">&#x27;green&#x27;</span>, <span class="attr">width</span>: <span class="number">10</span>, <span class="attr">height</span>: <span class="number">10</span> &#125; <span class="keyword">as</span> SquareConfig);</span><br></pre></td></tr></table></figure>
+
+<p>但是更好的做法是在接口中提供一个字符串索引签名</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> SquareConfig &#123; </span><br><span class="line">  <span class="attr">width</span>: <span class="built_in">number</span>;</span><br><span class="line">  color?: <span class="built_in">string</span>;</span><br><span class="line">  [propName: <span class="built_in">string</span>]: <span class="built_in">any</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h3><p>接口能够描述 <code>JavaScript</code> 中对象拥有的各种各样的外形。 除了描述带有属性的普通对象外，接口也可以描述函数类型。</p>
+<p>为了使用接口表示函数类型，我们需要给接口定义一个调用签名。 它就像是一个只有参数列表和返回值类型的函数定义。</p>
+<p>参数列表里的每个参数都需要名字和类型。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> TypeFunc &#123;</span><br><span class="line">    (source: <span class="built_in">string</span>, <span class="attr">subString</span>: <span class="built_in">string</span>): <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样定义后，我们可以像使用其它接口一样使用这个函数类型的接口。 下例展示了如何创建一个函数类型的变量，并将一个同类型的函数赋值给这个变量。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySearchFunc: TypeFunc;</span><br><span class="line">mySearchFunc = <span class="function"><span class="keyword">function</span>(<span class="params">source: <span class="built_in">string</span>, subString: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = source.search(subString);</span><br><span class="line">    <span class="keyword">return</span> result &gt; -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于函数类型的类型检查来说，函数的参数名不需要与接口定义里的名字相匹配。</p>
+<p>函数的参数会逐个进行检查，要求对应位置上的参数类型是兼容的。如果没有指定类型，<code>TypeScript</code> 的类型系统会推断出参数类型，而函数的返回值类型是通过其返回值推断出来的。</p>
+<h3 id="可索引的类型"><a href="#可索引的类型" class="headerlink" title="可索引的类型"></a>可索引的类型</h3><p>与使用接口描述函数类型差不多，我们也可以描述那些能够通过索引得到的类型。可索引类型具有一个索引签名，它描述了对象索引的类型，还有相应的索引返回值类型。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 表明了当用 number 去索引 StringArr 时会得到 string 类型的返回值</span></span><br><span class="line"><span class="keyword">interface</span> StringArr &#123;</span><br><span class="line">    [index: <span class="built_in">number</span>]: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myArr: StringArr;</span><br><span class="line">myArr = [<span class="string">&quot;A&quot;</span>,<span class="string">&quot;B&quot;</span>];</span><br><span class="line"><span class="keyword">let</span> myStr: <span class="built_in">string</span> = myArr[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
 
-<link rel="canonical" href="https://cocoalei.github.io/blogs/categories/Web/">
+<p>索引签名共有两种类型：字符串和数字。可以同时使用这两种类型的索引，但是数字索引的返回值必须是字符串索引返回值类型的子类型。这是因为当使用 <code>number</code> 来索引时，<code>TypeScript</code> 会将它转换为 <code>string</code> 然后再去索引对象。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> StringArray &#123; </span><br><span class="line">  [index: <span class="built_in">string</span>]: <span class="built_in">string</span>;</span><br><span class="line">  [index: <span class="built_in">number</span>]: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>一般将索引签名设置为只读，这样可以防止给索引赋值。</p>
+<h3 id="类类型"><a href="#类类型" class="headerlink" title="类类型"></a>类类型</h3><p><code>TypeScript</code> 中的接口也能够用来明确的强制一个类去符合某种协议/契约。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> ClockInterface &#123;</span><br><span class="line">    <span class="attr">currentTime</span>: <span class="built_in">Date</span>;</span><br><span class="line">    setTime:(d: <span class="built_in">Date</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span> <span class="title">implements</span> <span class="title">ClockInterface</span> </span>&#123;</span><br><span class="line">    <span class="attr">currentTime</span>: <span class="built_in">Date</span>;</span><br><span class="line">    setTime:(d: <span class="built_in">Date</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.currentTime = d;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">h: <span class="built_in">number</span>, m: <span class="built_in">number</span></span>)</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
+<p>接口描述了类的公共部分，而不是公共和私有两部分，它不会帮你检查类是否具有某些私有成员。</p>
+<h3 id="类静态部分与实例部分的区别"><a href="#类静态部分与实例部分的区别" class="headerlink" title="类静态部分与实例部分的区别"></a>类静态部分与实例部分的区别</h3><p>类具有两个类型 ：静态部分的类型和实例的类型。</p>
+<p>当一个类实现了一个接口时，只对其实例部分进行类型检查。<code>constructor</code> 存在于类的静态部分，不在检查范围内。因此我们应该直接操作类的静态部分。</p>
+<blockquote>
+<p>可以认为类的静态部分指的是类本身，实例部分指的是类实例化出来的对象。</p>
+</blockquote>
+<h3 id="继承接口"><a href="#继承接口" class="headerlink" title="继承接口"></a>继承接口</h3><p>和类一样，接口也可以相互继承。这让我们能够从一个接口里复制成员到另一个接口里，可以更灵活地将接口分割到可重用的模块里。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Father &#123;</span><br><span class="line">    <span class="attr">familyName</span>: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Son <span class="keyword">extends</span> Father &#123;</span><br><span class="line">    <span class="attr">givenName</span>: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> aPerson = &lt;Son&gt;&#123;&#125;;</span><br><span class="line">aPerson.familyName = <span class="string">&#x27;S&#x27;</span>;</span><br><span class="line">aPerson.givenName = <span class="string">&#x27;T&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-  <title>分类: Web | 关于代码的碎碎念</title>
-  
+<p>一个接口可以继承多个接口，创建出多个接口的合成接口。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Shape &#123;</span><br><span class="line">  <span class="attr">color</span>: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Stroke &#123;</span><br><span class="line">  <span class="attr">penWidth</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Square <span class="keyword">extends</span> Shape, Stroke &#123;</span><br><span class="line">  <span class="attr">width</span>: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
+<h3 id="混合类型"><a href="#混合类型" class="headerlink" title="混合类型"></a>混合类型</h3><p>接口能够描述 <code>JavaScript</code> 中丰富的类型，可以使用 混合类型 来使某个对象具有多个类型。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Counter &#123;</span><br><span class="line">  (start: <span class="built_in">number</span>): <span class="built_in">number</span>;</span><br><span class="line">	interval: <span class="built_in">number</span>;</span><br><span class="line">	reset(): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCounter</span>(<span class="params"></span>): <span class="title">Counter</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> counter = &lt;Counter&gt;<span class="function"><span class="keyword">function</span> (<span class="params">start: <span class="built_in">number</span></span>) </span>&#123;&#125;;</span><br><span class="line">  counter.interval = <span class="number">1</span>;</span><br><span class="line">  counter.reset = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">  <span class="keyword">return</span> counter;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> c = getCounter();</span><br><span class="line">c(<span class="number">10</span>);</span><br><span class="line">c.reset();</span><br><span class="line">c.interval = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">关于代码的碎碎念</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">Y29jb2FsaS5naXRodWIuaW8=</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
+<h3 id="接口继承类"><a href="#接口继承类" class="headerlink" title="接口继承类"></a>接口继承类</h3><p>当接口继承了一个类类型时，它会继承类的成员但不继承其实现。就好像接口声明了所有类中存在的成员，但没有提供具体实现一样。接口同样会继承到类的 <code>private</code> 和 <code>protected</code> 成员。这意味着当你创建了一个接口继承了一个拥有私有或受保护的成员的类时，这个接口类型只能被这个类或其子类所实现。</p>
+<p>当你有一个庞大的继承结构时这很有用，但要指出的是你的代码只在子类拥有特定的属性时起作用。</p>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>从 <code>ECMAScript 2015</code> , 也就是 <code>ECMAScript 6</code> 开始， <code>JavaScript</code> 中也能使用基于类的面向对象的方式。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="attr">familyName</span>: <span class="built_in">string</span>;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">familyName: <span class="built_in">string</span>, givenName: <span class="built_in">string</span>, age: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.familyName = familyName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">say</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Hello, my name is &#x27;</span> + <span class="built_in">this</span>.familyName + <span class="string">&#x27; &#x27;</span> + <span class="built_in">this</span>.givenName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">move</span>(<span class="params">distanceInMeters = <span class="number">0</span></span>)</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;$&#123;this.name&#125; moved $&#123;distanceInMeters&#125;m.&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 创建类实例</span></span><br><span class="line">lei aPerson = <span class="keyword">new</span> Person(<span class="string">&#x27;Wang&#x27;</span>, <span class="string">&#x27;XiaoHong&#x27;</span>, <span class="number">22</span>);</span><br></pre></td></tr></table></figure>
 
-
+<p>在引用任何一个类的成员时都需要使用 <code>this</code> ，它表示我们访问的是类的成员。</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>在 <code>TypeScript</code> 中允许使用继承来扩展现有的类。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">familyName: <span class="built_in">string</span>, givenName: <span class="built_in">string</span>, age: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(familyName, givenName, age);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">move</span>(<span class="params">distanceInMeters = <span class="number">5</span></span>)</span> &#123;</span><br><span class="line">			<span class="built_in">super</span>.move(distanceInMeters);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>如果子类包含了构造函数，它必须调用 <code>super()</code> ，它会执行基类的构造函数。在构造函数中访问 <code>this</code> 的属性之前，一定要先调用 <code>super()</code> 。</p>
+<p>子类从父类中继承属性和方法</p>
+<h3 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h3><ul>
+<li><p><code>public</code></p>
+<p><code>public</code> 是 <code>TypeScript</code> 中类成员的默认属性</p>
+</li>
+<li><p><code>private</code></p>
+<p>类成员声明为 <code>private</code> 时，不能在生声明它的类的外部访问</p>
+</li>
+<li><p><code>protected</code></p>
+<p>类成员声明为 <code>protected</code> 时，在派生类中仍可访问</p>
+<p>构造函数也能被标记为 <code>protected</code> ，这意味着它不能在包含它的类外被实例化，但是能被继承</p>
+</li>
+<li><p><code>readonly</code></p>
+<p>通过 <code>readonly</code> 属性将属性设置为只读，只读属性必须在声明时或构造函数里被初始化</p>
+</li>
+</ul>
+<h4 id="参数属性"><a href="#参数属性" class="headerlink" title="参数属性"></a>参数属性</h4><p>参数属性通过给构造函数参数前添加一个访问限定符来声明。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">public</span> familyName: <span class="built_in">string</span>, <span class="keyword">public</span> givenName: <span class="built_in">string</span>, <span class="keyword">public</span> age: <span class="built_in">number</span></span>)</span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content category">
-            
-
-  
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Web
-          <small>分类</small>
-        </h2>
-      </div>
-
-      
-    <div class="collection-year">
-      <span class="collection-header">2019</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-09-13T00:00:00+08:00"
-              content="2019-09-13">
-          09-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2019/09/13/typescript-tutorial/" itemprop="url">
-            <span itemprop="name">TypeScript 概览</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-    <div class="collection-year">
-      <span class="collection-header">2018</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-04-02T00:00:00+08:00"
-              content="2018-04-02">
-          04-02
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2018/04/02/ReflowAndRedraw/" itemprop="url">
-            <span itemprop="name">Reflow and Redraw</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2018-02-06T00:00:00+08:00"
-              content="2018-02-06">
-          02-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2018/02/06/npm-commands/" itemprop="url">
-            <span itemprop="name">NPM 命令</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-    <div class="collection-year">
-      <span class="collection-header">2016</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2016-04-10T00:00:00+08:00"
-              content="2016-04-10">
-          04-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2016/04/10/html-css-summary-advanced/" itemprop="url">
-            <span itemprop="name">HTML5 概览进阶篇</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2016-03-05T00:00:00+08:00"
-              content="2016-03-05">
-          03-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2016/03/05/html-css-summary-basic/" itemprop="url">
-            <span itemprop="name">HTML5 概览</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-    </div>
-  </div>
-  
-  
-  
-
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
+<p>通过这个特性我们可以方便的在一个地方定义并初始化一个成员。</p>
+<h3 id="存取器"><a href="#存取器" class="headerlink" title="存取器"></a>存取器</h3><p><code>TypeScript</code> 支持通过 <code>getters/setters</code> 来截取对对象成员的访问，它们可以有效的控制对对象成员的访问。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">student</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> _familyName: <span class="built_in">string</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">get</span> <span class="title">familyName</span>(): <span class="title">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>._familyNmae;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">set</span> <span class="title">familyName</span>(<span class="params">fName: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">		<span class="built_in">this</span>._familyName = fName;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
+<p>需要注意的是，存取器只支持 <code>ECMAScript 5</code> 或更高，其次，只带有 <code>getter</code> 存取器被推断为 <code>readonly</code>。</p>
+<h3 id="静态属性"><a href="#静态属性" class="headerlink" title="静态属性"></a>静态属性</h3><p>类的实例成员是那些仅当类被实例化时才会被初始化的属性，而类的静态成员存在于类本身上面而不是类的实例上。实例想要访问静态属性时，需要在其加上类名。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">student</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> school = <span class="string">&#x27;ts&#x27;</span>;</span><br><span class="line">  ...</span><br><span class="line">  <span class="function"><span class="title">getStudentSchool</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> student.school;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Y2hlbmdsZWk=</p>
-  <div class="site-description" itemprop="description">ODQ4NjUwMTI5QHFxLmNvbQ==</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">55</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
 
 
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>抽象类一般作为其它派生类的基类使用，一般不会被实例化。不同于接口，抽象类可以包含成员的实现细节。</p>
+<p>使用 <code>abstract</code> 关键字定义抽象类和在抽象类中定义抽象方法。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">  <span class="keyword">abstract</span> function_name: return_type;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      </div>
+<p>抽象类中的抽象方法不包含具体实现并且必须在派生类中实现。</p>
+<p>抽象方法的语法与接口语法相似，两者都是定义方法签名但不包含方法体。然而，抽象方法必须包含 <code>abstract</code> 关键字并且可以包含访问修饰符。</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>函数是 <code>JavaScript</code> 应用程序的基础。 它帮助你实现抽象层，模拟类，信息隐藏和模块。 在 <code>TypeScript</code> 里，虽然已经支持类，命名空间和模块，但函数仍然是主要的定义行为的地方。 <code>TypeScript</code> 为 <code>JavaScript</code> 函数添加了额外的功能，让我们可以更容易地使用。</p>
+<h3 id="函数类型-1"><a href="#函数类型-1" class="headerlink" title="函数类型"></a>函数类型</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">arg_1: arg_type, arg_2: arg_type, ...</span>): <span class="title">return_type</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+<p><code>TypeScript</code> 能够通过返回语句自动推断出返回值类型，因此函数返回类型一般是省略的。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fun_var_name: <span class="function">(<span class="params">arg_1: arg_type, arg_2: arg_type, ...</span>) =&gt;</span> return_type;</span><br></pre></td></tr></table></figure>
 
+<p>函数类型包括两部分，参数类型和返回值类型。而且只要参数类型是匹配的，就认为它是有效的函数类型，而不在乎参数名是否准确。</p>
+<h3 id="可选参数和默认参数"><a href="#可选参数和默认参数" class="headerlink" title="可选参数和默认参数"></a>可选参数和默认参数</h3><p><code>JavaScript</code> 中函数的每个参数都是可选的，可传可不传，没有传参的时候它的值就是 <code>undefined</code>。而 <code>TypeScript</code> 中函数的每个参数默认情况下都是必须的，编译器检查用户是否为每个参数都传入了值，还会假设只有这些参数被传递进函数-即传递给一个函数的参数个数必须与函数期望的参数个数一致。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myAdd: <span class="function">(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">number</span> = <span class="function"><span class="keyword">function</span> (<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) </span>&#123; </span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sum = myAdd(<span class="number">1</span>); <span class="comment">// error: Expected 2 arugements, but got 1</span></span><br><span class="line"><span class="keyword">const</span> sum1 = myAdd(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// error: Expected 2 arugements, but got 3</span></span><br></pre></td></tr></table></figure>
 
-      </div>
-    </main>
+<p>在 <code>TypeScript</code> 中，可以在参数名称旁使用 <code>?</code> 实现可选参数的功能。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可选参数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildStudent</span>(<span class="params">name: <span class="built_in">string</span>, grade: <span class="built_in">number</span>, gender?: <span class="built_in">string</span></span>) </span>&#123; </span><br><span class="line">  <span class="keyword">return</span> name + <span class="string">&#x27; &#x27;</span> + grade + <span class="string">&#x27; &#x27;</span> + (gender ? gender : <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> student_1 = buildStudent(<span class="string">&#x27;Tom&#x27;</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">const</span> student_2 = buildStudent(<span class="string">&#x27;Jerry&#x27;</span>, <span class="number">2</span>, <span class="string">&#x27;male&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
+<p>需要注意的是，可选参数必须跟在可选参数后面。</p>
+<p>在 <code>TypeScript</code> 中，当用户没有传递这个参数或传递的值是 <code>undefined</code> 时，我们可以为参数提供一个默认值。在所有必须参数后面的带默认初始化的参数都是可选的，与可选参数一样，在调用函数的时候可以省略-即可选参数与末尾的默认参数共享参数类型。</p>
+<p>需要注意的是，如果带默认值的参数出现在必须参数之前，用户必须明确的传入 <code>undefined</code> 值来获得默认值。</p>
+<h3 id="剩余参数"><a href="#剩余参数" class="headerlink" title="剩余参数"></a>剩余参数</h3><p>如果你想同时操作多个参数或不知道会有多少个参数传递进来，在 <code>JavaScript</code> 中，你可以通过 <code>arguments</code> 来访问所有传入的参数，在 <code>TypeScript</code> 中，你则可以将所有参数收集到一个变量里。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 剩余参数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildChildren</span>(<span class="params">name: <span class="built_in">string</span>, age: <span class="built_in">number</span>, ...restOfProperty: <span class="built_in">string</span>[]</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;name&#125;</span> <span class="subst">$&#123;age&#125;</span> <span class="subst">$&#123;restOfProperty.join(<span class="string">&#x27; &#x27;</span>)&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> children = buildChildren(<span class="string">&#x27;Mike&#x27;</span>, <span class="number">12</span>, <span class="string">&#x27;male&#x27;</span>, <span class="string">&#x27;grade 3&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
-        
 
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Y2hlbmdsZWk=</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
 
-        
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>泛型是程序设计语言的一种特性，是程序员在编写代码时定义的一些可变部分，这些部分在使用前必须做出指明。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类型变量 T 会捕获用户传入的类型，之后我们就可以使用者个类型</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identity</span>&lt;<span class="title">T</span>&gt;(<span class="params">arg: T</span>): <span class="title">T</span> </span>&#123; </span><br><span class="line">  <span class="keyword">return</span> arg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> strId = identity(<span class="string">&#x27;JavaScript&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> numId = identity(<span class="number">12</span>);</span><br></pre></td></tr></table></figure>
 
 
 
+<h3 id="泛型变量"><a href="#泛型变量" class="headerlink" title="泛型变量"></a>泛型变量</h3><p>使用泛型函数时，编译器要求你在函数体必须正确的使用这个通用的类型-即你必须把这些参数当做是任意或所有类型。</p>
+<h3 id="泛型函数"><a href="#泛型函数" class="headerlink" title="泛型函数"></a>泛型函数</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">combineFunc</span>&lt;<span class="title">T</span>,<span class="title">K</span>&gt;(<span class="params">x: T, y: K</span>): [<span class="title">T</span>, <span class="title">K</span>] </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [T, K];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> combine: &lt;T,K&gt;(x: T, y: K) =&gt; [T,K] = combineFunc;</span><br><span class="line">// or</span><br><span class="line">let combine: &#123; &lt;T,K&gt;(x: T, y: K): [T, K] &#125; = combineFunc;</span><br></pre></td></tr></table></figure>
 
 
 
+<h3 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> CombineFunc &#123;</span><br><span class="line">  &lt;T,K&gt;(x: T, <span class="attr">y</span>: K): [T, K];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> combine: CombineFunc = <span class="function">(<span class="params">x, y</span>) =&gt;</span> [x, y];</span><br></pre></td></tr></table></figure>
 
 
-      </div>
-    </footer>
-  </div>
 
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<h3 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CombineFunC</span> </span>&#123;</span><br><span class="line">  <span class="attr">combine</span>: &lt;T,K&gt;(x: T, y: K) =&gt; [T, K];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let combineC: CombineFunC = new CombineFunC&lt;number, number&gt;();</span><br><span class="line">combineC.combine = (x, y) =&gt; [x, y];</span><br></pre></td></tr></table></figure>
 
-<script src="/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/pisces.js"></script>
 
+<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><p>使用枚举可以定义一些带名字的常量，清晰的表达意图或创建一组有区别的用例。<code>TypeScript</code> 支持数字的和基于字符串的枚举。</p>
+<h3 id="数字枚举"><a href="#数字枚举" class="headerlink" title="数字枚举"></a>数字枚举</h3><p>数字枚举默认的枚举值是从 0 开始自增长的，如果你为第一个枚举名字指定了一个数字枚举值，则会从这个数字值开始自增长。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> Status &#123;</span><br><span class="line">  DELETED = -<span class="number">1</span>,</span><br><span class="line">  VALID,</span><br><span class="line">  UNPAID,</span><br><span class="line">  PAID</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<script src="/js/next-boot.js"></script>
 
 
+<h3 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h3><p>字符串枚举中，每个成员都需要使用字符串字面量或另外一个字符串枚举成员进行初始化。</p>
+<p>需要注意的是，字符串枚举没有自增长行为。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> StatusTip &#123;</span><br><span class="line">  DELETED = <span class="string">&#x27;Order has been deleted.&#x27;</span>,</span><br><span class="line">  VALID = <span class="string">&#x27;Order is valid.&#x27;</span>,</span><br><span class="line">  UNPAID = <span class="string">&#x27;Order is unpaid.&#x27;</span>,</span><br><span class="line">  PAID = <span class="string">&#x27;Order is paid&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-  
 
+<h3 id="异构枚举"><a href="#异构枚举" class="headerlink" title="异构枚举"></a>异构枚举</h3><p>枚举可以混合字符串和数字成员。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> HeterogeneousEnum &#123;</span><br><span class="line">  NO = <span class="number">0</span>,</span><br><span class="line">  YES = <span class="string">&#x27;Yes&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
+<h3 id="计算的和常量成员"><a href="#计算的和常量成员" class="headerlink" title="计算的和常量成员"></a>计算的和常量成员</h3><p>每个枚举成员都带有一个值，它可以是常量或计算出来的。当满足如下条件时，枚举成员被当做常量：</p>
+<ul>
+<li><p>它是枚举的第一个成员，且没有初始化器，此时它的值为 0</p>
+</li>
+<li><p>它不带有初始化器且它之前的枚举成员是一个数字常量，此时它的值为上一个枚举成员的值 + 1</p>
+</li>
+<li><p>枚举成员使用常量枚举表达式初始化。常量枚举表达式是 <code>TypeScript</code> 表达式的子集，它可以在编译阶段求值。当一个表达式满足以下条件时，它就是一个常量枚举表达式：</p>
+<ul>
+<li><p>一个枚举表达式字面量</p>
+</li>
+<li><p>一个对之前定义的常量枚举成员的引用</p>
+</li>
+<li><p>带括号的常量枚举表达式</p>
+</li>
+<li><p>一元运算符 <code>+ - ~</code> 其中之一应用在了常量枚举表达式</p>
+</li>
+<li><p>常量枚举表达式作为二元运算符 <code>+, -, *, /, %, &lt;&lt;, &gt;&gt;, &gt;&gt;&gt;, &amp;, |, ^</code> 的操作对象(若常量枚举表达式求值后为 <code>NaN</code> 或 <code>Infinity</code>，则会在编译时报错)</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> FileAccess &#123;</span><br><span class="line">  None,</span><br><span class="line">  Read = <span class="number">1</span> &lt;&lt; <span class="number">1</span>,</span><br><span class="line">  Write = <span class="number">1</span> &lt;&lt; <span class="number">2</span>,</span><br><span class="line">  ReadWrite = Read | Write,</span><br><span class="line">  G = <span class="string">&#x27;1024&#x27;</span>.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="联合枚举与枚举成员的类型"><a href="#联合枚举与枚举成员的类型" class="headerlink" title="联合枚举与枚举成员的类型"></a>联合枚举与枚举成员的类型</h3><p>存在一种特殊的非计算的常量枚举成员的子集：字面量枚举成员。字面量枚举成员是指不带有初始值的常量枚举成员或是被初始化为</p>
+<ul>
+<li>任何字符串字面量</li>
+<li>任何数字字面量</li>
+<li>应用了一元 <code>-</code> 符号的数字字面量</li>
+</ul>
+<p>当所有枚举成员都拥有字面量枚举值时，它就带有了一种特殊的语义。</p>
+<h3 id="运行时枚举"><a href="#运行时枚举" class="headerlink" title="运行时枚举"></a>运行时枚举</h3><p>枚举是在运行时真正存在的对象</p>
+<h3 id="反向映射"><a href="#反向映射" class="headerlink" title="反向映射"></a>反向映射</h3><p>数字枚举成员具有从枚举值到枚举名字的反向映射。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> Status &#123;</span><br><span class="line">  DELETED = -<span class="number">1</span>,</span><br><span class="line">  VALID,</span><br><span class="line">  UNPAID,</span><br><span class="line">  PAID</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Status[<span class="number">0</span>]); <span class="comment">// VALID</span></span><br></pre></td></tr></table></figure>
 
 
 
+<h3 id="const-枚举"><a href="#const-枚举" class="headerlink" title="const 枚举"></a><code>const</code> 枚举</h3><p>常量枚举只能使用常量枚举表达式，并且不同于常规的枚举，它们在编译阶段会被删除-常量枚举成员会在使用的地方被内联进来，这是因为常量枚举不允许包含计算成员。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">enum</span> Directions &#123;</span><br><span class="line">  Up,</span><br><span class="line">  Down,</span><br><span class="line">  Left,</span><br><span class="line">  Right</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> directions = [ Directions.Up, Directions.Down, Directions.Left, Directions.Right ];</span><br></pre></td></tr></table></figure>
 
 
 
+<h2 id="类型推论"><a href="#类型推论" class="headerlink" title="类型推论"></a>类型推论</h2><p>类型推论是指能够在编译期间自动推导出值的类型的能力。一般发生在初始化变量和成员，设置默认参数值和决定函数返回值时。</p>
+<h3 id="最佳通用类型"><a href="#最佳通用类型" class="headerlink" title="最佳通用类型"></a>最佳通用类型</h3><p>当需要从几个表达式中推断类型时，会使用这几个表达式的类型来推断出一个最合适的通用类型。</p>
+<h3 id="上下文类型"><a href="#上下文类型" class="headerlink" title="上下文类型"></a>上下文类型</h3><p>当表达式的类型与所处的位置相关时，类型推论按照上下文归类来推论类型。当然，如果表达式包含了明确的类型信息，上下文的类型会被忽略。</p>
+<h2 id="类型兼容性"><a href="#类型兼容性" class="headerlink" title="类型兼容性"></a>类型兼容性</h2><p><code>TypeScript</code> 中的类型兼容性是基于结构子类型的-结构子类型是一种只使用其成员来描述类型的方式。</p>
+<h3 id="原始类型和对象类型的兼容性"><a href="#原始类型和对象类型的兼容性" class="headerlink" title="原始类型和对象类型的兼容性"></a>原始类型和对象类型的兼容性</h3><p>如果 x 要兼容 y， 那么 y 至少需要具有与 x 相同的属性。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果 x 要兼容 y， y 至少要与 x 拥有相同的属性</span></span><br><span class="line"><span class="keyword">let</span> x = &#123; <span class="attr">name</span>: <span class="string">&#x27;x&#x27;</span> &#125;;</span><br><span class="line"><span class="keyword">let</span> y = &#123; <span class="attr">name</span>: <span class="string">&#x27;y&#x27;</span>, <span class="attr">alias</span>: <span class="string">&#x27;Y&#x27;</span> &#125;;</span><br><span class="line">x = y;</span><br><span class="line">y = x; <span class="comment">// Property &#x27;alias&#x27; is missing in type &#x27;&#123; name: string; &#125;&#x27; but required in type &#x27;&#123; name: string; alias: string; &#125;</span></span><br></pre></td></tr></table></figure>
 
 
-  
 
-  
+<h3 id="函数的类型兼容性"><a href="#函数的类型兼容性" class="headerlink" title="函数的类型兼容性"></a>函数的类型兼容性</h3><p>如果函数 x 要兼容函数 y，那么 x 至少要与 y 具有相同的参数并且返回值类型相同。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> funCom = <span class="function">(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) =&gt;</span> x + y;</span><br><span class="line"><span class="keyword">let</span> funAbc = <span class="function">(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) =&gt;</span> [x, y];</span><br><span class="line"><span class="keyword">let</span> funSub = <span class="function">(<span class="params">x: <span class="built_in">number</span></span>) =&gt;</span> x;</span><br><span class="line"><span class="keyword">let</span> funDef = <span class="function">(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) =&gt;</span> x * y;</span><br><span class="line">funCom = funSub;</span><br><span class="line">funSub = funCom; <span class="comment">// Type &#x27;(x: number, y: number) =&gt; number&#x27; is not assignable to type &#x27;(x: number) =&gt; number&#x27;</span></span><br><span class="line">funCom = funAbc; <span class="comment">// Type &#x27;(x: number, y: number) =&gt; number[]&#x27; is not assignable to type &#x27;(x: number, y: number) =&gt; number&#x27;.Type &#x27;number[]&#x27; is not assignable to type &#x27;number&#x27;</span></span><br><span class="line">funCom = funDef;</span><br></pre></td></tr></table></figure>
 
-</body>
-</html>
+
+
+<h3 id="类的兼容性"><a href="#类的兼容性" class="headerlink" title="类的兼容性"></a>类的兼容性</h3><p>比较两个类类型的对象时，只有实例的成员会被比较。 静态成员和构造函数不在比较的范围内。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">W</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> sign: <span class="built_in">string</span> = <span class="string">&#x27;AAAAA&#x27;</span>;</span><br><span class="line">  pro: <span class="built_in">string</span> = <span class="string">&#x27;W&#x27;</span>;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">name: <span class="built_in">string</span></span>)</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span> </span>&#123;</span><br><span class="line">  <span class="attr">pro</span>: <span class="built_in">string</span> = <span class="string">&#x27;W&#x27;</span>;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">length: <span class="built_in">number</span></span>)</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> wC = <span class="keyword">new</span> W(<span class="string">&#x27;W&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> yC = <span class="keyword">new</span> Y(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">wC = yC; <span class="comment">// OK</span></span><br><span class="line">yC = wC; <span class="comment">// OK</span></span><br></pre></td></tr></table></figure>
+
+<p>类的私有成员和受保护成员会影响兼容性。 当检查类实例的兼容时，如果目标类型包含一个私有成员，那么源类型必须包含来自同一个类的这个私有成员。 同样地，这条规则也适用于包含受保护成员实例的类型检查。 这允许子类赋值给父类，但是不能赋值给其它有同样类型的类。</p>
+<h3 id="泛型的兼容性"><a href="#泛型的兼容性" class="headerlink" title="泛型的兼容性"></a>泛型的兼容性</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> NotEmpty&lt;T&gt; &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> gA: NotEmpty&lt;<span class="built_in">number</span>&gt;;</span><br><span class="line"><span class="keyword">let</span> gB: NotEmpty&lt;<span class="built_in">string</span>&gt;;</span><br><span class="line">gA = gB; <span class="comment">// ok</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> NotEmpty&lt;T&gt; &#123;</span><br><span class="line">  <span class="attr">data</span>: T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> gA: NotEmpty&lt;<span class="built_in">number</span>&gt;;</span><br><span class="line"><span class="keyword">let</span> gB: NotEmpty&lt;<span class="built_in">string</span>&gt;;</span><br><span class="line">gA = gB; <span class="comment">// Error</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="高级类型"><a href="#高级类型" class="headerlink" title="高级类型"></a>高级类型</h2><h3 id="交叉类型"><a href="#交叉类型" class="headerlink" title="交叉类型"></a>交叉类型</h3><p>交叉类型是将多个类型合并为一个类型。 这让我们可以把现有的多种类型叠加到一起成为一种类型，它包含了所需的所有类型的特性。</p>
+<h3 id="联合类型"><a href="#联合类型" class="headerlink" title="联合类型"></a>联合类型</h3><p>联合类型表示一个值可以是几种类型之一。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/ 联合类型</span><br><span class="line"><span class="comment">// 联合类型表示一个值可以是几个类型之一</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pad</span>(<span class="params">padding: <span class="built_in">number</span> | <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> padding;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(pad(<span class="number">1</span>));</span><br><span class="line"><span class="built_in">console</span>.log(pad(<span class="string">&#x27;A&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>如果一个值是联合类型，我们只能访问联合类型所有类型里共有的成员</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Elephant &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">  walk();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Shark &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">  swim();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAnimal</span>(<span class="params"></span>): <span class="title">Elephant</span> | <span class="title">Shark</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">name</span>: <span class="string">&#x27;Elephant&#x27;</span>, <span class="function"><span class="title">walk</span>(<span class="params"></span>)</span> &#123; <span class="built_in">console</span>.log(<span class="string">&#x27;walk&#x27;</span>) &#125; &#125; <span class="keyword">as</span> Elephant;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> aAnimal = getAnimal();</span><br><span class="line"><span class="built_in">console</span>.log(aAnimal.name);</span><br><span class="line">aAnimal.walk();</span><br><span class="line">aAnimal.swim();</span><br></pre></td></tr></table></figure>
+
+
+
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-04-01T16:00:00.000Z" title="2018/4/2 上午12:00:00">2018-04-02</time>发表</span><span class="level-item"><a class="link-muted" href="/categories/Web/">Web</a></span><span class="level-item">11 分钟读完 (大约1714个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/04/02/ReflowAndRedraw/">Reflow and Redraw</a></h1><div class="content"><h2 id="回流和重绘以及性能的优化"><a href="#回流和重绘以及性能的优化" class="headerlink" title="回流和重绘以及性能的优化"></a>回流和重绘以及性能的优化</h2><p>在解释回流和重绘的概念之前，我们首先需要知道两个概念：DOM 和 CSSOM。</p>
+<ul>
+<li><p>DOM (Document Object Model) 文档对象模型</p>
+<p>DOM 是 HTML 和 XML 文档的编程接口，它提供了对文档的结构化表述，并使得开发人员能够从程序中访问它，改变文档的结构、样式和内容。DOM 将文档解析为一个由节点和对象（包含属性和方法的对象）组成的结构集合。</p>
+</li>
+<li><p>CSSOM (CSS Object Model) CSS对象模型</p>
+<p>CSSOM 是一组允许 JavaScript 操作 CSS 的 API，非常类似于 DOM，它允许用户动态的修改 CSS 样式。</p>
+</li>
+</ul>
+<h3 id="DOM-和-CSSOM-构建"><a href="#DOM-和-CSSOM-构建" class="headerlink" title="DOM 和 CSSOM 构建"></a>DOM 和 CSSOM 构建</h3><p>浏览器渲染页面时会构建 DOM 和 CSSOM 树，这个过程可简化如下：</p>
+<ol>
+<li>转换 - 浏览器从磁盘或网络读取 HTML 的原始字节，并按照其指定的编码方式将其解析为字符</li>
+<li>符号化(令牌化) -  浏览器将字符串转换为 HTML 标准规定的各种具有特殊含义和规则的令牌</li>
+<li>词法分析- 将令牌转换为定义了其规则和属性的对象</li>
+<li>DOM构建 - HTML 标记定义了不同的标记之间的关系，根据标签创建的对象在结构树中根据由原始标记定义的父子关系相互连接。</li>
+</ol>
+<p>整个过程最后形成一个文档对象结构模型，即 DOM。CSSOM 的构建与 DOM 的构建非常类似，不再重复。</p>
+<h3 id="渲染树的构建"><a href="#渲染树的构建" class="headerlink" title="渲染树的构建"></a>渲染树的构建</h3><p>最后 CSSOM 和 DOM 会结合形成渲染树。渲染树用来计算每个可见元素的布局，并在绘制到屏幕的过程中作为输出，简化后的过程如下：</p>
+<ol>
+<li>从 DOM 树的根节点开始，遍历每个可见的节点<ul>
+<li>有些节点是不可见的（比如 <code>&lt;script&gt;</code> 标签、<code>&lt;meta&gt;</code> 标签 等），这些节点会被忽略， 因为它们并不影响渲染的输出</li>
+<li>一些节点通过 CSS 被隐藏了，它们也会被忽略</li>
+</ul>
+</li>
+<li>为每一个可见的节点找到匹配的 CSSOM 规则并在节点上应用这些规则</li>
+<li>将节点连同内容和计算好的样式发送出去</li>
+</ol>
+<p>渲染树构建完成后，即进入 “布局” 阶段。</p>
+<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><p>在渲染树中我们已经计算好了哪个节点应该被显示和它们的计算样式，但是对于它们在设备的视口中的精确位置和大小还没有进行计算，对其进行计算就是 ”布局“，也被称为 <strong>回流</strong>。</p>
+<p>为了计算页面中每个对象的精确位置和大小，浏览器从渲染树的根节点开始遍历。</p>
+<p>布局过程的输出是一个“盒子模型”，它精确地捕获视口中每个元素的确切位置和大小：所有相对测量值都转换为屏幕上的绝对像素。</p>
+<h3 id="绘制"><a href="#绘制" class="headerlink" title="绘制"></a>绘制</h3><p>布局完成后，我们已经知道了节点的可见性、计算样式和几何结构，浏览器将会把渲染树中的每个节点转换为屏幕上的实际像素。这个步骤通常被称为 ”绘制“ 或 ”栅格化“；</p>
+<p>由于浏览器需要进行大量的工作进行绘制，这个阶段可能会花费一些时间。</p>
+<h3 id="回流"><a href="#回流" class="headerlink" title="回流"></a>回流</h3><p>当渲染树中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程称为回流。</p>
+<p>可能会引起回流的操作如下</p>
+<ul>
+<li>页面首次渲染</li>
+<li>浏览器窗口大小发生改变</li>
+<li>元素尺寸或位置发生改变</li>
+<li>元素内容发生改变</li>
+<li>元素字体大小发生变化</li>
+<li>添加或删除可见的 DOM 元素</li>
+<li>激活 CSS 伪类</li>
+<li>查询某些属性或调用某些方法</li>
+</ul>
+<p>常用且可能导致回流的属性和方法</p>
+<ul>
+<li><code>clientWidth</code> , <code>clientHeight</code>, <code>clientTop</code>, <code>clientLeft</code></li>
+<li><code>offsetWidth</code>, <code>offsetHeight</code>, <code>offsetTop</code>, <code>offsetLeft</code></li>
+<li><code>scrollWidth</code>, <code>scrollHeight</code>, <code>scrollTop</code>, <code>scrollLeft</code></li>
+<li><code>scrollIntoView()</code>, <code>scrollIntoViewIfNeeded()</code></li>
+<li><code>getComputedStyle()</code></li>
+<li><code>getBoundingClientReact()</code></li>
+<li><code>scrollTo()</code></li>
+</ul>
+<h3 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h3><p>当页面中元素样式的改变并不影响它在文档流中的位置时（例如：<code>color</code>、<code>background-color</code>、<code>visibility</code>等），浏览器会将新样式赋予给元素并重新绘制它，这个过程称为重绘。</p>
+<h3 id="性能影响"><a href="#性能影响" class="headerlink" title="性能影响"></a>性能影响</h3><p>回流比重绘的代价要高的多。有时候仅仅回流一个单一的元素，它的父元素及任何与它相关的元素都会产生回流。</p>
+<p>浏览器会对频繁的回流或重绘操作进行优化：</p>
+<p>浏览器会维护一个队列，把所有引起回流和重绘的操作放入队列中，如果队列中的任务数量或者时间间隔达到一个阈值的时候，浏览器就会将队列清空，进行一次批处理，这样可以把多次回流和重绘变成一次。</p>
+<p>当你访问下列属性是，浏览器会立刻清空队列：</p>
+<ul>
+<li><code>clientWidth</code> , <code>clientHeight</code>, <code>clientTop</code>, <code>clientLeft</code></li>
+<li><code>offsetWidth</code>, <code>offsetHeight</code>, <code>offsetTop</code>, <code>offsetLeft</code></li>
+<li><code>scrollWidth</code>, <code>scrollHeight</code>, <code>scrollTop</code>, <code>scrollLeft</code></li>
+<li><code>width</code>, <code>height</code></li>
+<li><code>getComputedStyle()</code></li>
+<li><code>getBoundingClientRect()</code></li>
+</ul>
+<p>因为队列中可能会有影响到这些属性或方法返回值的操作，即使你希望获取的信息与队列中操作引发的改变无关，浏览器也会强行清空队列，确保你拿到的值是最精确的。</p>
+<h3 id="如何避免回流"><a href="#如何避免回流" class="headerlink" title="如何避免回流"></a>如何避免回流</h3><h4 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h4><ul>
+<li>避免使用<code>table</code>布局。</li>
+<li>尽可能在<code>DOM</code>树的最末端改变<code>class</code>。</li>
+<li>避免设置多层内联样式。</li>
+<li>将动画效果应用到<code>position</code>属性为<code>absolute</code>或<code>fixed</code>的元素上。</li>
+<li>避免使用<code>CSS</code>表达式（例如：<code>calc()</code>）。</li>
+</ul>
+<h4 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h4><ul>
+<li>避免频繁操作样式，最好一次性重写<code>style</code>属性，或者将样式列表定义为<code>class</code>并一次性更改<code>class</code>属性。</li>
+<li>避免频繁操作<code>DOM</code>，创建一个<code>documentFragment</code>，在它上面应用所有<code>DOM操作</code>，最后再把它添加到文档中。</li>
+<li>也可以先为元素设置<code>display: none</code>，操作结束后再把它显示出来。因为在<code>display</code>属性为<code>none</code>的元素上进行的<code>DOM</code>操作不会引发回流和重绘。</li>
+<li>避免频繁读取会引发回流/重绘的属性，如果确实需要多次使用，就用一个变量缓存起来。</li>
+<li>对具有复杂动画的元素使用绝对定位，使它脱离文档流，否则会引起父元素及后续元素频繁回流。</li>
+</ul>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-02-05T16:00:00.000Z" title="2018/2/6 上午12:00:00">2018-02-06</time>发表</span><span class="level-item"><a class="link-muted" href="/categories/Web/">Web</a></span><span class="level-item">2 分钟读完 (大约351个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2018/02/06/npm-commands/">NPM 命令</a></h1><div class="content"><h1 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h1><h2 id="npm-安装与升级"><a href="#npm-安装与升级" class="headerlink" title="npm 安装与升级"></a>npm 安装与升级</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 获取当前使用的 npm 的版本</span><br><span class="line">npm -v</span><br><span class="line">// 升级 npm</span><br><span class="line">npm install npm -g</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="package-安装与卸载"><a href="#package-安装与卸载" class="headerlink" title="package 安装与卸载"></a>package 安装与卸载</h2><p>本地安装将会把安装包安装在运行 npm 命令时所在目录的 <code>./node_modules</code>  目录下；<br>全局安装则会将安装包安装在你的 <code>node</code> 所在目录；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install &lt;package name&gt;		// <span class="built_in">local</span></span><br><span class="line">npm install &lt;package name&gt; -g		// global</span><br><span class="line">npm install &lt;package name&gt; --save-dev | -D// development</span><br><span class="line">npm install &lt;package name&gt; --save | -S // production</span><br></pre></td></tr></table></figure>
+<p>通过命令 <code>npm install &lt;package name&gt; —save</code> 安装的 package 会被加到 <code>package.json</code> 文件中的 dependencies 部分，而通过命令 <code>npm install &lt;package name&gt; —save-dev</code> 安装的 package 会被加到 devDependencies 部分。<br>命令如果不加 —save 或 —save-dev 则 package 不会被添加到 <code>package.json</code> 文件中</p>
+<p>卸载某个 package</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall &lt;package name&gt;</span><br></pre></td></tr></table></figure>
+<p>更新某个 package</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm update &lt;package name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>安装最新版本的 package</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install &lt;package name&gt;@latest</span><br></pre></td></tr></table></figure>
+
+<p>安装指定版本号的 package</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install &lt;package name&gt;@[verion number]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h2><p>可以通过命令来查看已经安装的 packeage</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm list</span><br><span class="line">npm list -g</span><br><span class="line"><span class="comment"># --depth 表示深度，深度为 0 时，不显示依赖模块</span></span><br><span class="line">npm list --depth=0 -g</span><br></pre></td></tr></table></figure>
+<p>查看某个 package 是否安装或查看其版本号(若已存在)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm list &lt;package name&gt;</span><br></pre></td></tr></table></figure>
+<p>查看某个 package 是否存在</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm ls</span><br></pre></td></tr></table></figure>
+<p>搜索某个模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm search &lt;package name&gt;</span><br></pre></td></tr></table></figure>
+<p>查看某个 package 的路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm root &lt;package name&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="切换安装源"><a href="#切换安装源" class="headerlink" title="切换安装源"></a>切换安装源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 淘宝镜像</span></span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br><span class="line"><span class="comment"># 官方源</span></span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmjs.org/</span><br></pre></td></tr></table></figure>
+
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2016-04-09T16:00:00.000Z" title="2016/4/10 上午12:00:00">2016-04-10</time>发表</span><span class="level-item"><a class="link-muted" href="/categories/Web/">Web</a></span><span class="level-item">20 分钟读完 (大约2981个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2016/04/10/html-css-summary-advanced/">HTML5 概览进阶篇</a></h1><div class="content"><h1 id="构建响应式网站"><a href="#构建响应式网站" class="headerlink" title="构建响应式网站"></a>构建响应式网站</h1><p>响应式网站设计(Responsive Web design)的理念是：页面的设计与开发应当根据用户行为以及设备环境(系统平台、屏幕尺寸、屏幕定向等)进行相应的响应和调整。具体的实践方式由多方面组成，包括弹性网格和布局、图片、CSS media query 的使用等。无论用户正在使用笔记本还是iPad，我们的页面都应该能够自动切换分辨率、图片尺寸及相关脚本功能等，以适应不同设备；换句话说，页面应该有能力去自动响应用户的设备环境。响应式网页设计就是一个网站能够兼容多个终端——而不是为每个终端做一个特定的版本。这样，我们就可以不必为不断到来的新设备做专门的版本设计和开发了。</p>
+<h2 id="可伸缩的图像"><a href="#可伸缩的图像" class="headerlink" title="可伸缩的图像"></a>可伸缩的图像</h2><p>默认情况下， 图像显示的尺寸是 HTML 中指定的 width 和 height 属性值。如果不指定这些属性值，图像就会自动按照其原始尺寸显示。此外，你还可以通过 CSS 以像素为单位设置 width 和 height。 </p>
+<p>显然，当屏幕宽度有限的时候，按原始尺寸显示图像就不一定合适了。使用可伸缩图像技术就可以让图像在可用空间内缩放，但不会超过其本来的宽度。可用空间是由包含图像的元素决定的，它们根据包含它们的元素的尺寸按比例缩放。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.photo-full</span> &#123;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>图像缩放的可用空间是由其父元素建立的内容区域。如果父元素有水平方向上的内边距，可用空间就会相应减小。 </p>
+<p>可以使用 background-size 属性对背景图像进行缩放(对 IE8 无效)。 </p>
+<h2 id="弹性布局"><a href="#弹性布局" class="headerlink" title="弹性布局"></a>弹性布局</h2><p>拥有定宽容器的网页对响应式页面来说并不合适，我们希望页面能进行缩放，并正好适应浏览器视觉区域大小，流式布局就可以做到这一点。</p>
+<p>创建弹性布局需要使用百分数宽度，并将它们应用于页面里的主要区域。</p>
+<p>元素的百分数宽度基于其父元素提供的可用空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.div-flex</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">60%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还可以对元素设置基于百分数的 margin 和 padding 值。 </p>
+<h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><p>媒体查询增强了媒体类型方法，允许根据特定的设备特性定位样式。 要调整网站的呈现样式，让其适应不同的屏幕尺寸，采用媒体查询特别方便。下面列出了可以包含在媒体查询里的媒体特性 ：</p>
+<ul>
+<li>width/height/device-width/device-height</li>
+<li>orientation/aspect-ratio/device-aspect-ratio</li>
+<li>color/color-index/monochrome</li>
+<li>resolution/scan/grid</li>
+<li>-wbkit-device-pixel-ration/-moz-device-pixel-ration</li>
+</ul>
+<p>除了 orientation/scan/grid 以外，上述属性均可添加 min- 和 max- 前缀。</p>
+<ul>
+<li><p>指向外部样式表的链接</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">media</span>=<span class="string">&quot;logic type and (feature: value)&quot;</span> <span class="attr">href</span>=<span class="string">&quot;stylesheet.css&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关于样式表中的媒体查询</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// logic 取值为 only 或 not 或 and</span><br><span class="line">// type 媒体类型</span><br><span class="line">// feature 预定义的媒体特性</span><br><span class="line"><span class="keyword">@media</span> logic type (<span class="attribute">feature</span>: value) &#123;</span><br><span class="line">    <span class="comment">/* 目标 CSS 样式规则写在这里 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>下面是一个例子</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 仅当媒体类型为 screen 且视觉区域最小宽度为 480px 时加载并使用</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">media</span>=<span class="string">&quot;only screen and (min-width: 480px)&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style-480.css&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以使用 and 将多个特性和值的组合串接起来，还可以创建一系列媒体查询（使用逗号分隔每个媒体查询）。在用逗号分隔的媒体查询列表中，如果有一个媒体查询为真，则整个媒体查询列表为真。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">media</span>=<span class="string">&quot;only screen and (min-width: 480px) and (max-width: 767px)&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style.css&quot;</span> /&gt;</span></span><br><span class="line">//</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">media</span>=<span class="string">&quot;only print and (color)&quot;</span> <span class="attr">href</span>=<span class="string">&quot;color-page.css&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过媒体查询，可以根据设备的媒体属性应用不同的样式。尽管媒体查询包含了很多功能，但其中 min-width 和 max-width 是创建响应式网页时用的最多的。 </p>
+<p>有时你可能希望为高像素密度设备设定样式。一种常见的用例是为这样的显示屏准备双倍尺寸(2x)的 sprite，从而让图像显得更锋利。</p>
+<p>假设你的 sprite 的原始尺寸是 200 像素 ×150 像素，其中每个图像都用 1 像素分隔。创建一个双倍大小的版本(400 像素 ×300 像素)，每个图像之间就有 2 像素的间隔。同时， sprite 中的每个图像都是原始尺寸的 2 倍。针对高像素密度设备，可以使用下面的媒体查询:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">-o-min-device-pixel-ratio</span>: <span class="number">5</span>/<span class="number">4</span>),</span><br><span class="line">    (<span class="attribute">-webkit-min-device-pixel-ratio</span>:<span class="number">1.25</span>),</span><br><span class="line">    (<span class="attribute">min-resolution</span>: <span class="number">120dpi</span>) &#123;</span><br><span class="line">        <span class="selector-class">.class</span> &#123;</span><br><span class="line">            ···</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意， 就是 Internet Explorer 8 及以下的版本不支持媒体查询。这意味着这些浏览器只会呈现媒体查询以外的样式，即基准样式。 </p>
+<h1 id="使用-CSS3-进行增强"><a href="#使用-CSS3-进行增强" class="headerlink" title="使用 CSS3 进行增强"></a>使用 CSS3 进行增强</h1><p>网站制作者多年来面临的挑战之一就是，使用 CSS 建立丰富布局的选择是有限的。在大多数情况下，要建立丰富的布局，就需要使用额外的 HTML、CSS 及大量图像。这样做的结果就是，页面变得更为复杂，可访问性降低，浏览器需要花费更长的时间下载和显示页面，同时，页面变得更为脆弱，更难维护。</p>
+<p>近年来，浏览器快速吸纳了很多新的 CSS3 属性，让上述情况有了改观。如今，仅使用 CSS 创建圆角、渐变和阴影以及调整透 明度等已经变成现实。结果是网页可以使用更少的标记和图像，这样加载的速度也会变快。 </p>
+<h2 id="渐进增强和-polyfill"><a href="#渐进增强和-polyfill" class="headerlink" title="渐进增强和 polyfill"></a>渐进增强和 polyfill</h2><p><strong>渐进增强</strong>强调创建所有用户都能访问的基本层面内容和功能，同时为更强大的浏览器提供增强的体验。总结来说，就是网站在不同 Web 浏览器中的外观和行为不一样是完全可以接受的，只要内容是可访问的。</p>
+<p>如果你想弥合较弱的浏览器和较强的浏览器之间的差距，可以使用 <strong>polyfill</strong> 。polyfill 通常使用 JavaScript 来实现，它可以为较弱的浏览器提供一定程度的对 HTML5 和 CSS3 的 API 和属性的支持。同时，当浏览器本身就具有相应的能力时，会不动声色地退而使用官方的支持。需要注意的是这样所通常会对性能产生一定的影响，因为较弱的浏览器运行 JavaScript 的速度要慢很多。</p>
+<h2 id="理解厂商前缀"><a href="#理解厂商前缀" class="headerlink" title="理解厂商前缀"></a>理解厂商前缀</h2><p>CSS3 规范要达到 W3C 的推荐标准(即定稿)状态要经过数年。浏览器则通常在 W3C 开发标准的过程中就会提前实现这些特性。这样，标准在最终敲定之前就能知道哪些地方还能进一步改进。</p>
+<p>在包含某个特性的初始阶段，浏览器通常会使用厂商前缀实现这类特性。这样，每个浏览器都可以引入自己的 CSS 属性支持方式，从而可以获取反馈， 而且一旦标准发生改变也不会造成影响。</p>
+<p>每个出浏览器都有自己的前缀：-webkit- (WebKit/Safari/及版本的 Chrome)、-moz- (Firefox)、-ms- (Internet Explorer)、-o-(Opera)。应该将前缀放在 CSS 属性名的前面。</p>
+<p>如今大多数情况下，一般只需要 -webkit 前缀，而且并非所有的 CSS3 属性都需要使用为浏览器准备的前缀。</p>
+<h2 id="为元素创建圆角"><a href="#为元素创建圆角" class="headerlink" title="为元素创建圆角"></a>为元素创建圆角</h2><p>使用 CSS3，可以在不引入额外的标记或图像的情况下，为大多数元素(包括表单元素、 图像，甚至段落文本)创建圆角 。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.all-corners</span> &#123;</span><br><span class="line">    -webkit-<span class="attribute">border-radius</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.left-corner</span> &#123;</span><br><span class="line">    -webkit-<span class="attribute">border-top-left-radius</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">border-top-left-radius</span>: <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同 border、margin 和 padding 属性一样，border-radius 属性也有简写方式 ：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.corner</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10px</span> <span class="number">20px</span>;	// 左上方、右下方设置为 <span class="number">10px</span>，右上方、左下方设置为 <span class="number">20px</span></span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">20px</span> <span class="number">0</span> <span class="number">0</span> 	// 左上方设置为 <span class="number">20px</span> ，其它为 <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建四个相同的圆角</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// r 为圆角半径</span><br><span class="line"><span class="selector-class">.corner</span> &#123;</span><br><span class="line">    -webkit-<span class="attribute">border-radius</span>: r;</span><br><span class="line">    <span class="attribute">border-radius</span>: r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建一个圆角</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// r 为圆角半径</span><br><span class="line"><span class="selector-class">.corner-top-left</span> &#123;</span><br><span class="line">    <span class="attribute">border-top-left-radius</span>: r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.corner-top-right</span> &#123;</span><br><span class="line">    <span class="attribute">border-top-right-radius</span>: r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.corner-bottom-left</span> &#123;</span><br><span class="line">    <span class="attribute">border-bottom-left-radius</span>: r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.corner-bottom-right</span> &#123;</span><br><span class="line">    <span class="attribute">border-bottom-right-radius</span>: r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建椭圆圆角</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// x 为水平方向上的半径大小，y 为垂直方向上的半径大小</span><br><span class="line"><span class="selector-class">.corner-ellipse</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: x/y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不支持 border-radius 的旧的浏览器仅会以方角呈现元素。</p>
+<h2 id="添加阴影"><a href="#添加阴影" class="headerlink" title="添加阴影"></a>添加阴影</h2><p>使用 text-shadow 为段落、标题等元素中的文本添加动态的阴影效果。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">text-shadow</span>: x-offset y-offset blur-radius color;   </span><br></pre></td></tr></table></figure>
+
+<p>将 text-shadow 改回默认值</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">text-shadow</span>: none;</span><br></pre></td></tr></table></figure>
+
+<p>使用 box-shadow 属性则可以为元素本身添加阴影 ，同时还允许使用两个可选的属性 inset 和 spread。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">box-shadow</span>: x-offset y-offset blur-radius inset spread color;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="多重背景"><a href="#多重背景" class="headerlink" title="多重背景"></a>多重背景</h2><p>为单个 HTML 元素指定多个背景是 CSS3 引入的一个特性。 通过减少对某些元素的需求并制定多重背景便可简化 HTML 代码，并让它容易理解和维护。而且多重背景几乎可以用于任何元素。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.weather</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#FFF</span>;</span><br><span class="line">    <span class="attribute">background-image</span>:</span><br><span class="line">        <span class="built_in">url</span>(<span class="string">fine.png</span>),<span class="built_in">url</span>(<span class="string">rain.png</span>),</span><br><span class="line">        <span class="built_in">url</span>(<span class="string">cloud.png</span>),<span class="built_in">url</span>(<span class="string">fog.png</span>);</span><br><span class="line">    <span class="attribute">background</span>-positin:</span><br><span class="line">        <span class="number">50%</span> <span class="number">102%</span>,<span class="number">100%</span> -<span class="number">150px</span>,</span><br><span class="line">        <span class="number">0</span> -<span class="number">150px</span>,<span class="number">50%</span> <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background-repeat</span>:</span><br><span class="line">        no-repeat,no-repeat,</span><br><span class="line">        no-repeat,repeat-x;</span><br><span class="line">&#125;</span><br><span class="line">// 或</span><br><span class="line"><span class="selector-class">.weather</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#FFF</span>;</span><br><span class="line">    <span class="attribute">background</span>:</span><br><span class="line">		<span class="built_in">url</span>(<span class="string">fine.png</span>) no-repeat <span class="number">50%</span> <span class="number">102%</span>,</span><br><span class="line">        <span class="built_in">url</span>(<span class="string">rain.png</span>) no-repeat <span class="number">100%</span> -<span class="number">150px</span>,</span><br><span class="line">        <span class="built_in">url</span>(<span class="string">cloud.png</span>) no-repeat <span class="number">0</span> -<span class="number">150px</span>,</span><br><span class="line">        <span class="built_in">url</span>(<span class="string">fog.png</span>) repeat-x <span class="number">50%</span> <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="渐变背景"><a href="#渐变背景" class="headerlink" title="渐变背景"></a>渐变背景</h2><p>渐变背景也是 CSS3 中的新特性，通过它可以在不使用图像的情况下创建从一种颜色到另一种颜色的过渡。</p>
+<p>CSS 渐变是一个背景图像，因此，属性既可以是 background 简记法，也可以是 background-image。应该始终包含一个为旧浏览器准备的基准 background 定义，并放置在渐变背景的定义之前。默认情况下，线性渐变是从上往下渐变的，因此在属性值中不需要指定to bottom。如果要使用相反的方向，则使用to top。 </p>
+<p>使用CSS创建渐变有两种主要的方式:线性渐变和径向渐变，每种方式都有不同的必选参数和可选参数。除非指定一种颜色向另一种颜色过渡的位置，否则浏览器会自行决定不同颜色之间的过渡。</p>
+<p>使用关键字创建对角线方向的渐变：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to bottom right,color,color);</span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to bottom left,color,color);</span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to top right,color,color);</span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to top left,color,color);</span><br></pre></td></tr></table></figure>
+
+<p>指定渐变角度数</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(<span class="number">90deg</span>,color,color);</span><br></pre></td></tr></table></figure>
+
+<p>数值代表的是圆周上的点的位置:0 代表最顶端的点，90 代表最左边的点，180 代表最底端的点，270 代表最右边的点。 </p>
+<p>根据渐进增强的原则，最好为不支持背景渐变属性的浏览器提供一个备用选项。在 CSS 中，它可以位于背景渐变规则的前面。</p>
+<h2 id="设置不透明度"><a href="#设置不透明度" class="headerlink" title="设置不透明度"></a>设置不透明度</h2><p>使用 opacity 属性可以修改元素(包括图像)的透明度。其默认值为 1，可以使用 0.00 至 1.00 之间的两位小数。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">opacity</span>: o;</span><br></pre></td></tr></table></figure>
+
+
+
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2016-03-04T16:00:00.000Z" title="2016/3/5 上午12:00:00">2016-03-05</time>发表</span><span class="level-item"><a class="link-muted" href="/categories/Web/">Web</a></span><span class="level-item">1 小时读完 (大约8756个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2016/03/05/html-css-summary-basic/">HTML5 概览</a></h1><div class="content"><p>学习HTML 5 与 CSS 过程中的的基础知识的概要总结。</p>
+<h1 id="网页的构造块"><a href="#网页的构造块" class="headerlink" title="网页的构造块"></a>网页的构造块</h1><p>尽管网页变得越来越复杂，但是构成它的低层结构依旧十分简单，归纳起来，一个网页主要包括三个部分：</p>
+<ul>
+<li>文本内容 - 页面内容纯文字</li>
+<li>对其它文件的引用 - 如对文件、音视频文件、样式表和 JavaScript 文件的应用</li>
+<li>标记 - 描述文本并确保引用正确工作</li>
+</ul>
+<p>以上内容都仅由文本构成，因此网页可以保存为纯文本格式。以下是一个基本的 HTML 页面 ：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span> This is a simle html page <span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​       </p>
+<h2 id="标签-：元素、属性、值及其它"><a href="#标签-：元素、属性、值及其它" class="headerlink" title="标签 ：元素、属性、值及其它"></a>标签 ：元素、属性、值及其它</h2><ul>
+<li><p>元素 ：大多数元素既包含文本，也包含其它元素</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 习惯上，标签采用小写字母</span><br><span class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>content<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br><span class="line">// 空元素既不包含文本也不包含其它元素，比如 img</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;img.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;300&quot;</span> <span class="attr">height</span>=<span class="string">&quot;300&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;img&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>属性和值 ：属性包含了元素的额外信息（尽量使用小写字母来编写属性的名称），有的属性可以接受任何值，但是最常见的还是仅接受预定义值的属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">em</span> <span class="attr">property-name</span>=<span class="string">property-value</span> ··· &gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>元素可以有多个属性，每个属性都有自己的值，属性的排列顺序并不重要，它们之间用空格隔开。</p>
+<p>布尔属性的值时可选的，因为只要这种属性只要出现就表示其值为真</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;email&quot;</span> <span class="attr">name</span>=<span class="string">&quot;emailaddr&quot;</span> <span class="attr">required</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>父元素和子元素 ：如果一个元素包含另一个元素，它就是被包含元素的父元素。</p>
+</li>
+</ul>
+<p>​       </p>
+<h2 id="网页的文本内容"><a href="#网页的文本内容" class="headerlink" title="网页的文本内容"></a>网页的文本内容</h2><p>元素中包含的文本可能是网页上最基本的成分，不过，当浏览器呈现HTML时，会把文本中的多个空格或者制表符压缩成单个空格，把回车符和换行符转换成单个空格或者直接忽略。</p>
+<p>​       </p>
+<h2 id="链接、图像和其它非文本内容"><a href="#链接、图像和其它非文本内容" class="headerlink" title="链接、图像和其它非文本内容"></a>链接、图像和其它非文本内容</h2><p>网页上的图像、视频、音乐等外部文件实际上并没有放在HTML文件中，而是单独保存的，页面只是简单地引用了这些文件。</p>
+<p>​       </p>
+<h2 id="文件名和文件夹名"><a href="#文件名和文件夹名" class="headerlink" title="文件名和文件夹名"></a>文件名和文件夹名</h2><p>在我们开始写一个html文件之前，需要知道如何命名文件和文件夹才能更加有助于组织文件、使访问者更容易找到并访问你的页面，确保它们的浏览器能够正确地处理页面，以及增强搜索引擎优化。</p>
+<ol>
+<li>文件名采用小写字母</li>
+<li>使用正确的扩展名</li>
+<li>用段横线分割单词</li>
+</ol>
+<p>​       </p>
+<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p>URL即 Uniform Resource Locator，统一资源定位符，它包含了关于文件存储位置和浏览器应该如何处理它的信息。</p>
+<p>互联网上的每个文件都有唯一的URL。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 第一部分称为模式，浏览器如何处理需要打开的文件，最常见的模式是HTTP、ftp、mailto</span><br><span class="line">// 第二部分是文件所在的主机名称</span><br><span class="line">// 第三部分是路径，路径包含了到达这个文件的文件夹以及文件自身的名称</span><br><span class="line">&quot;http://www.site.com/home/index.html&quot;</span><br><span class="line">&quot;ftp://ftp.site.com/pub/proposal.pdf&quot;</span><br><span class="line">&quot;mailto:somename@somedomain.com&quot;</span><br></pre></td></tr></table></figure>
+
+<p>有时，URL路径不以文件名结尾，而以一个目录结尾，在这种情况下，URL值得是路径中最后一个目录中的默认文件，通常为index.html。</p>
+<p>URL可以使绝对的，也可以是相对的。绝对URL包含了指向目录或文件的完整信息，包括模式、主机名和路径。而相对URL则以自身的位置为参考点，描述文件的位置。</p>
+<p>相对URL可以 </p>
+<ul>
+<li><p>引用同一目录下的文件</p>
+<p>如果目标文件与当前页面在同一个目录中，那么这个文件就只有文件名和扩展名</p>
+</li>
+<li><p>引用子目录下的文件</p>
+<p>如果目标文件在当前目录的子目录中，则相对 URL 为 “子目录名/文件名+扩展名”</p>
+</li>
+<li><p>引用上层目录的文件</p>
+<p>目标文件在当前目录的父目录中，则 “../文件名+扩展名”</p>
+</li>
+</ul>
+<p>​       </p>
+<h1 id="基本HTML结构"><a href="#基本HTML结构" class="headerlink" title="基本HTML结构"></a>基本HTML结构</h1><p>每个HTML文档都应该包含以下基本成分</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span>		// 声明页面为HTML5文档</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span>	// lang=&quot;en&quot; 指定页面内容的默认语言</span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span>	// charset=&quot;utf-8&quot; 声明文档的字符编码</span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span>				// 页面的标题</span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在文档的head部分，通常要致命页面标题，提供为搜索引擎准备的关于页面本身的信息，加载样式表，以及加载 JavaScript 文件（通常处于性能考虑，大多数时候在页面底部 <code>&lt;/body&gt;</code> 结束后才加载 JavaScript）。</p>
+<p>​       </p>
+<h2 id="页面标题"><a href="#页面标题" class="headerlink" title="页面标题"></a>页面标题</h2><p>每一个HTML页面都必须有一个<code>title</code> 元素，标题应该是简短的、描述性的，而且是唯一的。页面标题通常是搜索引擎的搜索结果中链接的文字，它是判断搜索结果这种页面相关度的重要因素。</p>
+<p>值得注意的是，标题中不能包含任何格式、HTML、图像或指向其它页面的链接。</p>
+<h3 id="分级标题"><a href="#分级标题" class="headerlink" title="分级标题"></a>分级标题</h3><p>HTML中有六级标题用于创建页面信息的层级关系，使用好h1、h2 ··· h6 来表示。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span>		</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span>	</span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span>	</span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>分级标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span>			</span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">h1</span>&gt;</span> 第一级标题 <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">lang</span>=<span class="string">&quot;es&quot;</span>&gt;</span> 第二级标题 <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对于任何页面来说，分级标题都可以说是最重要的HTML元素，由于标题通常传达的是页面的主题，如果这些标题与搜索词匹配，就会被搜索引擎赋予很高的权重。</p>
+<p>创建分级标题时，要避免跳过某些级别，尽管这样做是可以的。</p>
+<p>​       </p>
+<h2 id="创建页眉"><a href="#创建页眉" class="headerlink" title="创建页眉"></a>创建页眉</h2><p>一个页面可以有任意数量的header元素，它们的含义可以根据其上下文而有所不同，处于页面顶端的或接近这个位置的header是整个页面的页眉。通常，页眉包裹网站标志、主导航和其它全站链接。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">&quot;banner&quot;</span>&gt;</span>	// 可选的 role=“banner” 显式的指出该页眉为页面级别的页眉</span><br><span class="line">    	<span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>header 也很适合对页面深处的一组介绍性或导航型内容进行标记，但是，你需要只在必要的时候才使用header，大多数情况下使用 h1 ~ h6 就能满足要求。而且需要注意的是，header 与 h1 ~ h6 元素中的标题是不能互换的，它们都有各自的语意目的。</p>
+<p>不能在 header 里嵌套 footer 元素或另一个 header，也不能在 footer 或 address 元素里嵌套 header。</p>
+<p>​       </p>
+<h2 id="标记导航"><a href="#标记导航" class="headerlink" title="标记导航"></a>标记导航</h2><p>HTML的早期版本中没有元素明确表示主导航链接的区域，在HTML5中引入了 nav 元素来表示。nav 中的链接可以指向页面中的内容。但应仅对文档中重要的链接群使用 nav。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">&quot;banner&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">&quot;navigation&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，nav 元素不会对其内容添加任何默认样式。</p>
+<p>HTML5 规范不推荐对辅助性的页脚链接使用 nav，而且也不允许 nav 嵌套在 address 元素中。</p>
+<p>​       </p>
+<h2 id="标记页面的主要区域"><a href="#标记页面的主要区域" class="headerlink" title="标记页面的主要区域"></a>标记页面的主要区域</h2><p>大多数网页都有一些不同的区域，如页眉、页脚、包含额外信息的附注栏、指向其它网站的链接等等，不过一个页面只有一个部分代表其主要内容，可以将这样的内容放在 main 元素中，该元素在一个页面中仅使用一次。main 元素是HTML5中新添加的元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">        // 页面的主要内容</span><br><span class="line">	<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>与 p、header、footer 等元素一样，main 元素的内容显示在新的一行，除此之外不会影响页面的任何样式。</p>
+<p>如果创建的是 Web 应用，则应使用 main 包围其主要的功能。</p>
+<p>不能将 main 放置在 article、aside、footer、header 或 nav 元素中。</p>
+<p>​       </p>
+<h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><p>HTML5 的另一个新元素 article ：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">&quot;banner&quot;</span>&gt;</span></span><br><span class="line">            // 包含多个链接的导航</span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">article</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span> ··· &lt;/p</span><br><span class="line">                ···</span><br><span class="line">        <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在HTML5 中，article 并不仅仅用于包含像报纸文章一样的内容，钙元素的严格定义如下</p>
+<p>​    <strong>articile 元素表示文档、页面、应用或网站中一个独立容器，原则上是可独立分配或可再用的，就像聚合内容中的各部分。</strong></p>
+<p>​       </p>
+<h2 id="定义区块"><a href="#定义区块" class="headerlink" title="定义区块"></a>定义区块</h2><p>HTML5 中的新元素 section ，用来代表文档或应用中的一个一般区块。在这里，section 是<strong>具有相似主题的一组内容</strong>，通常包含一个标题。</p>
+<p>尽管将 section 定义为 ‘通常的’ 区块，但是不要将它与 div 元素混淆。从语义上讲，section 标记的是页面中的特定区域，而 div 则不传达任何语义。</p>
+<p>如果只是出于添加样式的原因要对内容添加一个容器，应使用 div 而不是 section。</p>
+<p>可以将 section 嵌套在 article 里，从而显式地标出报告、故事、手册等文章中的不同部分或不同章节。</p>
+<p>​       </p>
+<h2 id="指定附注栏"><a href="#指定附注栏" class="headerlink" title="指定附注栏"></a>指定附注栏</h2><p>有时候，页面中有一部分内容与主体内容相关性没有那么强，可以独立存在，则可以使用 aside 元素来标记它们。</p>
+<p>使用 aside 的例子还包括重要引述、侧栏、指向相关文章的一组链接、广告、nav 元素组等。</p>
+<p>在HTML中，应该将附注栏内容放在 main 的内容之后，处于 SEO 和可访问性的目的，最好将重要的内容放在前面，你可以通过 CSS 来改变它们在浏览器中的显示顺序。</p>
+<p>对于与内容有关的图像，使用 figure 而非 aside。</p>
+<p>HTML5 不允许将 aside 元素嵌套在 address 元素中。</p>
+<p>​       </p>
+<h2 id="创建页脚"><a href="#创建页脚" class="headerlink" title="创建页脚"></a>创建页脚</h2><p>元素 footer 同 header 一样，不仅仅只能用在页面底部标记页脚，还可以用在其它地方。footer 元素代表嵌套它的最近的 article、aside、blockquote、body、details、fieldset、figure、nav、section 或 td 元素的页脚。</p>
+<p>如果一个 footer 抱着它所在区块的所有内容，它代表的是像附录、索引、版权页、许可协议这样的内容。</p>
+<p>不能在 footer 里嵌套 header 或另一个 footer，同时，也不能将 footer 嵌套在 header 或 address 元素里。</p>
+<p>​       </p>
+<h2 id="创建通用容器"><a href="#创建通用容器" class="headerlink" title="创建通用容器"></a>创建通用容器</h2><p>有时候需要在一段内容外围包一个容器，从而可以为其应用 CSS 样式或 JavaScript 效果，div 是一个完全没有任何语义含义的容器，是一个通用容器。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">... </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">&quot;banner&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">&quot;navigation&quot;</span>&gt;</span></span><br><span class="line">			... [包含多个链接的无序列表] ... </span><br><span class="line">        <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">	<span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">&quot;main&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">article</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;gaudi&quot;</span>&gt;</span>Barcelona&#x27;s ➝ Architect<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		... [文章的其余内容] ...</span><br><span class="line">		<span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;sagrada-familia&quot;</span> <span class="attr">lang</span>=<span class="string">&quot;es&quot;</span>&gt;</span> ➝La Sagrada Família<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">		... [图像和段落] ...</span><br><span class="line">		<span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;park-guell&quot;</span>&gt;</span>Park Guell<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">		... [另一个图像和段落] ... <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aside</span> <span class="attr">role</span>=<span class="string">&quot;complementary&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Architectural Wonders of ➝ Barcelona<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		... [aside的其余内容] ...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">	<span class="tag">&lt;<span class="name">footer</span> <span class="attr">role</span>=<span class="string">&quot;contentinfo&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">small</span>&gt;</span><span class="symbol">&amp;copy;</span> Copyright All About ➝ Gaudí<span class="tag">&lt;/<span class="name">small</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，div 元素自身没有任何默认样式，知识器其包含的内容从新的一行开始，不过我们可以对 div 添加样式实现自己的设计。div 对使用 JavaScript 实现一些特定的交互行为或效果也是有帮助的。</p>
+<p>尽管始终强调 HTML 用于对内容的含义进行描述，但 div 并不是唯一没有语义价值的元素。span 是与 div 对应的一个元素: div 是块级内容的无语义容器，而 span (写作 <span> 这里是内容 </span>)则是短语内容的无语义容器，例如它可以放在段落元素 p 之内。</p>
+<p>​       </p>
+<h2 id="使用ARIA改善可访问性"><a href="#使用ARIA改善可访问性" class="headerlink" title="使用ARIA改善可访问性"></a>使用ARIA改善可访问性</h2><p>WAI-ARIA（Web Accessibility Initiative’s Accessible Rich Internet Applications），无障碍网页倡议，无障碍的富互联网应用。ARIA 是一种技术规范，在HTML 提供相应的语义功能之前，它会使用属性来填补一些语义上的空白。</p>
+<p>无障碍访问的意义是让所有的访问者都能获取网站的内容。在大多数情况下，让页面具有无障碍访问的功能并不难。只需对内容使用恰当的 HTML 进行标记，就能改进网站的可访问性。</p>
+<h3 id="地标角色"><a href="#地标角色" class="headerlink" title="地标角色"></a>地标角色</h3><p>ARIA 中的地标角色可以帮用户识别页面区域，对这些区域指定 role 属性就可以了。</p>
+<table>
+<thead>
+<tr>
+<th align="left">地标角色</th>
+<th align="left">如何使用及何时使用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">role=”main” ：文档的主要内容</td>
+<td align="left">与 main 元素是对应关系。最好将其添加到 main 元素，也可以添加到其它表示主体内容的元素，在买个页面只使用一次。</td>
+</tr>
+<tr>
+<td align="left">role=”complementary” : 补充性内容</td>
+<td align="left">与 aside 元素是对应关系。应将其添加到 aside 或 仅含补充性内容的 div 元素。与 nav 元素是对应关系。</td>
+</tr>
+<tr>
+<td align="left">role=”contentinfo” : 内容信息</td>
+<td align="left">将其添加至整个页面的页脚，通常为 footer 元素，每个页面仅使用一次。</td>
+</tr>
+<tr>
+<td align="left">role=”navigation” : 导航</td>
+<td align="left">应将其添加到每个 nav 元素，或其它包含导航型链接的容器。</td>
+</tr>
+<tr>
+<td align="left">role=”banner” : 横幅</td>
+<td align="left">将其添加到页面级的 header 元素，每个页面只使用一次</td>
+</tr>
+</tbody></table>
+<p>即便不适用 ARIA 地标角色，页面看起来也没有任何差别，但是使用它们可以提升使用辅助设备的用户的体验。</p>
+<p>​       </p>
+<h2 id="为元素指定类别或-ID-名称"><a href="#为元素指定类别或-ID-名称" class="headerlink" title="为元素指定类别或 ID 名称"></a>为元素指定类别或 ID 名称</h2><p>可以给 HTML 元素分配唯一的标识符，或指定其属于某个类别，或同时使用标识符和类别。添加 ID 和类别后，就可以对具有给定 ID 或 class 名称的元素添加样式、创建指向具有特定 id 的元素的链接或使用 JavaScript 获取 id 和 class 属性从而对元素添加特定的行为。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span>		// 如果要制定多个类别，用空格将不通过的分类名称分开即可</span><br><span class="line">        <span class="tag">&lt;<span class="name">header</span> <span class="attr">role</span>=<span class="string">&quot;banner&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">nav</span> <span class="attr">role</span>=<span class="string">&quot;navigation&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;architect gaudi&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;gaudi&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span>	// id 几乎可以使任何字符，只要不以数字开头且不包含空格。</span><br><span class="line">                <span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;sagrada-familia&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>为一个或多个元素添加 class 属性，就可以对所有这类元素统一进行格式化。</p>
+<p>HTML 文档中的每个 id 都必须是唯一的，并且每个元素都只能有一个 id。与此相反的是，一个 class 名称可以分配给页面中任意数量的元素，并且一个元素可以有一个以上的 class。</p>
+<p>建议你无论打算如何使用 id 和 class，都应该为它们选择有意义的名称。</p>
+<p>​       </p>
+<h2 id="为元素添加-title-属性"><a href="#为元素添加-title-属性" class="headerlink" title="为元素添加 title 属性"></a>为元素添加 title 属性</h2><p>可以使用 title 属性为网站上任何部分加上提示标签，不过用的最多的是链接。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">title</span>=<span class="string">&quot;table of contents&quot;</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>添加了 title 属性的元素，在用户将访问者将鼠标移到该元素上时，会提示该 title。</p>
+<p>​       </p>
+<h2 id="添加注释"><a href="#添加注释" class="headerlink" title="添加注释"></a>添加注释</h2><p>可以在 HTML 文档中添加注释，表明区块开始和结束的位置，提示某段代码的意图，或者阻止内容显示等。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">&lt;!-- ==== 开始主体内容 ==== --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">main</span> <span class="attr">role</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">&quot;architect&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;gaudi&quot;</span>&gt;</span>Barcelona&#x27;s Architect<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	    <span class="comment">&lt;!-- 这一段不会显示出来，因为它被注释掉了</span></span><br><span class="line"><span class="comment">		&lt;p&gt;Antoni Gaudí&#x27;s incredible buildings bring millions of tourists to Barcelona each year. &lt;/p&gt;</span></span><br><span class="line"><span class="comment">		--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>Gaudí&#x27;s non-conformity, already visible in his teenage years</span><br><span class="line">            ...</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">article</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 结束主体内容 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ==== 开始附注栏 ==== --&gt;</span> </span><br><span class="line">... [附注栏内容] ...</span><br><span class="line"><span class="comment">&lt;!-- 结束附注栏 --&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>注释是不可见的，如果将一些内容注释掉，它们将不会显示出来。</p>
+<p>在主要区块的开头和结尾添加注释是一种常见的做法，可以让你或和你一起合作开发的人员将来修改代码变的更加容易。</p>
+<p>注释不能嵌套在其它注释里。</p>
+<p>​       </p>
+<h1 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h1><p>除非网站添加了太多视频和图片，否则网页的大部分内容还是文本，针对不同的文本类型，选择不同的 HTML 语义化元素是非常重要的一项能力。</p>
+<p>内容显示的样子与其使用的标记是没有关系的，为内容添加样式可以用 CSS 来做。</p>
+<h2 id="添加段落"><a href="#添加段落" class="headerlink" title="添加段落"></a>添加段落</h2><p>HTML 会忽略你在文本编辑器中输入的回车符和其它额外的空格，所以要在网页中开始一个新的段落，应使用 p 元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        content </span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，浏览器会在标题和段落之间，以及不同的段落之间添加垂直间距。使用 CSS 可以控制所有内容元素的格式</p>
+<p>​       </p>
+<h2 id="指定细则"><a href="#指定细则" class="headerlink" title="指定细则"></a>指定细则</h2><p>HTML5 中，small 表示细则一类的旁注，通常包括免责声明、注意事项、法律限制、版权信息等。small 通常是行内文本中的一小块，而不是包含多个段落或其它元素的大块文本。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span> some restrications <span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>用 small 标记页面的版权信息时一种常见的做法。不过，small 只适用于短语，不宜用于标记长的的法律声明。</p>
+<p>​       </p>
+<h2 id="标记主要和强调的文本"><a href="#标记主要和强调的文本" class="headerlink" title="标记主要和强调的文本"></a>标记主要和强调的文本</h2><p>我们一般用 strong 元素表示内容的重要性，而 em 则表示内容的着重点。根据内容需要，这两个元素既可以单独使用，也可以一起使用。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">strong</span>&gt;</span> <span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span> <span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>浏览器通常将 strong 文本用粗体显示，而将 em 文本以斜体显示。如果 em 是 strong 的子元素，将同时以斜体和粗体显示文本。</p>
+<p>不要用 b 元素代替 strong，也不要用 i 元素代替 em。尽管它们在浏览器中显示的样式是一样的，但是它们的含义却很不一样。</p>
+<p>可以在标记为 strong 的短语中再嵌套 strong 文本。如果这样做，作为另一个 strong 元素的子元素的 strong 文本的重要程度会递增。这种规则对嵌套在另一个 em 里的 em 文本也适用。</p>
+<p>HTML 5 强调元素的语义，而非表现。b 和 i 元素是早期 HTML 遗留下的产物，它们分别用于将文本变为粗体和斜体。</p>
+<p>HTML 5 将 b 重新定义为出于实用目的提醒读者注意的一块文字，不传达任何额外的重要性，也不表示其它的语态和语气，用于文档摘要中的关键词、评论中的产品名等。</p>
+<p>HTML 5 将 i 重新定义为表示一块不同于其它文字的文字，具有不同的语态和语气，或其它不同于常规之处，用于如分类名称、技术术语、外语里的惯用语等。</p>
+<p>​       </p>
+<h2 id="创建图"><a href="#创建图" class="headerlink" title="创建图"></a>创建图</h2><p>在 HTML 5 之前，并没有专门实现图的元素，开发人员通常会使用不那么理想的 div 元素来实现。通过引入 figure 和 figcaption，HTML 5 改变了这种情况。图可以是图表、照片、图形、插图、代码片段以及其它类似的独立内容。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span> ···<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">figcaption</span>&gt;</span><span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span> // figcaption 是 figure 的标题，可选，出现在 figure 内容的开头或结尾</span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;chart-revenue.png&quot;</span> <span class="attr">width</span>=<span class="string">&quot;180&quot;</span> <span class="attr">height</span>=<span class="string">&quot;180&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Revenue chart: Clothing 42%, Toys 36%, Food 22%&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，figcaption 元素并不是必需的，但如果包含它，它就必须是 figure 元素内嵌的第一个或最后一个元素。figure 通常情况下包含在 article 中。</p>
+<p>​       </p>
+<h2 id="指明引用或参考"><a href="#指明引用或参考" class="headerlink" title="指明引用或参考"></a>指明引用或参考</h2><p>使用 cite 元素可以指明对某内容源的引用或参考。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">city</span> <span class="attr">lang</span>=<span class="string">&quot;it&quot;</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">city</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对于要从引用来源中引述内容的情况，使用 blockquote 或 q 元素标记因数的文本。cite 只是用于参考源本身，而不是从中引述的内容。</p>
+<p>HTML 5 中，不应使用 cite 作为对人名的引用，但在 HTML 以前的版本中允许这样做。</p>
+<p>​       </p>
+<h2 id="引述文本"><a href="#引述文本" class="headerlink" title="引述文本"></a>引述文本</h2><p>有两个特殊的元素用以标记引述的文本。blockquote 元素表示单独存在的引述，通常更长，但也可能不是，它默认显示在新的一行。而 q 则用于短的引述，如句子里面的引述。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">cite</span>=<span class="string">&quot;引用源&quot;</span>&gt;</span></span><br><span class="line">        content</span><br><span class="line">	<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>浏览器默认对 blockquote 文本进行缩进，cite 属性值则并不会显示出来。</p>
+<p>如果 blockquote 中仅包含一个单独的段落或短语，可以不必将其包在 p 中再放入 blockquote。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">q</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">q</span> <span class="attr">lang</span>=<span class="string">&quot;fr&quot;</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">q</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果引述文本的语言与页面默认语言不同，就在 q 元素中添加 lang 属性。</p>
+<p>浏览器应对 q 元素中的文本自动加上特定语言的引号，不同的浏览器效果不同。</p>
+<p>注意，q 元素引用的内容不能跨越不同的段落，在这种情况下应该使用 blockquote。</p>
+<p>​       </p>
+<h2 id="指定时间"><a href="#指定时间" class="headerlink" title="指定时间"></a>指定时间</h2><p>HTML 5 中使用 time 元素标记时间、日期或时间段，time 是HTML 5 新增的元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">time</span>&gt;</span>08:45<span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">time</span> <span class="attr">datetime</span>=<span class="string">&quot;2018-05-24T10:00:00&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">time</span> <span class="attr">datetime</span>=<span class="string">&quot;03-29&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">time</span> <span class="attr">datetime</span>=<span class="string">&quot;2h 30m&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>元素 time 中包含的文本内容会出现在屏幕上，对用户可见，而可选的 datetime 属性则是为机器准备的。该属性需要遵循特定的格式。</p>
+<p>如果忽略了 datetime 属性，文本内容就必须是合法的日期或时间格式。datetime 属性不会单独产生任何效果，但它可以用于 Web 应用之间同步日期和时间。</p>
+<p>需要注意的是，不能在 time 元素中嵌套另一个 time 元素，也不能在没有 datetime 属性的 time 元素中包含其它元素。</p>
+<h3 id="理解有效的时间格式"><a href="#理解有效的时间格式" class="headerlink" title="理解有效的时间格式"></a>理解有效的时间格式</h3><p>属性 datetime 或没有 datetime 属性的 time 元素，必须提供特定的机器可读格式的日期和时间。</p>
+<p>常用的如 <strong>YYYY-MM-DDThh:mm:ss</strong> ，这种格式如果包含时间，秒是可选的。</p>
+<p>如果需要提供毫秒数，则格式为 <strong>hh:mm:sss</strong>。</p>
+<p>如果要表示时间段，最简单的语法为：<strong>nh nm ns</strong>。</p>
+<h3 id="全球日期和时间及时间差"><a href="#全球日期和时间及时间差" class="headerlink" title="全球日期和时间及时间差"></a>全球日期和时间及时间差</h3><p>在格式  <strong>YYYY-MM-DDThh:mm:ss</strong> 末尾加上字母 Z，就成了 UTC。</p>
+<p>UTC 是主要的全球时间标准，可以通过相对 UTC 时差的方式表示时间。这时不写字母 Z，写上 ‘-’ 或 ‘+’及时差即可，比如：</p>
+<p><em>1985-11-02T17:19:00-02:30</em> </p>
+<p>​       </p>
+<h2 id="解释缩写词"><a href="#解释缩写词" class="headerlink" title="解释缩写词"></a>解释缩写词</h2><p>使用 abbr 元素标记缩写词并解释其含义，但是不必对每个缩写词都使用 addr，只在需要帮助访问者了解改词含义的时候使用。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">&quot;National Football League&quot;</span>&gt;</span>NFL<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">&quot;light amplicfication by stimulated emission of radiation&quot;</span>&gt;</span>laser<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用可选的 title 属性提供缩写词的全程。灵位，也可以将全称放在缩写词后面的括号里。</p>
+<p>通常，仅在缩写词第一次出现在屏幕上时给出其全称。</p>
+<p>​       </p>
+<h2 id="定义术语"><a href="#定义术语" class="headerlink" title="定义术语"></a>定义术语</h2><p>在 HTML 中定义术语时，可以使用 dfn 元素对其做语义上的区分。仅用 dfn 包围要定义的术语，而不是包围定义。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dfn</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">dfn</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通常，dfn 元素默认以斜体显示。在是当的情况下可以包住其它短语元素。</p>
+<p>如果在 dfn 中添加了可选的 title 属性，其值应与 dfn 术语一致。</p>
+<p>​       </p>
+<h2 id="创建上标和下标"><a href="#创建上标和下标" class="headerlink" title="创建上标和下标"></a>创建上标和下标</h2><p>比主体文本稍高或稍低的字母或数字分别称为上标和下标。HTML 中包含用来定义这两种文本的元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sub</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">sub</span>&gt;</span>	//下标</span><br><span class="line"><span class="tag">&lt;<span class="name">sup</span>&gt;</span> ··· <span class="tag">&lt;/<span class="name">sup</span>&gt;</span>	//上标</span><br></pre></td></tr></table></figure>
+
+<p>上标和下标字符会轻微地扰乱行与行之间均匀的间距。不过我们可以使用 CSS 解决这个问题。</p>
+<p>​       </p>
+<h2 id="添加作者联系信息"><a href="#添加作者联系信息" class="headerlink" title="添加作者联系信息"></a>添加作者联系信息</h2><p>实际上，address 元素是用以定义与 HTML 页面或页面的一部分有关的作者、相关人士或组织的联系信息，通常位于页面底部或相关部分内。至于 address 具体表示的是哪一种信息，取决于该元素出现的位置。</p>
+<p>如果要为一个 article 提供作者联系信息，就将光标放在该元素内。如果要提供整个页面的作者联系信息，就将光标放在 body 中(更常 见的做法是放在页面级的 footer 里) 。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">role</span>=<span class="string">&quot;contentinfo&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span><span class="symbol">&amp;copy;</span>2014 The MrSilent Inc<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">address</span>&gt;</span></span><br><span class="line">        Have a question or comment about the site? <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;feedback.html&quot;</span>&gt;</span>Contact us<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​       </p>
+<h2 id="标注编辑和不再准确的文本"><a href="#标注编辑和不再准确的文本" class="headerlink" title="标注编辑和不再准确的文本"></a>标注编辑和不再准确的文本</h2><p>有时可能需要将在前一个版本之后对页面内容的编辑标出来，或者对不再准确、不再相关的文本进行标记。有两种用于标注编辑的元素:代表添加内容的 ins 元素和标 记已删除内容的 del 元素。这两个元素既可以单独使用，也 可以一起使用。</p>
+<p>del 和 ins 都支持两个属性 : cite 和 datetime。</p>
+<p>cite 属性(区别于 cite 元素)用 于提供一个 URL，指向说明编辑原因的页面。 </p>
+<p>datetime 属性提供编辑的时间。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">del</span>&gt;</span><span class="tag">&lt;/<span class="name">del</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">ins</span>&gt;</span><span class="tag">&lt;/<span class="name">ins</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>同时，s 元素用以标注不再准确或不再相关的内容。</p>
+<p>​       </p>
+<h2 id="标记代码"><a href="#标记代码" class="headerlink" title="标记代码"></a>标记代码</h2><p>如果你的内容包含代码示例或文件名，就可以使 用 code 元素  。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">code</span>&gt;</span><span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>code 元素表示其中的文本是代码或文件名，如果你的代码需要显示 &lt; 或 &gt;，应分别使用 &amp;lt；和 &amp;gt；</p>
+<p>而如果显示单独的一块代码，则用 pre 元素保住 code 元素以维持其格式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​       </p>
+<h2 id="使用预格式化的文本"><a href="#使用预格式化的文本" class="headerlink" title="使用预格式化的文本"></a>使用预格式化的文本</h2><p>通常，浏览器会将所有额外的回车和空格压缩，并根据窗口的大小自动换行。预格式化的文本可以保持文本固有的换行和空格。 它是计算机代码示例的理想元素，不过你也可以将它用于文本 。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对包含重要的空格和换行的文本，pre 元素是非常合适的，因为 pre 内容里的缩进和换行都被保留了。</p>
+<p>预格式化的文本通常以等宽字体显示。</p>
+<p>​       </p>
+<h2 id="突出显示文本"><a href="#突出显示文本" class="headerlink" title="突出显示文本"></a>突出显示文本</h2><p>HTML 5 使用 mark 元素实现对特定词语的突出显示。</p>
+<p>可以用 CSS 对 mark 元素里的文字应用样式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mark</span>&gt;</span>.greenText<span class="tag">&lt;/<span class="name">mark</span>&gt;</span> &#123;</span><br><span class="line">    	color:green;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​       </p>
+<h2 id="创建换行"><a href="#创建换行" class="headerlink" title="创建换行"></a>创建换行</h2><p>浏览器会根据包含内容的块或窗口的宽 度让文本自动换行。大多数情况下，让内容像这样充满整行是很合适的，但有时你希望 手动地强制文字进行换行。可以使用 br 元素 实现这一要求。</p>
+<p>要确保使用 br 是最后的选择，因为该元素将表现样式带入了 HTML，而不是让所有呈现样式都交由 CSS 控制。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">       </span><br><span class="line"><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建-span"><a href="#创建-span" class="headerlink" title="创建 span"></a>创建 span</h2><p>同 div 一样，span 元素是没有任何语义的。 不同的是，span 只适合包围字词或短语内容， 而 div 适合包含块级内容。</p>
+<p>由于 span 没有任何语义，因此应将它作为最后的选择，仅在没有其他合适的元素时才使用它。</p>
+<p>​       </p>
+<h1 id="图像"><a href="#图像" class="headerlink" title="图像"></a>图像</h1><p>当前 Web 上使用最广泛的三种图片格式是 GIF、PNG 和 JPEG。</p>
+<p>JPEG 格式适用于彩色照片，因为它包含了大量颜色并进行了合理的压缩，采用这种格式保存的文件相对较小。不过，JPEG 是一种有损格式，在将图像保存为 JPEG 时会丢失一部分原始信息。</p>
+<p>PNG 和 GIF 是无损的格式，采用这两种格式对图像进行压缩不会造成品质的损失。相对于 JPEG ，PNG 和 GIF 保存的图像的文件尺寸会大很多。因此，只有在压缩造成的质量损失不可忽略的情况下才使用 PNG 保存照片。</p>
+<p>一般来说，如果要选择使用无损格式的图片，那么 PNG 应是优先的选择，因为它对透明度的支持更好，压缩算法也更好，产生的文件更小。</p>
+<p>JPEG/PNG-24/PNG-32 均支持超过1600万众的颜色，而 GIF 和 PNG-8 只支持 256 中颜色，所以标识和其它颜色较少的图像通常保存为 PNG-8 格式，而照片和颜色复杂的插图等则应选择支持颜色较多的格式。</p>
+<p>​    </p>
+<h2 id="在页面中插入图像"><a href="#在页面中插入图像" class="headerlink" title="在页面中插入图像"></a>在页面中插入图像</h2><p>可以在网页中放置各种各样的图像，从标志到照片都可以。当访问者浏览网页时，浏览器会自动加载像在 HTML 文档中描述的图像。不过， 图像加载时间跟访问者的网络连接强度、图像尺寸，以及页面中包含的图像个数相关。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;corner-market.jpg&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在实践中，为了保持良好的文件组织结构，通常将图像保存在单独的文件夹中。</p>
+<p>​    </p>
+<h2 id="提供替代文本"><a href="#提供替代文本" class="headerlink" title="提供替代文本"></a>提供替代文本</h2><p>使用 alt 属性，可以为图像添加一段描述性文本，当图像因为某种原因不显示的时候，就将这段文字显示出来。HTML5 规范推荐将 alt 文本理解为图像的替代性描述 : “一般来说，替代文本是考虑图像未能正常加载的情况下需要呈现 文字。”通常，这意味着 alt 文本可以插入到图像两侧的文本流中，在大多数情况下， 它不应是对图像的描述。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;market.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;somen description text&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果图像对内容的价值较小，则可以提供空的替代文 本，即 alt=””。</p>
+<p>如果图像与邻近的文本表达的信息相似，也可以将 alt 属性留空。 </p>
+<p>如果图像是页面设计的一部分，而不是内容的一部分，则应使用 CSS background-image 属性引入该图像，而不是使用 img 标记。</p>
+<p>​    </p>
+<h2 id="指定图像尺寸"><a href="#指定图像尺寸" class="headerlink" title="指定图像尺寸"></a>指定图像尺寸</h2><p>通常我们会在 HTML 中明确指定图像的高度和宽度，这样浏览器就不必花时间来判断图像的尺寸，从而更快地将图像显示出来。 而且指定图像的尺寸，浏览器就可以预留空间，在图像加载的同时让文本显示在周围，保持布局的稳定。</p>
+<p>可以通过浏览器或图像编辑软件获取图像的精确尺寸。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;market.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;300&quot;</span> <span class="attr">height</span>=<span class="string">&quot;300&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><p>链接有两个主要的部分:目标和标签。 </p>
+<p>使用目标(destination)可以指定访问者点击链接时会发生什么。可以创建链接进入另一个页面、在页面内跳转、显示图像、下载文件、 呼叫电话等等。不过，最常见的是连接到其他网页的链接，其次是连接到其他网页特定位置(称为锚，anchor)的链接。目标是通过编写 URL 定义的，通常只能在(桌面)浏览器的状态栏中看到。</p>
+<p>链接的第二个部分是标签(label)，即访问者在浏览器中看到或在屏幕阅读器中听到的部分。激活标签就可以到达链接的目标。 例如，航空公司网站上可能有这样的链接标 签:预订航班。标签可以是文本、图像或二者兼有。浏览器通常会将标签文本默认显示为带下划线的蓝色文字。</p>
+<h2 id="指向网页的链接"><a href="#指向网页的链接" class="headerlink" title="指向网页的链接"></a>指向网页的链接</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://www.google.com&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;external&quot;</span>&gt;</span>Search with Google<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当要连接的页面与当前页面在同一目录下时，只需文件名即可进行访问。</p>
+<p>rel 属性是可选的，它用来描述包含链接的页面和链接指向的页面之间的关系。</p>
+<h3 id="HTML-块级链接"><a href="#HTML-块级链接" class="headerlink" title="HTML 块级链接"></a>HTML 块级链接</h3><p>HTML 5 几乎允许在链接内包含任何类型的元素或元素组。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;giraffe-escapes.html&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        ···</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Read more<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h2 id="创建锚并链接到锚"><a href="#创建锚并链接到锚" class="headerlink" title="创建锚并链接到锚"></a>创建锚并链接到锚</h2><p>通常，激活一个链接会将用户带到对应网页的顶端。如果要想用户跳至网页的特定区域，可以创建一个锚，并在链接中引用该锚 。</p>
+<p>首先你需要在目标网页中创建一个锚</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://www.site.com/home.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;anchro-name&quot;</span>&gt;</span></span><br><span class="line"> 	···   </span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>创建链接到特定锚的链接</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://www.site.com/home.html#anchor-name&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果锚位于页面的底部，且它下面的内容的高度小于浏览器的可视区域的高度， 那么它可能不会显示在窗口的顶部，而是显 示在中间。 </p>
+<p>​    </p>
+<h2 id="其它类型的链接"><a href="#其它类型的链接" class="headerlink" title="其它类型的链接"></a>其它类型的链接</h2><p>并非只能创建指向其他网页的链接，其实可以创建指向任何 URL 的链接——RSS 源、 图像、希望访问者可以下载的文件、电子邮 件地址、电话号码等 。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;img/market.jpg&quot;</span>&gt;</span> 链接到图片 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;media/song.mp3&quot;</span>&gt;</span> 链接到音频 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;media/movie.mp4&quot;</span>&gt;</span> 链接到视频 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;mailto:someone@somedomain.com&quot;</span>&gt;</span> 链接到邮箱地址 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;tel:+18002134567&quot;</span>&gt;</span> 链接到电话 <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对于指向万维网上任何文件(包括图像、 ZIP 文件、程序、PDF 及其他等)的链接，输 入 <a target="_blank" rel="noopener" href="http://www.site.com/dir/file.ext，">http://www.site.com/dir/file.ext，</a> 其 中 <a target="_blank" rel="noopener" href="http://www.site.com">www.site.com</a> 是主机名称，dir/file.ext 是目标文件的路径。后者包括了文件目录和文件名(以及扩展名)。</p>
+<p>对于电子邮件地址，输入 mailto:<a href="mailto:name@domain.com">name@domain.com</a>(不以 http:// 开头)，其中 <a href="mailto:name@domain.com">name@domain.com</a> 是电子邮件地址。</p>
+<p>对于电话号码，输入 tel:+(不以 http:// 开头)并紧跟着国家代码和电话号码(所有的号码中都不必包含短横线)。</p>
+<p>如果链接指向的文件是浏览器不知道如何处理的类型(例如 Excel 文件)，浏览器将试着打开一个辅助程序来查看这个文件，或试着将它下载到访问者的磁盘上。 </p>
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="LeiTech"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">LeiTech</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">55</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="/"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/CS/"><span class="level-start"><span class="level-item">CS</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/Git/"><span class="level-start"><span class="level-item">Git</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/JavaScript/"><span class="level-start"><span class="level-item">JavaScript</span></span><span class="level-end"><span class="level-item tag">19</span></span></a></li><li><a class="level is-mobile" href="/categories/Mac/"><span class="level-start"><span class="level-item">Mac</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/TypeScript/"><span class="level-start"><span class="level-item">TypeScript</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Vue/"><span class="level-start"><span class="level-item">Vue</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Web/"><span class="level-start"><span class="level-item">Web</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/iOS/"><span class="level-start"><span class="level-item">iOS</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/"><span class="level-start"><span class="level-item">大前端</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/06/"><span class="level-start"><span class="level-item">六月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/09/"><span class="level-start"><span class="level-item">九月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">四月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/03/"><span class="level-start"><span class="level-item">三月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">十二月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/09/"><span class="level-start"><span class="level-item">九月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/07/"><span class="level-start"><span class="level-item">七月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/06/"><span class="level-start"><span class="level-item">六月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/05/"><span class="level-start"><span class="level-item">五月 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/04/"><span class="level-start"><span class="level-item">四月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/03/"><span class="level-start"><span class="level-item">三月 2018</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/02/"><span class="level-start"><span class="level-item">二月 2018</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/01/"><span class="level-start"><span class="level-item">一月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/05/"><span class="level-start"><span class="level-item">五月 2017</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/04/"><span class="level-start"><span class="level-item">四月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/06/"><span class="level-start"><span class="level-item">六月 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/04/"><span class="level-start"><span class="level-item">四月 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/03/"><span class="level-start"><span class="level-item">三月 2016</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/02/"><span class="level-start"><span class="level-item">二月 2016</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2016/01/"><span class="level-start"><span class="level-item">一月 2016</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/12/"><span class="level-start"><span class="level-item">十二月 2015</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/11/"><span class="level-start"><span class="level-item">十一月 2015</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/10/"><span class="level-start"><span class="level-item">十月 2015</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2015/09/"><span class="level-start"><span class="level-item">九月 2015</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Git/"><span class="tag">Git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Web/"><span class="tag">Web</span><span class="tag">3</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><!--!--></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="关于代码的碎碎念" height="28"></a><p class="is-size-7"><span>&copy; 2021 Y2hlbmdsZWk=</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
